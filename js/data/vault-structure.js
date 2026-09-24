@@ -17,7 +17,7 @@ export const VAULT_STRUCTURE = {
           id: "parcial-1",
           name: "Parcial 1",
           description: "Banco oficial de examen: Modelos de proceso, ciclo de vida, SCM, Git, métricas y calidad",
-          questionCount: 152,
+          questionCount: 203,
           quizzes: [
             {
               id: "quiz-p1-completo",
@@ -80,6 +80,15 @@ export const VAULT_STRUCTURE = {
               timeLimitMinutes: 20,
               maxScore: 10.0,
               quizId: "quiz-p1-unidad-2-p2b"
+            },
+            {
+              id: "quiz-p1-unidad-3",
+              title: "UNIDAD 3 (51 preguntas)",
+              description: "Gestión de la Configuración del Software (GCSW), control de versiones, ramas, versionado semántico, builds, entregas y Estándar IEEE 828-2012.",
+              questionCount: 51,
+              timeLimitMinutes: 60,
+              maxScore: 10.0,
+              quizId: "quiz-p1-unidad-3"
             }
           ]
         },

@@ -11,6 +11,7 @@ import { CALIDAD_UNIDAD_2_PARTE_1B_QUESTIONS } from "./unidad-2-parte-1b.js";
 import { CALIDAD_UNIDAD_2_PARTE_1C_QUESTIONS } from "./unidad-2-parte-1c.js";
 import { CALIDAD_UNIDAD_2_PARTE_2A_QUESTIONS } from "./unidad-2-parte-2a.js";
 import { CALIDAD_UNIDAD_2_PARTE_2B_QUESTIONS } from "./unidad-2-parte-2b.js";
+import { CALIDAD_UNIDAD_3_QUESTIONS } from "./unidad-3/index.js";
 
 // Re-exportación individual de cada cuestionario
 export { WORD_PARCIAL_1_QUESTIONS } from "./word-parcial-1/index.js";
@@ -20,6 +21,7 @@ export { CALIDAD_UNIDAD_2_PARTE_1B_QUESTIONS } from "./unidad-2-parte-1b.js";
 export { CALIDAD_UNIDAD_2_PARTE_1C_QUESTIONS } from "./unidad-2-parte-1c.js";
 export { CALIDAD_UNIDAD_2_PARTE_2A_QUESTIONS } from "./unidad-2-parte-2a.js";
 export { CALIDAD_UNIDAD_2_PARTE_2B_QUESTIONS } from "./unidad-2-parte-2b.js";
+export { CALIDAD_UNIDAD_3_QUESTIONS } from "./unidad-3/index.js";
 
 // Conjunto unificado de preguntas del Parcial 1
 export const PARCIAL_1_QUESTIONS = [
@@ -29,5 +31,6 @@ export const PARCIAL_1_QUESTIONS = [
   ...CALIDAD_UNIDAD_2_PARTE_1B_QUESTIONS,
   ...CALIDAD_UNIDAD_2_PARTE_1C_QUESTIONS,
   ...CALIDAD_UNIDAD_2_PARTE_2A_QUESTIONS,
-  ...CALIDAD_UNIDAD_2_PARTE_2B_QUESTIONS
+  ...CALIDAD_UNIDAD_2_PARTE_2B_QUESTIONS,
+  ...CALIDAD_UNIDAD_3_QUESTIONS
 ];
