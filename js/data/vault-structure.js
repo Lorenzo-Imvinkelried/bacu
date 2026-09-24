@@ -17,7 +17,7 @@ export const VAULT_STRUCTURE = {
           id: "parcial-1",
           name: "Parcial 1",
           description: "Banco oficial de examen: Modelos de proceso, ciclo de vida, SCM, Git, métricas y calidad",
-          questionCount: 203,
+          questionCount: 206,
           quizzes: [
             {
               id: "quiz-p1-completo",
@@ -38,9 +38,9 @@ export const VAULT_STRUCTURE = {
             },
             {
               id: "quiz-p1-unidad-2-p1a",
-              title: "UNIDAD 2 - Parte 1a (10 preguntas)",
+              title: "UNIDAD 2 - Parte 1a (13 preguntas)",
               description: "Problemas en el desarrollo de software, CHAOS Report, causas de fallo de proyectos, situación tecnológica y capas de la ISW.",
-              questionCount: 10,
+              questionCount: 13,
               timeLimitMinutes: 20,
               maxScore: 10.0,
               quizId: "quiz-p1-unidad-2-p1a"

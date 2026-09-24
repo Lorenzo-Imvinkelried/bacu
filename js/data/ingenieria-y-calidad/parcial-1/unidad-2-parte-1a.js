@@ -346,5 +346,107 @@ export const CALIDAD_UNIDAD_2_PARTE_1A_QUESTIONS = [
     explanation: "La definición consagrada por el estándar IEEE 610.12 establece que la Ingeniería de Software es: 'La aplicación de un enfoque sistemático, disciplinado y cuantificable al desarrollo, operación y mantenimiento del software; es decir, la aplicación de la ingeniería al software'.",
     diagram: null,
     points: 1
+  },
+  {
+    id: "ing-cal-p1-u2-1a-q11",
+    num: 11,
+    subject: "Ingeniería y Calidad de Software",
+    unit: "Parcial 1",
+    quizId: "quiz-p1-unidad-2-p1a",
+    topic: "CHAOS Report - Proyectos Exitosos",
+    type: "single",
+    prompt: "Según el CHAOS Report, ¿qué porcentaje de proyectos de software se clasifican históricamente como 'Exitosos' (completados a tiempo, en presupuesto y con todas las funciones originalmente especificadas)?",
+    options: [
+      {
+        id: "a",
+        text: "Del 50 al 53%."
+      },
+      {
+        id: "b",
+        text: "Del 19 al 31%."
+      },
+      {
+        id: "c",
+        text: "Del 29 al 31%."
+      },
+      {
+        id: "d",
+        text: "Más del 80%."
+      }
+    ],
+    correctAnswers: [
+      "c"
+    ],
+    explanation: "En las estadísticas consolidadas del Standish Group (CHAOS Report), los proyectos clasificados estrictamente como 'Exitosos' (entregados en tiempo, dentro del presupuesto y con la totalidad del alcance y funciones especificadas) rondan históricamente entre el 29% y el 31%.",
+    diagram: null,
+    points: 1
+  },
+  {
+    id: "ing-cal-p1-u2-1a-q12",
+    num: 12,
+    subject: "Ingeniería y Calidad de Software",
+    unit: "Parcial 1",
+    quizId: "quiz-p1-unidad-2-p1a",
+    topic: "CHAOS Report - Proyectos Comprometidos (Challenged)",
+    type: "single",
+    prompt: "Según las estadísticas del CHAOS Report, ¿qué porcentaje histórico representan los proyectos 'Comprometidos o Cuestionados' (Challenged), es decir, aquellos que se completan pero exceden tiempo/presupuesto o tienen menores funciones?",
+    options: [
+      {
+        id: "a",
+        text: "Del 50 al 53%."
+      },
+      {
+        id: "b",
+        text: "Del 29 al 31%."
+      },
+      {
+        id: "c",
+        text: "Del 19 al 31%."
+      },
+      {
+        id: "d",
+        text: "Menos del 10%."
+      }
+    ],
+    correctAnswers: [
+      "a"
+    ],
+    explanation: "Los proyectos Challenged (cuestionados o comprometidos) representan históricamente la mayoría en el CHAOS Report, ubicándose entre el 50% y el 53%. Son proyectos que logran ponerse en funcionamiento pero sufrieron sobrecostos, demoras en el cronograma o recortes de alcance.",
+    diagram: null,
+    points: 1
+  },
+  {
+    id: "ing-cal-p1-u2-1a-q13",
+    num: 13,
+    subject: "Ingeniería y Calidad de Software",
+    unit: "Parcial 1",
+    quizId: "quiz-p1-unidad-2-p1a",
+    topic: "CHAOS Report - Proyectos Fallados o Cancelados",
+    type: "single",
+    prompt: "De acuerdo con el CHAOS Report, ¿cuál es el porcentaje de proyectos que terminan siendo 'Fallados o Cancelados' (se cancelan antes de ser completados o nunca son implementados)?",
+    options: [
+      {
+        id: "a",
+        text: "Del 50 al 53%."
+      },
+      {
+        id: "b",
+        text: "Del 29 al 31%."
+      },
+      {
+        id: "c",
+        text: "Del 19 al 31%."
+      },
+      {
+        id: "d",
+        text: "Alrededor del 5%."
+      }
+    ],
+    correctAnswers: [
+      "c"
+    ],
+    explanation: "En los estudios históricos del Standish Group, los proyectos clasificados como 'Fallados' o cancelados (aquellos que fueron cancelados antes de su finalización o que nunca llegaron a ser implementados por el cliente) representan entre el 19% y el 31% del total.",
+    diagram: null,
+    points: 1
   }
 ];
