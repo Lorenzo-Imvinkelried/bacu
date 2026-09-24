@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuestionario | Campus Virtual UTN FRSF - Baúl de Cuestionarios</title>
+  <meta name="description" content="Baúl de cuestionarios de examen y parciales viejos con la interfaz oficial de Campus Virtual UTN FRSF.">
+  
+  <!-- Estilos modulares desacoplados (Cumpliendo AGENTS.md) -->
+  <link rel="stylesheet" href="css/moodle-base.css">
+  <link rel="stylesheet" href="css/moodle-header.css">
+  <link rel="stylesheet" href="css/moodle-quiz.css">
+  <link rel="stylesheet" href="css/moodle-navblock.css">
+  <link rel="stylesheet" href="css/vault-explorer.css">
+</head>
+<body>
+  <!-- Contenedor Raíz de la Aplicación -->
+  <div id="app-root">
+    <div style="padding: 2rem; text-align: center; font-family: sans-serif; color: #4a5568;">
+      Cargando Baúl de Cuestionarios...
+    </div>
+  </div>
+
+  <!-- Inicializador Modular ES6 -->
+  <script type="module">
+    import { initApp } from './js/app.js';
+    document.addEventListener('DOMContentLoaded', () => {
+      initApp();
+    });
+  </script>
+</body>
+</html>

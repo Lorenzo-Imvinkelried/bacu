@@ -1,0 +1,1908 @@
+================================================================================
+BAÚL DE CUESTIONARIOS - BANCO COMPLETO DE PREGUNTAS Y RESPUESTAS OFICIALES
+Asignatura: Ingeniería y Calidad - Parcial 1
+Institución: Universidad Tecnológica Nacional - Facultad Regional Santa Fe (UTN FRSF)
+Total de preguntas: 92
+Generado el: 24/09/2026
+Alineado 100% con la Teoría de Cátedra (Unidades 1, 2, ISO/IEC 12207 y GCSW)
+================================================================================
+
+--------------------------------------------------------------------------------
+PREGUNTA 1 (ID: ing-cal-p1-q1) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Modelos de Proceso
+
+ENUNCIADO:
+Un modelo de proceso de desarrollo de software incremental se caracteriza por:
+
+OPCIONES:
+  [1] Liberar software cuando todas sus partes están integradas.
+  [2] Liberar software cuando todas sus partes están completas.
+  [3] Liberar fragmentos de software previamente definidos y planificados.  <--- [CORRECTA]
+  [4] Liberar fragmentos de software de acuerdo a como se vayan definiendo.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [3]: Liberar fragmentos de software previamente definidos y planificados.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El modelo incremental se caracteriza por entregar incrementos de software operativos previamente definidos y planificados. Cada incremento proporciona una funcionalidad parcial pero operativa.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 2 (ID: ing-cal-p1-q2) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Configuración (SCM)
+
+ENUNCIADO:
+Un proyecto de software en el que se está utilizando una herramienta de gestión de versiones, dispone en un momento determinado T de una rama ‘principal’ P. Se aprueba la realización de un cambio en el elemento E (que forma parte de la rama principal P). Las acciones a tomar son:
+
+OPCIONES:
+  [1] (1) Comenzar a aplicar el cambio en la rama principal P.
+  [2] (1) Buscar la última rama ‘secundaria’ creada y (2) Trabajar en ésta el cambio requerido.
+  [3] (1) Crear una nueva rama B a partir de la rama principal P para trabajar el cambio E. (2) Cuando este esté listo, probado y aprobado, se agregan a la rama P.  <--- [CORRECTA]
+  [4] (1) Trabajar el cambio por fuera de la herramienta de gestión de versiones, y (2) Cuando este esté listo para probar, se agregan a la rama P.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [3]: (1) Crear una nueva rama B a partir de la rama principal P para trabajar el cambio E. (2) Cuando este esté listo, probado y aprobado, se agregan a la rama P.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En un flujo de trabajo con control de versiones (como Git), para modificar un elemento de la rama principal se debe crear una nueva rama (branch) a partir de ella, realizar y probar el cambio allí, y una vez aprobado, integrarlo (merge) a la rama principal.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 3 (ID: ing-cal-p1-q3) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Proyectos
+
+ENUNCIADO:
+Un líder de proyecto afirma que: “Si el cronograma va atrasado es posible contratar más programadores para terminar a tiempo.”
+
+OPCIONES:
+  [1] Es algo que se puede aplicar y funciona en todos los proyectos.
+  [2] No funciona en un proyecto en desarrollo.  <--- [CORRECTA]
+  [3] Es aplicable en proyectos a corto plazo.
+  [4] Funciona sólo en proyectos grandes y complejos.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [2]: No funciona en un proyecto en desarrollo.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Ley de Brooks: 'Agregar más programadores a un proyecto de software retrasado lo retrasa aún más', debido a la sobrecarga de comunicación, coordinación y curva de aprendizaje requerida.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 4 (ID: ing-cal-p1-q4) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Estándar ISO/IEC 12207
+
+ENUNCIADO:
+¿Define el Estándar ISO/IEC 12207 los modelos de ciclo de vida para los proyectos de software?
+
+OPCIONES:
+  [a] No define modelos de ciclo de vida específicos, sino un conjunto estructurado de procesos y sugiere a las organizaciones aplicar modelos que se adapten a sus necesidades.  <--- [CORRECTA]
+  [b] Sí, prescribe de forma obligatoria y cerrada los modelos Cascada y Espiral para todo proyecto de software.
+  [c] Sí, establece únicamente modelos ágiles (Scrum y XP) para organizaciones certificadas bajo normas ISO.
+  [d] No, el estándar no trata cuestiones de ciclo de vida de software, solo define requerimientos físicos de hardware y servidores.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: No define modelos de ciclo de vida específicos, sino un conjunto estructurado de procesos y sugiere a las organizaciones aplicar modelos que se adapten a sus necesidades.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El Estándar 12207 no define ni impone modelos de ciclo de vida concretos; define un marco de procesos común y sugiere que la organización seleccione o adapte el modelo de ciclo de vida más adecuado para sus proyectos.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 5 (ID: ing-cal-p1-q5) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Proceso de Software
+
+ENUNCIADO:
+La relación entre el concepto de ‘actividades’ y ‘tareas’ es la siguiente:
+
+OPCIONES:
+  [1] Son sinónimos.
+  [2] Las actividades incluyen tareas y éstas pueden incluir también actividades.
+  [3] Las actividades incluyen las tareas.  <--- [CORRECTA]
+  [4] Las tareas incluyen las actividades.
+  [5] No tienen relación.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [3]: Las actividades incluyen las tareas.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En la jerarquía de un proceso de software según Pressman, un proceso define actividades del marco de trabajo, y cada actividad incluye un conjunto de acciones y tareas de ingeniería de software.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 6 (ID: ing-cal-p1-q6) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Configuración (SCM)
+
+ENUNCIADO:
+Una variante representa:
+
+OPCIONES:
+  [1] Una implementación para un contexto diferente de un elemento de configuración probado y aprobado.  <--- [CORRECTA]
+  [2] Un momento en la vida de un elemento de configuración cuyo estado ha sido probado y aprobado.
+  [3] Un momento en la vida de un sistema de software en el cual es puesto a disposición de los clientes.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [1]: Una implementación para un contexto diferente de un elemento de configuración probado y aprobado.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Una variante es una versión que se desarrolla para un contexto o plataforma diferente coexistiendo con otra versión (por ejemplo, soporte para diferentes sistemas operativos o idiomas).
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 7 (ID: ing-cal-p1-q7) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Naturaleza del Software
+
+ENUNCIADO:
+En relación al siguiente gráfico, indique cuál afirmación es correcta.
+
+OPCIONES:
+  [a] El gráfico representa la tasa de fallas de un producto de hardware a lo largo del tiempo.
+  [b] El gráfico representa la tasa de fallas de un producto industrial, que se manufactura, a lo largo del tiempo.
+  [c] El gráfico representa la tasa de fallas de un sistema de información a lo largo del tiempo.
+  [d] El gráfico representa la tasa de fallas de un producto de software a lo largo del tiempo.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [d]: El gráfico representa la tasa de fallas de un producto de software a lo largo del tiempo.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El gráfico muestra la curva de tasa de fallas del software a lo largo del tiempo, donde cada modificación o cambio posterior en el software introduce nuevos defectos, generando 'picos' en la tasa de fallas (a diferencia de la curva de la bañera del hardware).
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 8 (ID: ing-cal-p1-q8) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Versionado Semántico (SemVer)
+
+ENUNCIADO:
+En el marco de la identificación de versiones bajo 'Versionado Semántico' (SemVer con formato X.Y.Z o MAJOR.MINOR.PATCH), ¿qué significado tiene un incremento en el número MAJOR (X.0.0)?
+
+OPCIONES:
+  [a] Se introducen cambios mayores en la API que generan incompatibilidad con versiones anteriores (breaking changes).  <--- [CORRECTA]
+  [b] Se corrigen errores o bugs menores manteniendo total compatibilidad hacia atrás.
+  [c] Se agrega nueva funcionalidad manteniendo compatibilidad hacia atrás.
+  [d] Indica un contador simple de compilaciones diarias generado automáticamente por la herramienta de integración continua.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Se introducen cambios mayores en la API que generan incompatibilidad con versiones anteriores (breaking changes).
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En SemVer: MAJOR se incrementa cuando se realizan cambios incompatibles en la API; MINOR cuando se añade funcionalidad compatible; PATCH cuando se corrigen errores compatibles hacia atrás.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 9 (ID: ing-cal-p1-q9) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Sistemas Heredados (Legacy)
+
+ENUNCIADO:
+Los sistemas heredados son uno de los retos del siglo XXI según Sommerville. Generalmente, tienen un papel crítico en la organización y dependen de tecnologías de hardware y software obsoletas. En relación a este tipo de sistemas se puede afirmar que:
+
+OPCIONES:
+  [a] Condicionan las posibilidades de actualización de hardware.  <--- [CORRECTA]
+  [b] Sólo deben mantenerse por los datos que manejan.
+  [c] Incluyen procesos y procedimientos, además de hardware y software.  <--- [CORRECTA]
+  [d] No proporcionan servicios esenciales del negocio.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Condicionan las posibilidades de actualización de hardware.
+  -> Opción [c]: Incluyen procesos y procedimientos, además de hardware y software.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Según Sommerville, los sistemas heredados condicionan las posibilidades de actualización de hardware y además abarcan no solo código sino procesos de negocio, procedimientos y hardware obsoleto.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 10 (ID: ing-cal-p1-q10) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Ingeniería de Software
+
+ENUNCIADO:
+Dos problemáticas fundamentales de la Ingeniería de Software son:
+
+OPCIONES:
+  [a] Identificar los requerimientos funcionales y no funcionales, y luego implementarlos.
+  [b] Identificar qué significa buena calidad y luego alcanzarla.
+  [c] Lidiar con la performance y la seguridad de los sistemas.
+  [d] Lidiar con la escala y complejidad de sistemas de software.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [d]: Lidiar con la escala y complejidad de sistemas de software.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Dos problemáticas fundamentales de la Ingeniería de Software según Sommerville son lidiar con la escala y la complejidad inherentes de los sistemas de software modernos.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 11 (ID: ing-cal-p1-q11) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Naturaleza del Software
+
+ENUNCIADO:
+¿Por qué se sostiene formalmente en la Ingeniería de Software que el software no se 'manufactura' en el sentido clásico industrial?
+
+OPCIONES:
+  [a] Porque los mayores costos y esfuerzos de calidad radican en el diseño y desarrollo conceptual, mientras que la replicación o copia física del software tiene costo y esfuerzo marginales casi nulos.  <--- [CORRECTA]
+  [b] Porque el software carece por completo de etapas de prueba, control de calidad y validación formal.
+  [c] Porque el software nunca puede ser comercializado como un producto final ni vendido a usuarios.
+  [d] Porque requiere ensamblaje de piezas mecánicas en líneas de montaje industriales automatizadas.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Porque los mayores costos y esfuerzos de calidad radican en el diseño y desarrollo conceptual, mientras que la replicación o copia física del software tiene costo y esfuerzo marginales casi nulos.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Pressman y Sommerville destacan que el software se desarrolla o construye mediante ingeniería conceptual, no se manufactura. Una vez creado, crear millones de copias tiene un costo casi cero y no depende de materias primas físicas.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 12 (ID: ing-cal-p1-q12) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Versiones
+
+ENUNCIADO:
+Un ‘número de versión’ (o ‘identificación de versión’) debe servir para:
+
+OPCIONES:
+  [a] Tener un contador que se incremente cada vez que se genera una nueva release del producto.
+  [b] Indicar cuán antigua es una versión de software.
+  [c] Rápidamente interpretar cuál es el nivel de cambios que tiene el producto de software.  <--- [CORRECTA]
+  [d] Como remplazo de un nombre 'alfabético' de cada versión del producto.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: Rápidamente interpretar cuál es el nivel de cambios que tiene el producto de software.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Un número de versión (especialmente en esquemas como SemVer) sirve para interpretar de forma rápida y clara el nivel y tipo de cambios (mayor, menor o parche/corrección) introducidos en el producto.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 13 (ID: ing-cal-p1-q13) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Control de Versiones (Git)
+
+ENUNCIADO:
+La rama ‘principal’ (master) que se define utilizando alguna herramienta de versionado:
+
+OPCIONES:
+  [a] Se crea cuando se quiere trabajar en cambios sobre la versión actual del producto.
+  [b] Mantiene los primeros elementos de software que se incorporan al producto de software.
+  [c] Representa la primer versión del producto de software.
+  [d] Es la que siempre contiene la última versión funcional del sistema.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [d]: Es la que siempre contiene la última versión funcional del sistema.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La rama principal (master / main) representa la versión oficial, estable y funcional del sistema lista para producción.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 14 (ID: ing-cal-p1-q14) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Versionado Semántico y GitFlow
+
+ENUNCIADO:
+Se necesita incorporar una funcionalidad nueva a un sistema que ya se encuentra en entorno productivo con versión 2.3.5, utilizando GitFlow y Versionado Semántico (compatible con la versión anterior). ¿Cuál es la versión generada para producción?
+
+OPCIONES:
+  [a] 2.4.0 (incremento de versión menor MINOR y reinicio a 0 del contador de parches PATCH).  <--- [CORRECTA]
+  [b] 2.3.6 (incremento únicamente de la versión de corrección PATCH).
+  [c] 3.0.0 (incremento de la versión mayor MAJOR).
+  [d] 2.4.5 (incremento de la versión menor conservando el valor previo del parche).
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: 2.4.0 (incremento de versión menor MINOR y reinicio a 0 del contador de parches PATCH).
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Al ser una nueva funcionalidad compatible hacia atrás (no rompe la API existente), corresponde un incremento MINOR: de 2.3.5 pasa a 2.4.0 (reseteando el parche Z a 0).
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 15 (ID: ing-cal-p1-q15) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Definición IEEE de Ingeniería de Software
+
+ENUNCIADO:
+Según la IEEE 610.12, la Ingeniería de Software es la aplicación de un enfoque 'sistemático, disciplinado y cuantificable' al desarrollo y mantenimiento del software. ¿A qué hace referencia que sea 'sistemático'?
+
+OPCIONES:
+  [a] A que tiene definido un proceso estructurado, metodológico y repetible capaz de ser aplicado en todos los proyectos de la organización.  <--- [CORRECTA]
+  [b] A que el código fuente debe compilarse de forma automática sin supervisión humana.
+  [c] A que solo es aplicable si se cuenta con sistemas operativos Unix o Linux.
+  [d] A que el desarrollo debe prescindir de documentación para acelerar las entregas.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: A que tiene definido un proceso estructurado, metodológico y repetible capaz de ser aplicado en todos los proyectos de la organización.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Enfoque sistemático significa que el proceso está formalizado, tiene etapas y procedimientos definidos, y puede ser repetido consistentemente a lo largo de los proyectos de la organización.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 16 (ID: ing-cal-p1-q16) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Modelos de Proceso
+
+ENUNCIADO:
+En relación al modelo de proceso iterativo, indique qué afirmaciones son correctas.
+
+OPCIONES:
+  [a] Tiene alta dependencia entre fases o etapas.
+  [b] Se pueden repetir las secuencias de ejecución de etapas o fases.  <--- [CORRECTA]
+  [c] En cada iteración se obtienen versiones más completas del software.  <--- [CORRECTA]
+  [d] Enfatiza el re uso.
+  [e] Es una variante del modelo cascada.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Se pueden repetir las secuencias de ejecución de etapas o fases.
+  -> Opción [c]: En cada iteración se obtienen versiones más completas del software.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En un modelo iterativo se pueden repetir las secuencias de ejecución de fases y en cada iteración se obtienen versiones sucesivas más completas y refinadas del software.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 17 (ID: ing-cal-p1-q17) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Diseño y Calidad
+
+ENUNCIADO:
+Un arquitecto de software afirma que: “El software es flexible y por lo tanto los cambios en los requerimientos del proyecto pueden ajustarse con facilidad.”
+
+OPCIONES:
+  [a] Esa (flexibilidad) es una característica del software que se logra siempre al aplicar un proceso de desarrollo ingenieril.
+  [b] Esa (flexibilidad) es una característica del software que no se puede alcanzar en un producto de software.
+  [c] Esa (flexibilidad) es una característica del software que se logra sólo si se diseña el producto para alcanzarla.  <--- [CORRECTA]
+  [d] Esa (flexibilidad) es una característica del software que no se logra siempre al aplicar un proceso de desarrollo ingenieril.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: Esa (flexibilidad) es una característica del software que se logra sólo si se diseña el producto para alcanzarla.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La flexibilidad no es una propiedad mágica ni automática del software: solo se logra si la arquitectura y el diseño del producto se conciben intencionalmente para ser flexibles y adaptables.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 18 (ID: ing-cal-p1-q18) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Modelos de Ciclo de Vida
+
+ENUNCIADO:
+Una software factory desarrolla un ERP. Posee subsistemas existentes que deben ser refactorizados (Producción, Logística, Distribución) y otros a crear desde cero. ¿Qué modelo de ciclo de vida es el más conveniente para estructurarlo?
+
+OPCIONES:
+  [a] Modelo de proceso de desarrollo basado en componentes (o incremental/concurrente por subsistemas).  <--- [CORRECTA]
+  [b] Modelo en Cascada estricto para todo el ERP como un bloque monolítico único.
+  [c] Modelo de Métodos Formales puros con especificación matemática exhaustiva.
+  [d] Modelo de Prototipado desechable sin preservación de arquitectura base.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Modelo de proceso de desarrollo basado en componentes (o incremental/concurrente por subsistemas).
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El modelo basado en componentes e incremental permite construir aplicaciones a partir de fragmentos de software reutilizables o refactorizados, reduciendo tiempo de desarrollo, riesgos y costos al integrar partes preexistentes.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 19 (ID: ing-cal-p1-q19) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Curva de Fallas Hardware vs Software
+
+ENUNCIADO:
+En la curva de tasa de fallas del hardware a lo largo del tiempo (la clásica 'curva de la bañera'), ¿a qué se debe el incremento pronunciado de fallas en su etapa final?
+
+OPCIONES:
+  [a] Al desgaste físico acumulado, envejecimiento de materiales y fatiga mecánica por el uso continuo y factores ambientales.  <--- [CORRECTA]
+  [b] A la introducción de efectos colaterales producidos por parches de código fuente.
+  [c] A errores iniciales en la especificación de requerimientos de diseño.
+  [d] A la instalación de virus o malware en los discos de almacenamiento.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Al desgaste físico acumulado, envejecimiento de materiales y fatiga mecánica por el uso continuo y factores ambientales.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El hardware es físico y sufre desgaste (wear-out) por temperatura, polvo, vibración y envejecimiento de materiales, aumentando su tasa de fallas al final de su vida útil. El software no se desgasta físicamente.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 20 (ID: ing-cal-p1-q20) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Estándar ISO/IEC 12207
+
+ENUNCIADO:
+¿Qué grupo de procesos de los propuestos por el Estándar 12207 se utiliza para mejorar las actividades de la organización y formación del personal, según lo aprendido de la implementación del estándar en experiencias previas?
+
+OPCIONES:
+  [a] Procesos de gestión técnica.
+  [b] Procesos de acuerdo.
+  [c] Procesos que habilitan proyectos organizacionales.  <--- [CORRECTA]
+  [d] Procesos técnicos.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: Procesos que habilitan proyectos organizacionales.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El Estándar 12207 agrupa los procesos que permiten a la organización gestionar sus recursos y capacidades en los 'Procesos que habilitan proyectos organizacionales'.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 21 (ID: ing-cal-p1-q21) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Estándar ISO/IEC 12207
+
+ENUNCIADO:
+En relación con el Estándar 12207, indique qué grupo de procesos es el que se orienta a la gestión de recursos para cumplir los acuerdos de la organización con el fin de establecer, ejecutar y controlar las planificaciones.
+
+OPCIONES:
+  [a] Procesos que habilitan proyectos organizacionales.
+  [b] Procesos de gestión técnica.  <--- [CORRECTA]
+  [c] Procesos técnicos.
+  [d] Procesos de acuerdo.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Procesos de gestión técnica.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Según el Estándar ISO/IEC 12207, los 'Procesos de gestión técnica' se orientan a la gestión de recursos para cumplir los acuerdos de la organización, estableciendo, ejecutando y controlando las planificaciones para cada proyecto particular (incluyen las actividades de soporte del marco de trabajo).
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 22 (ID: ing-cal-p1-q22) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Control de Versiones (Git)
+
+ENUNCIADO:
+Si utiliza alguna herramienta para gestionar las versiones de elementos de software (Git, SVN, otra), estas van a requerir que defina mínimamente:
+
+OPCIONES:
+  [a] Una rama principal y una rama de trabajo.
+  [b] Una rama principal, una rama de trabajo, y una rama de prueba.
+  [c] Una rama principal del proyecto.  <--- [CORRECTA]
+  [d] No tienen requerimientos mínimos.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: Una rama principal del proyecto.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Toda herramienta de gestión de versiones (como Git o SVN) requiere definir como mínimo una rama principal (master/main o trunk) del proyecto. El uso de ramas de desarrollo o de prueba adicionales es una práctica metodológica, pero no una exigencia mínima de la herramienta.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 23 (ID: ing-cal-p1-q23) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Configuración (SCM)
+
+ENUNCIADO:
+La primera Línea Base de un proyecto de software se genera
+
+OPCIONES:
+  [a] Una vez definido el alcance del proyecto (Plan de Proyecto).  <--- [CORRECTA]
+  [b] Cuando el producto de software fue aceptado por el cliente.
+  [c] Cuando se tiene la primera versión del software listo para liberar.
+  [d] Una vez realizado el diseño de software y antes de comenzar el proceso de programación.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Una vez definido el alcance del proyecto (Plan de Proyecto).
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La primera Línea Base formal de un proyecto de software se genera una vez definido y aprobado el alcance del proyecto (Plan de Proyecto y Especificación de Requerimientos de Software - SRS), marcando el inicio del control formal de cambios.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 24 (ID: ing-cal-p1-q24) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Curva de Fallas Hardware
+
+ENUNCIADO:
+En el análisis de la curva de tasa de fallas del hardware, ¿a qué fenómeno responde la tasa elevada de fallas que se observa en el período inicial ('mortalidad infantil')?
+
+OPCIONES:
+  [a] A defectos de fabricación no detectados o componentes defectuosos que fallan rápidamente durante las primeras horas de uso.  <--- [CORRECTA]
+  [b] Al desgaste progresivo por años de funcionamiento continuo en servidores.
+  [c] A modificaciones de mantenimiento adaptativo realizadas sobre el circuito impreso.
+  [d] A la obsolescencia de los estándares de comunicación de red.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: A defectos de fabricación no detectados o componentes defectuosos que fallan rápidamente durante las primeras horas de uso.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La tasa de fallas inicial alta en hardware ('burn-in' o mortalidad infantil) se debe a defectos de fabricación o ensamble que se descartan o corrigen en los primeros momentos de operación.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 25 (ID: ing-cal-p1-q25) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Configuración (SCM)
+
+ENUNCIADO:
+‘Construir’ un sistema de software significa:
+
+OPCIONES:
+  [a] Compilar, generar el sistema ejecutable, y dejarlo disponible a los clientes.
+  [b] Compilar, general el sistema ejecutable, y adjuntar los datos y documentos necesarios para su uso.
+  [c] Compilar y generar el sistema ejecutable  <--- [CORRECTA]
+  [d] Desarrollar los programas de acuerdo a la especificación de diseño.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: Compilar y generar el sistema ejecutable
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En el contexto de la Gestión de la Configuración del Software (GCSW / Construcción de Sistemas - Build), 'construir' un sistema de software significa compilar el código fuente y generar el sistema ejecutable.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 26 (ID: ing-cal-p1-q26) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Proceso de Software
+
+ENUNCIADO:
+La documentación (registro escritos manuales y/o electrónicos) de diferentes productos generados en el proceso de desarrollo de software
+
+OPCIONES:
+  [a] Debe evitarse para acelerar los procesos de desarrollo de software.
+  [b] Existen procesos como los Ágiles que prescinden totalmente de ella.
+  [c] Sólo se realiza si el proceso de desarrollo de software lo requiere.
+  [d] Es siempre necesaria como parte del procesos de desarrollo de software.  <--- [CORRECTA]
+  [e] Brinda "visibilidad" al proceso de Ingeniería de Software.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [d]: Es siempre necesaria como parte del procesos de desarrollo de software.
+  -> Opción [e]: Brinda "visibilidad" al proceso de Ingeniería de Software.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La documentación es siempre necesaria como parte del proceso de desarrollo de software porque brinda visibilidad y trazabilidad al proceso de ingeniería.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 27 (ID: ing-cal-p1-q27) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Flujo GitFlow
+
+ENUNCIADO:
+Bajo GitFlow, si se necesita incorporar una funcionalidad nueva (feature) a un sistema que ya se encuentra en producción, ¿cuál es el primer paso a realizar en Git?
+
+OPCIONES:
+  [a] Posicionarse en la rama 'develop' y crear una nueva rama de feature (ej: git checkout -b feature/nueva-funcionalidad develop).  <--- [CORRECTA]
+  [b] Crear una rama hotfix desprendida directamente de la rama 'master'.
+  [c] Aplicar los cambios directamente sobre el commit HEAD de la rama 'master' en producción.
+  [d] Hacer un push forzado sobre el repositorio central sin crear ramas locales.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Posicionarse en la rama 'develop' y crear una nueva rama de feature (ej: git checkout -b feature/nueva-funcionalidad develop).
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En GitFlow, todas las ramas de nuevas características (feature branches) deben nacer a partir de la rama 'develop' y, al finalizarse, volverse a fusionar en 'develop'.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 28 (ID: ing-cal-p1-q28) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Control de Versiones (Git)
+
+ENUNCIADO:
+En un proyecto de software en el cual está utilizando una herramienta de gestión de versiones, se dispone en un momento determinado una rama ‘principal’ y una rama ‘secundaria’. Para actualizar la rama ‘principal’ con los cambios de la rama ‘secundaria’ deberá:
+
+OPCIONES:
+  [a] Hacer un ‘commit’ de la rama ‘secundaria’ a la rama ‘principal’.
+  [b] Hacer una nueva rama y clonar los cambios.
+  [c] ‘Mezclar’ los cambios de la rama ‘secundaria’ en la rama ‘principal’.  <--- [CORRECTA]
+  [d] ‘Clonar’ los cambios de la rama ‘secundaria’ en la rama ‘principal’.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: ‘Mezclar’ los cambios de la rama ‘secundaria’ en la rama ‘principal’.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Para incorporar los cambios de una rama secundaria a la rama principal se realiza una operación de mezcla o fusión ('merge').
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 29 (ID: ing-cal-p1-q29) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Naturaleza del Software vs Hardware
+
+ENUNCIADO:
+En relación al siguiente gráfico y a la información que describe, seleccione la opción correcta:
+
+OPCIONES:
+  [a] El gráfico muestra la tasa de fallas producida por el análisis de requerimientos de un producto de software a lo largo  del tiempo.
+  [b] El gráfico muestra la tasa de fallas del hardware a lo largo del tiempo.  <--- [CORRECTA]
+  [c] El gráfico muestra la tasa de falla de cualquier producto industrial a lo largo del tiempo.
+  [d] El gráfico muestra la tasa de fallas del software a lo largo del tiempo.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: El gráfico muestra la tasa de fallas del hardware a lo largo del tiempo.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El gráfico corresponde a la curva clásica de bañera (bathtub curve), que representa la tasa de fallas del hardware a lo largo del tiempo, con mortalidad infantil inicial y posterior desgaste físico acumulado por envejecimiento de materiales.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 30 (ID: ing-cal-p1-q30) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Definición de Software
+
+ENUNCIADO:
+¿Qué es el software? Seleccione la/s sentencia/s correspondiente/s:
+
+OPCIONES:
+  [a] La información relativa a las fuentes de información y stakeholders.
+  [b] Los casos de prueba necesarios para verificar su funcionamiento esperado.
+  [c] Las estructuras de datos que le permiten manipular información.  <--- [CORRECTA]
+  [d] La documentación asociada al proyecto.  <--- [CORRECTA]
+  [e] Las instrucciones (programas) que proporcionan las características y funciones.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: Las estructuras de datos que le permiten manipular información.
+  -> Opción [d]: La documentación asociada al proyecto.
+  -> Opción [e]: Las instrucciones (programas) que proporcionan las características y funciones.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Según la definición estándar de la IEEE y de cátedra, el software comprende: (e) las instrucciones y programas que proporcionan las funciones requeridas, (c) las estructuras de datos que permiten manipular información, y (d) la documentación asociada (tanto técnica como de usuario).
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 31 (ID: ing-cal-p1-q31) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Marco de Trabajo Genérico
+
+ENUNCIADO:
+A la hora de desarrollar software, las actividades que sí o sí se deberán realizar de una manera ingenieril son:
+
+OPCIONES:
+  [a] Construcción.
+  [b] Planificación, Modelado, Construcción.
+  [c] Comunicación, Planificación, Modelado, Construcción, Despliegue/Distribución.  <--- [CORRECTA]
+  [d] Comunicación, Planificación, Modelado, Construcción.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: Comunicación, Planificación, Modelado, Construcción, Despliegue/Distribución.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Las cinco actividades fundamentales del marco de trabajo según Pressman son: Comunicación, Planificación, Modelado, Construcción y Despliegue.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 32 (ID: ing-cal-p1-q32) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Métodos de Ingeniería de Software
+
+ENUNCIADO:
+Un método de Ingeniería de Software:
+
+OPCIONES:
+  [a] Incluye reglas, recomendaciones, guías y/o técnicas para generar artefactos de calidad.  <--- [CORRECTA]
+  [b] Empiezan a aplicarse en la etapa de programación del proyecto.
+  [c] Indica la manera en que una clase resolverá un mensaje recibido.
+  [d] Sólo se pueden aplicar si se dispone de una herramienta gráfica que lo soporte.
+  [e] Indica cómo construir técnicamente el software.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Incluye reglas, recomendaciones, guías y/o técnicas para generar artefactos de calidad.
+  -> Opción [e]: Indica cómo construir técnicamente el software.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Un método de IS incluye reglas, recomendaciones y técnicas para generar artefactos de calidad e indica técnicamente cómo construir el software.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 33 (ID: ing-cal-p1-q33) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Mitos del Software
+
+ENUNCIADO:
+Un líder de proyecto afirma que: “Cuanto más pronto se comience a escribir código, más se tardará en terminarlo.”
+
+OPCIONES:
+  [a] Lo más importante es el código, por lo tanto debe iniciarse rápidamente la programación.
+  [b] Existen procesos de ingeniería de software donde esto no se aplica.
+  [c] Esto aplica en todos los enfoques de procesos de desarrollo de software ingenieriles.  <--- [CORRECTA]
+  [d] Esto aplica sólo a los proyectos de mayor tamaño o complejidad.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: Esto aplica en todos los enfoques de procesos de desarrollo de software ingenieriles.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El mito de empezar a programar de inmediato genera retrabajo y retrasos. Esta regla preventiva aplica a todos los enfoques de procesos ingenieriles rigurosos.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 34 (ID: ing-cal-p1-q34) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Versionado Semántico (SemVer)
+
+ENUNCIADO:
+Se están corrigiendo bugs sobre la versión 2.0.0, ¿cuál es el próximo número de versión sugerido?
+
+OPCIONES:
+  [a] 3.0.0
+  [b] 2.0.1  <--- [CORRECTA]
+  [c] 2.1.1
+  [d] 2.1.0
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: 2.0.1
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En SemVer (MAJOR.MINOR.PATCH), si se corrigen errores (bugfixes) compatibles hacia atrás sobre la versión 2.0.0, se incrementa el PATCH, resultando en 2.0.1.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 35 (ID: ing-cal-p1-q35) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Proceso y Proyecto
+
+ENUNCIADO:
+En relación a los conceptos de Proceso y Proyecto en Ingeniería de Software, indique las opciones que son correctas.
+
+OPCIONES:
+  [a] Un proceso define los métodos y las herramientas a utilizar en un proyecto particular.
+  [b] El proceso define, entre otras cosas, el modelo de ciclo de vida a utilizar en un proyecto.  <--- [CORRECTA]
+  [c] Un proceso debe ser definido a nivel organización, para que todos los proyectos a llevar adelante en la misma lo utilicen o instancien.  <--- [CORRECTA]
+  [d] Cada proyecto define el proceso o enfoque que debe ser seguido para guiarlo.
+  [e] Un proceso definido debe ser adaptado a las características de cada proyecto.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: El proceso define, entre otras cosas, el modelo de ciclo de vida a utilizar en un proyecto.
+  -> Opción [c]: Un proceso debe ser definido a nivel organización, para que todos los proyectos a llevar adelante en la misma lo utilicen o instancien.
+  -> Opción [e]: Un proceso definido debe ser adaptado a las características de cada proyecto.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Un proceso se define a nivel organizacional para ser reutilizado e instanciado, debe adaptarse a las particularidades de cada proyecto, y define el modelo de ciclo de vida a seguir.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 36 (ID: ing-cal-p1-q36) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Proceso de Software
+
+ENUNCIADO:
+Indique las afirmaciones que son correctas en relación con el Proceso de Software en la Ingeniería de Software.
+
+OPCIONES:
+  [a] Utilizar un proceso no contribuye a la rapidez con la que se desarrollarán los productos de software.
+  [b] En el marco de la Ingeniería de Software, es sinónimo de proyecto de software.
+  [c] Debe estar explícitamente definido para ser bien administrado.  <--- [CORRECTA]
+  [d] Define un marco de trabajo compuesto por actividades estructurales y de soporte, además de un conjunto de tareas para cada actividad.  <--- [CORRECTA]
+  [e] Al definir un proceso es necesario identificar el modelo de proceso o modelo de ciclo de vida a utilizar.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: Debe estar explícitamente definido para ser bien administrado.
+  -> Opción [d]: Define un marco de trabajo compuesto por actividades estructurales y de soporte, además de un conjunto de tareas para cada actividad.
+  -> Opción [e]: Al definir un proceso es necesario identificar el modelo de proceso o modelo de ciclo de vida a utilizar.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Un proceso debe estar explícitamente definido para ser administrado, define un marco de trabajo de actividades estructurales y sombrilla (soporte), e identifica el modelo de ciclo de vida.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 37 (ID: ing-cal-p1-q37) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Releases
+
+ENUNCIADO:
+Un sistema posee las versiones históricas 0.5.1, 0.8.0, 1.0.0, 1.0.5, 1.1.0, 1.2.0 y 2.0.0 bajo Versionado Semántico. ¿Cuál es formalmente el primer 'release' (entrega oficial estable) del sistema?
+
+OPCIONES:
+  [a] La versión 1.0.0 (marca el primer producto funcional completo puesto formalmente a disposición de los clientes).  <--- [CORRECTA]
+  [b] La versión 0.5.1 (primer prototipo ejecutable generado por los desarrolladores).
+  [c] La versión 0.8.0 (primera versión probada internamente en testing).
+  [d] La versión 2.0.0 (primer cambio sustancial de arquitectura).
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: La versión 1.0.0 (marca el primer producto funcional completo puesto formalmente a disposición de los clientes).
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Las versiones 0.y.z corresponden a desarrollo inicial y versiones alfa/beta inestables. La versión 1.0.0 define la primera release oficial estable y funcional del producto para los usuarios.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 38 (ID: ing-cal-p1-q38) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Entregas (Releases)
+
+ENUNCIADO:
+Un release de un producto de software es:
+
+OPCIONES:
+  [a] Una versión del producto que pasó exitosamente el proceso de pruebas.
+  [b] Una Línea Base del producto que ingresa al proceso de pruebas.
+  [c] Una definición de los requerimientos que deben ser incluidos en la próxima versión del producto.
+  [d] Una versión del producto que ha sido entregado al cliente.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [d]: Una versión del producto que ha sido entregado al cliente.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Un release o entrega es una versión del producto de software que se pone formalmente a disposición de los clientes o usuarios finales.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 39 (ID: ing-cal-p1-q39) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Estructura del Proceso de Software
+
+ENUNCIADO:
+En el modelo general del proceso de software según Pressman, ¿cuál de las siguientes opciones describe la jerarquía correcta de elementos?
+
+OPCIONES:
+  [a] Marco de trabajo común (5 actividades estructurales: Comunicación, Planeación, Modelado, Construcción, Despliegue) asistido transversalmente por actividades sombrilla o de soporte.  <--- [CORRECTA]
+  [b] Etapa de codificación exclusiva respaldada por reuniones diarias sin planificación previa.
+  [c] Proceso lineal cerrado sin actividades de soporte ni control de calidad.
+  [d] Conjunto de métodos formales matemáticos que sustituyen el uso de diagramas de diseño.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Marco de trabajo común (5 actividades estructurales: Comunicación, Planeación, Modelado, Construcción, Despliegue) asistido transversalmente por actividades sombrilla o de soporte.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El proceso se conforma por un marco de trabajo con 5 actividades estructurales y un conjunto de actividades sombrilla (control de calidad, gestión de configuración, gestión de riesgos, etc.) que se aplican a lo largo de todo el ciclo de vida.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 40 (ID: ing-cal-p1-q40) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Definición IEEE de Software
+
+ENUNCIADO:
+Formalmente podemos afirmar que el software es:
+
+OPCIONES:
+  [a] Programas de computadora, documentación asociada y datos para la operación de un sistema.
+  [b] Programas de computadoras.
+  [c] Programas de computadoras, y datos para la operación de un sistema.
+  [d] Programas de computadoras, procedimientos, documentación asociada, y datos para la operación de un sistema.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [d]: Programas de computadoras, procedimientos, documentación asociada, y datos para la operación de un sistema.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Definición estándar IEEE 610.12: El software es el conjunto de programas de computadora, procedimientos, reglas y documentación y datos asociados que forman parte de las operaciones de un sistema de computación.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 41 (ID: ing-cal-p1-q41) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Construcción de Software
+
+ENUNCIADO:
+‘Construir’ un sistema de software significa:
+
+OPCIONES:
+  [a] Compilar, general el sistema ejecutable, y adjuntar los datos y documentos necesarios para su uso.
+  [b] Compilar, generar el sistema ejecutable, y dejarlo disponible a los clientes.
+  [c] Desarrollar los programas de acuerdo a la especificación de diseño.
+  [d] Compilar y generar el sistema ejecutable  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [d]: Compilar y generar el sistema ejecutable
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Construir (build) implica transformar el código fuente en elementos ejecutables mediante compilación y enlazado de dependencias.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 42 (ID: ing-cal-p1-q42) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Modelos de Proceso Ágiles
+
+ENUNCIADO:
+Para desarrollar un sistema de gestión bursátil para una empresa en un mercado financiero sumamente inestable, con requerimientos volátiles y necesidad de entregas tempranas continuas, ¿qué enfoque es el más adecuado?
+
+OPCIONES:
+  [a] Un modelo de proceso ágil iterativo e incremental (como Scrum o XP), que acepte cambios tardíos y priorice entregas de valor frecuentes.  <--- [CORRECTA]
+  [b] Un modelo en Cascada clásico con requerimientos congelados desde el inicio del proyecto.
+  [c] El modelo de Métodos Formales para verificación matemática completa antes de cualquier entrega.
+  [d] Un modelo lineal secuencial rígido sin participación del cliente durante el desarrollo.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Un modelo de proceso ágil iterativo e incremental (como Scrum o XP), que acepte cambios tardíos y priorice entregas de valor frecuentes.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Frente a un dominio altamente dinámico e incierto, los modelos ágiles son ideales porque gestionan la incertidumbre mediante iteraciones cortas, retroalimentación constante del cliente y adaptación continua a los cambios del negocio.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 43 (ID: ing-cal-p1-q43) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Ramas de Mantenimiento
+
+ENUNCIADO:
+En un sistema multicliente donde varios clientes operan en la versión 1.1.0 y otros en la versión 2.0.10, ¿cómo debe gestionar la herramienta de versiones el soporte a ambos?
+
+OPCIONES:
+  [a] Mantener ramas de mantenimiento separadas (ej. rama 'support/v1.x' y rama 'main/v2.x') para corregir bugs en la versión 1 sin obligar a los clientes a migrar a la versión 2.  <--- [CORRECTA]
+  [b] Obligar a todos los clientes a actualizar sus servidores inmediatamente a la última versión disponible.
+  [c] Eliminar la rama 1.x del repositorio remoto para forzar la compatibilidad tecnológica.
+  [d] Mezclar los cambios de la versión 2 en la versión 1 sin importar si rompen la base de datos de los clientes.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Mantener ramas de mantenimiento separadas (ej. rama 'support/v1.x' y rama 'main/v2.x') para corregir bugs en la versión 1 sin obligar a los clientes a migrar a la versión 2.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Cuando conviven clientes con versiones mayores distintas, la gestión de configuración crea ramas de mantenimiento dedicadas para seguir proporcionando parches (bugfixes) a la rama anterior sin introducir las incompatibilidades de la nueva versión mayor.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 44 (ID: ing-cal-p1-q44) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Ingeniería de Software Capas
+
+ENUNCIADO:
+Tres elementos claves de la Ingeniería de Software son:
+
+OPCIONES:
+  [a] Métodos Formales, CASE, CMMI.
+  [b] Métodos, Herramientas, Procesos.  <--- [CORRECTA]
+  [c] Métodos Rigurosos, Herramientas de Diseño, Procedimientos.
+  [d] Métodos, Orientación a Objetos, Herramientas CASE.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Métodos, Herramientas, Procesos.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El enfoque estratificado de la Ingeniería de Software (Pressman) se apoya en tres elementos clave: Métodos, Herramientas y Procesos, sustentados sobre el compromiso con la Calidad.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 45 (ID: ing-cal-p1-q45) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Modelos de Ciclo de Vida
+
+ENUNCIADO:
+En relación a los modelos de procesos de software o modelos de ciclo de vida, indique qué afirmaciones son correctas.
+
+OPCIONES:
+  [a] Descripciones de la forma en que el desarrollo se lleva a cabo realmente.  <--- [CORRECTA]
+  [b] Prescripciones de la forma en que el desarrollo de software debería llevarse a cabo.  <--- [CORRECTA]
+  [c] Se selecciona a nivel organizacional para todos los proyectos que se lleven adelante.
+  [d] Organizan la secuencia y orden de las actividades del proceso.  <--- [CORRECTA]
+  [e] Se selecciona de acuerdo a las características del equipo u organización de desarrollo.  <--- [CORRECTA]
+  [f] Todos incluyen los requerimientos del sistema como entrada y el producto liberado al uso como salida.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Descripciones de la forma en que el desarrollo se lleva a cabo realmente.
+  -> Opción [b]: Prescripciones de la forma en que el desarrollo de software debería llevarse a cabo.
+  -> Opción [d]: Organizan la secuencia y orden de las actividades del proceso.
+  -> Opción [e]: Se selecciona de acuerdo a las características del equipo u organización de desarrollo.
+  -> Opción [f]: Todos incluyen los requerimientos del sistema como entrada y el producto liberado al uso como salida.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Según la cátedra: los modelos de proceso de software (1) organizan la secuencia y orden de las actividades, (2) prescriben cómo debería llevarse a cabo el desarrollo, (3) describen cómo se lleva a cabo realmente, (4) todos incluyen los requerimientos como entrada y el producto liberado como salida, y (5) se seleccionan según la naturaleza del proyecto, el equipo y la aplicación. No se impone un único modelo a nivel organizacional para todos los proyectos.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 46 (ID: ing-cal-p1-q46) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Curva de Fallas del Software
+
+ENUNCIADO:
+¿A qué se debe que la curva real de la tasa de fallas del software a lo largo del tiempo presente 'picos' de aumento de fallas en lugar de una curva suave?
+
+OPCIONES:
+  [a] A que cada cambio o mantenimiento correctivo/adaptativo introduce efectos colaterales y nuevos errores no previstos en el sistema.  <--- [CORRECTA]
+  [b] Al desgaste físico de los sectores magnéticos del disco rígido donde reside el ejecutable.
+  [c] A la falta de energía eléctrica durante los fines de semana en los servidores de la empresa.
+  [d] Al envejecimiento de los bits y transistores del procesador del cliente.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: A que cada cambio o mantenimiento correctivo/adaptativo introduce efectos colaterales y nuevos errores no previstos en el sistema.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El software no se desgasta por uso; se deteriora cuando se le aplican cambios. Cada modificación puede introducir efectos secundarios que elevan súbitamente la tasa de fallas hasta que la versión se estabiliza.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 47 (ID: ing-cal-p1-q47) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Configuración (Líneas Base)
+
+ENUNCIADO:
+Las ‘Líneas Bases’ se utilizan para:
+
+OPCIONES:
+  [a] Identificar un elemento de configuración probado y aprobado.
+  [b] Identificar una versión de programa que ya no se utiliza.
+  [c] Identificar una variante de un elemento de configuración.
+  [d] Identificar un punto en el tiempo del proyecto que se toma como referencia.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [d]: Identificar un punto en el tiempo del proyecto que se toma como referencia.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Una línea base (baseline) es un punto de referencia en el tiempo del proyecto formalmente revisado y acordado, a partir del cual solo se permiten cambios mediante procedimientos formales de control de cambios.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 48 (ID: ing-cal-p1-q48) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: GitFlow Pull Requests
+
+ENUNCIADO:
+Bajo GitFlow, al finalizar el desarrollo de una funcionalidad en su rama 'feature/nueva-funcionalidad', ¿cuál es el destino del Pull Request (PR) correspondiente?
+
+OPCIONES:
+  [a] Debe realizarse un Pull Request hacia la rama 'develop' para su integración y revisión por pares.  <--- [CORRECTA]
+  [b] Debe realizarse un Pull Request directo hacia la rama 'master' en el entorno productivo.
+  [c] Debe realizarse un Pull Request hacia una rama local 'backup' fuera del control de versiones.
+  [d] No se utilizan Pull Requests en GitFlow, los desarrolladores suben código directamente sin revisión.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Debe realizarse un Pull Request hacia la rama 'develop' para su integración y revisión por pares.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En GitFlow las features se integran a 'develop'. Solo las ramas 'release' y 'hotfix' se fusionan a 'master' (y a su vez a develop) para generar versiones productivas.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 49 (ID: ing-cal-p1-q49) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Estándar ISO/IEC 12207
+
+ENUNCIADO:
+En relación con el Estándar 12207, indique qué grupo de procesos es el que describe las acciones técnicas del ciclo de vida, guiando la transformación de las necesidades de los stakeholders en un producto servicio de software.
+
+OPCIONES:
+  [a] Procesos de acuerdo.
+  [b] Procesos técnicos.  <--- [CORRECTA]
+  [c] Procesos que habilitan proyectos organizacionales.
+  [d] Procesos de gestión técnica.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Procesos técnicos.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Los Procesos Técnicos del Estándar 12207 son los que guían la transformación de necesidades de los stakeholders en un producto o servicio de software.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 50 (ID: ing-cal-p1-q50) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Control de Versiones (Git)
+
+ENUNCIADO:
+La importancia de un mensaje de ‘commit’ radica en que:
+
+OPCIONES:
+  [a] Si no se incluyen los revisores no sabrán qué revisar.
+  [b] Si no se incluye no se puede reportar cambios en el software
+  [c] Si no se incluye no se sabrá cuál es la línea base a modificar.
+  [d] Si no se incluye no se puede saber cómo se resolvió un problema.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [d]: Si no se incluye no se puede saber cómo se resolvió un problema.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Un mensaje de commit claro documenta qué cambio se hizo, por qué se hizo y cómo se resolvió el problema, permitiendo la trazabilidad histórica del proyecto.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 51 (ID: ing-cal-p1-q51) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Definición IEEE de Ingeniería de Software
+
+ENUNCIADO:
+En la definición de Ingeniería de Software de la IEEE ('enfoque sistemático, disciplinado y cuantificable'), ¿qué significa específicamente el adjetivo 'cuantificable'?
+
+OPCIONES:
+  [a] Que se establecen métricas y mediciones concretas de los productos, proyectos y procesos para evaluar calidad, esfuerzo y avance de forma objetiva.  <--- [CORRECTA]
+  [b] Que el software solo puede valorarse y venderse por el número total de líneas de código fuente escritas.
+  [c] Que la empresa debe contar con un número par de desarrolladores en cada proyecto.
+  [d] Que las aplicaciones solo pueden procesar datos numéricos enteros y operaciones aritméticas.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Que se establecen métricas y mediciones concretas de los productos, proyectos y procesos para evaluar calidad, esfuerzo y avance de forma objetiva.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Cuantificable implica que la ingeniería de software utiliza la medición (métricas de calidad, complejidad, defectos, tiempo y esfuerzo) para tomar decisiones racionales basadas en datos objetivos.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 52 (ID: ing-cal-p1-q52) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Configuración (SCM)
+
+ENUNCIADO:
+Un ‘Proceso de Gestión de configuración de Software’ debería contemplar las siguientes actividades:
+
+OPCIONES:
+  [a] Generación de Reportes  <--- [CORRECTA]
+  [b] Control de Versiones  <--- [CORRECTA]
+  [c] Control de Cambio  <--- [CORRECTA]
+  [d] Identificación de elementos  <--- [CORRECTA]
+  [e] Implementar ‘bug tracking’.
+  [f] Auditoría.  <--- [CORRECTA]
+  [g] Implementación de Git/SVN
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Generación de Reportes
+  -> Opción [b]: Control de Versiones
+  -> Opción [c]: Control de Cambio
+  -> Opción [d]: Identificación de elementos
+  -> Opción [f]: Auditoría.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Según Pressman y la teoría de cátedra, las cinco tareas base de la Gestión de la Configuración del Software (GCSW) son: (d) Identificación de elementos de configuración, (b) Control de versiones, (c) Control de cambios, (f) Auditoría de configuración, y (a) Generación de reportes.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 53 (ID: ing-cal-p1-q53) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Ingeniería de Software Capas
+
+ENUNCIADO:
+Tres elementos claves de la Ingeniería de Software son:
+
+OPCIONES:
+  [a] Métodos, Herramientas, Procesos.  <--- [CORRECTA]
+  [b] Métodos Rigurosos, Herramientas de Diseño, Procedimientos.
+  [c] Métodos Formales, CASE, CMMI.
+  [d] Métodos, Orientación a Objetos, Herramientas CASE.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Métodos, Herramientas, Procesos.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Los tres elementos claves o pilares de la Ingeniería de Software según la cátedra (y Pressman) son: Procesos, Métodos y Herramientas, sustentados bajo un compromiso con la Calidad.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 54 (ID: ing-cal-p1-q54) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Hotfixes en GitFlow
+
+ENUNCIADO:
+En producción (versión 2.3.5) se detecta un bug urgente. Teniendo en cuenta GitFlow, ¿cómo se debe estructurar la solución?
+
+OPCIONES:
+  [a] Crear una rama 'hotfix/2.3.6' a partir de 'master', corregir el error y hacer PR tanto a 'master' (publicando la versión 2.3.6) como a 'develop'.  <--- [CORRECTA]
+  [b] Crear una rama 'feature' desprendida de 'develop' y esperar al próximo release general del año siguiente.
+  [c] Editar el archivo directamente en el servidor de producción mediante SSH sin dejar registro en Git.
+  [d] Ejecutar git reset --hard en master para borrar el último release y volver a la versión 2.3.4.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Crear una rama 'hotfix/2.3.6' a partir de 'master', corregir el error y hacer PR tanto a 'master' (publicando la versión 2.3.6) como a 'develop'.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Un hotfix en GitFlow se desprende de master para corregir la versión productiva. Al resolverse, debe fusionarse a master (con nuevo tag de versión PATCH 2.3.6) y también a develop para que la corrección no se pierda en el futuro.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 55 (ID: ing-cal-p1-q55) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Modelos de Proceso
+
+ENUNCIADO:
+Un modelo de proceso de desarrollo de software iterativo se caracteriza por:
+
+OPCIONES:
+  [a] Liberar fragmentos de software de acuerdo a cómo se vayan definiendo.
+  [b] Liberar fragmentos de software previamente definidos y planificados.
+  [c] Liberar fragmentos de software si existen nuevas necesidades.
+  [d] Liberar software cuando todas sus partes están completas.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [d]: Liberar software cuando todas sus partes están completas.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+A diferencia del modelo incremental (que libera fragmentos de software funcionales previamente definidos y planificados a lo largo del tiempo), el modelo iterativo clásico refina el sistema completo en ciclos sucesivos hasta alcanzar el producto final, liberando el software cuando todas sus partes están completas.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 56 (ID: ing-cal-p1-q56) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Configuración (SCM)
+
+ENUNCIADO:
+Las Líneas Bases en un proyecto de software sirven para:
+
+OPCIONES:
+  [a] Saber cuál es la última versión liberada del producto de software generado por el proyecto.
+  [b] Saber cuáles son las versiones de software aceptas por el cliente.
+  [c] Saber cuál es la configuración de software del proyecto en un momento determinado.  <--- [CORRECTA]
+  [d] Saber cuál es la documentación generada en el proyecto.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: Saber cuál es la configuración de software del proyecto en un momento determinado.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Las Líneas Bases en GCSW sirven para saber cuál es la configuración oficial y controlada del software del proyecto en un momento determinado del tiempo, sirviendo como punto de referencia acordado.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 57 (ID: ing-cal-p1-q57) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Estándar ISO/IEC 12207
+
+ENUNCIADO:
+El estándar 12207 define los siguientes grupos de procesos.
+
+OPCIONES:
+  [a] Procesos de hardware.
+  [b] Procesos de ciclo de vida.
+  [c] Procesos externos.
+  [d] Procesos que habilitan proyectos organizacionales.  <--- [CORRECTA]
+  [e] Procesos de acuerdo  <--- [CORRECTA]
+  [f] Procesos Técnicos.  <--- [CORRECTA]
+  [g] Procesos de gestión técnica.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [d]: Procesos que habilitan proyectos organizacionales.
+  -> Opción [e]: Procesos de acuerdo
+  -> Opción [f]: Procesos Técnicos.
+  -> Opción [g]: Procesos de gestión técnica.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El Estándar ISO/IEC 12207 divide sus procesos en: Procesos de acuerdo (e), Procesos Técnicos (f), Procesos de gestión técnica (g) y Procesos que habilitan proyectos organizacionales (d).
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 58 (ID: ing-cal-p1-q58) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Control de Versiones (Ramas)
+
+ENUNCIADO:
+Un rama ‘secundaria’ (branch) que se define utilizando alguna herramienta de versionado:
+
+OPCIONES:
+  [a] Se crea cuando se quiere trabajar en cambios sobre la versión actual del producto.  <--- [CORRECTA]
+  [b] Mantiene los primeros elementos de software que se incorporan al producto de software.
+  [c] Representa la primer versión del producto de software.
+  [d] Es la que siempre contiene la última versión funcional del sistema.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Se crea cuando se quiere trabajar en cambios sobre la versión actual del producto.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Una rama secundaria (branch) en una herramienta de versionado se crea cuando se quiere trabajar en cambios, correcciones o nuevas funcionalidades de forma aislada sin alterar la versión estable de la rama principal.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 59 (ID: ing-cal-p1-q59) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Configuración (SCM)
+
+ENUNCIADO:
+¿Qué problema en el desarrollo de software intenta resolver la Gestión de la Configuración de Software?
+
+OPCIONES:
+  [a] La consistencia de los documentos generados
+  [b] La evolución de los programas desarrollados
+  [c] La consistencia de los programas desarrollados
+  [d] La evolución de los productos de software  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [d]: La evolución de los productos de software
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Según la definición de cátedra, la GCSW es una disciplina para gestionar la evolución de los productos de software a lo largo de todo su ciclo de vida, tanto en etapas tempranas como durante el mantenimiento.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 60 (ID: ing-cal-p1-q60) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Desarrollo Basado en Componentes
+
+ENUNCIADO:
+Al desarrollar un ERP reutilizando componentes y módulos ya existentes en la empresa para Logística y Producción, ¿cuál es un riesgo o contra principal que debe gestionarse?
+
+OPCIONES:
+  [a] Compromisos en los requerimientos (adaptar las necesidades a lo que el componente provee) y complejidad en la evolución e integración de componentes legados.  <--- [CORRECTA]
+  [b] Aumento del tiempo de codificación de los algoritmos básicos desde cero.
+  [c] Imposibilidad total de realizar pruebas unitarias en los subsistemas nuevos.
+  [d] Obligación de que todos los integrantes del equipo utilicen la misma computadora física.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Compromisos en los requerimientos (adaptar las necesidades a lo que el componente provee) y complejidad en la evolución e integración de componentes legados.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La contra más notable del desarrollo basado en componentes es la pérdida de control directo sobre los requerimientos (hay que adaptarse a las interfaces del componente existente) y el costo de integrar tecnologías dispares.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 61 (ID: ing-cal-p1-q61) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Estándar ISO/IEC 12207
+
+ENUNCIADO:
+El estándar ISO/IEC 12207 tiene el título 'Software Lifecycle Processes'. ¿Qué entiende este estándar por 'Ciclo de Vida del Software' (Software Lifecycle)?
+
+OPCIONES:
+  [a] Un marco de referencia que abarca los procesos, actividades y tareas involucrados en el desarrollo, operación y mantenimiento del software desde su concepción hasta su retiro.  <--- [CORRECTA]
+  [b] La cantidad exacta de horas hábiles que demanda la etapa de programación en el IDE.
+  [c] El plazo de vigencia legal y garantía comercial que la ley impone a las empresas de desarrollo.
+  [d] El tiempo que tarda el compilador en generar el archivo binario ejecutable.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Un marco de referencia que abarca los procesos, actividades y tareas involucrados en el desarrollo, operación y mantenimiento del software desde su concepción hasta su retiro.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En ISO/IEC 12207 el ciclo de vida del software es el marco que contiene todos los procesos aplicables a un sistema o producto de software desde la definición de su necesidad inicial hasta su cese final de uso.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 62 (ID: ing-cal-p1-q62) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Comandos Git
+
+ENUNCIADO:
+En Git, para crear una rama llamada 'Branch1' y posicionarse inmediatamente en ella para comenzar a trabajar, ¿qué comando se debe ejecutar?
+
+OPCIONES:
+  [a] git checkout -b Branch1 (o git switch -c Branch1)  <--- [CORRECTA]
+  [b] git commit -m 'Branch1'
+  [c] git merge Branch1
+  [d] git push origin Branch1
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: git checkout -b Branch1 (o git switch -c Branch1)
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El comando 'git checkout -b <nombre>' (o modernamente 'git switch -c <nombre>') crea la rama a partir del commit actual y realiza el cambio de contexto a ella simultáneamente.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 63 (ID: ing-cal-p1-q63) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Versiones
+
+ENUNCIADO:
+Una versión de un producto de software es
+
+OPCIONES:
+  [1] Una implementación para un contexto diferente de un elemento de configuración probado y aprobado.
+  [2] Es el software de compilación necesario para generar un ejecutable del producto.
+  [3] Un momento en la vida de un elemento de configuración cuyo estado ha sido probado y aprobado.  <--- [CORRECTA]
+  [4] Un momento en la vida de un sistema de software en el cual es puesto a disposición de los clientes.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [3]: Un momento en la vida de un elemento de configuración cuyo estado ha sido probado y aprobado.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En GCSW, una versión de un producto de software es 'un momento en la vida de un elemento de configuración cuyo estado ha sido probado y aprobado' (opción 3). La variante es una implementación para un contexto diferente (1), y el release es la puesta a disposición de los clientes (4).
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 64 (ID: ing-cal-p1-q64) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Configuración (SCM)
+
+ENUNCIADO:
+La Gestión de Configuración de Software se enfoca en
+
+OPCIONES:
+  [a] La calidad interna de un producto de software.
+  [b] Los cambios que puede sufrir un producto de software.  <--- [CORRECTA]
+  [c] Que los costos de mantenimiento de un producto de software se mantengan al mínimo posible.
+  [d] Asegurar que el producto de software no tiene defectos.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Los cambios que puede sufrir un producto de software.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La Gestión de Configuración de Software (GCSW) se enfoca en gestionar los cambios y modificaciones que puede sufrir un producto de software a lo largo de todo su ciclo de vida (Babich, 1986).
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 65 (ID: ing-cal-p1-q65) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Definición IEEE de Software
+
+ENUNCIADO:
+¿Qué define la IEEE como software?
+
+OPCIONES:
+  [1] Las instrucciones (programas) que proporcionan las características y funciones.  <--- [CORRECTA]
+  [2] Herramientas, métodos y procesos utilizados para desarrollarlo.
+  [3] Los documentos que describen la operación y uso.  <--- [CORRECTA]
+  [4] La información que gestiona el producto de software.
+  [5] Las restricciones de calidad y productividad impuestas por el cliente.
+  [6] Las estructuras de datos que le permiten manipular información.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [1]: Las instrucciones (programas) que proporcionan las características y funciones.
+  -> Opción [3]: Los documentos que describen la operación y uso.
+  -> Opción [6]: Las estructuras de datos que le permiten manipular información.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Según la definición formal IEEE 610.12, el software comprende: (1) las instrucciones y programas que proporcionan funciones, (3) los documentos que describen la operación y uso, y (6) las estructuras de datos que le permiten manipular información.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 66 (ID: ing-cal-p1-q66) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Modelos de Proceso
+
+ENUNCIADO:
+Un ‘modelo de proceso de software’:
+
+OPCIONES:
+  [a] Describe la forma en que el desarrollo de software debería llevarse a cabo.
+  [b] Prescribe la forma en que el desarrollo de software debería llevarse a cabo.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Prescribe la forma en que el desarrollo de software debería llevarse a cabo.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Un modelo de proceso de software prescriptivo prescribe la forma en que el desarrollo de software debería llevarse a cabo (mientras que las descripciones relatan cómo se lleva a cabo realmente).
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 67 (ID: ing-cal-p1-q67) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Modelos de Proceso
+
+ENUNCIADO:
+Indica las afirmaciones correctas en relación a los ¨Modelos de procesos de software¨.
+
+OPCIONES:
+  [a] Para todos los proyectos, los mismos aspectos tienen incidencia en la elección del modelo de proceso a utilizar.
+  [b] Los diferentes modelos de procesos de software organizan las actividades de diferentes formas.  <--- [CORRECTA]
+  [c] Los diferentes modelos de procesos de software deben describir las actividades con el mismo nivel de detalle.
+  [d] Los diferentes modelos de procesos de software se definen de acuerdo al producto a desarrollar.  <--- [CORRECTA]
+  [e] Para algunos tipos de aplicación, algunos procesos son más convenientes que otros.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Los diferentes modelos de procesos de software organizan las actividades de diferentes formas.
+  -> Opción [d]: Los diferentes modelos de procesos de software se definen de acuerdo al producto a desarrollar.
+  -> Opción [e]: Para algunos tipos de aplicación, algunos procesos son más convenientes que otros.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Según la cátedra: los modelos de proceso organizan las actividades de diferentes formas (b), se definen y eligen de acuerdo al producto a desarrollar (d), y para algunos tipos de aplicación ciertos procesos son más convenientes que otros (e). No existe un único modelo que aplique a todos los proyectos por igual.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 68 (ID: ing-cal-p1-q68) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Configuración (SCM)
+
+ENUNCIADO:
+De los siguientes artefactos generados durante el desarrollo de software, ¿cuáles no deben ser colocados bajo la Gestión de Configuración del Software?
+
+OPCIONES:
+  [a] El Plan de Entrevistas
+  [b] Las grabaciones de audio de las entrevistas realizadas  <--- [CORRECTA]
+  [c] Los borradores de las entrevistas realizadas.  <--- [CORRECTA]
+  [d] Las entrevistas realizadas y aprobadas.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Las grabaciones de audio de las entrevistas realizadas
+  -> Opción [c]: Los borradores de las entrevistas realizadas.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Artefactos transitorios o borradores no aprobados (como grabaciones de audio o borradores preliminares) no deben ponerse bajo control formal de configuración.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 69 (ID: ing-cal-p1-q69) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Control de Versiones (Git)
+
+ENUNCIADO:
+La 'línea de trabajo principal' en un sistema de control de versiones se conoce como:
+
+OPCIONES:
+  [a] master  <--- [CORRECTA]
+  [b] release
+  [c] develop
+  [d] label
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: master
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La línea de trabajo principal en Git históricamente se denomina 'master' (o actualmente 'main').
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 70 (ID: ing-cal-p1-q70) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Proceso de Software
+
+ENUNCIADO:
+En la definición del ‘modelo de proceso’ a aplicar en el desarrollo de software están involucrados:
+
+OPCIONES:
+  [a] El cliente y el líder de proyecto.
+  [b] El personal gerencial.
+  [c] El equipo técnico del equipo de desarrollo de software.
+  [d] El líder de proyecto y el equipo técnico de desarrollo de software.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [d]: El líder de proyecto y el equipo técnico de desarrollo de software.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En la definición y adaptación del modelo de proceso intervienen principalmente el líder del proyecto y el equipo técnico de desarrollo.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 71 (ID: ing-cal-p1-q71) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Entregas (Releases)
+
+ENUNCIADO:
+Un problema a resolver cuando se libera un release es que:
+
+OPCIONES:
+  [a] Necesitan que el cliente tenga la release anterior instalada.  <--- [CORRECTA]
+  [b] No necesitan que el cliente tenga la release anterior instalada.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Necesitan que el cliente tenga la release anterior instalada.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Al liberar un release debe gestionarse la dependencia y compatibilidad respecto a las instalaciones previas del cliente.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 72 (ID: ing-cal-p1-q72) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Modelo Cascada
+
+ENUNCIADO:
+El modelo de proceso prescriptivo “Clásico o En cascada”, sigue aplicándose porque
+
+OPCIONES:
+  [a] Existe mucha formación y experiencia al respecto.  <--- [CORRECTA]
+  [b] Refleja en forma directa las actividades del proceso genérico de desarrollo de software.  <--- [CORRECTA]
+  [c] Permiten desarrollar versiones cada vez más completas del software.
+  [d] Promueven la reutilización de software
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Existe mucha formación y experiencia al respecto.
+  -> Opción [b]: Refleja en forma directa las actividades del proceso genérico de desarrollo de software.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El modelo en cascada sigue utilizándose porque refleja de forma directa y secuencial las actividades genéricas y existe vasta experiencia y formación en su aplicación.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 73 (ID: ing-cal-p1-q73) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Estándar ISO/IEC 12207
+
+ENUNCIADO:
+En relación con el Estándar 12207, indique qué grupo de procesos es el que considera el rol de las organizaciones como proveedoras y como usuarias de sistemas de software.
+
+OPCIONES:
+  [a] Procesos que habilitan proyectos organizacionales.
+  [b] Procesos Técnicos.
+  [c] Procesos de acuerdo.  <--- [CORRECTA]
+  [d] Procesos de gestión técnica.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: Procesos de acuerdo.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Los Procesos de Acuerdo (Agreement Processes) regulan los roles de la organización como proveedora y como compradora/usuaria de software.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 74 (ID: ing-cal-p1-q74) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Versionado Semántico y Ramas
+
+ENUNCIADO:
+En un proyecto se mantienen activas las versiones 1.y.z para bugfixes mientras que las 2.y.z agregan nuevas funcionalidades incompatibles. ¿Por qué es posible trabajar en ambas en paralelo?
+
+OPCIONES:
+  [a] Porque las ramas 1.y.z y 2.y.z están aisladas en el control de versiones y el número de versión MAJOR explicita la incompatibilidad entre ambas líneas de evolución.  <--- [CORRECTA]
+  [b] Porque Git fusiona automáticamente todos los cambios incompatibles sin intervención de los desarrolladores.
+  [c] Porque SemVer prohíbe tener más de una versión en producción simultáneamente.
+  [d] Porque las versiones 1.y.z se convierten en hardware físico y ya no usan el repositorio.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Porque las ramas 1.y.z y 2.y.z están aisladas en el control de versiones y el número de versión MAJOR explicita la incompatibilidad entre ambas líneas de evolución.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Las ramas de mantenimiento permiten que el equipo de soporte continúe aplicando parches a la versión 1 sin alterar ni depender de los cambios mayores e incompatibles de la versión 2.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 75 (ID: ing-cal-p1-q75) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Estándar ISO/IEC 12207
+
+ENUNCIADO:
+En relación con el Estándar 12207, indique qué grupo de procesos es el que permite gestionar y controlar los recursos necesarios para que los proyectos se ejecuten exitosamente.
+
+OPCIONES:
+  [a] Procesos de gestión técnica.
+  [b] Procesos de acuerdo.
+  [c] Procesos que habilitan proyectos organizacionales.  <--- [CORRECTA]
+  [d] Procesos técnicos.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: Procesos que habilitan proyectos organizacionales.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En el Estándar ISO/IEC 12207, los 'Procesos que habilitan proyectos organizacionales' tienen por objetivo gestionar y controlar los recursos necesarios para que los proyectos se ejecuten exitosamente y definen los modelos de ciclo de vida que pueden ser utilizados por los proyectos.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 76 (ID: ing-cal-p1-q76) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Flujos de Trabajo SCM
+
+ENUNCIADO:
+Al comenzar un proyecto de gran escala con múltiples equipos internos y externos, ¿por qué es altamente recomendable adoptar un flujo de trabajo formal como GitFlow?
+
+OPCIONES:
+  [a] Porque establece convenciones claras sobre el ciclo de vida de las ramas (features, develop, release, hotfix, master), minimizando conflictos y asegurando estabilidad en producción.  <--- [CORRECTA]
+  [b] Porque reemplaza completamente la necesidad de escribir código y automatiza el diseño de software.
+  [c] Porque impide que personas externas puedan leer la documentación del proyecto.
+  [d] Porque hace innecesaria la realización de pruebas de software.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Porque establece convenciones claras sobre el ciclo de vida de las ramas (features, develop, release, hotfix, master), minimizando conflictos y asegurando estabilidad en producción.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En proyectos grandes con muchos desarrolladores, GitFlow brinda orden, predictibilidad y control sobre las entregas al separar estrictamente el código en desarrollo del código en producción.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 77 (ID: ing-cal-p1-q77) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Desarrollo Basado en Componentes
+
+ENUNCIADO:
+Al aplicar un modelo de desarrollo basado en componentes en un proyecto empresarial, ¿cuál de los siguientes es un beneficio clave frente a un desarrollo tradicional desde cero?
+
+OPCIONES:
+  [a] Reduce significativamente el tiempo del ciclo de desarrollo, disminuye costos y minimiza riesgos al apoyarse en componentes previamente probados y aprobados.  <--- [CORRECTA]
+  [b] Elimina la necesidad de definir requerimientos y especificaciones funcionales.
+  [c] Asegura que el software funcione sin importar si la computadora tiene memoria RAM suficiente.
+  [d] Garantiza que ningún componente requerirá mantenimiento en el futuro.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Reduce significativamente el tiempo del ciclo de desarrollo, disminuye costos y minimiza riesgos al apoyarse en componentes previamente probados y aprobados.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El ensamblaje y reutilización de componentes de software certificados acorta los tiempos de entrega ('time to market') y reduce los riesgos técnicos respecto a programar todo desde cero.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 78 (ID: ing-cal-p1-q78) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Estándar ISO/IEC 12207
+
+ENUNCIADO:
+Considerando el Estándar ISO/IEC 12207, identifique qué afirmaciones son correctas.
+
+OPCIONES:
+  [a] Los procesos que define pueden ser utilizados sólo para organizaciones desarrolladoras de software.
+  [b] Considera sólo el desarrollo y uso del producto de software.
+  [c] El marco de trabajo que presenta puede ser adaptado a cada organización y a cada proyecto concreto.  <--- [CORRECTA]
+  [d] Considera y describe procesos relacionados a la compra (adquisición) y venta (provisión) de productos de software.  <--- [CORRECTA]
+  [e] Es un marco de referencia que contiene procesos, las actividades y las tareas.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: El marco de trabajo que presenta puede ser adaptado a cada organización y a cada proyecto concreto.
+  -> Opción [d]: Considera y describe procesos relacionados a la compra (adquisición) y venta (provisión) de productos de software.
+  -> Opción [e]: Es un marco de referencia que contiene procesos, las actividades y las tareas.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El Estándar 12207 es un marco adaptable que describe procesos, actividades y tareas, e incluye procesos de adquisición y suministro.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 79 (ID: ing-cal-p1-q79) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Entregas (Releases)
+
+ENUNCIADO:
+Una ‘release representa
+
+OPCIONES:
+  [a] Un momento en la vida de un sistema de software en el cual es puesto a disposición de los clientes  <--- [CORRECTA]
+  [b] Una implementación para un contexto diferente de un elemento de configuración probado y aprobado
+  [c] Un momento en la vida de un elemento de configuración cuyo estado ha sido probado y aprobado.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Un momento en la vida de un sistema de software en el cual es puesto a disposición de los clientes
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Un release representa un momento formal en el ciclo de vida del software en el cual es puesto a disposición de los clientes o usuarios.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 80 (ID: ing-cal-p1-q80) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Versionado Semántico (SemVer)
+
+ENUNCIADO:
+Hasta la versión 2.0.10 un sistema funciona solo en Windows. Si se introduce soporte para Linux con cambios estructurales incompatibles en sus interfaces externas, ¿cuál debe ser la versión siguiente bajo SemVer?
+
+OPCIONES:
+  [a] 3.0.0 (al haber cambios incompatibles en la API o interfaces públicas se debe incrementar la versión mayor MAJOR).  <--- [CORRECTA]
+  [b] 2.0.11 (se incrementa únicamente la versión de corrección de parches PATCH).
+  [c] 2.1.0 (se incrementa la versión menor MINOR preservando la versión mayor).
+  [d] 2.0.10-linux (se mantiene la versión agregando solo un sufijo de compilación).
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: 3.0.0 (al haber cambios incompatibles en la API o interfaces públicas se debe incrementar la versión mayor MAJOR).
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+SemVer estipula rigurosamente que cuando se rompe la compatibilidad hacia atrás o se introducen breaking changes en la interfaz pública, la versión MAJOR debe incrementarse a la siguiente (3.0.0).
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 81 (ID: ing-cal-p1-q81) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Configuración (SCM)
+
+ENUNCIADO:
+Una configuración es:
+
+OPCIONES:
+  [a] El conjunto de valores de inicio de los parámetros de configuración del sistema.
+  [b] La combinación de las librerías de software necesarias para el funcionamiento del sistema.
+  [c] El conjunto de versiones del sistema desde su inicio al momento actual.
+  [d] Una combinación de versiones particulares de los componentes que forman un sistema consistente.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [d]: Una combinación de versiones particulares de los componentes que forman un sistema consistente.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Una configuración es una combinación específica de versiones particulares de los componentes que forman un sistema consistente y funcional.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 82 (ID: ing-cal-p1-q82) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Configuración (SCM)
+
+ENUNCIADO:
+La evolución de una componente de software se conoce como:
+
+OPCIONES:
+  [a] Mainline
+  [b] Baseline
+  [c] Codeline  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: Codeline
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La secuencia de versiones en el tiempo de un componente de software se denomina 'codeline' (mientras que la del sistema completo es el 'mainline').
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 83 (ID: ing-cal-p1-q83) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Proceso Genérico de Software
+
+ENUNCIADO:
+Un ‘proceso genérico’ de desarrollo de software completo debería incluir
+
+OPCIONES:
+  [1] Análisis, Diseño, Programación, Documentación, Instalación, Mantenimiento
+  [2] Especificación, Diseño, Construcción, Prueba, Instalación, Mantenimiento  <--- [CORRECTA]
+  [3] Análisis, Diseño, Programación, Instalación, Mantenimiento
+  [4] Análisis, Diseño Arquitectónico, Diseño Detallado, Programación, Prueba, Instalación
+  [5] Especificación, Diseño, Construcción, Prueba, Instalación
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [2]: Especificación, Diseño, Construcción, Prueba, Instalación, Mantenimiento
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Según Sommerville, el proceso genérico fundamental comprende: Especificación, Diseño, Construcción (Implementación), Prueba (Validación), Instalación y Mantenimiento (Evolución).
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 84 (ID: ing-cal-p1-q84) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Líneas Base (SCM)
+
+ENUNCIADO:
+Las Líneas Bases se pueden generar sobre:
+
+OPCIONES:
+  [1] Un conjunto de documentos y programas  <--- [CORRECTA]
+  [2] Un conjunto de programas  <--- [CORRECTA]
+  [3] Un documento  <--- [CORRECTA]
+  [4] El main line de un sistema
+  [5] El codeline de un componente
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [1]: Un conjunto de documentos y programas
+  -> Opción [2]: Un conjunto de programas
+  -> Opción [3]: Un documento
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Las líneas base pueden generarse sobre documentos formales (ej. SRS, diseño), programas individuales o un conjunto integrado de documentos y programas aprobados.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 85 (ID: ing-cal-p1-q85) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Proceso de Software
+
+ENUNCIADO:
+En relación al concepto y uso del proceso de desarrollo de software, indique las afirmaciones que son correctas.
+
+OPCIONES:
+  [1] El proceso define el modelo de proceso o ciclo de vida a utilizar en un proyecto  <--- [CORRECTA]
+  [2] Define el enfoque que se adopta mientras el software está en desarrollo  <--- [CORRECTA]
+  [3] Define un conjunto de actividades y resultados asociados que generan un producto de software  <--- [CORRECTA]
+  [4] Es sinónimo de Ingeniería de Software
+  [5] Define actividades de soporte que deben considerarse en todas las actividades del marco de trabajo  <--- [CORRECTA]
+  [6] Cada proyecto en una organización debe utilizar su propio proceso de desarrollo de software
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [1]: El proceso define el modelo de proceso o ciclo de vida a utilizar en un proyecto
+  -> Opción [2]: Define el enfoque que se adopta mientras el software está en desarrollo
+  -> Opción [3]: Define un conjunto de actividades y resultados asociados que generan un producto de software
+  -> Opción [5]: Define actividades de soporte que deben considerarse en todas las actividades del marco de trabajo
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El proceso define el modelo de ciclo de vida, el enfoque de desarrollo, las actividades y resultados esperados, e incorpora actividades sombrilla o de soporte.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 86 (ID: ing-cal-p1-q86) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Documentación de Software
+
+ENUNCIADO:
+La documentación (registro escritos manuales y/o electrónicos) de diferentes productos generados en el proceso de desarrollo de software
+
+OPCIONES:
+  [1] Es siempre necesaria como parte del procesos de desarrollo de software  <--- [CORRECTA]
+  [2] Brinda ‘visibilidad’ al proceso de Ingeniería de Software  <--- [CORRECTA]
+  [3] Sólo se realiza si el proceso de desarrollo de software lo requiere
+  [4] Debe evitarse para acelerar los procesos de desarrollo de software
+  [5] Existen procesos Ágiles que prescinden totalmente de ella
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [1]: Es siempre necesaria como parte del procesos de desarrollo de software
+  -> Opción [2]: Brinda ‘visibilidad’ al proceso de Ingeniería de Software
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La documentación es indispensable en la ingeniería de software porque brinda visibilidad y permite el control y evolución del sistema.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 87 (ID: ing-cal-p1-q87) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Proyectos
+
+ENUNCIADO:
+Uno de los problemas más comunes en el desarrollo de software es
+
+OPCIONES:
+  [1] Incapacidad para dominar la tecnología a utilizar en el desarrollo de producto de software
+  [2] Incapacidad para estimar tiempos, costos y esfuerzo para el desarrollo de un producto software  <--- [CORRECTA]
+  [3] Incapacidad para organizar y programar las actividades de desarrollo
+  [4] Incapacidad para organizar y conformar los grupos de desarrollo
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [2]: Incapacidad para estimar tiempos, costos y esfuerzo para el desarrollo de un producto software
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La dificultad o incapacidad para estimar con precisión los tiempos, costos y esfuerzo requeridos es uno de los problemas históricos más graves del desarrollo de software.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 88 (ID: ing-cal-p1-q88) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Releases
+
+ENUNCIADO:
+¿Qué información mínima debe incluirse cada vez que se genera un nuevo release (entrega) de un producto de software?
+
+OPCIONES:
+  [1] Documentación electrónica y en papel  <--- [CORRECTA]
+  [2] Programa de instalación  <--- [CORRECTA]
+  [3] Estado de la línea base al momento de generar el release  <--- [CORRECTA]
+  [4] Casos de prueba utilizados
+  [5] Archivos de datos  <--- [CORRECTA]
+  [6] Archivos de configuración  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [1]: Documentación electrónica y en papel
+  -> Opción [2]: Programa de instalación
+  -> Opción [3]: Estado de la línea base al momento de generar el release
+  -> Opción [5]: Archivos de datos
+  -> Opción [6]: Archivos de configuración
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Un release completo incluye instalador, documentación para usuario/administrador, archivos de datos iniciales, archivos de configuración y el estado de la línea base correspondiente.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 89 (ID: ing-cal-p1-q89) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Control de Cambios (SCM)
+
+ENUNCIADO:
+El control de cambio consiste principalmente en:
+
+OPCIONES:
+  [1] Asegurar que todo cambio requerido sea previamente aceptado por el cliente
+  [2] Tener un registro de todos los cambios que fueron solicitados a un producto de software
+  [3] Asegurar que todos los cambios requeridos sean aceptados, realizados y probados antes de su aplicación  <--- [CORRECTA]
+  [4] Asegurar que se tenga un registro, en el elemento modificado, del estado anterior del elemento a la aplicación del cambio.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [3]: Asegurar que todos los cambios requeridos sean aceptados, realizados y probados antes de su aplicación
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El control de cambios garantiza que todas las solicitudes de cambio sean formalmente evaluadas, aceptadas por el comité (CCB), realizadas y verificadas antes de su incorporación a la línea base.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 90 (ID: ing-cal-p1-q90) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Comandos Git de Publicación
+
+ENUNCIADO:
+En Git, tras editar un archivo en la rama 'Branch1', ¿qué secuencia de comandos se debe ejecutar para agregarlo al control de versiones, guardarlo localmente y compartirlo en el repositorio remoto?
+
+OPCIONES:
+  [a] 1) git add <archivo>  2) git commit -m 'mensaje de cambio'  3) git push origin Branch1  <--- [CORRECTA]
+  [b] 1) git push origin Branch1  2) git add .  3) git status
+  [c] 1) git clone origin Branch1  2) git branch -D Branch1
+  [d] 1) git checkout master  2) git reset --hard  3) git pull
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: 1) git add <archivo>  2) git commit -m 'mensaje de cambio'  3) git push origin Branch1
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El flujo canónico de Git es: 'git add' para pasar los cambios al área de preparación (stage/index), 'git commit' para registrar el cambio en el historial local, y 'git push' para enviar los commits al repositorio remoto.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 91 (ID: ing-cal-p1-q91) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Líneas Base en Gráficos SCM
+
+ENUNCIADO:
+Considerando la siguiente imagen, describa cómo está compuesta la línea base:
+
+OPCIONES:
+  [1] A2, B2, C1, E3, F3
+  [2] A2, B2, C1, D1, E3, F3  <--- [CORRECTA]
+  [3] A2, B2, C1, D1, E1
+  [4] A1, B1, C1, D1, E1
+  [5] A2, B2, C1, D1, E1
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [2]: A2, B2, C1, D1, E3, F3
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En el esquema de configuración, la línea base aprobada contiene los elementos vigentes: A2, B2, C1, D1, E3, F3.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 92 (ID: ing-cal-p1-q92) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Gestión de Configuración (SCM)
+
+ENUNCIADO:
+En todo proyecto de software bajo Gestión de la Configuración existe:
+
+OPCIONES:
+  [1] Una Línea Base por etapa del proyecto
+  [2] ‘n’ líneas bases  <--- [CORRECTA]
+  [3] Una Línea Base
+  [4] Cinco Líneas Bases
+  [5] Dos Líneas Bases
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [2]: ‘n’ líneas bases
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En un proyecto de software bajo gestión de configuración no existe una sola línea base, sino 'n' líneas base que se van estableciendo progresivamente en hitos clave (Línea Base Funcional, de Diseño, de Desarrollo, de Producto, etc.).
+--------------------------------------------------------------------------------

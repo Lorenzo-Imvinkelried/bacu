@@ -1,0 +1,907 @@
+﻿1. Un modelo de proceso de desarrollo de software incremental se caracteriza por:
+Seleccione una o más de una:
+1. Liberar software cuando todas sus partes están integradas.
+2. Liberar software cuando todas sus partes están completas.
+3. Liberar fragmentos de software previamente definidos y planificados.
+4. Liberar fragmentos de software de acuerdo a como se vayan definiendo.
+
+
+2. Un proyecto de software en el que se está utilizando una herramienta de gestión de versiones, dispone en un momento determinado T de una rama ‘principal’ P. Se aprueba la realización de un cambio en el elemento E (que forma parte de la rama principal P). Las acciones a tomar son:
+Seleccione una:
+1. (1) Comenzar a aplicar el cambio en la rama principal P.
+2. (1) Buscar la última rama ‘secundaria’ creada y
+(2) Trabajar en ésta el cambio requerido.
+3. (1) Crear una nueva rama B a partir de la rama principal P para trabajar el cambio E.
+(2) Cuando este esté listo, probado y aprobado, se agregan a la rama P.
+4. (1) Trabajar el cambio por fuera de la herramienta de gestión de versiones, y
+(2) Cuando este esté listo para probar, se agregan a la rama P.
+
+
+3. Un líder de proyecto afirma que: “Si el cronograma va atrasado es posible contratar más programadores para terminar a tiempo.”
+Seleccione una:
+1. Es algo que se puede aplicar y funciona en todos los proyectos.
+2. No funciona en un proyecto en desarrollo.
+3. Es aplicable en proyectos a corto plazo.
+4. Funciona sólo en proyectos grandes y complejos.
+
+
+4. ¿Define el Estándar 12207 los modelos de ciclo de vida para los proyectos de software? Justifica tu respuesta, indicando qué grupo de procesos del estándar está relacionado con esta cuestión.
+No define modelos de ciclo de vida, define un conjunto de procesos para los cuales una organización puede decidir si tomarlos o no para definir sus propios ciclos de vida, el cual el estándar sugiere aplicar.
+
+
+Comentario: No define los modelos, sugiere aplicar modelos. Ejemplifica algunos.
+Comentario: El estándar no 'define' los modelos, sugiere que deben aplicarse modelos. Ejemplifica con algunos.
+
+
+5. La relación entre el concepto de ‘actividades’ y ‘tareas’ es la siguiente:
+Seleccione una:
+1. Son sinónimos.
+2. Las actividades incluyen tareas y éstas pueden incluir también actividades.
+3. Las actividades incluyen las tareas.
+4. Las tareas incluyen las actividades.
+5. No tienen relación.
+
+
+6. Una variante representa:
+Seleccione una:
+1. Una implementación para un contexto diferente de un elemento de configuración probado y aprobado.
+2. Un momento en la vida de un elemento de configuración cuyo estado ha sido probado y aprobado.
+3. Un momento en la vida de un sistema de software en el cual es puesto a disposición de los clientes.
+
+
+7. En relación al siguiente gráfico, indique cuál afirmación es correcta.
+  
+
+Seleccione una:
+a. El gráfico representa la tasa de fallas de un producto de hardware a lo largo del tiempo.
+b. El gráfico representa la tasa de fallas de un producto industrial, que se manufactura, a lo largo del tiempo.
+c. El gráfico representa la tasa de fallas de un sistema de información a lo largo del tiempo.
+d. El gráfico representa la tasa de fallas de un producto de software a lo largo del tiempo.
+
+
+8. Una práctica común en la identificación de versiones es la aplicación de lo que se denomina “Versionado Semántico”. Para un proyecto se está aplicando este esquema. Indique qué significan las siguientes versiones en la historia de este producto:
+  
+
+9. Los sistemas heredados son uno de los retos del siglo XXI según Sommerville. Generalmente, tienen un papel crítico en la organización y dependen de tecnologías de hardware y software obsoletas. En relación a este tipo de sistemas se puede afirmar que:
+Seleccione una o más de una:
+a. Condicionan las posibilidades de actualización de hardware.
+b. Sólo deben mantenerse por los datos que manejan.
+c. Incluyen procesos y procedimientos, además de hardware y software.
+d. No proporcionan servicios esenciales del negocio.
+
+
+10. Dos problemáticas fundamentales de la Ingeniería de Software son:
+Seleccione una:
+a. Identificar los requerimientos funcionales y no funcionales, y luego implementarlos.
+b. Identificar qué significa buena calidad y luego alcanzarla.
+c. Lidiar con la performance y la seguridad de los sistemas.
+d. Lidiar con la escala y complejidad de sistemas de software.
+
+
+11. ¿Por qué se dice que el software no se "manufactura"?
+
+
+
+
+12. Un ‘número de versión’ (o ‘identificación de versión’) debe servir para:
+Seleccione una:
+a. Tener un contador que se incremente cada vez que se genera una nueva release del producto.
+b. Indicar cuán antigua es una versión de software.
+c. Rápidamente interpretar cuál es el nivel de cambios que tiene el producto de software.
+d. Como remplazo de un nombre 'alfabético' de cada versión del producto.
+
+
+13. La rama ‘principal’ (master) que se define utilizando alguna herramienta de versionado:
+Seleccione una:
+a. Se crea cuando se quiere trabajar en cambios sobre la versión actual del producto.
+b. Mantiene los primeros elementos de software que se incorporan al producto de software.
+c. Representa la primer versión del producto de software.
+d. Es la que siempre contiene la última versión funcional del sistema.
+
+
+14. Se necesita incorporar una funcionalidad nueva a un sistema que ya se encuentra en un entorno productivo. La versión que se encuentra actualmente en producción es la 2.3.5. Teniendo en cuenta que su equipo utiliza Git y GitFlow como flujo de trabajo y modelo de ramificación.
+Consignas:
+a) Luego de finalizar el trabajo requerido para la nueva funcionalidad, ¿Cuál sería la versión de la aplicación generada y llevada a un entorno productivo siguiendo el esquema de nombre de versión SemVer (versionado semántico)?
+b) En la versión desplegada (llevada a producción) del punto anterior se introdujo un error. ¿Cómo plantearía, desde Git, solucionarlo para generar una nueva versión que solucione este "bug"? Detallar rama o ramas creadas, PRs generados (origen y destino de los mismos)
+Respuesta: 
+a) Al ser una nueva funcionalidad y suponiendo que es compatible con la versión anterior, se realiza un cambio 'minor'. Tomando el versionado semántico X.Y.Z. Se incrementa Y en 1 y se resetea Z. Por lo tanto, la versión nueva sería: 2.4.0.
+b) Para solucionar el error en la nueva versión, se debe generar una rama de 'bugfix' o 'fix' que se desprende de master y realizar un PR desde esta rama de fix a develop. Si el PR es aceptado, se publica una nueva versión con el error corregido.
+Puntos: 2/2
+
+
+15. Según la IEEE, la Ingeniería de Software es la aplicación de un enfoque "sistemático, disciplinado y cuantificable" al desarrollo, operación y mantenimiento del software; es decir, la aplicación de la ingeniería al software. 
+Describa brevemente a qué hace referencia cada adjetivo de esta definición en el marco de la Ingeniería de Software.
+Otra respuesta: A lo que se refiere con sistemático, es que la ingeniería de software tiene definido un proceso capaz de ser reutilizado y repetido en cualquier proyecto de forma sistemática; es decir que este proceso sea repetible.
+Cuando habla de disciplinado hace alusión a que siga una disciplina, que hayan reglas establecidas y procedimientos definidos, donde los riesgos sean de conocimiento.
+Y por último que el enfoque sea cuantificable significa que hay mediciones de los productos y proyectos.
+Puntos: 2/2
+
+
+Comentario: Sistemático: que sea repetible en todos los proyectos que se desarrollen en la organización.
+
+
+16. En relación al modelo de proceso iterativo, indique qué afirmaciones son correctas.
+Seleccione una o más de una:
+a. Tiene alta dependencia entre fases o etapas.
+b. Se pueden repetir las secuencias de ejecución de etapas o fases.
+c. En cada iteración se obtienen versiones más completas del software.
+d. Enfatiza el re uso.
+e. Es una variante del modelo cascada.
+
+
+17. Un arquitecto de software afirma que: “El software es flexible y por lo tanto los cambios en los requerimientos del proyecto pueden ajustarse con facilidad.”
+Seleccione una:
+a. Esa (flexibilidad) es una característica del software que se logra siempre al aplicar un proceso de desarrollo
+ingenieril.
+b. Esa (flexibilidad) es una característica del software que no se puede alcanzar en un producto de software.
+c. Esa (flexibilidad) es una característica del software que se logra sólo si se diseña el producto para alcanzarla.
+d. Esa (flexibilidad) es una característica del software que no se logra siempre al aplicar un proceso de desarrollo ingenieril.
+
+
+18. Su 'software factory' ha decidido comenzar el desarrollo de su propio ERP (Enterprise Resource Planning), el que incorporará: Sistema Producción, Sistema de Logística, Sistema de Distribución, Sistema de Inventario, Sistema de Envíos, Sistema de Facturación y Sistema de Contabilidad.
+De los sistemas anteriores, la empresa cuenta con versiones de los sistemas: Sistema Producción, Sistema de Logística, Sistema de Distribución, pero estos deben ser refactorizados a las nuevas tecnologías a utilizar. Los restantes deben ser desarrollados desde cero.
+Cuenta con un equipo de 50 personas (con diferentes perfiles lo que le permite armar 4 o 5 equipos de trabajo). Los integrantes tiene experiencia en el dominio de trabajo.
+Proponga un "Ciclo de Vida" de software a aplicar al desarrollo del ERP. Justifique su elección indicando pros y contras de la elección.
+Respuesta: Utilizaría un modelo de proceso de desarrollo basado en componentes, ya que este modelo construye aplicaciones a partir de fragmentos de software prefabricados, los cuales se podrían usar para reemplazar los sistemas con los que ya cuenta la empresa.
+Los pros son: enfatiza la reusabilidad, con􀃕gura aplicaciones desde componentes preparados de software, reducen el tiempo del ciclo de desarrollo, reducen costo del proyecto, reducen riesgos y tiempo de entrega.
+Contras: compromisos en los requerimientos, evolución de componentes, módulos o subsistemas.
+Puntos: 1/2
+Comentario: Componentes puede aplicar para los subsistemas, pero no para el ERP como un todo.
+Un modelo concurrente, o incremental sería más apropiado.
+Es TODO el sistema.
+Otra respuesta: En este caso propondría el modelo de procesos INCREMENTAL dado que se puede dividir en
+subsistemas y trabajar en equipos reducidos. Se identi!can como pros/contras:
+PROS:
+-Se podría dividir en módulos/subsistemas de desarrollo donde el acoplamiento no sea alto.
+-Ya que el modelo combina elementos de los flujos de proceso lineal y paralelo, se podría aprovechar que el equipo es numeroso (50 integrantes) y por tanto se podrían desarrollar los módulos de forma paralela.
+-Realizar iteraciones para consultar con el cliente los avances dado que es un sistema de gran magnitud.
+CONTRAS:
+-Puede que haya algunos módulos donde el acoplamiento no se pueda suprimir de manera considerable (por ejemplo entre los sistemas de Logística, Envío e inventario). 
+(Se podría analizar el uso de modelo de procesos basado en componentes para desarrollar los módulos Producción, Logística y Distribución en donde se podría "reutilizar" el software).
+Puntos: 2/2
+Comentario: bien.
+
+
+19. Dado el esquema de ramas en un sistema de control de versiones GIT que se muestra a continuación, responda las consignas:
+  
+
+Suponiendo que en el instante T4 se está trabajando sobre la rama Branch2:
+¿cuál sería el o los comandos a ejecutar para realizar una combinación (merge) de la rama Branch2 sobre la rama Branch1?
+Incluir los comandos necesarios para compartir esta combinación de ramas con el resto de los usuarios del repositorio remoto.
+Respuesta:
+git checkout Branch1
+git merge Branch2
+Puntos: 1,50/2
+Comentario: faltan comandos para posicionarse en la rama y luego para push de los cambios
+Otra respuesta: 
+Primero commiteo y pusheo mis cambios actuales en el branch 2 al repositorio, usando
+git commit <nombre del commit>
+git push
+luego me muevo a la rama branch 1 usando git checkout Branch1
+actualizo la rama para dejarla al dia (como medida de seguridad) usando
+git fetch
+git pull
+luego procedo a realizar el merge del Branch2 sobre el Branch1 y pusheo el merge al repositorio
+git merge Branch 2
+git push
+con esos comandos queda desplegado el merge en el repositorio, en la rama Branch1
+Puntos: 1/2
+Comentario: falta agregar file y corregir el comando commit
+Otra respuesta: No, tenes que comitear y pushear los cambios que hayas hecho en el Branch 2 primero, luego checkout a Branch 1, actualizas (como medida de seguridad) el Branch 1 haciendo git fetch y git pull,, luego mergeas con git merge branch2 y luego haces git push para desplegar al repositorio. 
+Puntos: 2/2
+Otra respuesta:
+git add .
+git commit -m “últimos cambios branch2”
+git push
+git checkout branch1
+git fetch
+git pull 
+git merge branch2
+git push 
+Puntos: 2/2
+
+
+20. ¿Qué grupo de procesos de los propuestos por el Estándar 12207 se utiliza para mejorar las actividades de la organización y formación del personal, según lo aprendido de la implementación del estándar en experiencias previas?
+Seleccione una:
+a. Procesos de gestión técnica.
+b. Procesos de acuerdo.
+c. Procesos que habilitan proyectos organizacionales.
+d. Procesos técnicos.
+
+
+21. En relación con el Estándar 12207, indique qué grupo de procesos es el que se orienta a la gestión de recursos para cumplir los acuerdos de la organización con el fin de establecer, ejecutar y controlar las planificaciones.
+Seleccione una:
+a. Procesos que habilitan proyectos organizacionales.
+b. Procesos de gestión técnica.
+c. Procesos técnicos.
+d. Procesos de acuerdo.
+
+
+22. Si utiliza alguna herramienta para gestionar las versiones de elementos de software (Git, SVN, otra), estas van a requerir que defina mínimamente:
+Seleccione una:
+a. Una rama principal y una rama de trabajo.
+b. Una rama principal, una rama de trabajo, y una rama de prueba.
+c. Una rama principal del proyecto.
+d. No tienen requerimientos mínimos.
+
+
+23. La primera Línea Base de un proyecto de software se genera
+Seleccione una:
+a. Una vez definido el alcance del proyecto (Plan de Proyecto).
+b. Cuando el producto de software fue aceptado por el cliente.
+c. Cuando se tiene la primera versión del software listo para liberar.
+d. Una vez realizado el diseño de software y antes de comenzar el proceso de programación.
+
+
+24. Describe el ciclo de vida de qué tipo de producto representa el siguiente gráfico y justifica.
+  
+
+Otra respuesta: Representa la curva de falla del hardware, indicando la tasa de fallas del hardware respecto al tiempo de uso del mismo. A medida que transcurre el tiempo, la tasa de falla del hardware aumenta debido al desgaste del mismo.
+Puntos: 1.25/2
+Comentario: ¿Qué sucede al principio? ¿A qué se debe el desgaste final?
+
+
+
+
+25. ‘Construir’ un sistema de software significa:
+Seleccione una:
+a. Compilar, generar el sistema ejecutable, y dejarlo disponible a los clientes.
+b. Compilar, general el sistema ejecutable, y adjuntar los datos y documentos necesarios para su uso.
+c. Compilar y generar el sistema ejecutable
+d. Desarrollar los programas de acuerdo a la especificación de diseño.
+
+
+26. La documentación (registro escritos manuales y/o electrónicos) de diferentes productos generados en el proceso de desarrollo de software
+Seleccione una o más de una:
+a. Debe evitarse para acelerar los procesos de desarrollo de software.
+b. Existen procesos como los Ágiles que prescinden totalmente de ella.
+c. Sólo se realiza si el proceso de desarrollo de software lo requiere.
+d. Es siempre necesaria como parte del procesos de desarrollo de software.
+e. Brinda "visibilidad" al proceso de Ingeniería de Software.
+
+
+27. Se necesita incorporar una funcionalidad nueva a un sistema que ya se encuentra en un entorno productivo. La versión que se encuentra actualmente en producción es la 2.3.5. Teniendo en cuenta que su equipo utiliza Git y GitFlow como flujo de trabajo y modelo de ramificación. Consignas:
+a) ¿Cuál sería el primer paso a realizar en Git?
+b) ¿Cuál sería la versión de la aplicación generada y llevada a un entorno productivo siguiendo el esquema de nombre de versión SemVer (versionado semántico)?
+Respuesta: Lo que debería hacer es moverme a la rama develop con el comando:
+git checkout develop (en cuyo caso exista)
+git branch develop (en cuyo caso no existe, pero dado que ya esta llevado a un entorno productivo (master)
+suponemos la existencia de la misma)
+Luego deberíamos crear la rama feature/x a través del comando nombrado. Incorporará la nueva funcionalidad y retornará a la rama develop (realizando merge entre las ramas). Una vez terminada la nueva funcionalidad la versión
+generada será 2.4.5 (ya que se incorporó una nueva funcionalidad, por lo tanto varía 2.X.5)
+Puntos: 1,50/2
+Comentario: ok pero faltan pasos
+Otra respuesta: 
+a) Se crea una rama Develop a partir de la rama Master. Luego, a partir de la rama Develop se crea una rama Feature y allí se agrega una nueva funcionalidad. Se mergea la rama Feature creada con la rama Develop. Luego, se mergea la rama Develop en una rama Release. Se libera el Release, mergeando la rama Release con la rama Master y se hace un Tag. Entonces, se termina de incorporar la nueva funcionalidad y se devuelve el sistema al entorno productivo.
+b) Si solamente es la agregación de una nueva funcionalidad compatible con la versión anterior, la nueva versión es la 2.4.0. Si no es compatible con la versión anterior, es la 3.0.0.
+Puntos: 2/2
+
+
+28. En un proyecto de software en el cual está utilizando una herramienta de gestión de versiones, se dispone en un momento determinado una rama ‘principal’ y una rama ‘secundaria’. Para actualizar la rama ‘principal’ con los cambios de la rama ‘secundaria’ deberá:
+Seleccione una:
+a. Hacer un ‘commit’ de la rama ‘secundaria’ a la rama ‘principal’.
+b. Hacer una nueva rama y clonar los cambios.
+c. ‘Mezclar’ los cambios de la rama ‘secundaria’ en la rama ‘principal’.
+d. ‘Clonar’ los cambios de la rama ‘secundaria’ en la rama ‘principal’.
+
+
+29. En relación al siguiente gráfico y a la información que describe, seleccione la opción correcta:
+  
+
+Seleccione una:
+a. El gráfico muestra la tasa de fallas producida por el análisis de requerimientos de un producto de software a lo largo  del tiempo.
+b. El gráfico muestra la tasa de fallas del hardware a lo largo del tiempo.
+c. El gráfico muestra la tasa de falla de cualquier producto industrial a lo largo del tiempo.
+d. El gráfico muestra la tasa de fallas del software a lo largo del tiempo.
+
+
+30. ¿Qué es el software? Seleccione la/s sentencia/s correspondiente/s
+Seleccione una o más de una:
+a. La información relativa a las fuentes de información y stakeholders.
+b. Los casos de prueba necesarios para verificar su funcionamiento esperado.
+c. Las estructuras de datos que le permiten manipular información.
+d. La documentación asociada al proyecto.
+e. Las instrucciones (programas) que proporcionan las características y funciones.
+
+
+31. A la hora de desarrollar software, las actividades que sí o sí se deberán realizar de una manera ingenieril son:
+Seleccione una:
+a. Construcción.
+b. Planificación, Modelado, Construcción.
+c. Comunicación, Planificación, Modelado, Construcción, Despliegue/Distribución.
+d. Comunicación, Planificación, Modelado, Construcción.
+
+
+32. Un método de Ingeniería de Software:
+Seleccione una o más de una:
+a. Incluye reglas, recomendaciones, guías y/o técnicas para generar artefactos de calidad.
+b. Empiezan a aplicarse en la etapa de programación del proyecto.
+c. Indica la manera en que una clase resolverá un mensaje recibido.
+d. Sólo se pueden aplicar si se dispone de una herramienta gráfica que lo soporte.
+e. Indica cómo construir técnicamente el software.
+
+
+33. Un líder de proyecto afirma que: “Cuanto más pronto se comience a escribir código, más se tardará en terminarlo.”
+Seleccione una:
+a. Lo más importante es el código, por lo tanto debe iniciarse rápidamente la programación.
+b. Existen procesos de ingeniería de software donde esto no se aplica.
+c. Esto aplica en todos los enfoques de procesos de desarrollo de software ingenieriles.
+d. Esto aplica sólo a los proyectos de mayor tamaño o complejidad.
+
+
+34. Se están corrigiendo bugs sobre la versión 2.0.0, ¿cuál es el próximo número de versión sugerido?
+Seleccione una:
+a. 3.0.0
+b. 2.0.1
+c. 2.1.1
+d. 2.1.0
+
+
+35. En relación a los conceptos de Proceso y Proyecto en Ingeniería de Software, indique las opciones que son correctas.
+Seleccione una o más de una:
+a. Un proceso define los métodos y las herramientas a utilizar en un proyecto particular.
+b. El proceso define, entre otras cosas, el modelo de ciclo de vida a utilizar en un proyecto.
+c. Un proceso debe ser definido a nivel organización, para que todos los proyectos a llevar adelante en la misma lo utilicen o instancien.
+d. Cada proyecto define el proceso o enfoque que debe ser seguido para guiarlo.
+e. Un proceso definido debe ser adaptado a las características de cada proyecto.
+
+
+36. Indique las afirmaciones que son correctas en relación con el Proceso de Software en la Ingeniería de Software.
+Seleccione una o más de una:
+a. Utilizar un proceso no contribuye a la rapidez con la que se desarrollarán los productos de software.
+b. En el marco de la Ingeniería de Software, es sinónimo de proyecto de software.
+c. Debe estar explícitamente definido para ser bien administrado.
+d. Define un marco de trabajo compuesto por actividades estructurales y de soporte, además de un conjunto de tareas para cada actividad.
+e. Al definir un proceso es necesario identificar el modelo de proceso o modelo de ciclo de vida a utilizar.
+
+
+37. Para un cierto sistema existen en este momento las ‘versiones’ 0.5.1, 0.8.0, 1.0.0, 1.0.5, 1.1.0, 1.1.5, 1.1.20, 1.2.0, 2.0.0 (que se generó a partir de a 1.2.0), y 2.0.10 (la actual). El sistema de numeración de versiones se basa en ‘Versionado Semántico’. ¿Cuál es el primer ‘release’ de este sistema?
+Respuesta: El primer Release del sistema estaría definido por la versión 1.0.0 dado que varió la posición X.0.0
+Puntos: 2/2
+
+
+38. Un release de un producto de software es:
+Seleccione una:
+a. Una versión del producto que pasó exitosamente el proceso de pruebas.
+b. Una Línea Base del producto que ingresa al proceso de pruebas.
+c. Una definición de los requerimientos que deben ser incluidos en la próxima versión del producto.
+d. Una versión del producto que ha sido entregado al cliente.
+
+
+39. En relación a la siguiente figura, explique a qué concepto se refiere, qué muestra la misma y describa brevemente a qué se refieren las partes identificadas.
+  
+
+Respuesta: Todo esto como conjunto refiere al modelo general del proceso de software donde podemos identificar:
+- Marco de trabajo común (actividades estructurales) las cuales son comunicación, planeación, modelado, construcción y despliegue. Las mismas son aplicables a todos los proyectos de software, sin importar su tamaño o complejidad. Las actividades estructurales se aplican en forma iterativa a medida que avanza el proyecto. Dentro de la actividad de marco de trabajo (conjunto de acciones) se identifica a su vez un conjunto de tareas de las cuales cada una es una colección de tareas de trabajo de la ingeniería de software, relacionadas con productos del trabajo, puntos de aseguramiento de la calidad y puntos de referencia del proyecto. Es recomendable seleccionar el conjunto de tareas que mejor se adapte a las necesidades del proyecto y a las características del equipo.
+- Actividades de Soporte ( actividades sombra) determinan un conjunto de actividades de soporte a las actividades estructurales: seguimiento y control del proyecto, administración de riesgos, aseguramiento de la calidad, administración de la configuración, revisiones técnicas, entre otras. Estas ayudan al equipo que lo lleva a cabo a administrar y controlar el avance, la calidad, el cambio y el riesgo.
+Puntos: 2/2
+Comentario: bien. 
+Otra respuesta: En la figura que se muestra se refiere al concepto de proceso de desarrollo de software, donde existe un marco de trabajo de tareas que son las que se deben llevar a cabo para desarrollar software de calidad; y dentro de este marco también se de definen actividades.
+Puntos: 1/2
+Comentario: ¿Y las actividades de soporte? No está completo.
+Otra respuesta: En cierto sentido, la figura hace referencia a la estructura del Proceso de Desarrollo de Software.
+Donde el marco del trabajo común tiene que ver con el modelo que seleccione la organización para llevar a cabo el desarrollo de software, y por tanto la aplicación del mismo en sus distintos proyectos.
+Las actividades del marco de trabajo tienen que ver con los objetivos generales en el Proceso, dentro de estas actividades se de􀃕nen las acciones o tareas (Conjunto de tareas, en este gráfico) a realizar para cumplimentar las entregas (hitos) y para lograr la calidad deseada (puntos SQA).
+Por último, las actividades de soporte son en cierta manera las actividades sombrilla en el Proceso de Desarrollo de Software, que complementan las del marco de trabajo o las estructurales, administrando riesgos, avances y calidad en todas las etapas.
+Puntos: 2/2
+Comentario: Bien.
+Otra respuesta: Hace referencia al Proceso de desarrollo de software, donde se define un marco de trabajo de tareas a realizar para desarrollar sw de calidad. Además define un conjunto de actividades y sus correspondientes resultados generadores de un producto de software.
+Puntos: 1.50/2
+Comentario: La idea base está. No es muy claro lo de los 'resultados generadores'. Es un marco general.
+Y las actividades de soporte?
+
+
+40. Formalmente podemos afirmar que el software es:
+Seleccione una:
+a. Programas de computadora, documentación asociada y datos para la operación de un sistema.
+b. Programas de computadoras.
+c. Programas de computadoras, y datos para la operación de un sistema.
+d. Programas de computadoras, procedimientos, documentación asociada, y datos para la operación
+de un sistema.
+
+
+41. ‘Construir’ un sistema de software significa:
+Seleccione una:
+a. Compilar, general el sistema ejecutable, y adjuntar los datos y documentos necesarios para su uso.
+b. Compilar, generar el sistema ejecutable, y dejarlo disponible a los clientes.
+c. Desarrollar los programas de acuerdo a la especificación de diseño.
+d. Compilar y generar el sistema ejecutable
+
+
+42. Suponga que se realiza un proyecto de desarrollo de un producto de software de gestión para una empresa que acaba de establecerse en el nuevo mercado de valores. Esta se dedica a invertir el dinero de sus clientes en bolsa, valiéndose para ello de prestigiosos inversores financieros. 
+La empresa sabe que acaba de introducir su actividad en uno de los negocios más inestables del mundo, como también inestables serán las exigencias de sus clientes y del mercado, las leyes que cambian casi una vez a la semana, las caídas repentinas de mercados extranjeros en los que la empresa tiene invertida gran parte de su capital, etc.
+Ud. es el Gerente del Proyecto y debe definir cuál es el ‘Ciclo de Vida’ a aplicar a este proyecto.
+1. Seleccione un ciclo de vida a aplicar en este caso. Justifique su elección indicando ventajas y desventajas del ciclo elegido.
+Respuesta: En este caso utilizaría un modelo de Métodos formales. Este método es ideal cuando se debe construir software de primera calidad en seguridad y cuando estamos frente a un proyecto que llevaria a grandes perdidas
+económicas si ocurrieran errores. Este método sirve como base para la verificación del programa y asi permitir descubrir y corregir errores.
+Pero tiene como desventaja que es di!cil utilizar los modelos como mecanismo de comunicación para clientes sin complejidad técnica, el desarrollo formal consume mucho tiempo y es caro (lo cual no es un problema para una empresa establecida en el mercado de valores).
+Puntos: 0,5/2
+Comentario: No es un método acorde. Necesita algo más “ágil”.
+Otra respuesta: En lo personal elegiría un método ágil para desarrollar el software, en específico en XP. Esto es debido a que el escenario es cambiante de forma constante, y requiere de constante comunicación con los clientes, además se agrega la necesidad de tener la herramienta rápido para ir haciendo frente a los cambios de requerimientos.
+Puntos: 2/2
+Comentario: Un método ágil aplica. ¿Por qué XP?
+Otra respuesta: Para este caso yo implementaría métodos agiles precisamente XP, ya que primeramente permite hacer entregas rápidas de software y en ese caso es necesario modificar rápidamente el software si por ejemplo una ley cambia. Además permite tener reuniones con los clientes stakeholders, lo cual permite una mejor comunicación y retroalimentación del software, en caso de ser necesario es posible corregir algo rápidamente.
+Una desventaja de este método es que si el software es que los equipos de trabajo no son muy grandes lo cual es un problemas si el software que se necesita desarrollar en este caso es mas grande de lo que el equipo puede trabajar.
+Puntos: 1.50/2
+Comentario: Bien el enfoque ‘ágil’. ¿Por qué XP? (que tiene sus requerimientos de aplicación)
+Otra respuesta: Como los requerimientos pueden cambiar mucho, se recomienda usar una metodología ágil, ya que es muy factible para los cambios, van a tener entregas incrementales en poco tiempo, y se podrán ir corrigiendo o modificando cuestiones a medida que cambien las necesidades de los clientes.
+Recomiendo dentro de la metodología ágil, XP.
+Ventajas: entregas funcionales en poco tiempo, facilidad para el cambio
+Desventaja: requiere un equipo de trabajo experimentado
+Puntos: 2/2
+Comentario: correcto.
+
+
+43. Para un cierto sistema existen en este momento las ‘versiones’ 0.5.1, 0.8.0, 1.0.0, 1.0.5, 1.1.0, 1.1.5, 1.1.20, 1.2.0, 2.0.0 (que se generó a partir de a 1.2.0), y 2.0.10 (la actual). El sistema de numeración de versiones se basa en ‘Versionado Semántico’.
+Este sistema es ‘multicliente’ y cada uno de ellos decide con cuál versión trabajar (Ejemplo: un cliente está en 1.0.5, otros en 1.1.0, y así). 
+¿De qué manera gestionaría las relaciones ‘cliente-versión’ para poder atender las necesidades de cada uno?
+Respuesta: Para gestionar las versiones del sistema usaria la herramienta para el control de versiones "Git". De la mano con la herramienta online para el manejo de repositorios Github.
+Puntos: 0.5/20
+Comentario: No explica cómo las gestionaría, sólo menciona las herramientas.
+Otra respuesta: Para poder atender a las necesidades de cada cliente, sería necesario contar con varias líneas bases. De esta manera, cada uno podría efectuar cambios a partir de la versión que deseen y generar su propio historial, sin afectar el trabajo del resto.
+Puntos: 1/2
+Comentario: falta profundizar explicación 
+Otra respuesta: Para saber que versión tiene cada cliente, se gestionaría utilizando el versionado semántico con el que se generó el sistema de numeración de versiones. En base a X.Y.Z (major, minor, patch), si un cliente tiene la versión 2.Y.Z, entonces tiene la última versión major pero dependiendo de los valores de Y y Z tiene los últimos cambios y correcciones realizadas del sistema o no. Y así se realizaría el análisis sobre cada versión.
+Puntos: 1.70/2
+Comentario: -
+
+
+44. Tres elementos claves de la Ingeniería de Software son:
+Seleccione una:
+a. Métodos Formales, CASE, CMMI.
+b. Métodos, Herramientas, Procesos.
+c. Métodos Rigurosos, Herramientas de Diseño, Procedimientos.
+d. Métodos, Orientación a Objetos, Herramientas CASE.
+
+
+45. En relación a los modelos de procesos de software o modelos de ciclo de vida, indique qué afirmaciones son correctas.
+Seleccione una o más de una:
+a. Descripciones de la forma en que el desarrollo se lleva a cabo realmente.
+b. Prescripciones de la forma en que el desarrollo de software debería llevarse a cabo.
+c. Se selecciona a nivel organizacional para todos los proyectos que se lleven adelante.
+d. Organizan la secuencia y orden de las actividades del proceso.
+e. Se selecciona de acuerdo a las características del equipo u organización de desarrollo.
+f. Todos incluyen los requerimientos del sistema como entrada y el producto liberado al uso como salida.
+
+
+46. Explica el siguiente gráfico, que muestra funciones de tasa de fallas a lo largo del tiempo. Indica de qué elemento se trata, qué se muestra en el gráfico, por qué la tasa de fallas sufre picos en su representación.
+  
+
+Respuesta: El SW sufre cambios durante su vida. Es probable que cuando estos se realicen, se introduzcan errores que
+ocasionen que la curva de tasa de fallas tenga aumentos súbitos. Antes de que la curva vuelva a su tasa de fallas original de estado estable, surge la solicitud de otro cambio que hace que la curva se dispare otra vez. Poco a poco, el nivel mínimo de la tasa de fallas comienza a aumentar: el SW se está deteriorando como consecuencia del cambio.
+Puntos: 2/2
+Otra respuesta: El gráfico representa la tasa de fallos del ciclo de vida del software. El mismo representa cómo afectan los cambios en la calidad del software. A medida que se introducen errores, la tasa de fallos sufrirá picos en su
+representación. Cada vez que dichos errores sean corregidos, la tasa comenzará a disminuir pero, es probable que antes de que se vuelva al estado estable, surja un nuevo cambio por hacer, lo que disparará nuevamente la representación de la tasa de fallos. Poco a poco, el nivel mínimo de la tasa de fallas irá en aumento, lo que deteriora al software.
+Puntos: 1.50/2
+Respuesta: Lo que se muestra en el siguiente gráfico es respecto al software y como afectan los cambios a la vida del mismo; se habla del hecho del que software no se desgasta pero si se deteriora, y esto es porque, como ilustra el gráfico, cuando se introduce un cambio para solucionar errores o fallas, ese mismo cambio inserta una X cantidad de
+errores o fallas nuevas a resolver, y eso involucra a la larga que se inserten más cambios y consigo nuevos errores
+o fallas, y así sucesivamente es como se va deteriorando el software.
+Puntos: 1.75/2
+Comentario: ¿Qué sucede al principio de la curva?
+Otra respuesta: El software no se “desgasta”, no es susceptible a problemas ambientales. La curva de tasa de fallas adopta la forma de la “curva idealizada”. Los defectos ocultos ocasionarán tasas elevadas de fallas al comienzo de la vida de un programa, pero estas se corrigen y la curva se aplana. La curva idealizada es una gran simplificación de los modelos reales de las fallas del software. Aun así, el software sí se deteriora; sufrirá cambios que introduzcan errores que ocasionen que la curva de tasa de fallas tenga aumentos súbitos (“curva real”). Antes de que la curva vuelva a su tasa de fallas original, surge otro cambio que hace que la curva se dispare otra vez. Poco a poco, el nivel mínimo de la tasa de fallas comienza a aumentar, por lo que el software se deteriora.
+Puntos: 2/2
+
+
+47. Las ‘Líneas Bases’ se utilizan para:
+Seleccione una:
+a. Identificar un elemento de configuración probado y aprobado.
+b. Identificar una versión de programa que ya no se utiliza.
+c. Identificar una variante de un elemento de configuración.
+d. Identificar un punto en el tiempo del proyecto que se toma como referencia.
+
+
+48. Se necesita incorporar una funcionalidad nueva a un sistema que ya se encuentra en un entorno productivo. La versión que se encuentra actualmente en producción es la 2.3.5. Teniendo en cuenta que su equipo utiliza Git y GitFlow como "ujo de trabajo y modelo de rami!cación.
+Consignas:
+a) ¿Cuál sería el primer paso a realizar en Git?
+b) ¿Cuántos PRs como mínimo requieren para llevar a producción esta nueva funcionalidad? Detalle cuáles serían cada uno. (Nombre de las ramas involucradas, origen y destino de cada uno)
+Respuesta: Suponiendo que el sistema se encuentra en entorno productivo, debería situarme sobre la rama develop (git checkout develop), desde esa rama crear una nueva y situarme sobre ella (git checkout -b nuevaFuncionalidad o git branch nuevaFuncionalidad, git checkout nuevaFuncionalidad). 
+Luego de realizar todas las modificaciones agregar los archivos modificados (git add .), commitearlos (git commit -m "Nueva funcionalidad") y pushearlos hacia el repositorio  remoto (git push). Con respecto a la cantidad de PR, si la rama nuevaFuncionalidad funciona correctamente, creando un PR hacia master estaria confirmando estos cambios. Luego, master debería crear un PR automático hacia develop para tener la rama de desarrollo actualizada en commits. (2 PR COMO MINIMO)
+Al final, mi nueva versión será: 2.4.5
+Puntos: 1.50/2
+Comentario: ok pero el nro. de versión quedó mal
+
+
+49. En relación con el Estándar 12207, indique qué grupo de procesos es el que describe las acciones técnicas del ciclo de vida, guiando la transformación de las necesidades de los stakeholders en un producto servicio de software.
+Seleccione una:
+a. Procesos de acuerdo.
+b. Procesos técnicos.
+c. Procesos que habilitan proyectos organizacionales.
+d. Procesos de gestión técnica.
+
+
+50. La importancia de un mensaje de ‘commit’ radica en que:
+Seleccione una:
+a. Si no se incluyen los revisores no sabrán qué revisar.
+b. Si no se incluye no se puede reportar cambios en el software
+c. Si no se incluye no se sabrá cuál es la línea base a modificar.
+d. Si no se incluye no se puede saber cómo se resolvió un problema.
+
+
+51. Según la IEEE, la Ingeniería de Software es la aplicación de un enfoque "sistemático, disciplinado y cuantificable" al desarrollo, operación y mantenimiento del software; es decir, la aplicación de la ingeniería al software.
+Describa brevemente a qué hace referencia cada adjetivo de esta definición en el marco de la Ingeniería de software.
+Respuesta: Cada adjetivo hace referencia a que la Ingeniería de Software es sistemática porque puede ser repetida, disciplinada porque sigue un conjunto de reglas y cuantificable porque se puede medir.
+Puntos: 0.5/2
+Comentario: Incompleto.
+Lo sistemático, disciplinado y cuantificable es el enfoque que propone la ISW.
+¿Dónde puede repetirse? ¿Qué reglas son las que se siguen? ¿Qué se puede medir?
+
+
+52. Un ‘Proceso de Gestión de configuración de Software’ debería contemplar las siguientes actividades:
+Seleccione una o más de una:
+a. Generación de Reportes
+b. Control de Versiones
+c. Control de Cambio
+d. Identificación de elementos
+e. Implementar ‘bug tracking’.
+f. Auditoría.
+g. Implementación de Git/SVN
+
+
+53. Tres elementos claves de la Ingeniería de Software son:
+Seleccione una:
+a. Métodos, Herramientas, Procesos.
+b. Métodos Rigurosos, Herramientas de Diseño, Procedimientos.
+c. Métodos Formales, CASE, CMMI.
+d. Métodos, Orientación a Objetos, Herramientas CASE.
+
+
+54. Se necesita incorporar una funcionalidad nueva a un sistema que ya se encuentra en un entorno productivo. La versión que se encuentra actualmente en producción es la 2.3.5. Teniendo en cuenta que su equipo utiliza Git y GitFlow como flujo de trabajo y modelo de ramificación. Consignas:
+a) ¿Cuál sería el primer paso a realizar en Git?
+b) ¿Cuál sería la versión de la aplicación generada y llevada a un entorno productivo siguiendo el esquema de nombre de versión SemVer (versionado semántico)?
+Respuesta: Si el sistema se encuentra en el entorno productivo, debería ir a la rama develop con el comando git checkout develop o crearla con el comando git Branch develop. A partir de ella se debe crear una nueva rama feature con el mismo comando. La misma se encargara de incorporar la nueva funcionalidad y después retornara a la rama develop, realizando un merge entre ambas ramas. Una vez que la funcionalidad fue creada la versión generada será la 2.4.5.
+Puntos: 1.40/2
+Comentario: quedó mal el número de versión.
+
+
+55. Un modelo de proceso de desarrollo de software iterativo se caracteriza por:
+Seleccione una:
+a. Liberar fragmentos de software de acuerdo a cómo se vayan definiendo.
+b. Liberar fragmentos de software previamente definidos y planificados.
+c. Liberar fragmentos de software si existen nuevas necesidades.
+d. Liberar software cuando todas sus partes están completas.
+
+
+56. Las Líneas Bases en un proyecto de software sirven para:
+Seleccione una:
+a. Saber cuál es la última versión liberada del producto de software generado por el proyecto.
+b. Saber cuáles son las versiones de software aceptas por el cliente.
+c. Saber cuál es la configuración de software del proyecto en un momento determinado.
+d. Saber cuál es la documentación generada en el proyecto.
+
+
+57. El estándar 12207 define los siguientes grupos de procesos.
+Seleccione una o más de una:
+a. Procesos de hardware.
+b. Procesos de ciclo de vida.
+c. Procesos externos.
+d. Procesos que habilitan proyectos organizacionales.
+e. Procesos de acuerdo
+f. Procesos Técnicos.
+g. Procesos de gestión técnica.
+
+
+58. Un rama ‘secundaria’ (branch) que se define utilizando alguna herramienta de versionado:
+Seleccione una:
+a. Se crea cuando se quiere trabajar en cambios sobre la versión actual del producto.
+b. Mantiene los primeros elementos de software que se incorporan al producto de software.
+c. Representa la primer versión del producto de software.
+d. Es la que siempre contiene la última versión funcional del sistema.
+
+
+59. ¿Qué problema en el desarrollo de software intenta resolver la Gestión de la Configuración de Software?
+Seleccione una:
+a. La consistencia de los documentos generados
+b. La evolución de los programas desarrollados
+c. La consistencia de los programas desarrollados
+d. La evolución de los productos de software
+
+
+60. Su 'software factory' ha decidido comenzar el desarrollo de su propio ERP (Enterprise Resource Planning), el que incorporará: Sistema de Producción, Sistema de Logística, Sistema de Distribución, Sistema de Inventario, Sistema de Envíos, Sistema de Facturación y Sistema de Contabilidad.
+De los sistemas anteriores, la empresa cuenta con versiones de los sistemas: Sistema de Producción, Sistema de Logística, Sistema de Distribución, pero estos deben ser refactorizados a las nuevas tecnologías a utilizar. Los restantes deben ser desarrollados desde cero.
+Cuenta con un equipo de 50 personas (con diferentes perfiles lo que le permite armar 4 o 5 equipos de trabajo). Los integrantes tiene experiencia en el dominio de trabajo, pero no tanta en las nuevas tecnologías a utilizar (no tienen desarrollos realizados en esta).
+Proponga un "Ciclo de Vida" de software a aplicar para realizar la refactorización del "Sistema de Logística", contemplando además que se estableció un tiempo máximo de 8 meses para este trabajo, requiriendo que en ese tiempo se tenga una versión funcional del sistema lo más completa posible (podrá continuar mejorándose posteriormente). Justifique su elección indicando pros y contras de la elección.
+Respuesta: Al contar con versiones de algunos sistemas, la empresa podría adoptar un desarrollo basado en componentes, lo que permitiría reducir el ciclo de tiempo del desarrollo el costo del proyecto. Sin embargo, considero que no sería lo más conveniente para el resto del sistema y, sobre todo, para la integración del proyecto en general.
+Por tales motivos, creo que un sistema incremental podría ser adecuado para el desarrollo del mismo. Al tener diversos subsistemas bien definidos (producción, logística, distribución, inventario, envíos, facturación, contabilidad), es posible trabajar con ellos de manera paralela. Además, creo que sería ventajoso ya que, como los integrantes no tienen tanta experiencia en las nuevas tecnologías, realizar iteraciones para consultar los avances con ellos ahorraría tiempos de validación en una etapa tardía.
+Por otro lado, puede que al trabajar con nuevas tecnologías el riesgo sea demasiado alto, y el intercambio con el cliente no sea lo suficientemente rápido como para evitar mayores errores y costos.
+Puntos: 1.50/2
+Comentario: Bien el análisis general, pero pedíamos solo el de Logística.
+Otra respuesta: Aplicaría un modelo incremental, ya que en primer lugar al tener un equipo grande de desarrolladores y suponiendo que el objetivo del sistema de logística se puede separar en objetivos más pequeños e independientes, se podría llevar a cabo produciendo los distintos incrementos de forma paralela, y así asegurarse de que para los 8 meses tener ya una entrega mínima hecha al cliente con las funcionalidades primordiales.
+A su vez una desventaja es que no recibirán todas las funcionalidades pedidas juntas, sino que de manera independiente.
+Puntos: 2/2
+Comentario: de acuerdo.
+Otra respuesta: Yo elegiría un proceso unificado por la necesidad de un proceso del software basado en los casos de uso, iterativo e incremental, centrado en la arquitectura. El PU intenta obtener las mejores características de modelos tradicionales del proceso del software implementando también muchos de los mejores principios del desarrollo ágil de software. El PU da importancia a la comunicación con el cliente y la importancia de que este brinde su punto de vista. También le da importancia a la arquitectura del software. Sugiere un 􀃖ujo del proceso iterativo e incremental, haciendo al ciclo de vida como evolutivo. Este tipo de ciclo de vida también se enfoca en minimizar riesgos.
+Puntos: 2/2
+Comentarios: muy bien.
+
+
+
+
+61. El estándar ISO/IEC 12207 tiene el título "Software Lifecycle Processes". Explique brevemente qué entiende o considera este estándar por "Software Lifecycle" o ciclo de vida del software.
+Respuesta: Este estándar considera que el ciclo de vida es un marco de referencia que contiene procesos, actividades
+y tareas presentes en el desarrollo, explotación y mantenimiento del producto de software.
+Considera que el ciclo se extiende desde la definición de los requisitos hasta que el sistema deja de utilizarse.
+Además, define al proceso como un conjunto de actividades, a las actividades como un conjunto de tareas y a las tareas como acciones que transforman entradas en salidas.
+Puntos: 2/2
+Comentario: Bien
+Otra respuesta: El estándar ISO/IEC 12207 toma como modelo de ciclo de vida a un marco de referencia que contiene a los procesos, actividades y tareas involucradas en la explotación, el desarrollo, y el mantenimiento de un producto de software, contando a la vida del sistema desde la definición de requisitos hasta la finalización de su uso.
+Puntos: 2/2
+Comentario: Bien.
+Otra respuesta: Considera todo el ciclo de vida y su gestión, desde la definición de requisitos hasta el de uso.
+Proporciona procesos para definir, controlar y mejorar los procesos de ciclo de vida de software.
+Puntos: 2/2
+Comentario: Bien
+
+
+62. Dado el esquema de ramas en un sistema de control de versiones GIT que se muestra a continuación, responda las consignas:
+  
+
+¿Cuáles fueron los comandos ejecutados desde el inicio (T0) hasta T4 para lograr esta creación de ramas (branches)?
+Respuesta: para crear la primera Branch (Branch1) se utilizó el comando git branch Branch1 estando posicionados en la rama Master por defecto. Luego, desde la Branch1 se realiza otro git branch  Branch2 para crear la rama Branch2. A continuación, se ejecuta el comando git checkout Master para regresar a la rama Master y desde allí se realiza un git branch Branch3 para crear la rama Branch3. Por ultimo se vuelve a ejecutar git checkout Master para regresar a Master. 
+Puntos: 1.80/2
+
+
+63. Una versión de un producto de software es
+Seleccione una:
+1. Una implementación para un contexto diferente de un elemento de configuración probado y aprobado.
+2. Es el software de compilación necesario para generar un ejecutable del producto.
+3. Un momento en la vida de un elemento de configuración cuyo estado ha sido probado y aprobado.
+4. Un momento en la vida de un sistema de software en el cual es puesto a disposición de los clientes.
+
+
+64. La Gestión de Configuración de Software se enfoca en
+Seleccione una:
+a. La calidad interna de un producto de software.
+b. Los cambios que puede sufrir un producto de software.
+c. Que los costos de mantenimiento de un producto de software se mantengan al mínimo posible.
+d. Asegurar que el producto de software no tiene defectos.
+
+
+65. ¿Qué define la IEEE como software?
+Seleccione una o más de una:
+1. Las instrucciones (programas) que proporcionan las características y funciones.
+2. Herramientas, métodos y procesos utilizados para desarrollarlo.
+3. Los documentos que describen la operación y uso.
+4. La información que gestiona el producto de software.
+5. Las restricciones de calidad y productividad impuestas por el cliente.
+6. Las estructuras de datos que le permiten manipular información.
+
+
+66. Un ‘modelo de proceso de software’:
+Seleccione una:
+a. Describe la forma en que el desarrollo de software debería llevarse a cabo.
+b. Prescribe la forma en que el desarrollo de software debería llevarse a cabo.
+
+
+67. Indica las afirmaciones correctas en relación a los ¨Modelos de procesos de software¨.
+Seleccione una o más de una:
+a. Para todos los proyectos, los mismos aspectos tienen incidencia en la elección del modelo de proceso a utilizar.
+b. Los diferentes modelos de procesos de software organizan las actividades de diferentes formas.
+c. Los diferentes modelos de procesos de software deben describir las actividades con el mismo nivel de detalle.
+d. Los diferentes modelos de procesos de software se definen de acuerdo al producto a desarrollar.
+e. Para algunos tipos de aplicación, algunos procesos son más convenientes que otros.
+Puntos: 0.17/1
+Respuesta parcialmente correcta. Ha seleccionado correctamente 1.
+
+
+68. De los siguientes artefactos generados durante el desarrollo de software, ¿cuáles no deben ser colocados bajo la Gestión de Configuración del Software?
+Seleccione una o más de una:
+a. El Plan de Entrevistas
+b. Las grabaciones de audio de las entrevistas realizadas
+c. Los borradores de las entrevistas realizadas.
+d. Las entrevistas realizadas y aprobadas.
+Puntos: 0.5/2
+Respuesta parcialmente correcta. Ha seleccionado correctamente 1.
+
+
+69. La 'línea de trabajo principal' en un sistema de control de versiones se conoce como:
+Seleccione una:
+a. master
+b. release
+c. develop
+d. label
+
+
+70. En la definición del ‘modelo de proceso’ a aplicar en el desarrollo de software están involucrados:
+Seleccione una:
+a. El cliente y el líder de proyecto.
+b. El personal gerencial.
+c. El equipo técnico del equipo de desarrollo de software.
+d. El líder de proyecto y el equipo técnico de desarrollo de software.
+
+
+71. Un problema a resolver cuando se libera un release es que:
+Seleccione una:
+a. Necesitan que el cliente tenga la release anterior instalada.
+b. No necesitan que el cliente tenga la release anterior instalada.
+
+
+72. El modelo de proceso prescriptivo “Clásico o En cascada”, sigue aplicándose porque
+Seleccione una o más de una:
+a. Existe mucha formación y experiencia al respecto.
+b. Refleja en forma directa las actividades del proceso genérico de desarrollo de software.
+c. Permiten desarrollar versiones cada vez más completas del software.
+d. Promueven la reutilización de software
+
+
+73. En relación con el Estándar 12207, indique qué grupo de procesos es el que considera el rol de las organizaciones como proveedoras y como usuarias de sistemas de software.
+Seleccione una:
+a. Procesos que habilitan proyectos organizacionales.
+b. Procesos Técnicos.
+c. Procesos de acuerdo.
+d. Procesos de gestión técnica.
+
+
+74. Para un cierto sistema existen en este momento las ‘versiones’ 0.5.1, 0.8.0, 1.0.0, 1.0.5, 1.1.0, 1.1.5, 1.1.20, 1.2.0, 2.0.0 (que se generó a partir de a 1.2.0),y 2.0.10 (la actual). El sistema de numeración de versiones se basa en ‘Versionado Semántico’.
+Por políticas de la empresa, se mantienen activas las versiones 1.y.z mientras deban corregirse errores, y las 2.y.z pueden agregar funcionalidades y corregir errores.
+¿Cómo puede mantener ‘vivas’ las dos versiones del sistema?
+Respuesta: Las ramas 1.y.z y 2.y.z son incompatibles.
+La versión 1 estará en una rama llamada "v1.y.z" en donde solamente insertaremos hot fixes, quedará por compatibilidad hacia atrás y solamente se corregirán errores.
+La rama Master será la rama "v2.y.z" y allí seguiremos trabajando y agregando nuevas funcionalidades.
+Puntos: 1.80/2
+
+
+75. En relación con el Estándar 12207, indique qué grupo de procesos es el que permite gestionar y controlar los recursos necesarios para que los proyectos se ejecuten exitosamente.
+Seleccione una:
+a. Procesos de gestión técnica.
+b. Procesos de acuerdo.
+c. Procesos que habilitan proyectos organizacionales.
+d. Procesos técnicos.
+
+
+76. Nuestro equipo comienza el desarrollo de un proyecto de gran tamaño e impacto para la organización. Por estos motivos van a interactuar un gran número de participantes, tanto miembros de nuestro equipo, como externos. En una de las reuniones se plantea la posibilidad de utilizar Git como sistema de control de versiones apoyado en GitFlow.
+Como miembros proactivo de nuestro equipo:
+a) ¿Apoyaríamos la idea de utilizar estas herramientas?
+b) Nombre al menos 1 pro y 1 contra de utilizar GitFlow.
+Respuesta: a) Sí, apoyaríamos la idea ya que es una herramienta válida para trabajar en varios equipos en un mismo repositorio. Tanto de manera centralizada como descentralizada. Ayudaría a saber gestionar los cambios y versiones además de ser una herramienta adaptable a los tipos y modelos de software por su naturaleza.
+b) Tal como se describía arriba, es una herramienta para integrar código pudiendo cada integrante del equipo trabajar en un mismo componente del software que otro. Como desventaja, gitflow plantea ya un modelo específico a seguir el cual hay que aprender para poder cumplir al menos con la idea del trabajo en conjunto con esta herramienta y patrón de gitflow.
+Puntos: 1.5/2
+Respuesta: 
+a)Apoyaría la idea de utilizar esta herramienta ya que nos permite trabajar de forma cómoda y práctica, además de que cada miembro del equipo puede trabajar sobre su propia versión.
+b)Contra: la curva de aprendizaje es empinada, al principio cuesta aprenderlo
+Pro: permite que varias personas trabajen em paralelo con el producto
+Puntos: 1.80/2
+
+
+77. Su 'software factory' ha decidido comenzar el desarrollo de su propio ERP (Enterprise Resource Planning), el que incorporará: Sistema de Producción, Sistema de Logística, Sistema de Distribución, Sistema de Inventario, Sistema de Envíos, Sistema de Facturación y Sistema de Contabilidad.
+De los sistemas anteriores, la empresa cuenta con versiones de los sistemas: Sistema de Producción, Sistema de Logística, Sistema de Distribución, pero estos deben ser refactorizados a las nuevas tecnologías a utilizar. Los restantes deben ser desarrollados desde cero.
+Cuenta con un equipo de 50 personas (con diferentes perfiles lo que le permite armar 4 o 5 equipos de trabajo). Los integrantes tiene experiencia en el dominio de trabajo, pero no tanta en las nuevas tecnologías a utilizar (no tienen desarrollos realizados en esta).
+Proponga un "Ciclo de Vida" de software a aplicar para realizar el desarrollo del "Sistema de Facturación", contemplando además que se estableció un tiempo máximo de 8 meses para este trabajo, requiriendo que en ese tiempo se tenga una versión funcional del sistema lo más completa posible (podrá continuar mejorándose posteriormente). Justifique su elección indicando pros y contras de la elección.
+Respuesta: Un ciclo de vida de software posible a aplicar en este caso puede ser un Modelo de Evolutivo en Espiral dado el contexto de incertidumbre respecto a capacitar a los integrantes en las nuevas tecnologías. Utilizar este modelo ayudará a realizar entregas y evaluar riesgos en cada una de estas.
+Además, la adopción de este tipo de modelo va a permitir continuar integrando versiones luego de la entrega funcional a los 8 meses, ya que cada iteración obtiene una nueva versión contemplando la anterior e integrándola para completar el sistema.
+Puntos: 2/2
+Comentario: Bien.
+
+
+78. Considerando el Estándar ISO/IEC 12207, identifique qué afirmaciones son correctas.
+Seleccione una o más de una:
+a. Los procesos que define pueden ser utilizados sólo para organizaciones desarrolladoras de software.
+b. Considera sólo el desarrollo y uso del producto de software.
+c. El marco de trabajo que presenta puede ser adaptado a cada organización y a cada proyecto concreto.
+d. Considera y describe procesos relacionados a la compra (adquisición) y venta (provisión) de productos de software.
+e. Es un marco de referencia que contiene procesos, las actividades y las tareas.
+
+
+Puntos: 0.67/1
+Respuesta parcialmente correcta. Ha seleccionado correctamente 2.
+
+
+79. Una ‘release representa
+Seleccione una:
+a. Un momento en la vida de un sistema de software en el cual es puesto a disposición de los clientes
+b. Una implementación para un contexto diferente de un elemento de configuración probado y aprobado
+c. Un momento en la vida de un elemento de configuración cuyo estado ha sido probado y aprobado.
+
+
+80. Para un cierto sistema existen en este momento las ‘versiones’ 0.5.1, 0.8.0, 1.0.0, 1.0.5, 1.1.0, 1.1.5, 1.1.20, 1.2.0, 2.0.0 (que se generó a partir de a 1.2.0), y 2.0.10 (la actual). El sistema de numeración de versiones se basa en ‘Versionado Semántico’.
+Por otra parte, hasta la versión 2.0.10 el sistema funciona solo en entornos de ejecución Windows, pero a partir de esta versión se ha decidido también tenerlo disponible en entornos de ejecución Linux.
+¿Cómo gestionaría esto?
+Respuesta: Lanzaría un nuevo release con un cambio mayor, indicado como versión 2.1.10, marcando la compatibilidad con linux.
+Puntos: 1/2
+Comentario: error al nombrar la versión, y realmente si es un cambio mayor iría a v3
+
+
+81. Una configuración es:
+Seleccione una:
+a. El conjunto de valores de inicio de los parámetros de configuración del sistema.
+b. La combinación de las librerías de software necesarias para el funcionamiento del sistema.
+c. El conjunto de versiones del sistema desde su inicio al momento actual.
+d. Una combinación de versiones particulares de los componentes que forman un sistema consistente.
+82. La evolución de una componente de software se conoce como:
+Seleccione una
+a.Mainline
+b.Baseline
+c.Codeline
+
+
+83. Un ‘proceso genérico’ de desarrollo de software completo debería incluir
+Seleccione una:
+1. Análisis, Diseño, Programación, Documentación, Instalación, Mantenimiento
+2. Especificación, Diseño, Construcción, Prueba, Instalación, Mantenimiento
+3. Análisis, Diseño, Programación, Instalación, Mantenimiento
+4. Análisis, Diseño Arquitectónico, Diseño Detallado, Programación, Prueba, Instalación
+5. Especificación, Diseño, Construcción, Prueba, Instalación
+ 
+84. Las Líneas Bases se pueden generar sobre:
+Seleccione una o más de una:
+1. Un conjunto de documentos y programas 
+2. Un conjunto de programas
+3. Un documento
+4. El main line de un sistema
+5. El codeline de un componente
+
+
+85. En relación al concepto y uso del proceso de desarrollo de software, indique las afirmaciones que son correctas.
+Seleccione una o más de una:
+1. El proceso define el modelo de proceso o ciclo de vida a utilizar en un proyecto
+2. Define el enfoque que se adopta mientras el software está en desarrollo
+3. Define un conjunto de actividades y resultados asociados que generan un producto de software
+4. Es sinónimo de Ingeniería de Software
+5. Define actividades de soporte que deben considerarse en todas las actividades del marco de trabajo
+6. Cada proyecto en una organización debe utilizar su propio proceso de desarrollo de software
+
+
+86. La documentación (registro escritos manuales y/o electrónicos) de diferentes productos generados en el proceso de desarrollo de software
+Seleccione una o más de una:
+1. Es siempre necesaria como parte del procesos de desarrollo de software
+2. Brinda ‘visibilidad’ al proceso de Ingeniería de Software
+3. Sólo se realiza si el proceso de desarrollo de software lo requiere
+4. Debe evitarse para acelerar los procesos de desarrollo de software
+5. Existen procesos Ágiles que prescinden totalmente de ella
+
+
+87. Uno de los problemas más comunes en el desarrollo de software es
+Seleccione una:
+1. Incapacidad para dominar la tecnología a utilizar en el desarrollo de producto de software
+2. Incapacidad para estimar tiempos, costos y esfuerzo para el desarrollo de un producto software
+3. Incapacidad para organizar y programar las actividades de desarrollo 
+4. Incapacidad para organizar y conformar los grupos de desarrollo
+
+
+88. ¿Qué información mínima debe incluirse cada vez que se genera un nuevo release (entrega) de un producto de software?
+Seleccione una o más de una:
+1. Documentación electrónica y en papel
+2. Programa de instalación 
+3. Estado de la línea base al momento de generar el release
+4. Casos de prueba utilizados
+5. Archivos de datos
+6. Archivos de configuración 
+
+
+89. El control de cambio consiste principalmente en:
+Seleccione una:
+1. Asegurar que todo cambio requerido sea previamente aceptado por el cliente
+2. Tener un registro de todos los cambios que fueron solicitados a un producto de software
+3. Asegurar que todos los cambios requeridos sean aceptados, realizados y probados antes de su aplicación 
+4. Asegurar que se tenga un registro, en el elemento modificado, del estado anterior del elemento a la aplicación del cambio.
+
+
+90. Dado el esquema de ramas en un sistema de control de versiones GIT que se muestra a continuación, responda las consignas:
+
+
+  
+
+Suponiendo que está trabajando en el instante T5 sobre la rama Branch1, y ha añadido un nuevo archivo sobre la misma:
+¿qué comandos debería ejecutar para agregar el archivo al control de versiones, y compartirlo con el resto de los usuarios del repositorio remoto?
+Respuesta: Un git add . para añadir todos los cambios hechos.
+Luego un git commit -m “detalle-cambios” para guardar en el repositorio local.
+Luego se realiza un git push para compartir los elementos y luego los demás usuarios deberían hacer un git pull para obtener esos cambios.
+Puntos: 2/2
+
+
+91. Considerando la siguiente imagen, describa cómo está compuesta la línea base:
+  
+
+Seleccione una:
+1. A2, B2, C1, E3, F3
+2. A2, B2, C1, D1, E3, F3
+3. A2, B2, C1, D1, E1
+4. A1, B1, C1, D1, E1
+5. A2, B2, C1, D1, E1
+(HABIA DOS OPCIONES IGUALES, PERO ESTA BIEN LA MARCADA)
+92. En todo proyecto de software bajo Gestión de la Configuración existe:
+Seleccione una:
+1. Una Línea Base por etapa del proyecto
+2. ‘n’ líneas bases
+3. Una Línea Base
+4. Cinco Líneas Bases
+5. Dos Líneas Bases

@@ -1,0 +1,272 @@
+/**
+ * Estilos del Encabezado, Breadcrumbs y Desplegables de Selección
+ * Inspirado en Campus Virtual UTN FRSF
+ * Cumple con directivas en AGENTS.md (Capa de Estilos)
+ */
+
+.cv-header {
+  background-color: var(--cv-primary);
+  color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.cv-header-main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.cv-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.cv-logo-badge {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--cv-radius);
+  padding: 0.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cv-utn-icon {
+  color: #ffffff;
+}
+
+.cv-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.cv-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+}
+
+.cv-subtitle {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cv-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Botón del Baúl de Cuestionarios */
+.btn-vault {
+  background-color: var(--cv-accent);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--cv-radius);
+  font-weight: 600;
+  font-size: 0.88rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+.btn-vault:hover {
+  background-color: var(--cv-accent-hover);
+  transform: translateY(-1px);
+}
+
+.vault-badge-pill {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  padding: 0.15rem 0.45rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* Botón de Exportar Preguntas */
+.btn-export-header {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--cv-radius);
+  font-weight: 600;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+
+.btn-export-header:hover {
+  background-color: rgba(255, 255, 255, 0.28);
+  border-color: #ffffff;
+  transform: translateY(-1px);
+}
+
+
+.cv-user-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-left: 0.75rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cv-avatar {
+  width: 32px;
+  height: 32px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.cv-username {
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .cv-username {
+    display: inline;
+  }
+}
+
+/* Barra de Miga de Pan (Breadcrumbs) */
+.cv-breadcrumbs-bar {
+  background-color: #f1f4f8;
+  border-bottom: 1px solid var(--cv-border-color);
+  padding: 0.5rem 1.25rem;
+}
+
+.cv-breadcrumbs {
+  max-width: 1280px;
+  margin: 0 auto;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+}
+
+.cv-crumb-link {
+  color: var(--cv-accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.cv-crumb-link:hover {
+  text-decoration: underline;
+  color: var(--cv-accent-hover);
+}
+
+.cv-breadcrumb-separator {
+  color: var(--cv-font-muted);
+}
+
+.cv-breadcrumb-item.active {
+  color: var(--cv-font-color);
+  font-weight: 600;
+}
+
+/* Barra de Desplegables: Selección de Materia y Parcial */
+.cv-dropdown-selector-bar {
+  background-color: #ffffff;
+  border-bottom: 2px solid #e2e8f0;
+  padding: 0.65rem 1.25rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.cv-selector-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.cv-selector-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.cv-selector-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--cv-primary);
+  white-space: nowrap;
+}
+
+.cv-select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.cv-select-control {
+  appearance: none;
+  background-color: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-radius: var(--cv-radius);
+  padding: 0.4rem 2rem 0.4rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1e293b;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.15s ease;
+  min-width: 180px;
+  max-width: 380px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.cv-select-control:hover {
+  border-color: var(--cv-primary);
+  background-color: #ffffff;
+}
+
+.cv-select-control:focus {
+  border-color: var(--cv-primary);
+  box-shadow: 0 0 0 3px rgba(0, 75, 135, 0.15);
+  background-color: #ffffff;
+}
+
+.cv-select-wrapper::after {
+  content: "▼";
+  font-size: 0.65rem;
+  color: #64748b;
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}

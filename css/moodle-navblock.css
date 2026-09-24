@@ -1,0 +1,154 @@
+/**
+ * Estilos del Bloque de Navegación del Cuestionario (#mod_quiz_navblock)
+ * Réplica exacta de la grilla de semáforos y botones de Moodle
+ * Cumple con directivas en AGENTS.md (Capa de Estilos)
+ */
+
+#mod_quiz_navblock {
+  position: sticky;
+  top: 90px;
+}
+
+#mod_quiz_navblock .card {
+  background: var(--cv-surface);
+  border: 1px solid var(--cv-border-color);
+  border-radius: var(--cv-radius);
+  box-shadow: var(--cv-shadow-sm);
+  overflow: hidden;
+}
+
+#mod_quiz_navblock .card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid var(--cv-border-color);
+  padding: 0.75rem 1rem;
+}
+
+#mod_quiz_navblock .card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--cv-primary);
+  margin: 0;
+}
+
+#mod_quiz_navblock .card-body {
+  padding: 1rem;
+}
+
+/* Grilla de Botones de Preguntas */
+.qnlist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 1.25rem;
+}
+
+.qnbutton {
+  display: block;
+  position: relative;
+  width: 32px;
+  height: 42px;
+  background-color: #ffffff;
+  border: 1px solid #999999;
+  border-radius: 3px;
+  text-decoration: none;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: transform 0.1s ease, border-color 0.15s ease;
+}
+
+.qnbutton:hover {
+  border-color: #333333;
+  transform: translateY(-1px);
+}
+
+/* Número de Pregunta */
+.qnbutton .qnum {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #333333;
+  text-align: center;
+  line-height: 20px;
+}
+
+/* Semáforo Inferior (.trafficlight) */
+.qnbutton .trafficlight {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  border-top: 1px solid #cccccc;
+  background-color: #ffffff;
+  transition: background-color 0.2s ease;
+}
+
+/* Estado: Respuesta Guardada (Gris mitad inferior clásico Moodle) */
+.qnbutton.answersaved .trafficlight,
+.qnbutton.complete .trafficlight {
+  background-color: #6c757d !important;
+}
+
+/* Estado: Con Bandera (Triangulito rojo en esquina superior derecha) */
+.qnbutton.flagged::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-top: 11px solid #dc3545;
+  border-left: 11px solid transparent;
+  z-index: 2;
+}
+
+/* Estados en Modo Revisión */
+.qnbutton.correct .trafficlight {
+  background-color: #8bc34a !important; /* Verde Moodle */
+}
+
+.qnbutton.incorrect .trafficlight {
+  background-color: #f44336 !important; /* Rojo Moodle */
+}
+
+.qnbutton.partiallycorrect .trafficlight {
+  background-color: #ff9800 !important; /* Naranja Moodle */
+}
+
+/* Botón de Acción en el Navblock */
+.nav-action-wrapper {
+  border-top: 1px solid var(--cv-border-light);
+  padding-top: 0.85rem;
+}
+
+.btn-finish-attempt,
+.btn-finish-review {
+  width: 100%;
+  background-color: #e4e7ea;
+  border: 1px solid #cad0d7;
+  color: #333333;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--cv-radius);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-finish-attempt:hover {
+  background-color: #d2d7dc;
+  border-color: #b1b8be;
+  color: #111111;
+}
+
+.btn-finish-review {
+  background-color: var(--cv-accent);
+  color: #ffffff;
+  border-color: var(--cv-accent);
+}
+
+.btn-finish-review:hover {
+  background-color: var(--cv-accent-hover);
+}

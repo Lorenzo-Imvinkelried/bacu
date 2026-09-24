@@ -1,0 +1,17 @@
+{
+  "name": "baul-de-cuestionarios",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Baúl de cuestionarios estilo Campus Virtual UTN FRSF",
+  "scripts": {
+    "dev": "npx -y serve -l 3000",
+    "start": "npx -y serve -l 3000"
+  },
+  "keywords": [
+    "utn",
+    "quiz",
+    "moodle"
+  ],
+  "author": "",
+  "license": "ISC"
+}

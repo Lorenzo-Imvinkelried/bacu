@@ -1,0 +1,185 @@
+/**
+ * Estilos Base y Variables de Diseño
+ * Inspirado en Campus Virtual UTN FRSF (Tema Adaptable de Moodle)
+ * Cumple con directivas en AGENTS.md (Capa de Estilos)
+ */
+
+:root {
+  /* Paleta Institucional UTN / Adaptable Moodle */
+  --cv-primary: #004b87;         /* Azul UTN */
+  --cv-primary-dark: #003366;
+  --cv-primary-light: #e8f1f8;
+  --cv-accent: #00796b;          /* Verde azulado Moodle Adaptable */
+  --cv-accent-hover: #005349;
+  
+  /* Estados de Evaluación */
+  --cv-success: #28a745;
+  --cv-success-bg: #dff4d8;
+  --cv-success-border: #d0e9c6;
+  --cv-success-text: #3c763d;
+
+  --cv-danger: #dc3545;
+  --cv-danger-bg: #f2dede;
+  --cv-danger-border: #ebcccc;
+  --cv-danger-text: #a94442;
+
+  --cv-warning: #f0ad4e;
+  --cv-warning-bg: #fcf8e3;
+  --cv-warning-border: #faebcc;
+  --cv-warning-text: #8a6d3b;
+
+  /* Superficies y Bordes */
+  --cv-body-bg: #f4f6f9;
+  --cv-surface: #ffffff;
+  --cv-border-color: #dee2e6;
+  --cv-border-light: #e9ecef;
+  
+  /* Tipografía */
+  --cv-font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --cv-font-color: #212529;
+  --cv-font-muted: #6c757d;
+
+  /* Formulación de Pregunta */
+  --cv-formulation-bg: #e6f2f5;
+  --cv-formulation-border: #b3d9e0;
+  --cv-info-bg: #f8f9fa;
+  --cv-info-border: #cad0d7;
+
+  /* Sombras y Radios */
+  --cv-radius: 4px;
+  --cv-radius-lg: 8px;
+  --cv-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --cv-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --cv-shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--cv-font-main);
+  background-color: var(--cv-body-bg);
+  color: var(--cv-font-color);
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Layout General */
+#app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.cv-main-wrapper {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem 1rem;
+  flex-grow: 1;
+}
+
+.cv-page-title-section {
+  background: var(--cv-surface);
+  border: 1px solid var(--cv-border-color);
+  border-radius: var(--cv-radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--cv-shadow-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.cv-page-title-group h1 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--cv-primary);
+  margin-bottom: 0.25rem;
+}
+
+.cv-page-title-group p {
+  color: var(--cv-font-muted);
+  font-size: 0.95rem;
+}
+
+.cv-quiz-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 270px;
+  gap: 1.75rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .cv-quiz-grid-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Botones Estándar Moodle */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.45rem 1rem;
+  border-radius: var(--cv-radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: var(--cv-accent);
+  border-color: var(--cv-accent);
+}
+
+.btn-primary:hover {
+  background-color: var(--cv-accent-hover);
+  border-color: var(--cv-accent-hover);
+}
+
+.btn-secondary {
+  color: #333;
+  background-color: #e4e7ea;
+  border-color: #cad0d7;
+}
+
+.btn-secondary:hover {
+  background-color: #d2d7dc;
+  border-color: #b1b8be;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Footer institucional */
+.cv-footer {
+  background-color: #263238;
+  color: #cfd8dc;
+  padding: 1.5rem 1rem;
+  margin-top: auto;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.cv-footer a {
+  color: #80cbc4;
+  text-decoration: none;
+}
+
+.cv-footer a:hover {
+  text-decoration: underline;
+}
