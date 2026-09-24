@@ -6,7 +6,8 @@
 
 import { renderQuestion } from "../components/question-component.js";
 import { renderNavBlock } from "../components/navblock-component.js";
-import { renderReviewHeader, renderContinuousBanner } from "../components/review-summary.js";
+import { renderReviewHeader, renderContinuousBanner, renderRetryNotice } from "../components/review-summary.js";
+import { getMissedQuestions } from "../core/quiz-engine.js";
 
 /**
  * Renderizar grilla de preguntas y bloque de navegación
@@ -17,9 +18,22 @@ import { renderReviewHeader, renderContinuousBanner } from "../components/review
  * @returns {string} HTML
  */
 export function renderAttemptView(questions, currentState, isReview, results) {
+  const isContinuousActive = currentState.continuousSession?.active;
+  const remaining = isContinuousActive 
+    ? Math.max(0, currentState.continuousSession.totalQuestions - currentState.continuousSession.completedQuestionsCount)
+    : 0;
+  const nextBatchCount = isContinuousActive 
+    ? Math.min(remaining, currentState.continuousSession.batchSize) 
+    : 0;
+  const isAllCompleted = !isContinuousActive || (isContinuousActive && remaining === 0);
+
+  const missedQuestions = (isReview && isAllCompleted) ? getMissedQuestions(currentState) : [];
   const reviewHeaderHtml = isReview ? renderReviewHeader(results) : "";
-  const continuousBannerHtml = (isReview && currentState.continuousSession?.active) 
+  const continuousBannerHtml = (isReview && isContinuousActive) 
     ? renderContinuousBanner(currentState.continuousSession, results) 
+    : "";
+  const retryNoticeHtml = (isReview && isAllCompleted) 
+    ? renderRetryNotice(missedQuestions) 
     : "";
 
   const questionsListHtml = questions.map((q, idx) => {
@@ -29,17 +43,10 @@ export function renderAttemptView(questions, currentState, isReview, results) {
 
   const navBlockHtml = renderNavBlock(questions, currentState, isReview, results);
 
-  const isContinuousActive = currentState.continuousSession?.active;
-  const remaining = isContinuousActive 
-    ? Math.max(0, currentState.continuousSession.totalQuestions - currentState.continuousSession.completedQuestionsCount)
-    : 0;
-  const nextBatchCount = isContinuousActive 
-    ? Math.min(remaining, currentState.continuousSession.batchSize) 
-    : 0;
-
   return `
     ${reviewHeaderHtml}
     ${continuousBannerHtml}
+    ${retryNoticeHtml}
     <div class="cv-quiz-grid-layout">
       <div class="quiz-questions-column">
         ${questionsListHtml}
@@ -58,6 +65,11 @@ export function renderAttemptView(questions, currentState, isReview, results) {
                 Pausar y finalizar revisión
               </button>
             ` : `
+              ${missedQuestions.length > 0 ? `
+                <button type="button" id="btn-retry-missed-bottom" class="btn btn-warning btn-lg btn-retry-missed-action">
+                  🔄 Rehacer incorrectas / parciales (${missedQuestions.length})
+                </button>
+              ` : ""}
               <button type="button" id="btn-finish-review-bottom" class="btn btn-primary">
                 Finalizar revisión
               </button>

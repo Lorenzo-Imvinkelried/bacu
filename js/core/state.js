@@ -9,6 +9,7 @@ import {
   advanceContinuousSession, 
   accumulateContinuousResults 
 } from "./continuous-session.js";
+import { getMissedQuestions } from "./quiz-engine.js";
 
 class QuizState {
   constructor() {
@@ -34,7 +35,9 @@ class QuizState {
       elapsedSeconds: 0,
       results: null,
       vaultOpen: false,
-      continuousSession: null
+      continuousSession: null,
+      isRetryMode: false,
+      lastMissedQuestions: []
     };
   }
 
@@ -107,7 +110,24 @@ class QuizState {
       startTime: new Date(),
       finishTime: null,
       elapsedSeconds: 0,
-      results: null
+      results: null,
+      isRetryMode: false
+    });
+  }
+
+  startRetryAttempt(questions) {
+    this.setState({
+      currentQuestions: [...questions],
+      userAnswers: {},
+      flaggedQuestions: new Set(),
+      activeQuestionIndex: 0,
+      quizStatus: "attempt",
+      startTime: new Date(),
+      finishTime: null,
+      elapsedSeconds: 0,
+      results: null,
+      isRetryMode: true,
+      continuousSession: null
     });
   }
 
@@ -148,7 +168,8 @@ class QuizState {
       startTime: new Date(),
       finishTime: null,
       elapsedSeconds: 0,
-      results: null
+      results: null,
+      isRetryMode: false
     });
   }
 
@@ -178,24 +199,35 @@ class QuizState {
       updatedSession = accumulateContinuousResults(
         this.state.continuousSession,
         this.state.currentQuestions.length,
-        evaluationResults
+        evaluationResults,
+        this.state.currentQuestions
       );
     }
+
+    const missed = getMissedQuestions({
+      ...this.state,
+      results: evaluationResults,
+      ...(updatedSession ? { continuousSession: updatedSession } : {})
+    });
 
     this.setState({
       quizStatus: "review",
       finishTime,
       results: evaluationResults,
+      lastMissedQuestions: missed,
       ...(updatedSession ? { continuousSession: updatedSession } : {})
     });
+
+    const attemptScore = Number(evaluationResults.score ?? evaluationResults.totalPoints ?? 0);
+    const attemptMaxScore = Number(evaluationResults.maxScore ?? evaluationResults.maxPoints ?? 0);
 
     this.saveAttemptRecord({
       quizId: this.state.activeQuizId,
       subjectId: this.state.activeSubjectId,
       unitId: this.state.activeUnitId,
       date: finishTime.toISOString(),
-      score: evaluationResults.score,
-      maxScore: evaluationResults.maxScore,
+      score: attemptScore,
+      maxScore: attemptMaxScore,
       percentage: evaluationResults.percentage,
       timeTaken: evaluationResults.timeTaken
     });
@@ -208,7 +240,8 @@ class QuizState {
       userAnswers: {},
       flaggedQuestions: new Set(),
       results: null,
-      continuousSession: null
+      continuousSession: null,
+      isRetryMode: false
     });
   }
 

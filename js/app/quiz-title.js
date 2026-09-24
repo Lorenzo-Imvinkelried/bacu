@@ -13,6 +13,12 @@
  */
 export function getFormattedQuizTitle(quiz, currentState, totalQuestions) {
   const baseTitle = quiz ? quiz.title : "WORD PARCIAL 1 (92 preguntas)";
+
+  if (currentState.isRetryMode) {
+    const retryCount = currentState.currentQuestions?.length || totalQuestions;
+    return `${baseTitle} (Reintento de falladas: ${retryCount} preguntas)`;
+  }
+
   const isBatches = currentState.executionMode === "batches" || Boolean(currentState.continuousSession?.active);
 
   if (!isBatches) {

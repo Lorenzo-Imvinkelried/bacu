@@ -71,6 +71,21 @@ export function renderIntroView(quiz, unit, currentState) {
         <p class="section-subtitle">Elegí la modalidad que mejor se adapte a tu objetivo de estudio:</p>
       </div>
 
+      ${(currentState.lastMissedQuestions && currentState.lastMissedQuestions.length > 0) ? `
+        <div class="pending-retry-banner">
+          <div class="pending-retry-info">
+            <span class="pending-retry-icon">🎯</span>
+            <div class="pending-retry-text">
+              <strong>¿Deseas repasar tus falladas del último intento?</strong>
+              <p>Tienes <strong>${currentState.lastMissedQuestions.length}</strong> preguntas incorrectas o parciales pendientes de afianzar.</p>
+            </div>
+          </div>
+          <button type="button" class="btn btn-warning btn-retry-missed-action" id="btn-retry-from-intro">
+            🔄 Rehacerlas ahora (${currentState.lastMissedQuestions.length})
+          </button>
+        </div>
+      ` : ""}
+
       <div class="quiz-modes-grid">
         <button 
           type="button" 

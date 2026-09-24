@@ -48,8 +48,8 @@ export function renderHeader(state, subject, unit, quiz) {
             </svg>
           </div>
           <div class="cv-brand-text">
-            <span class="cv-title">Campus Virtual</span>
-            <span class="cv-subtitle">UTN - Facultad Regional Santa Fe</span>
+            <span class="cv-title">BACU</span>
+            <span class="cv-subtitle">baúl de cuestionarios</span>
           </div>
         </div>
 

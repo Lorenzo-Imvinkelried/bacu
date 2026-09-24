@@ -5,7 +5,7 @@
  */
 
 import { state } from "../core/state.js";
-import { evaluateAttempt, getRandomQuestions } from "../core/quiz-engine.js";
+import { evaluateAttempt, getRandomQuestions, getMissedQuestions } from "../core/quiz-engine.js";
 import { QUESTION_BANK } from "../data/question-bank.js";
 import { getQuizById, getQuestionsForQuiz } from "../data/vault-structure.js";
 import { exportQuestionsToTxt } from "./export-service.js";
@@ -99,6 +99,21 @@ export function handleClickEvent(e) {
     const quizQuestions = getQuestionsForQuiz(currentQuiz, QUESTION_BANK);
     state.startContinuousSession(quizQuestions, state.state.batchSize || 10);
     window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
+
+  // 10. Rehacer preguntas incorrectas o con puntaje parcial
+  if (e.target.closest(".btn-retry-missed-action") || e.target.closest("#btn-retry-missed-questions")) {
+    e.preventDefault();
+    const missed = getMissedQuestions(state.getState());
+    const questionsToRetry = (missed && missed.length > 0) 
+      ? missed 
+      : (state.state.lastMissedQuestions || []);
+
+    if (questionsToRetry.length > 0) {
+      state.startRetryAttempt(questionsToRetry);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
     return;
   }
 

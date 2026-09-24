@@ -92,7 +92,9 @@ export function evaluateAttempt(questions, userAnswers, startTime, finishTime) {
   const timeTakenFormatted = `${minutes} min ${seconds} seg`;
 
   return {
+    score: parseFloat(totalScore.toFixed(2)),
     totalPoints: parseFloat(totalScore.toFixed(2)),
+    maxScore: parseFloat(maxPossibleScore.toFixed(2)),
     maxPoints: parseFloat(maxPossibleScore.toFixed(2)),
     grade10: parseFloat(grade10.toFixed(2)),
     gradeFormatted: grade10.toFixed(2).replace(".", ","),
@@ -140,3 +142,32 @@ export function getRandomQuestions(count = 4, pool = QUESTION_BANK) {
   const shuffled = [...pool].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
 }
+
+/**
+ * Obtener las preguntas incorrectas o con puntaje parcial del estado actual
+ * @param {object} currentState
+ * @returns {Array<object>}
+ */
+export function getMissedQuestions(currentState) {
+  if (!currentState) return [];
+
+  // Si finalizó una sesión continua completa (todas las tandas completadas):
+  if (currentState.continuousSession?.active) {
+    const isCompleted = currentState.continuousSession.completedQuestionsCount >= currentState.continuousSession.totalQuestions;
+    if (isCompleted) {
+      return currentState.continuousSession.missedQuestions || [];
+    }
+  }
+
+  // Si es un intento estándar (completo, aleatorio, reintento o lote evaluado):
+  if (currentState.results && Array.isArray(currentState.currentQuestions)) {
+    const resMap = new Map((currentState.results.questionResults || []).map(r => [r.questionId, r.status]));
+    return currentState.currentQuestions.filter(q => {
+      const status = resMap.get(q.id);
+      return status && status !== "correct";
+    });
+  }
+
+  return [];
+}
+

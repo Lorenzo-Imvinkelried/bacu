@@ -29,7 +29,8 @@ export function createContinuousSession(questionsPool, batchSize = 10) {
     cumulativeTotal: 0,
     cumulativeScore: 0,
     cumulativeMaxScore: 0,
-    historyBatches: []
+    historyBatches: [],
+    missedQuestions: []
   };
 
   return { session, firstBatch };
@@ -60,29 +61,52 @@ export function advanceContinuousSession(session) {
  * @param {object} session
  * @param {number} questionsCount
  * @param {object} evaluationResults
+ * @param {Array<object>} batchQuestions - Preguntas evaluadas en esta tanda
  * @returns {object} updatedSession
  */
-export function accumulateContinuousResults(session, questionsCount, evaluationResults) {
+export function accumulateContinuousResults(session, questionsCount, evaluationResults, batchQuestions = []) {
   if (!session?.active) return null;
   const correctCount = evaluationResults.correctCount || 
     (evaluationResults.questionResults || []).filter(r => r.status === "correct").length;
+
+  // Identificar preguntas incorrectas o con puntaje parcial de esta tanda
+  const currentBatchMissed = (evaluationResults.questionResults || [])
+    .filter(r => r.status !== "correct")
+    .map(r => batchQuestions.find(q => q.id === r.questionId))
+    .filter(Boolean);
+
+  const existingMissed = session.missedQuestions || [];
+  const existingIds = new Set(existingMissed.map(q => q.id));
+  const mergedMissed = [...existingMissed];
+  for (const q of currentBatchMissed) {
+    if (!existingIds.has(q.id)) {
+      existingIds.add(q.id);
+      mergedMissed.push(q);
+    }
+  }
+
+  const batchScore = Number(evaluationResults.score ?? evaluationResults.totalPoints ?? 0);
+  const batchMaxScore = Number(evaluationResults.maxScore ?? evaluationResults.maxPoints ?? questionsCount);
+  const safeCumScore = (Number(session.cumulativeScore) || 0) + batchScore;
+  const safeCumMaxScore = (Number(session.cumulativeMaxScore) || 0) + batchMaxScore;
 
   return {
     ...session,
     completedQuestionsCount: session.completedQuestionsCount + questionsCount,
     cumulativeCorrect: session.cumulativeCorrect + correctCount,
     cumulativeTotal: session.cumulativeTotal + questionsCount,
-    cumulativeScore: session.cumulativeScore + evaluationResults.score,
-    cumulativeMaxScore: session.cumulativeMaxScore + evaluationResults.maxScore,
+    cumulativeScore: parseFloat(safeCumScore.toFixed(2)),
+    cumulativeMaxScore: parseFloat(safeCumMaxScore.toFixed(2)),
     historyBatches: [
       ...session.historyBatches,
       {
         batchNumber: session.batchNumber,
-        score: evaluationResults.score,
-        maxScore: evaluationResults.maxScore,
+        score: batchScore,
+        maxScore: batchMaxScore,
         percentage: evaluationResults.percentage,
         count: questionsCount
       }
-    ]
+    ],
+    missedQuestions: mergedMissed
   };
 }

@@ -155,9 +155,11 @@ export function renderContinuousBanner(continuousSession, results) {
   const remaining = Math.max(0, totalQuestions - completedQuestionsCount);
   const nextBatchCount = Math.min(remaining, batchSize);
   const percentCompleted = Math.round((completedQuestionsCount / totalQuestions) * 100);
-  const globalGrade = cumulativeMaxScore > 0 
-    ? ((cumulativeScore / cumulativeMaxScore) * 10).toFixed(2).replace(".", ",") 
-    : "0,00";
+  const safeCumScore = Number(cumulativeScore) || 0;
+  const safeMaxScore = Number(cumulativeMaxScore) || (cumulativeTotal > 0 ? cumulativeTotal : 0);
+  const globalGrade = safeMaxScore > 0 
+    ? ((safeCumScore / safeMaxScore) * 10).toFixed(2).replace(".", ",") 
+    : (cumulativeTotal > 0 ? ((cumulativeCorrect / cumulativeTotal) * 10).toFixed(2).replace(".", ",") : "0,00");
 
   return `
     <div class="continuous-batch-banner">
@@ -205,12 +207,58 @@ export function renderContinuousBanner(continuousSession, results) {
               <h4>¡Felicitaciones! Has completado las ${totalQuestions} preguntas del banco sin repetir</h4>
               <p>Calificación final acumulada: <strong>${globalGrade} / 10,00</strong> (${cumulativeCorrect} respuestas correctas de ${totalQuestions})</p>
             </div>
-            <button type="button" id="btn-restart-continuous-session" class="btn btn-primary">
-              Comenzar nueva ronda completa
-            </button>
+            <div class="continuous-completion-actions">
+              ${(continuousSession.missedQuestions && continuousSession.missedQuestions.length > 0) ? `
+                <button type="button" id="btn-retry-missed-continuous" class="btn btn-warning btn-lg btn-retry-missed-action">
+                  🔄 Rehacer preguntas incorrectas o parciales (${continuousSession.missedQuestions.length})
+                </button>
+              ` : ""}
+              <button type="button" id="btn-restart-continuous-session" class="btn btn-primary">
+                Comenzar nueva ronda completa
+              </button>
+            </div>
           </div>
         `}
       </div>
+    </div>
+  `;
+}
+
+/**
+ * Renderizar tarjeta destacada de opción para rehacer preguntas incorrectas / parciales
+ * @param {Array<object>} missedQuestions
+ * @returns {string}
+ */
+export function renderRetryNotice(missedQuestions = []) {
+  if (!missedQuestions || missedQuestions.length === 0) {
+    return `
+      <div class="quiz-retry-card perfect-score">
+        <div class="quiz-retry-content">
+          <div class="quiz-retry-icon">🌟</div>
+          <div class="quiz-retry-info">
+            <h4 class="quiz-retry-title">¡Excelente desempeño!</h4>
+            <p class="quiz-retry-desc">No tuviste preguntas incorrectas ni con puntaje parcial en este intento.</p>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  const count = missedQuestions.length;
+  return `
+    <div class="quiz-retry-card">
+      <div class="quiz-retry-content">
+        <div class="quiz-retry-icon">🎯</div>
+        <div class="quiz-retry-info">
+          <h4 class="quiz-retry-title">¿Deseas reforzar tus errores?</h4>
+          <p class="quiz-retry-desc">
+            Tuviste <strong>${count}</strong> pregunta${count > 1 ? "s" : ""} incorrecta${count > 1 ? "s" : ""} o con puntaje parcial. Puedes rehacerlas ahora para afianzar los conceptos.
+          </p>
+        </div>
+      </div>
+      <button type="button" id="btn-retry-missed-top" class="btn btn-warning btn-retry-missed-action">
+        🔄 Rehacer preguntas incorrectas o parciales (${count})
+      </button>
     </div>
   `;
 }

@@ -857,3 +857,121 @@
   border-top-color: #bfdbfe;
 }
 
+/* Acciones y estilos para reintento de preguntas incorrectas o con puntaje parcial */
+.btn-warning {
+  background-color: #f59e0b;
+  border-color: #d97706;
+  color: #ffffff;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-warning:hover {
+  background-color: #d97706;
+  border-color: #b45309;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(217, 119, 6, 0.25);
+  transform: translateY(-1px);
+}
+
+.continuous-completion-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+}
+
+.quiz-retry-card {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border: 1.5px solid #fcd34d;
+  border-radius: var(--cv-radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  box-shadow: 0 3px 8px rgba(245, 158, 11, 0.12);
+}
+
+.quiz-retry-card.perfect-score {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border-color: #86efac;
+  box-shadow: 0 3px 8px rgba(34, 197, 94, 0.12);
+}
+
+.quiz-retry-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.quiz-retry-icon {
+  font-size: 2.25rem;
+  line-height: 1;
+}
+
+.quiz-retry-title {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #92400e;
+}
+
+.quiz-retry-card.perfect-score .quiz-retry-title {
+  color: #166534;
+}
+
+.quiz-retry-desc {
+  margin: 0;
+  font-size: 0.92rem;
+  color: #78350f;
+  line-height: 1.4;
+}
+
+.quiz-retry-card.perfect-score .quiz-retry-desc {
+  color: #15803d;
+}
+
+/* Banner de reintento pendiente en pantalla de introducción */
+.pending-retry-banner {
+  background: linear-gradient(135deg, #fefce8 0%, #fef3c7 100%);
+  border: 1.5px solid #fde047;
+  border-radius: var(--cv-radius);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 6px rgba(234, 179, 8, 0.15);
+}
+
+.pending-retry-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pending-retry-icon {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.pending-retry-text strong {
+  display: block;
+  font-size: 0.98rem;
+  color: #854d0e;
+  margin-bottom: 0.15rem;
+}
+
+.pending-retry-text p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #713f12;
+}
+
+
