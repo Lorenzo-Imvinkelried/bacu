@@ -434,13 +434,13 @@
   flex-grow: 1;
   font-size: 0.95rem;
   line-height: 1.45;
-  color: #2d3748;
+  color: var(--cv-font-color);
 }
 
 .answernumber {
   font-weight: 700;
   margin-right: 0.4rem;
-  color: #4a5568;
+  color: var(--cv-primary);
 }
 
 /* Quitar mi elección */
