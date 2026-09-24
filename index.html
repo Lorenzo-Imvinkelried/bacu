@@ -6,12 +6,25 @@
   <title>Cuestionario | BACU - Baúl de Cuestionarios</title>
   <meta name="description" content="BACU - Baúl de cuestionarios de examen y parciales de Ingeniería y Calidad.">
   
+  <!-- Anti-parpadeo de tema (FOUC preventer) -->
+  <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem("baul_cuestionarios_theme") || "dark";
+        document.documentElement.setAttribute("data-theme", theme);
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
+
   <!-- Estilos modulares desacoplados (Cumpliendo AGENTS.md) -->
   <link rel="stylesheet" href="css/moodle-base.css">
   <link rel="stylesheet" href="css/moodle-header.css">
   <link rel="stylesheet" href="css/moodle-quiz.css">
   <link rel="stylesheet" href="css/moodle-navblock.css">
   <link rel="stylesheet" href="css/vault-explorer.css">
+  <link rel="stylesheet" href="css/moodle-dark.css">
 </head>
 <body>
   <!-- Contenedor Raíz de la Aplicación -->

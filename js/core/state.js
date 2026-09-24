@@ -28,6 +28,7 @@ class QuizState {
       randomCount: 4,
       shuffleQuestions: userPrefs.shuffleQuestions ?? true,
       shuffleOptions: userPrefs.shuffleOptions ?? true,
+      theme: userPrefs.theme || "dark",
       activeQuestionIndex: 0,
       paginationMode: "all",
       quizStatus: "intro",    // "intro" | "attempt" | "summary" | "review"
@@ -43,6 +44,10 @@ class QuizState {
       isRetryMode: false,
       lastMissedQuestions: []
     };
+
+    if (typeof document !== "undefined") {
+      document.documentElement.setAttribute("data-theme", this.state.theme);
+    }
   }
 
   getState() {
@@ -162,19 +167,27 @@ class QuizState {
   setShuffleQuestions(shuffle) {
     const val = Boolean(shuffle);
     this.setState({ shuffleQuestions: val });
-    saveUserPreferences({
-      shuffleQuestions: val,
-      shuffleOptions: this.state.shuffleOptions
-    });
+    saveUserPreferences({ shuffleQuestions: val });
   }
 
   setShuffleOptions(shuffle) {
     const val = Boolean(shuffle);
     this.setState({ shuffleOptions: val });
-    saveUserPreferences({
-      shuffleQuestions: this.state.shuffleQuestions,
-      shuffleOptions: val
-    });
+    saveUserPreferences({ shuffleOptions: val });
+  }
+
+  setTheme(theme) {
+    const val = theme === "light" ? "light" : "dark";
+    this.setState({ theme: val });
+    saveUserPreferences({ theme: val });
+    if (typeof document !== "undefined") {
+      document.documentElement.setAttribute("data-theme", val);
+      try { localStorage.setItem("baul_cuestionarios_theme", val); } catch {}
+    }
+  }
+
+  toggleTheme() {
+    this.setTheme(this.state.theme === "dark" ? "light" : "dark");
   }
 
   startContinuousSession(questionsPool, batchSize = 10, options = {}) {
@@ -242,16 +255,13 @@ class QuizState {
       ...(updatedSession ? { continuousSession: updatedSession } : {})
     });
 
-    const attemptScore = Number(evaluationResults.score ?? evaluationResults.totalPoints ?? 0);
-    const attemptMaxScore = Number(evaluationResults.maxScore ?? evaluationResults.maxPoints ?? 0);
-
     this.saveAttemptRecord({
       quizId: this.state.activeQuizId,
       subjectId: this.state.activeSubjectId,
       unitId: this.state.activeUnitId,
       date: finishTime.toISOString(),
-      score: attemptScore,
-      maxScore: attemptMaxScore,
+      score: Number(evaluationResults.score ?? evaluationResults.totalPoints ?? 0),
+      maxScore: Number(evaluationResults.maxScore ?? evaluationResults.maxPoints ?? 0),
       percentage: evaluationResults.percentage,
       timeTaken: evaluationResults.timeTaken
     });

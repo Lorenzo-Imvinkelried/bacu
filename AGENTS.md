@@ -19,6 +19,7 @@ baul-de-cuestionarios/
 │   ├── moodle-header.css      # Barra de navegación superior, breadcrumbs y perfil
 │   ├── moodle-quiz.css        # Componente de preguntas (.que, .info, .formulation, .answer, .outcome)
 │   ├── moodle-navblock.css    # Bloque de navegación del cuestionario (#mod_quiz_navblock, grilla .qnbutton)
+│   ├── moodle-dark.css        # Tema de Modo Oscuro ergonómico y descansador para la vista
 │   └── vault-explorer.css     # Explorador del baúl (árbol de materias, parciales, modales)
 ├── js/
 │   ├── data/                  # Capa de datos y persistencia

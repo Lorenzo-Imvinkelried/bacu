@@ -54,6 +54,11 @@ export function renderHeader(state, subject, unit, quiz) {
         </div>
 
         <div class="cv-header-actions">
+          <button type="button" id="btn-theme-toggle" class="btn-theme-toggle" title="Cambiar a ${state?.theme === "dark" || state?.state?.theme === "dark" ? "Modo Claro ☀️" : "Modo Oscuro 🌙"}" aria-label="Cambiar tema visual">
+            <span class="theme-icon">${state?.theme === "dark" || state?.state?.theme === "dark" ? "☀️" : "🌙"}</span>
+            <span class="theme-label">${state?.theme === "dark" || state?.state?.theme === "dark" ? "Modo Claro" : "Modo Oscuro"}</span>
+          </button>
+
           <div class="cv-user-profile">
             <div class="cv-avatar">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">

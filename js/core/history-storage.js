@@ -43,15 +43,16 @@ export function saveAttemptRecordToStorage(historyList, newRecord) {
 const PREFS_KEY = "baul_cuestionarios_prefs";
 
 /**
- * Cargar preferencias del usuario (barajado de preguntas y respuestas)
- * @returns {{ shuffleQuestions: boolean, shuffleOptions: boolean }}
+ * Cargar preferencias del usuario (barajado de preguntas, respuestas y tema visual)
+ * @returns {{ shuffleQuestions: boolean, shuffleOptions: boolean, theme: string }}
  */
 export function loadUserPreferences() {
+  const defaults = { shuffleQuestions: true, shuffleOptions: true, theme: "dark" };
   try {
     const data = localStorage.getItem(PREFS_KEY);
-    return data ? JSON.parse(data) : { shuffleQuestions: true, shuffleOptions: true };
+    return data ? { ...defaults, ...JSON.parse(data) } : defaults;
   } catch {
-    return { shuffleQuestions: true, shuffleOptions: true };
+    return defaults;
   }
 }
 
@@ -61,7 +62,9 @@ export function loadUserPreferences() {
  */
 export function saveUserPreferences(prefs) {
   try {
-    localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+    const current = loadUserPreferences();
+    const updated = { ...current, ...prefs };
+    localStorage.setItem(PREFS_KEY, JSON.stringify(updated));
   } catch (e) {
     console.warn("No se pudieron guardar las preferencias:", e);
   }

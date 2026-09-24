@@ -69,58 +69,43 @@
   gap: 1rem;
 }
 
-/* Botón del Baúl de Cuestionarios */
-.btn-vault {
-  background-color: var(--cv-accent);
+/* Botón de alternancia de Modo Oscuro */
+.btn-theme-toggle {
+  background: rgba(255, 255, 255, 0.14);
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 0.5rem 0.9rem;
-  border-radius: var(--cv-radius);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  padding: 0.38rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.84rem;
   font-weight: 600;
-  font-size: 0.88rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
   cursor: pointer;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  transition: all 0.2s ease;
-}
-
-.btn-vault:hover {
-  background-color: var(--cv-accent-hover);
-  transform: translateY(-1px);
-}
-
-.vault-badge-pill {
-  background-color: rgba(255, 255, 255, 0.25);
-  color: #ffffff;
-  padding: 0.15rem 0.45rem;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-
-/* Botón de Exportar Preguntas */
-.btn-export-header {
-  background-color: rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 0.5rem 0.85rem;
-  border-radius: var(--cv-radius);
-  font-weight: 600;
-  font-size: 0.85rem;
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  cursor: pointer;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  backdrop-filter: blur(4px);
 }
 
-.btn-export-header:hover {
-  background-color: rgba(255, 255, 255, 0.28);
-  border-color: #ffffff;
+.btn-theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.26);
+  border-color: rgba(255, 255, 255, 0.45);
   transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.btn-theme-toggle:active {
+  transform: translateY(0);
+}
+
+.btn-theme-toggle .theme-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.btn-theme-toggle .theme-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.2px;
 }
 
 

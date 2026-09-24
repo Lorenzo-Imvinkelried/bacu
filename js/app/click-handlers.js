@@ -15,9 +15,15 @@ import { exportQuestionsToTxt } from "./export-service.js";
  * @param {MouseEvent} e
  */
 export function handleClickEvent(e) {
-  // 1. Exportar Banco a TXT
-  if (e.target.closest("#btn-export-questions-header") || 
-      e.target.closest("#btn-export-questions-page") || 
+  // 1. Alternar Modo Oscuro / Modo Claro
+  if (e.target.closest("#btn-theme-toggle")) {
+    e.preventDefault();
+    state.toggleTheme();
+    return;
+  }
+
+  // 2. Exportar Cuestionario a TXT
+  if (e.target.closest("#btn-export-questions-page") || 
       e.target.closest("#btn-export-questions-intro")) {
     e.preventDefault();
     exportQuestionsToTxt();
