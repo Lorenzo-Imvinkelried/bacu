@@ -17,7 +17,7 @@ export const VAULT_STRUCTURE = {
           id: "parcial-1",
           name: "Parcial 1",
           description: "Banco oficial de examen: Modelos de proceso, ciclo de vida, SCM, Git, métricas y calidad",
-          questionCount: 92,
+          questionCount: 102,
           quizzes: [
             {
               id: "quiz-p1-completo",
@@ -26,6 +26,15 @@ export const VAULT_STRUCTURE = {
               questionCount: 92,
               timeLimitMinutes: 120,
               maxScore: 10.0
+            },
+            {
+              id: "quiz-p1-unidad-1",
+              title: "UNIDAD 1 (10 preguntas)",
+              description: "Conceptos de software, mitos, características vs hardware, pilares de la ISW, herramientas CASE y SWEBOK.",
+              questionCount: 10,
+              timeLimitMinutes: 20,
+              maxScore: 10.0,
+              quizId: "quiz-p1-unidad-1"
             }
           ]
         },
@@ -134,6 +143,20 @@ export function getQuestionsForQuiz(quiz, allQuestions = []) {
   if (quiz.questionIds && Array.isArray(quiz.questionIds)) {
     return allQuestions.filter(q => quiz.questionIds.includes(q.id));
   }
+  if (quiz.quizId) {
+    const matched = allQuestions.filter(q => q.quizId === quiz.quizId);
+    if (matched.length > 0) return matched;
+  }
+  const matchedById = allQuestions.filter(q => q.quizId === quiz.id);
+  if (matchedById.length > 0) return matchedById;
+
+  if (quiz.id === "quiz-p1-completo") {
+    return allQuestions.filter(q => q.id.startsWith("ing-cal-p1-q") && !q.id.includes("-u1-"));
+  }
+  if (quiz.id === "quiz-p1-unidad-1") {
+    return allQuestions.filter(q => q.id.includes("-u1-") || q.quizId === "quiz-p1-unidad-1");
+  }
+
   if (quiz.questionRange && Array.isArray(quiz.questionRange)) {
     const [start, end] = quiz.questionRange;
     return allQuestions.filter(q => q.num >= start && q.num <= end);
