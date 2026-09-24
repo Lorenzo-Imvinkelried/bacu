@@ -9,7 +9,7 @@ export const VAULT_STRUCTURE = {
   subjects: [
     {
       id: "ing-calidad",
-      name: "Ingeniería y Calidad",
+      name: "Ingeniería y Calidad de Software",
       code: "ISI-401",
       department: "Ingeniería en Sistemas de Información",
       units: [
@@ -17,7 +17,7 @@ export const VAULT_STRUCTURE = {
           id: "parcial-1",
           name: "Parcial 1",
           description: "Banco oficial de examen: Modelos de proceso, ciclo de vida, SCM, Git, métricas y calidad",
-          questionCount: 102,
+          questionCount: 152,
           quizzes: [
             {
               id: "quiz-p1-completo",
@@ -35,6 +35,51 @@ export const VAULT_STRUCTURE = {
               timeLimitMinutes: 20,
               maxScore: 10.0,
               quizId: "quiz-p1-unidad-1"
+            },
+            {
+              id: "quiz-p1-unidad-2-p1a",
+              title: "UNIDAD 2 - Parte 1a (10 preguntas)",
+              description: "Problemas en el desarrollo de software, CHAOS Report, causas de fallo de proyectos, situación tecnológica y capas de la ISW.",
+              questionCount: 10,
+              timeLimitMinutes: 20,
+              maxScore: 10.0,
+              quizId: "quiz-p1-unidad-2-p1a"
+            },
+            {
+              id: "quiz-p1-unidad-2-p1b",
+              title: "UNIDAD 2 - Parte 1b (10 preguntas)",
+              description: "Procesos técnicos vs soporte, relación P-P-P, actividades estructurales CPMCD, actividades sombrilla y confiabilidad.",
+              questionCount: 10,
+              timeLimitMinutes: 20,
+              maxScore: 10.0,
+              quizId: "quiz-p1-unidad-2-p1b"
+            },
+            {
+              id: "quiz-p1-unidad-2-p1c",
+              title: "UNIDAD 2 - Parte 1c (10 preguntas)",
+              description: "Estándares y guías (Sommerville), marco ISO/IEC 12207 (procesos primarios, soporte, organizacionales y técnicos) y niveles SWEBOK.",
+              questionCount: 10,
+              timeLimitMinutes: 20,
+              maxScore: 10.0,
+              quizId: "quiz-p1-unidad-2-p1c"
+            },
+            {
+              id: "quiz-p1-unidad-2-p2a",
+              title: "UNIDAD 2 - Parte 2a (10 preguntas)",
+              description: "Ciclo de vida (ISO 12207), fundamentos de la ISW, modelos de proceso (Espiral, Modelo en V, Big Bang, RAD y Agile).",
+              questionCount: 10,
+              timeLimitMinutes: 20,
+              maxScore: 10.0,
+              quizId: "quiz-p1-unidad-2-p2a"
+            },
+            {
+              id: "quiz-p1-unidad-2-p2b",
+              title: "UNIDAD 2 - Parte 2b (10 preguntas)",
+              description: "Modelos prescriptivos, Cascada, Modelo en V, Incremental, Espiral, Prototipos, Proceso Unificado (ADN y 4 fases), WSDM y MDA.",
+              questionCount: 10,
+              timeLimitMinutes: 20,
+              maxScore: 10.0,
+              quizId: "quiz-p1-unidad-2-p2b"
             }
           ]
         },
@@ -151,10 +196,7 @@ export function getQuestionsForQuiz(quiz, allQuestions = []) {
   if (matchedById.length > 0) return matchedById;
 
   if (quiz.id === "quiz-p1-completo") {
-    return allQuestions.filter(q => q.id.startsWith("ing-cal-p1-q") && !q.id.includes("-u1-"));
-  }
-  if (quiz.id === "quiz-p1-unidad-1") {
-    return allQuestions.filter(q => q.id.includes("-u1-") || q.quizId === "quiz-p1-unidad-1");
+    return allQuestions.filter(q => q.id.startsWith("ing-cal-p1-q") && !q.quizId);
   }
 
   if (quiz.questionRange && Array.isArray(quiz.questionRange)) {

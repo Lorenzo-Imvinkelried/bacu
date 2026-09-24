@@ -24,9 +24,13 @@ baul-de-cuestionarios/
 │   ├── data/                  # Capa de datos y persistencia
 │   │   ├── question-bank.js   # Re-exportador central del banco de preguntas
 │   │   ├── vault-structure.js # Estructura taxonómica del baúl: Asignaturas -> Parciales -> Cuestionarios
-│   │   └── word-parcial-1/    # Preguntas del cuestionario WORD PARCIAL 1 separadas en partes (< 300 líneas)
-│   │       ├── index.js       # Índice unificador del cuestionario
-│   │       └── part-01.js ... part-14.js # Partes modulares de preguntas
+│   │   └── ingenieria-y-calidad/ # Asignatura organizada por parciales
+│   │       └── parcial-1/     # Parcial 1 con sus cuestionarios modulares (< 300 líneas c/u)
+│   │           ├── index.js   # Índice unificador del Parcial 1
+│   │           ├── unidad-1.js ... unidad-2-parte-2a.js # Cuestionarios temáticos
+│   │           └── word-parcial-1/ # Banco de examen WORD PARCIAL 1
+│   │               ├── index.js
+│   │               └── part-01.js ... part-14.js # Partes modulares de preguntas
 │   ├── core/                  # Capa de lógica de negocio y estado
 │   │   ├── state.js           # Gestor reactivo de estado central (< 300 líneas)
 │   │   ├── continuous-session.js # Dominio de práctica continua por tandas

@@ -9,7 +9,7 @@ import { VAULT_STRUCTURE } from "../data/vault-structure.js";
 export function renderHeader(state, subject, unit, quiz) {
   const currentSubjectId = subject ? subject.id : "ing-calidad";
   const currentUnitId = unit ? unit.id : "parcial-1";
-  const subjectName = subject ? subject.name : "Ingeniería y Calidad";
+  const subjectName = subject ? subject.name : "Ingeniería y Calidad de Software";
   const unitName = unit ? unit.name : "Parcial 1";
   const quizTitle = quiz ? quiz.title : "Cuestionario";
 

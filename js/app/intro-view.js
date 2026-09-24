@@ -23,9 +23,9 @@ export function renderIntroView(quiz, unit, currentState) {
           <div class="notice-icon">📂</div>
           <h3>${unit ? unit.name : "Unidad"} - Próximamente</h3>
           <p>Esta unidad o materia aún no contiene preguntas cargadas en el baúl.</p>
-          <p>Para practicar con las 92 preguntas de examen, seleccioná <strong>Ingeniería y Calidad &rarr; Parcial 1</strong> en el menú desplegable superior.</p>
+          <p>Para practicar con las 92 preguntas de examen, seleccioná <strong>Ingeniería y Calidad de Software &rarr; Parcial 1</strong> en el menú desplegable superior.</p>
           <button type="button" class="btn btn-primary" id="btn-switch-to-p1">
-            Ir a Ingeniería y Calidad &rarr; Parcial 1
+            Ir a Ingeniería y Calidad de Software &rarr; Parcial 1
           </button>
         </div>
       </div>

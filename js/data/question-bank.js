@@ -1,20 +1,35 @@
 /**
  * Banco Maestro de Preguntas - Re-exportador Central
- * Asignatura: Ingeniería y Calidad -> Parcial 1
- * - WORD PARCIAL 1 (92 preguntas de examen)
- * - UNIDAD 1 (10 preguntas de repaso conceptual)
+ * Integra los bancos de preguntas organizados por Materia y Parcial
  * Cumple estrictamente con directivas en AGENTS.md (SoC, < 300 líneas)
  */
 
-import { WORD_PARCIAL_1_QUESTIONS } from "./word-parcial-1/index.js";
-import { CALIDAD_UNIDAD_1_QUESTIONS } from "./calidad-unidad-1.js";
+import { 
+  PARCIAL_1_QUESTIONS,
+  WORD_PARCIAL_1_QUESTIONS,
+  CALIDAD_UNIDAD_1_QUESTIONS,
+  CALIDAD_UNIDAD_2_PARTE_1A_QUESTIONS,
+  CALIDAD_UNIDAD_2_PARTE_1B_QUESTIONS,
+  CALIDAD_UNIDAD_2_PARTE_1C_QUESTIONS,
+  CALIDAD_UNIDAD_2_PARTE_2A_QUESTIONS,
+  CALIDAD_UNIDAD_2_PARTE_2B_QUESTIONS
+} from "./ingenieria-y-calidad/parcial-1/index.js";
 
-export { WORD_PARCIAL_1_QUESTIONS } from "./word-parcial-1/index.js";
-export { CALIDAD_UNIDAD_1_QUESTIONS } from "./calidad-unidad-1.js";
+// Re-exportaciones individuales y por parcial
+export { 
+  PARCIAL_1_QUESTIONS,
+  WORD_PARCIAL_1_QUESTIONS,
+  CALIDAD_UNIDAD_1_QUESTIONS,
+  CALIDAD_UNIDAD_2_PARTE_1A_QUESTIONS,
+  CALIDAD_UNIDAD_2_PARTE_1B_QUESTIONS,
+  CALIDAD_UNIDAD_2_PARTE_1C_QUESTIONS,
+  CALIDAD_UNIDAD_2_PARTE_2A_QUESTIONS,
+  CALIDAD_UNIDAD_2_PARTE_2B_QUESTIONS
+} from "./ingenieria-y-calidad/parcial-1/index.js";
 
+// Banco global de preguntas de la aplicación
 export const QUESTION_BANK = [
-  ...WORD_PARCIAL_1_QUESTIONS,
-  ...CALIDAD_UNIDAD_1_QUESTIONS
+  ...PARCIAL_1_QUESTIONS
 ];
 
 /**
