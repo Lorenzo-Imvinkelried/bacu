@@ -1,33 +1,49 @@
 /**
  * Servicio de Exportación del Banco de Preguntas
- * Responsabilidad: Generar y descargar el archivo TXT con las preguntas y respuestas oficiales
+ * Responsabilidad: Generar y descargar el archivo TXT con las preguntas y respuestas oficiales del cuestionario activo
  * Cumple con directivas de arquitectura en AGENTS.md
  */
 
 import { QUESTION_BANK } from "../data/question-bank.js";
+import { getSubjectById, getUnitById, getQuizById, getQuestionsForQuiz } from "../data/vault-structure.js";
+import { state } from "../core/state.js";
 
 /**
- * Exportar el banco de preguntas completo con opciones y respuestas correctas a un archivo TXT
+ * Exportar únicamente las preguntas del cuestionario actualmente seleccionado a un archivo TXT
+ * @param {object} [currentState] - Estado opcional de la aplicación
  */
-export function exportQuestionsToTxt() {
+export function exportQuestionsToTxt(currentState = null) {
+  const current = currentState || state.getState();
+  const activeSub = getSubjectById(current.activeSubjectId);
+  const activeUnit = getUnitById(current.activeSubjectId, current.activeUnitId);
+  const activeQuiz = getQuizById(current.activeSubjectId, current.activeUnitId, current.activeQuizId);
+
+  const quizQuestions = getQuestionsForQuiz(activeQuiz, QUESTION_BANK);
+  const questionsToExport = quizQuestions.length > 0 ? quizQuestions : QUESTION_BANK;
+
+  const quizTitle = activeQuiz?.title || "Cuestionario";
+  const subjectName = activeSub?.name || "Ingeniería y Calidad de Software";
+  const unitName = activeUnit?.name || "Parcial 1";
   const dateStr = new Date().toLocaleDateString("es-AR");
+
   let txt = `================================================================================\n`;
-  txt += `BAÚL DE CUESTIONARIOS - BANCO COMPLETO DE PREGUNTAS Y RESPUESTAS OFICIALES\n`;
-  txt += `Asignatura: Ingeniería y Calidad - Parcial 1\n`;
+  txt += `BAÚL DE CUESTIONARIOS - PREGUNTAS Y RESPUESTAS OFICIALES\n`;
+  txt += `Cuestionario: ${quizTitle}\n`;
+  txt += `Asignatura: ${subjectName}\n`;
+  txt += `Unidad / Parcial: ${unitName}\n`;
   txt += `Institución: Universidad Tecnológica Nacional - Facultad Regional Santa Fe (UTN FRSF)\n`;
-  txt += `Total de preguntas: ${QUESTION_BANK.length}\n`;
+  txt += `Total de preguntas en este cuestionario: ${questionsToExport.length}\n`;
   txt += `Fecha de exportación: ${dateStr}\n`;
-  txt += `Alineado 100% con la Teoría de Cátedra (Unidades 1, 2, ISO/IEC 12207 y GCSW)\n`;
   txt += `================================================================================\n\n`;
 
-  QUESTION_BANK.forEach(q => {
+  questionsToExport.forEach((q, idx) => {
     const qtype = q.type === "multiple" ? "Selección Múltiple (una o más)" : "Selección Única";
     const topic = q.topic || "General";
     const points = (q.points || 1.0).toFixed(2);
     const correctAnswers = (q.correctAnswers || []).map(String);
 
     txt += `--------------------------------------------------------------------------------\n`;
-    txt += `PREGUNTA ${q.num} (ID: ${q.id}) | Tipo: ${qtype} | Puntaje: ${points} ptos.\n`;
+    txt += `PREGUNTA ${idx + 1} (ID: ${q.id}) | Tipo: ${qtype} | Puntaje: ${points} ptos.\n`;
     txt += `Tópico / Unidad: ${topic}\n\n`;
     txt += `ENUNCIADO:\n${(q.prompt || "").trim()}\n\n`;
 
@@ -54,11 +70,15 @@ export function exportQuestionsToTxt() {
     txt += `--------------------------------------------------------------------------------\n\n`;
   });
 
+  const safeSlug = (activeQuiz?.id || "cuestionario")
+    .toLowerCase()
+    .replace(/[^a-z0-9_-]/g, "_");
+
   const blob = new Blob([txt], { type: "text/plain;charset=utf-8" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = "preguntas_y_respuestas_parcial1_ing_calidad.txt";
+  a.download = `preguntas_${safeSlug}.txt`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);

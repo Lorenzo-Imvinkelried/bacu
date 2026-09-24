@@ -5,7 +5,7 @@
  */
 
 import { state } from "../core/state.js";
-import { evaluateAttempt, getRandomQuestions, getMissedQuestions } from "../core/quiz-engine.js";
+import { evaluateAttempt, getRandomQuestions, getMissedQuestions, prepareQuizQuestions } from "../core/quiz-engine.js";
 import { QUESTION_BANK } from "../data/question-bank.js";
 import { getQuizById, getQuestionsForQuiz } from "../data/vault-structure.js";
 import { exportQuestionsToTxt } from "./export-service.js";
@@ -97,7 +97,9 @@ export function handleClickEvent(e) {
     e.preventDefault();
     const currentQuiz = getQuizById(state.state.activeSubjectId, state.state.activeUnitId, state.state.activeQuizId);
     const quizQuestions = getQuestionsForQuiz(currentQuiz, QUESTION_BANK);
-    state.startContinuousSession(quizQuestions, state.state.batchSize || 10);
+    const shuffleQuestions = state.state.shuffleQuestions ?? true;
+    const shuffleOptions = state.state.shuffleOptions ?? true;
+    state.startContinuousSession(quizQuestions, state.state.batchSize || 10, { shuffleQuestions, shuffleOptions });
     window.scrollTo({ top: 0, behavior: "smooth" });
     return;
   }
@@ -111,7 +113,13 @@ export function handleClickEvent(e) {
       : (state.state.lastMissedQuestions || []);
 
     if (questionsToRetry.length > 0) {
-      state.startRetryAttempt(questionsToRetry);
+      const shuffleQuestions = state.state.shuffleQuestions ?? true;
+      const shuffleOptions = state.state.shuffleOptions ?? true;
+      const originalIds = new Set(questionsToRetry.map(q => q.id));
+      const cleanPool = QUESTION_BANK.filter(q => originalIds.has(q.id));
+      const poolToUse = cleanPool.length > 0 ? cleanPool : questionsToRetry;
+      const prepared = prepareQuizQuestions(poolToUse, { shuffleQuestions, shuffleOptions });
+      state.startRetryAttempt(prepared);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
     return;
@@ -211,16 +219,19 @@ function handleStartQuiz() {
   const currentQuiz = getQuizById(state.state.activeSubjectId, state.state.activeUnitId, state.state.activeQuizId);
   const quizQuestions = getQuestionsForQuiz(currentQuiz, QUESTION_BANK);
   const mode = state.state.executionMode || "batches";
+  const shuffleQuestions = state.state.shuffleQuestions ?? true;
+  const shuffleOptions = state.state.shuffleOptions ?? true;
 
   if (mode === "batches") {
     const batchSize = Math.max(1, state.state.batchSize || 10);
-    state.startContinuousSession(quizQuestions, batchSize);
+    state.startContinuousSession(quizQuestions, batchSize, { shuffleQuestions, shuffleOptions });
   } else if (mode === "random") {
     const count = Math.max(1, Math.min(quizQuestions.length, state.state.randomCount || 4));
-    const randomSubset = getRandomQuestions(count, quizQuestions);
-    state.startAttempt(randomSubset);
+    const prepared = prepareQuizQuestions(quizQuestions, { shuffleQuestions: true, shuffleOptions });
+    state.startAttempt(prepared.slice(0, count));
   } else {
-    state.startAttempt([...quizQuestions]);
+    const prepared = prepareQuizQuestions(quizQuestions, { shuffleQuestions, shuffleOptions });
+    state.startAttempt(prepared);
   }
 
   window.scrollTo({ top: 0, behavior: "smooth" });

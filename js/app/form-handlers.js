@@ -90,6 +90,20 @@ export function handleFormChangeEvent(e) {
   if (inputRandom) {
     const val = parseInt(inputRandom.value, 10);
     if (!isNaN(val) && val >= 1) state.setRandomCount(val);
+    return;
+  }
+
+  // Checkbox de barajar orden de preguntas
+  const toggleShuffleQ = e.target.closest("#toggle-shuffle-questions");
+  if (toggleShuffleQ) {
+    state.setShuffleQuestions(toggleShuffleQ.checked);
+    return;
+  }
+
+  // Checkbox de barajar respuestas dentro de cada pregunta
+  const toggleShuffleOpt = e.target.closest("#toggle-shuffle-options");
+  if (toggleShuffleOpt) {
+    state.setShuffleOptions(toggleShuffleOpt.checked);
   }
 }
 

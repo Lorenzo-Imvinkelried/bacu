@@ -39,3 +39,30 @@ export function saveAttemptRecordToStorage(historyList, newRecord) {
     return historyList;
   }
 }
+
+const PREFS_KEY = "baul_cuestionarios_prefs";
+
+/**
+ * Cargar preferencias del usuario (barajado de preguntas y respuestas)
+ * @returns {{ shuffleQuestions: boolean, shuffleOptions: boolean }}
+ */
+export function loadUserPreferences() {
+  try {
+    const data = localStorage.getItem(PREFS_KEY);
+    return data ? JSON.parse(data) : { shuffleQuestions: true, shuffleOptions: true };
+  } catch {
+    return { shuffleQuestions: true, shuffleOptions: true };
+  }
+}
+
+/**
+ * Guardar preferencias del usuario
+ * @param {object} prefs
+ */
+export function saveUserPreferences(prefs) {
+  try {
+    localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+  } catch (e) {
+    console.warn("No se pudieron guardar las preferencias:", e);
+  }
+}

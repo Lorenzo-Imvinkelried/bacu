@@ -134,12 +134,91 @@ export function formatMoodleDate(date) {
 }
 
 /**
- * Obtener 4 preguntas aleatorias para simulacro rápido
+ * Mezclar aleatoriamente un array utilizando el algoritmo Fisher-Yates
+ * @param {Array<any>} array
+ * @returns {Array<any>} Nuevo array barajado
+ */
+export function shuffleArray(array) {
+  if (!Array.isArray(array)) return [];
+  const result = [...array];
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+
+/**
+ * Barajar opciones de una pregunta y reasignar letras identificadoras ('a', 'b', 'c', ...)
+ * Actualiza de forma correlativa el array de respuestas correctas
+ * @param {object} question
+ * @returns {object} Pregunta clonada con opciones barajadas
+ */
+export function shuffleQuestionOptions(question) {
+  if (!question || !Array.isArray(question.options) || question.options.length <= 1) {
+    return { ...question };
+  }
+
+  const shuffledRaw = shuffleArray(question.options);
+  const oldToNewMap = new Map();
+
+  const newOptions = shuffledRaw.map((opt, idx) => {
+    const newId = String.fromCharCode(97 + idx); // 'a', 'b', 'c', 'd'...
+    oldToNewMap.set(opt.id, newId);
+    return {
+      ...opt,
+      id: newId
+    };
+  });
+
+  const newCorrectAnswers = (question.correctAnswers || []).map(oldId =>
+    oldToNewMap.has(oldId) ? oldToNewMap.get(oldId) : oldId
+  );
+
+  return {
+    ...question,
+    options: newOptions,
+    correctAnswers: newCorrectAnswers
+  };
+}
+
+/**
+ * Preparar conjunto de preguntas para un intento aplicando opciones de barajado
+ * @param {Array<object>} questions
+ * @param {object} [options]
+ * @param {boolean} [options.shuffleQuestions=true]
+ * @param {boolean} [options.shuffleOptions=true]
+ * @returns {Array<object>}
+ */
+export function prepareQuizQuestions(questions, { shuffleQuestions = true, shuffleOptions = true } = {}) {
+  if (!Array.isArray(questions)) return [];
+
+  // Clonar preguntas profundamente a nivel de opciones
+  let prepared = questions.map(q => ({
+    ...q,
+    options: q.options ? q.options.map(opt => ({ ...opt })) : [],
+    correctAnswers: q.correctAnswers ? [...q.correctAnswers] : []
+  }));
+
+  if (shuffleOptions) {
+    prepared = prepared.map(q => shuffleQuestionOptions(q));
+  }
+
+  if (shuffleQuestions) {
+    prepared = shuffleArray(prepared);
+  }
+
+  return prepared;
+}
+
+/**
+ * Obtener N preguntas aleatorias para simulacro rápido
+ * @param {number} count
  * @param {Array<object>} [pool]
  * @returns {Array<object>}
  */
 export function getRandomQuestions(count = 4, pool = QUESTION_BANK) {
-  const shuffled = [...pool].sort(() => 0.5 - Math.random());
+  const shuffled = shuffleArray(pool);
   return shuffled.slice(0, count);
 }
 

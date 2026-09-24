@@ -23,10 +23,8 @@ export function renderIntroView(quiz, unit, currentState) {
           <div class="notice-icon">📂</div>
           <h3>${unit ? unit.name : "Unidad"} - Próximamente</h3>
           <p>Esta unidad o materia aún no contiene preguntas cargadas en el baúl.</p>
-          <p>Para practicar con las 92 preguntas de examen, seleccioná <strong>Ingeniería y Calidad de Software &rarr; Parcial 1</strong> en el menú desplegable superior.</p>
-          <button type="button" class="btn btn-primary" id="btn-switch-to-p1">
-            Ir a Ingeniería y Calidad de Software &rarr; Parcial 1
-          </button>
+          <p>Para practicar con las preguntas de examen, seleccioná <strong>Ingeniería y Calidad de Software &rarr; Parcial 1</strong> en el menú superior.</p>
+          <button type="button" class="btn btn-primary" id="btn-switch-to-p1">Ir a Parcial 1</button>
         </div>
       </div>
     `;
@@ -42,17 +40,20 @@ export function renderIntroView(quiz, unit, currentState) {
   const isRandom = executionMode === "random";
   const isFull = executionMode === "full";
 
+  const shuffleQuestions = currentState.shuffleQuestions ?? true;
+  const shuffleOptions = currentState.shuffleOptions ?? true;
+
   const attempts = currentState.history?.filter(h => h.quizId === quiz.id) || [];
   const latestAttempt = attempts[0];
   const displayTitle = getFormattedQuizTitle(quiz, currentState, totalQuestions);
 
   let startButtonText = "";
   if (isBatches) {
-    startButtonText = `Comenzar tanda de ${batchSize} preguntas al azar 🔄`;
+    startButtonText = `Comenzar tanda de ${batchSize} preguntas ${shuffleQuestions ? "al azar " : ""}🔄`;
   } else if (isRandom) {
     startButtonText = `Comenzar prueba de ${randomCount} preguntas al azar 🎲`;
   } else {
-    startButtonText = `Comenzar cuestionario completo (${totalQuestions} preguntas) 📚`;
+    startButtonText = `Comenzar cuestionario completo (${totalQuestions} preguntas${shuffleQuestions ? " al azar" : ""}) 📚`;
   }
 
   return `
@@ -149,10 +150,7 @@ export function renderIntroView(quiz, unit, currentState) {
             </div>
           </div>
           <div class="batch-presets-row">
-            <button type="button" class="btn-batch-preset ${batchSize === 5 ? "active" : ""}" data-batch-size="5">5 en 5</button>
-            <button type="button" class="btn-batch-preset ${batchSize === 10 ? "active" : ""}" data-batch-size="10">10 en 10 (Recomendado)</button>
-            <button type="button" class="btn-batch-preset ${batchSize === 15 ? "active" : ""}" data-batch-size="15">15 en 15</button>
-            <button type="button" class="btn-batch-preset ${batchSize === 20 ? "active" : ""}" data-batch-size="20">20 en 20</button>
+            ${[5, 10, 15, 20].map(s => `<button type="button" class="btn-batch-preset ${batchSize === s ? "active" : ""}" data-batch-size="${s}">${s} en ${s}${s === 10 ? " (Recomendado)" : ""}</button>`).join("")}
             <div class="batch-custom-input-group">
               <label for="input-custom-batch">Personalizado:</label>
               <input type="number" id="input-custom-batch" min="1" max="${totalQuestions}" value="${batchSize}" class="input-batch-number" />
@@ -174,10 +172,7 @@ export function renderIntroView(quiz, unit, currentState) {
             </div>
           </div>
           <div class="batch-presets-row">
-            <button type="button" class="btn-random-preset ${randomCount === 4 ? "active" : ""}" data-random-count="4">4 preguntas (Simulacro UTN)</button>
-            <button type="button" class="btn-random-preset ${randomCount === 10 ? "active" : ""}" data-random-count="10">10 preguntas</button>
-            <button type="button" class="btn-random-preset ${randomCount === 15 ? "active" : ""}" data-random-count="15">15 preguntas</button>
-            <button type="button" class="btn-random-preset ${randomCount === 20 ? "active" : ""}" data-random-count="20">20 preguntas</button>
+            ${[4, 10, 15, 20].map(c => `<button type="button" class="btn-random-preset ${randomCount === c ? "active" : ""}" data-random-count="${c}">${c} preguntas${c === 4 ? " (Simulacro UTN)" : ""}</button>`).join("")}
             <div class="batch-custom-input-group">
               <label for="input-custom-random">Personalizado:</label>
               <input type="number" id="input-custom-random" min="1" max="${totalQuestions}" value="${randomCount}" class="input-batch-number" />
@@ -204,6 +199,40 @@ export function renderIntroView(quiz, unit, currentState) {
         </div>
       ` : ""}
 
+      <!-- Opciones de Barajado y Aleatoriedad Estilo Moodle -->
+      <div class="quiz-shuffle-settings-card">
+        <div class="shuffle-settings-header">
+          <div class="shuffle-title-group">
+            <span class="shuffle-icon">⚙️</span>
+            <div>
+              <h4 class="shuffle-title">Comportamiento del examen (Estilo Moodle)</h4>
+              <p class="shuffle-subtitle">Configurá cómo se presentan las preguntas y respuestas antes de iniciar</p>
+            </div>
+          </div>
+        </div>
+        <div class="shuffle-toggles-grid">
+          <label class="shuffle-toggle-card ${shuffleQuestions ? "active" : ""}" for="toggle-shuffle-questions">
+            <div class="toggle-control-col">
+              <input type="checkbox" id="toggle-shuffle-questions" class="shuffle-checkbox" ${shuffleQuestions ? "checked" : ""} />
+            </div>
+            <div class="toggle-info-col">
+              <span class="toggle-headline">🔀 Orden al azar de las preguntas</span>
+              <span class="toggle-details">${isFull ? "Las preguntas se presentarán en un orden aleatorio diferente en cada intento." : "Baraja la secuencia en que se presentan las preguntas para evitar memorización de orden."}</span>
+            </div>
+          </label>
+
+          <label class="shuffle-toggle-card ${shuffleOptions ? "active" : ""}" for="toggle-shuffle-options">
+            <div class="toggle-control-col">
+              <input type="checkbox" id="toggle-shuffle-options" class="shuffle-checkbox" ${shuffleOptions ? "checked" : ""} />
+            </div>
+            <div class="toggle-info-col">
+              <span class="toggle-headline">🔄 Barajar respuestas dentro de cada pregunta</span>
+              <span class="toggle-details">Cambia la posición de las opciones (a, b, c, d) para razonar el concepto en vez de recordar la ubicación.</span>
+            </div>
+          </label>
+        </div>
+      </div>
+
       <div class="quiz-info-details-box">
         <table class="quiz-intro-meta-table">
           <tbody>
@@ -214,6 +243,14 @@ export function renderIntroView(quiz, unit, currentState) {
             <tr>
               <td>Modalidad activa:</td>
               <td><strong>${isBatches ? "Práctica por Tandas (Repasar todas)" : (isRandom ? `Muestra Aleatoria (${randomCount} preguntas)` : "Cuestionario Completo")}</strong></td>
+            </tr>
+            <tr>
+              <td>Orden de preguntas:</td>
+              <td><strong>${shuffleQuestions ? "Aleatorio 🔀" : "Secuencial original 📄"}</strong></td>
+            </tr>
+            <tr>
+              <td>Barajar respuestas:</td>
+              <td><strong>${shuffleOptions ? "Sí (Posiciones cambiadas) 🔄" : "No (Posiciones fijas) 📌"}</strong></td>
             </tr>
             <tr>
               <td>Intentos permitidos:</td>
@@ -236,8 +273,8 @@ export function renderIntroView(quiz, unit, currentState) {
           <button type="button" id="btn-start-quiz" class="btn btn-primary btn-lg">
             ${startButtonText}
           </button>
-          <button type="button" id="btn-export-questions-intro" class="btn btn-secondary btn-lg" title="Descargar todas las 92 preguntas con respuestas oficiales en un archivo TXT">
-            📥 Exportar banco a TXT
+          <button type="button" id="btn-export-questions-intro" class="btn btn-secondary btn-lg" title="Descargar las preguntas de este cuestionario con respuestas oficiales en un archivo TXT">
+            📥 Exportar cuestionario (TXT)
           </button>
         </div>
       </div>

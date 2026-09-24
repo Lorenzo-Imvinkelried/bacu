@@ -1,30 +1,28 @@
-/**
- * Dominio de Práctica Continua por Tandas sin Repetición
- * Responsabilidad: Manejo y cálculo de sesiones secuenciales por tandas
- * Cumple con directivas de arquitectura en AGENTS.md (< 300 líneas)
- */
+import { prepareQuizQuestions } from "./quiz-engine.js";
 
 /**
  * Crear nueva sesión de práctica continua
  * @param {Array<object>} questionsPool Pool de preguntas
  * @param {number} batchSize Tamaño de tanda
+ * @param {object} [options]
+ * @param {boolean} [options.shuffleQuestions=true]
+ * @param {boolean} [options.shuffleOptions=true]
  * @returns {{ session: object, firstBatch: Array<object> }}
  */
-export function createContinuousSession(questionsPool, batchSize = 10) {
+export function createContinuousSession(questionsPool, batchSize = 10, { shuffleQuestions = true, shuffleOptions = true } = {}) {
   const size = Math.max(1, Math.min(questionsPool.length, parseInt(batchSize, 10) || 10));
-  // Mezcla aleatoria Fisher-Yates
-  const shuffled = [...questionsPool].sort(() => Math.random() - 0.5);
-  const firstBatch = shuffled.slice(0, size);
+  const preparedPool = prepareQuizQuestions(questionsPool, { shuffleQuestions, shuffleOptions });
+  const firstBatch = preparedPool.slice(0, size);
 
   const session = {
     active: true,
     batchSize: size,
-    pool: shuffled,
+    pool: preparedPool,
     currentIndex: 0,
-    totalQuestions: shuffled.length,
+    totalQuestions: preparedPool.length,
     completedQuestionsCount: 0,
     batchNumber: 1,
-    totalBatches: Math.ceil(shuffled.length / size),
+    totalBatches: Math.ceil(preparedPool.length / size),
     cumulativeCorrect: 0,
     cumulativeTotal: 0,
     cumulativeScore: 0,

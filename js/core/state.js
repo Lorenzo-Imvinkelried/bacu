@@ -3,7 +3,7 @@
  * Cumple estrictamente con directivas en AGENTS.md (Capa de Lógica y Estado, < 300 líneas)
  */
 
-import { loadAttemptHistory, saveAttemptRecordToStorage } from "./history-storage.js";
+import { loadAttemptHistory, saveAttemptRecordToStorage, loadUserPreferences, saveUserPreferences } from "./history-storage.js";
 import { 
   createContinuousSession, 
   advanceContinuousSession, 
@@ -16,6 +16,8 @@ class QuizState {
     this.listeners = [];
     this.history = loadAttemptHistory();
 
+    const userPrefs = loadUserPreferences();
+
     // Estado inicial
     this.state = {
       activeSubjectId: "ing-calidad",
@@ -24,6 +26,8 @@ class QuizState {
       executionMode: "batches", // "batches" | "full" | "random"
       batchSize: 10,
       randomCount: 4,
+      shuffleQuestions: userPrefs.shuffleQuestions ?? true,
+      shuffleOptions: userPrefs.shuffleOptions ?? true,
       activeQuestionIndex: 0,
       paginationMode: "all",
       quizStatus: "intro",    // "intro" | "attempt" | "summary" | "review"
@@ -155,8 +159,28 @@ class QuizState {
     this.setState({ randomCount: num });
   }
 
-  startContinuousSession(questionsPool, batchSize = 10) {
-    const { session, firstBatch } = createContinuousSession(questionsPool, batchSize);
+  setShuffleQuestions(shuffle) {
+    const val = Boolean(shuffle);
+    this.setState({ shuffleQuestions: val });
+    saveUserPreferences({
+      shuffleQuestions: val,
+      shuffleOptions: this.state.shuffleOptions
+    });
+  }
+
+  setShuffleOptions(shuffle) {
+    const val = Boolean(shuffle);
+    this.setState({ shuffleOptions: val });
+    saveUserPreferences({
+      shuffleQuestions: this.state.shuffleQuestions,
+      shuffleOptions: val
+    });
+  }
+
+  startContinuousSession(questionsPool, batchSize = 10, options = {}) {
+    const shuffleQuestions = options.shuffleQuestions ?? this.state.shuffleQuestions ?? true;
+    const shuffleOptions = options.shuffleOptions ?? this.state.shuffleOptions ?? true;
+    const { session, firstBatch } = createContinuousSession(questionsPool, batchSize, { shuffleQuestions, shuffleOptions });
     this.setState({
       continuousSession: session,
       batchSize: session.batchSize,

@@ -82,8 +82,8 @@ function render(root, currentState) {
           <p>${unit ? unit.name : "Parcial 1"} &bull; ${subject ? subject.name : "Ingeniería y Calidad"}</p>
         </div>
         <div class="cv-page-actions">
-          <button type="button" class="btn btn-outline" id="btn-export-questions-page" title="Exportar todas las preguntas con opciones y respuestas correctas a TXT">
-            📥 Exportar preguntas (TXT)
+          <button type="button" class="btn btn-outline" id="btn-export-questions-page" title="Exportar las preguntas de este cuestionario con respuestas oficiales a TXT">
+            📥 Exportar cuestionario (TXT)
           </button>
           <button type="button" class="btn btn-secondary" id="btn-toggle-vault-inline">
             🗄️ Cambiar de cuestionario

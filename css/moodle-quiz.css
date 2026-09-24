@@ -132,6 +132,98 @@
   padding-top: 0.65rem;
 }
 
+/* Configuración de Aleatoriedad y Barajado (Estilo Moodle) */
+.quiz-shuffle-settings-card {
+  background: #ffffff;
+  border: 1px solid var(--cv-border-color);
+  border-radius: var(--cv-radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.shuffle-settings-header {
+  margin-bottom: 1rem;
+}
+
+.shuffle-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.shuffle-icon {
+  font-size: 1.5rem;
+}
+
+.shuffle-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--cv-primary);
+  margin: 0 0 0.2rem 0;
+}
+
+.shuffle-subtitle {
+  font-size: 0.82rem;
+  color: var(--cv-font-muted);
+  margin: 0;
+}
+
+.shuffle-toggles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.shuffle-toggle-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.9rem 1rem;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: var(--cv-radius);
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  user-select: none;
+}
+
+.shuffle-toggle-card:hover {
+  background: #f0f7ff;
+  border-color: #93c5fd;
+}
+
+.shuffle-toggle-card.active {
+  background: #f0fdf4;
+  border-color: #86efac;
+}
+
+.shuffle-checkbox {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.15rem;
+  cursor: pointer;
+  accent-color: var(--cv-primary);
+}
+
+.toggle-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.toggle-headline {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.toggle-details {
+  font-size: 0.8rem;
+  color: var(--cv-font-muted);
+  line-height: 1.35;
+}
+
 /* Detalles de Modalidad y Botón */
 .quiz-info-details-box {
   background: #f8fafc;

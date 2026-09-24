@@ -347,5 +347,107 @@ export const CALIDAD_UNIDAD_2_PARTE_1B_QUESTIONS = [
     explanation: "La elección del ciclo de vida adecuado no es arbitraria ni universal: debe responder a la naturaleza particular del problema, el grado de incertidumbre y volatilidad de los requerimientos, la criticidad de la aplicación, el tamaño y cultura del equipo y las exigencias de entrega del cliente.",
     diagram: null,
     points: 1
+  },
+  {
+    id: "ing-cal-p1-u2-1b-q11",
+    num: 11,
+    subject: "Ingeniería y Calidad",
+    unit: "Parcial 1",
+    quizId: "quiz-p1-unidad-2-p1b",
+    topic: "Elementos del Proceso: Quién (Roles)",
+    type: "single",
+    prompt: "En la relación entre los elementos del proceso de desarrollo de software, ¿a qué responde la pregunta 'QUIÉN'?",
+    options: [
+      {
+        id: "a",
+        text: "Al conjunto de artefactos y documentos generados en una fase."
+      },
+      {
+        id: "b",
+        text: "A las personas y roles involucrados en el proyecto."
+      },
+      {
+        id: "c",
+        text: "A los hitos de control que marcan el progreso del sistema."
+      },
+      {
+        id: "d",
+        text: "A las actividades secuenciales ejecutadas por el sistema operativo."
+      }
+    ],
+    correctAnswers: [
+      "b"
+    ],
+    explanation: "En la articulación de los elementos del proceso de software, 'QUIÉN' responde a las personas y los roles que desempeñan en el proyecto (por ejemplo, arquitecto, analista, programador o tester).",
+    diagram: null,
+    points: 1
+  },
+  {
+    id: "ing-cal-p1-u2-1b-q12",
+    num: 12,
+    subject: "Ingeniería y Calidad",
+    unit: "Parcial 1",
+    quizId: "quiz-p1-unidad-2-p1b",
+    topic: "Elementos del Proceso: Cómo (Actividades)",
+    type: "single",
+    prompt: "Dentro de la definición de los elementos del proceso de software, ¿cómo se describe el 'CÓMO'?",
+    options: [
+      {
+        id: "a",
+        text: "Como los hitos (milestones) que marcan la entrega de un producto al cliente."
+      },
+      {
+        id: "b",
+        text: "Como el presupuesto financiero y las herramientas de hardware utilizadas."
+      },
+      {
+        id: "c",
+        text: "Como las actividades, las cuales consisten en una serie de pasos que lleva a cabo un rol."
+      },
+      {
+        id: "d",
+        text: "Como el artefacto final (código o documento) producido durante el desarrollo."
+      }
+    ],
+    correctAnswers: [
+      "c"
+    ],
+    explanation: "El 'CÓMO' en un proceso de software está constituido por las Actividades, definidas como una serie estructurada de pasos o tareas que un rol determinado debe llevar a cabo para transformar entradas en resultados.",
+    diagram: null,
+    points: 1
+  },
+  {
+    id: "ing-cal-p1-u2-1b-q13",
+    num: 13,
+    subject: "Ingeniería y Calidad",
+    unit: "Parcial 1",
+    quizId: "quiz-p1-unidad-2-p1b",
+    topic: "Elementos del Proceso: Avance del Proyecto (Hitos / Milestones)",
+    type: "single",
+    prompt: "En la relación de los elementos del proceso, ¿qué determina o representa el 'AVANCE DEL PROYECTO'?",
+    options: [
+      {
+        id: "a",
+        text: "Los hitos (milestones) que se alcanzan sobre ciertos artefactos."
+      },
+      {
+        id: "b",
+        text: "La cantidad total de roles y personas contratadas para el equipo."
+      },
+      {
+        id: "c",
+        text: "El número de lenguajes de programación diferentes utilizados."
+      },
+      {
+        id: "d",
+        text: "La serie de pasos diarios que cada programador registra en el sistema."
+      }
+    ],
+    correctAnswers: [
+      "a"
+    ],
+    explanation: "El avance o progreso real de un proyecto de software se mide a través del cumplimiento de Hitos (milestones), los cuales representan puntos de control formal que marcan el logro de un estado clave o la aprobación de artefactos determinados.",
+    diagram: null,
+    points: 1
   }
 ];
