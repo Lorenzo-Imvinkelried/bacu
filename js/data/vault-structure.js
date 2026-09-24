@@ -17,7 +17,7 @@ export const VAULT_STRUCTURE = {
           id: "parcial-1",
           name: "Parcial 1",
           description: "Banco oficial de examen: Modelos de proceso, ciclo de vida, SCM, Git, métricas y calidad",
-          questionCount: 209,
+          questionCount: 217,
           quizzes: [
             {
               id: "quiz-p1-completo",
@@ -35,6 +35,15 @@ export const VAULT_STRUCTURE = {
               timeLimitMinutes: 20,
               maxScore: 10.0,
               quizId: "quiz-p1-unidad-1"
+            },
+            {
+              id: "quiz-p1-unidad-1-ciclos-de-vida",
+              title: "UNIDAD 1 - Ciclos de Vida (8 preguntas)",
+              description: "Evaluación basada en los casos prácticos de Retail y Municipalidad, enfocada en los criterios de selección de metodologías de desarrollo de software.",
+              questionCount: 8,
+              timeLimitMinutes: 15,
+              maxScore: 10.0,
+              quizId: "quiz-p1-unidad-1-ciclos-de-vida"
             },
             {
               id: "quiz-p1-unidad-2-p1a",
