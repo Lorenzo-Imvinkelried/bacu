@@ -58,7 +58,7 @@
 .cv-subtitle {
   font-size: 0.74rem;
   color: rgba(255, 255, 255, 0.88);
-  text-transform: lowercase;
+  text-transform: none;
   letter-spacing: 0.3px;
   font-weight: 500;
 }
@@ -178,11 +178,11 @@
   font-weight: 600;
 }
 
-/* Barra de Desplegables: Selección de Materia y Parcial */
+/* Barra de Desplegables: Selección de Materia, Parcial y Cuestionario */
 .cv-dropdown-selector-bar {
   background-color: #ffffff;
   border-bottom: 2px solid #e2e8f0;
-  padding: 0.65rem 1.25rem;
+  padding: 0.55rem 1.25rem;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
@@ -191,29 +191,45 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  width: 100%;
 }
 
 .cv-selector-group {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.cv-selector-group:nth-child(1) {
+  flex: 1 1 30%;
+}
+
+.cv-selector-group:nth-child(2) {
+  flex: 0.75 1 22%;
+}
+
+.cv-selector-group:nth-child(3) {
+  flex: 1.5 1 48%;
 }
 
 .cv-selector-label {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  font-weight: 600;
-  font-size: 0.88rem;
+  font-weight: 700;
+  font-size: 0.84rem;
   color: var(--cv-primary);
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .cv-select-wrapper {
   position: relative;
-  display: inline-block;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
 }
 
 .cv-select-control {
@@ -221,18 +237,20 @@
   background-color: #f8fafc;
   border: 1.5px solid #cbd5e1;
   border-radius: var(--cv-radius);
-  padding: 0.4rem 2rem 0.4rem 0.75rem;
-  font-size: 0.9rem;
+  padding: 0.38rem 1.7rem 0.38rem 0.65rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: #1e293b;
   cursor: pointer;
   outline: none;
   transition: all 0.15s ease;
-  min-width: 180px;
-  max-width: 380px;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .cv-select-control:hover {
@@ -248,11 +266,24 @@
 
 .cv-select-wrapper::after {
   content: "▼";
-  font-size: 0.65rem;
+  font-size: 0.58rem;
   color: #64748b;
   position: absolute;
-  right: 0.75rem;
+  right: 0.6rem;
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .cv-selector-container {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .cv-selector-group,
+  .cv-selector-group:nth-child(1),
+  .cv-selector-group:nth-child(2),
+  .cv-selector-group:nth-child(3) {
+    flex: 1 1 100%;
+  }
 }

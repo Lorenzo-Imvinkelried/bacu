@@ -20,62 +20,11 @@ export function evaluateAttempt(questions, userAnswers, startTime, finishTime) {
 
   for (const q of questions) {
     const userSelected = userAnswers[q.id] || [];
-    const correctOptions = q.correctAnswers || [];
-    const questionMaxPoints = q.points || 1.0;
-    let earnedPoints = 0;
-    let status = "notanswered"; // "correct" | "incorrect" | "partiallycorrect" | "notanswered"
-
-    if (userSelected.length === 0) {
-      status = "notanswered";
-      earnedPoints = 0;
-    } else if (q.type === "single") {
-      const isCorrect = userSelected.length === 1 && userSelected[0] === correctOptions[0];
-      if (isCorrect) {
-        earnedPoints = questionMaxPoints;
-        status = "correct";
-      } else {
-        earnedPoints = 0;
-        status = "incorrect";
-      }
-    } else if (q.type === "multiple") {
-      // Puntuación proporcional al estilo Moodle
-      const totalCorrect = correctOptions.length;
-      const incorrectOptions = q.options.filter(opt => !correctOptions.includes(opt.id)).map(opt => opt.id);
-      const totalIncorrect = incorrectOptions.length || 1;
-
-      let scoreFrac = 0;
-      for (const sel of userSelected) {
-        if (correctOptions.includes(sel)) {
-          scoreFrac += 1 / totalCorrect;
-        } else {
-          scoreFrac -= 1 / totalIncorrect;
-        }
-      }
-
-      // No permitir puntajes negativos en la pregunta
-      scoreFrac = Math.max(0, Math.min(1, scoreFrac));
-      earnedPoints = parseFloat((scoreFrac * questionMaxPoints).toFixed(2));
-
-      if (earnedPoints >= questionMaxPoints - 0.01) {
-        status = "correct";
-      } else if (earnedPoints > 0.05) {
-        status = "partiallycorrect";
-      } else {
-        status = "incorrect";
-      }
-    }
-
-    totalScore += earnedPoints;
-
+    const qResult = evaluateSingleQuestion(q, userSelected);
+    totalScore += qResult.earnedPoints;
     questionResults.push({
-      questionId: q.id,
-      num: q.num,
-      status,
-      earnedPoints,
-      maxPoints: questionMaxPoints,
-      userSelected,
-      correctOptions,
-      explanation: q.explanation
+      ...qResult,
+      num: q.num
     });
   }
 
@@ -248,5 +197,68 @@ export function getMissedQuestions(currentState) {
   }
 
   return [];
+}
+
+/**
+ * Evaluar una sola pregunta bajo demanda para retroalimentación inmediata (Modo Repaso Rápido)
+ * @param {object} question
+ * @param {Array<string>} userSelected
+ * @returns {object}
+ */
+export function evaluateSingleQuestion(question, userSelected = []) {
+  const correctOptions = question.correctAnswers || [];
+  const questionMaxPoints = question.points || 1.0;
+  let earnedPoints = 0;
+  let status = "notanswered";
+
+  if (!userSelected || userSelected.length === 0) {
+    return {
+      questionId: question.id,
+      status: "notanswered",
+      earnedPoints: 0,
+      maxPoints: questionMaxPoints,
+      userSelected: [],
+      correctOptions,
+      explanation: question.explanation
+    };
+  }
+
+  if (question.type === "single") {
+    const isCorrect = userSelected.length === 1 && userSelected[0] === correctOptions[0];
+    earnedPoints = isCorrect ? questionMaxPoints : 0;
+    status = isCorrect ? "correct" : "incorrect";
+  } else if (question.type === "multiple") {
+    const totalCorrect = correctOptions.length;
+    const incorrectOptions = question.options.filter(opt => !correctOptions.includes(opt.id)).map(opt => opt.id);
+    const totalIncorrect = incorrectOptions.length || 1;
+
+    let scoreFrac = 0;
+    for (const sel of userSelected) {
+      if (correctOptions.includes(sel)) {
+        scoreFrac += 1 / totalCorrect;
+      } else {
+        scoreFrac -= 1 / totalIncorrect;
+      }
+    }
+    scoreFrac = Math.max(0, Math.min(1, scoreFrac));
+    earnedPoints = parseFloat((scoreFrac * questionMaxPoints).toFixed(2));
+    if (earnedPoints >= questionMaxPoints - 0.01) {
+      status = "correct";
+    } else if (earnedPoints > 0.05) {
+      status = "partiallycorrect";
+    } else {
+      status = "incorrect";
+    }
+  }
+
+  return {
+    questionId: question.id,
+    status,
+    earnedPoints,
+    maxPoints: questionMaxPoints,
+    userSelected,
+    correctOptions,
+    explanation: question.explanation
+  };
 }
 

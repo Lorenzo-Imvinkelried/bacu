@@ -10,7 +10,6 @@ import { getSubjectById, getUnitById, getQuizById, getQuestionsForQuiz } from ".
 
 import { renderHeader } from "./components/header-component.js";
 import { renderAttemptSummary, renderConfirmationModal } from "./components/review-summary.js";
-import { renderVaultDrawer } from "./components/vault-drawer.js";
 
 import { getFormattedQuizTitle } from "./app/quiz-title.js";
 import { renderIntroView } from "./app/intro-view.js";
@@ -58,7 +57,6 @@ function render(root, currentState) {
   const displayTitle = getFormattedQuizTitle(quiz, currentState, totalQuestions);
 
   const headerHtml = renderHeader(currentState, subject, unit, quiz ? { ...quiz, title: displayTitle } : null);
-  const vaultDrawerHtml = renderVaultDrawer(currentState);
   const confirmModalHtml = renderConfirmationModal();
 
   let mainContentHtml = "";
@@ -83,10 +81,7 @@ function render(root, currentState) {
         </div>
         <div class="cv-page-actions">
           <button type="button" class="btn btn-outline" id="btn-export-questions-page" title="Exportar las preguntas de este cuestionario con respuestas oficiales a TXT">
-            📥 Exportar cuestionario (TXT)
-          </button>
-          <button type="button" class="btn btn-secondary" id="btn-toggle-vault-inline">
-            🗄️ Cambiar de cuestionario
+            Exportar cuestionario (TXT)
           </button>
         </div>
       </div>
@@ -96,12 +91,10 @@ function render(root, currentState) {
       </div>
     </main>
 
-    ${vaultDrawerHtml}
     ${confirmModalHtml}
 
     <footer class="cv-footer">
-      <p>Baúl de Cuestionarios &copy; 2026 - Universidad Tecnológica Nacional &bull; Facultad Regional Santa Fe</p>
-      <p>Diseño inspirado en el entorno oficial de Campus Virtual (Moodle Adaptable).</p>
+      <p>BACU - Baúl de Cuestionarios &copy; 2026</p>
     </footer>
   `;
 }

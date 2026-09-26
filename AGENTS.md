@@ -25,10 +25,23 @@ baul-de-cuestionarios/
 │   ├── data/                  # Capa de datos y persistencia
 │   │   ├── question-bank.js   # Re-exportador central del banco de preguntas
 │   │   ├── vault-structure.js # Estructura taxonómica del baúl: Asignaturas -> Parciales -> Cuestionarios
+│   │   ├── fundamentos-backend/ # Asignatura Fundamentos Backend
+│   │   │   └── parcial-1/     # Parcial 1 modular
+│   │   │       ├── index.js
+│   │   │       ├── unidad-1/  # Cuestionario modular UNIDAD 1 (42 preguntas, 4 partes)
+│   │   │       │   ├── index.js
+│   │   │       │   └── part-01.js ... part-04.js
+│   │   │       ├── unidad-2/  # Cuestionario modular UNIDAD 2 (53 preguntas, 5 partes)
+│   │   │       │   ├── index.js
+│   │   │       │   └── part-01.js ... part-05.js
+│   │   │       └── unidad-3/  # Cuestionario modular UNIDAD 3 (53 preguntas, 5 partes)
+│   │   │           ├── index.js
+│   │   │           └── part-01.js ... part-05.js
 │   │   └── ingenieria-y-calidad/ # Asignatura organizada por parciales
 │   │       └── parcial-1/     # Parcial 1 con sus cuestionarios modulares (< 300 líneas c/u)
 │   │           ├── index.js   # Índice unificador del Parcial 1
-│   │           ├── unidad-1.js ... unidad-2-parte-2b.js # Cuestionarios temáticos
+│   │           ├── unidad-1/  # Cuestionarios modulares UNIDAD 1 (index.js, unidad-1.js, etc.)
+│   │           ├── unidad-2/  # Cuestionarios modulares UNIDAD 2 (index.js, unidad-2-parte-1a.js ... 2b.js)
 │   │           ├── unidad-3/  # Cuestionario modular UNIDAD 3 (51 preguntas, 5 partes)
 │   │           │   ├── index.js
 │   │           │   └── part-01.js ... part-05.js
@@ -117,3 +130,5 @@ baul-de-cuestionarios/
 - Nombres de variables y funciones en camelCase, autoexplicativos y en español o inglés consistente.
 - Mantener funciones cortas (< 40 líneas) orientadas a una sola tarea.
 - Toda interacción de usuario debe ser accesible por teclado y tener retroalimentación visual clara.
+- En la interfaz, títulos y selectores, **nunca** incluir códigos de materia tipo `(ISI-XXX)` o `(FB-XXX)`; las materias se identifican únicamente con su nombre limpio (ej. `Ingeniería y Calidad de Software`, `Fundamentos Backend`).
+- No registrar parciales o unidades vacías con leyendas de "Próximamente"; registrar únicamente unidades con banco de preguntas cargado.

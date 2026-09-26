@@ -47,7 +47,7 @@ const PREFS_KEY = "baul_cuestionarios_prefs";
  * @returns {{ shuffleQuestions: boolean, shuffleOptions: boolean, theme: string }}
  */
 export function loadUserPreferences() {
-  const defaults = { shuffleQuestions: true, shuffleOptions: true, theme: "dark" };
+  const defaults = { shuffleQuestions: true, shuffleOptions: true, theme: "light" };
   try {
     const data = localStorage.getItem(PREFS_KEY);
     return data ? { ...defaults, ...JSON.parse(data) } : defaults;

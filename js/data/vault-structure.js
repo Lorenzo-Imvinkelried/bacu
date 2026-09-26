@@ -10,7 +10,6 @@ export const VAULT_STRUCTURE = {
     {
       id: "ing-calidad",
       name: "Ingeniería y Calidad de Software",
-      code: "ISI-401",
       department: "Ingeniería en Sistemas de Información",
       units: [
         {
@@ -95,69 +94,69 @@ export const VAULT_STRUCTURE = {
               title: "UNIDAD 3 (51 preguntas)",
               description: "Gestión de la Configuración del Software (GCSW), control de versiones, ramas, versionado semántico, builds, entregas y Estándar IEEE 828-2012.",
               questionCount: 51,
-              timeLimitMinutes: 60,
               maxScore: 10.0,
               quizId: "quiz-p1-unidad-3"
+            },
+            {
+              id: "quiz-p1-todos-wacho",
+              title: "TODOS WACHO",
+              description: "Banco consolidado con todos los cuestionarios de este parcial (217 preguntas).",
+              questionCount: 217,
+              maxScore: 10.0,
+              allForUnit: true,
+              subjectId: "ing-calidad",
+              unitId: "parcial-1"
             }
           ]
-        },
-        {
-          id: "parcial-2",
-          name: "Parcial 2",
-          description: "Métricas de software, pruebas, aseguramiento de la calidad (SQA) y mantenimiento",
-          questionCount: 0,
-          quizzes: []
-        },
-        {
-          id: "examen-final",
-          name: "Examen Final",
-          description: "Evaluación integradora de toda la materia",
-          questionCount: 0,
-          quizzes: []
         }
       ]
     },
     {
-      id: "sistemas-operativos",
-      name: "Sistemas Operativos",
-      code: "ISI-302",
+      id: "fundamentos-backend",
+      name: "Fundamentos Backend",
       department: "Ingeniería en Sistemas de Información",
       units: [
         {
-          id: "so-parcial-1",
+          id: "fb-parcial-1",
           name: "Parcial 1",
-          description: "Procesos, hilos, planificación de CPU y sincronización",
-          questionCount: 0,
-          quizzes: []
-        },
-        {
-          id: "so-parcial-2",
-          name: "Parcial 2",
-          description: "Memoria virtual, sistemas de archivos y E/S",
-          questionCount: 0,
-          quizzes: []
-        }
-      ]
-    },
-    {
-      id: "diseno-sistemas",
-      name: "Diseño de Sistemas",
-      code: "ISI-305",
-      department: "Ingeniería en Sistemas de Información",
-      units: [
-        {
-          id: "ds-parcial-1",
-          name: "Parcial 1",
-          description: "Patrones de diseño, arquitectura y modelado UML",
-          questionCount: 0,
-          quizzes: []
-        },
-        {
-          id: "ds-parcial-2",
-          name: "Parcial 2",
-          description: "Diseño de persistencia, microservicios e integración",
-          questionCount: 0,
-          quizzes: []
+          description: "Banco oficial de examen: Spring Boot, Arquitectura, HTTP, REST APIs, Genéricos, Jackson, Postman, Asincronía y Spring Batch",
+          questionCount: 148,
+          quizzes: [
+            {
+              id: "quiz-fb-p1-unidad-1",
+              quizId: "quiz-fb-p1-unidad-1",
+              title: "UNIDAD 1 (42 preguntas)",
+              description: "Banco oficial Unidad 1: Spring Boot, Arquitectura, Protocolo HTTP, Lombok, Flyway, Monolitos y Microservicios.",
+              questionCount: 42,
+              maxScore: 10.0
+            },
+            {
+              id: "quiz-fb-p1-unidad-2",
+              quizId: "quiz-fb-p1-unidad-2",
+              title: "UNIDAD 2 (53 preguntas)",
+              description: "Banco oficial Unidad 2: Arquitecturas y Comunicación, REST APIs, Convenciones, Genéricos, Spring Boot REST, Jackson, Postman y Asincronía.",
+              questionCount: 53,
+              maxScore: 10.0
+            },
+            {
+              id: "quiz-fb-p1-unidad-3",
+              quizId: "quiz-fb-p1-unidad-3",
+              title: "UNIDAD 3 (53 preguntas)",
+              description: "Banco oficial Unidad 3: Spring Batch, Arquitectura, JobRepository, JobLauncher, Steps, Readers, Writers, Ciclo de Ejecución y Sincronización en Pods.",
+              questionCount: 53,
+              maxScore: 10.0
+            },
+            {
+              id: "quiz-fb-p1-todos-wacho",
+              title: "TODOS WACHO",
+              description: "Banco consolidado con todas las unidades de este parcial (148 preguntas).",
+              questionCount: 148,
+              maxScore: 10.0,
+              allForUnit: true,
+              subjectId: "fundamentos-backend",
+              unitId: "fb-parcial-1"
+            }
+          ]
         }
       ]
     }
@@ -203,6 +202,16 @@ export function getQuizById(subjectId, unitId, quizId) {
 export function getQuestionsForQuiz(quiz, allQuestions = []) {
   if (!quiz || !allQuestions || allQuestions.length === 0) return [];
   
+  // Opción "TODOS WACHO" (consolida todas las preguntas del parcial correspondiente)
+  if (quiz.allForUnit || quiz.id?.endsWith("-todos-wacho")) {
+    if (quiz.subjectId === "ing-calidad" || quiz.unitId === "parcial-1" || quiz.id === "quiz-p1-todos-wacho") {
+      return allQuestions.filter(q => q.subject === "Ingeniería y Calidad" || q.id.startsWith("ing-cal-p1-"));
+    }
+    if (quiz.subjectId === "fundamentos-backend" || quiz.unitId === "fb-parcial-1" || quiz.id === "quiz-fb-p1-todos-wacho") {
+      return allQuestions.filter(q => q.subject === "Fundamentos Backend" || q.id.startsWith("fb-p1-"));
+    }
+  }
+
   if (quiz.questionIds && Array.isArray(quiz.questionIds)) {
     return allQuestions.filter(q => quiz.questionIds.includes(q.id));
   }

@@ -25,8 +25,6 @@ export function renderVaultDrawer(state) {
           ? Math.max(...attempts.map(a => a.grade10 || a.score || 0))
           : null;
 
-        let icon = "📋";
-
         return `
           <li class="vault-quiz-item ${isQuizActive ? "active" : ""}">
             <button 
@@ -36,7 +34,6 @@ export function renderVaultDrawer(state) {
               data-unit-id="${unit.id}"
               data-quiz-id="${quiz.id}"
             >
-              <span class="quiz-item-icon">${icon}</span>
               <div class="quiz-item-info">
                 <span class="quiz-item-title">${quiz.title}</span>
                 <span class="quiz-item-desc">${quiz.description}</span>
@@ -44,7 +41,7 @@ export function renderVaultDrawer(state) {
               <span class="vault-count-badge">${quiz.questionCount} preg.</span>
               ${bestAttempt !== null ? `
                 <span class="quiz-best-badge" title="Mejor calificación">
-                  ★ ${bestAttempt.toFixed(1).replace(".", ",")}
+                  Nota: ${bestAttempt.toFixed(1).replace(".", ",")}
                 </span>
               ` : ""}
             </button>
@@ -55,7 +52,6 @@ export function renderVaultDrawer(state) {
       return `
         <div class="vault-unit-block">
           <div class="vault-unit-header">
-            <span class="vault-folder-icon">📂</span>
             <span class="vault-unit-title">${unit.name}</span>
             <span class="vault-count-badge">${unit.questionCount} preguntas</span>
           </div>
@@ -70,10 +66,9 @@ export function renderVaultDrawer(state) {
     return `
       <div class="vault-subject-block ${isSubjectActive ? "expanded" : ""}">
         <div class="vault-subject-header">
-          <span class="vault-subject-icon">🏛️</span>
           <div class="vault-subject-title-wrap">
             <h3 class="vault-subject-title">${subject.name}</h3>
-            <span class="vault-subject-code">${subject.code} - ${subject.department}</span>
+            <span class="vault-subject-code">${subject.department}</span>
           </div>
         </div>
         <div class="vault-subject-content">
@@ -88,7 +83,6 @@ export function renderVaultDrawer(state) {
       <div class="vault-drawer" role="dialog" aria-modal="true" aria-label="Baúl de Cuestionarios">
         <div class="vault-drawer-header">
           <div class="vault-drawer-title-group">
-            <span class="vault-drawer-logo">🗄️</span>
             <div>
               <h2 class="vault-drawer-title">Baúl de Cuestionarios</h2>
               <p class="vault-drawer-subtitle">Repositorio de parciales viejos y cuestionarios por unidad</p>

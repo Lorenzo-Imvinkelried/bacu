@@ -4,37 +4,33 @@
  */
 
 import { loadAttemptHistory, saveAttemptRecordToStorage, loadUserPreferences, saveUserPreferences } from "./history-storage.js";
-import { 
-  createContinuousSession, 
-  advanceContinuousSession, 
-  accumulateContinuousResults 
-} from "./continuous-session.js";
+import { createContinuousSession, advanceContinuousSession, accumulateContinuousResults } from "./continuous-session.js";
 import { getMissedQuestions } from "./quiz-engine.js";
 
 class QuizState {
   constructor() {
     this.listeners = [];
     this.history = loadAttemptHistory();
-
     const userPrefs = loadUserPreferences();
 
-    // Estado inicial
     this.state = {
       activeSubjectId: "ing-calidad",
       activeUnitId: "parcial-1",
       activeQuizId: "quiz-p1-completo",
-      executionMode: "batches", // "batches" | "full" | "random"
+      executionMode: "batches", // "batches" | "full" | "random" | "quick"
       batchSize: 10,
       randomCount: 4,
       shuffleQuestions: userPrefs.shuffleQuestions ?? true,
       shuffleOptions: userPrefs.shuffleOptions ?? true,
-      theme: userPrefs.theme || "dark",
+      theme: userPrefs.theme || "light",
       activeQuestionIndex: 0,
       paginationMode: "all",
       quizStatus: "intro",    // "intro" | "attempt" | "summary" | "review"
       currentQuestions: [],
       userAnswers: {},       // { [questionId]: ["optionId", ...] }
       flaggedQuestions: new Set(),
+      quickEvaluatedQuestions: new Set(),
+      quickViewMode: "single", // "single" | "list"
       startTime: null,
       finishTime: null,
       elapsedSeconds: 0,
@@ -56,18 +52,12 @@ class QuizState {
 
   subscribe(callback) {
     this.listeners.push(callback);
-    return () => {
-      this.listeners = this.listeners.filter(cb => cb !== callback);
-    };
+    return () => { this.listeners = this.listeners.filter(cb => cb !== callback); };
   }
 
   notify() {
     for (const listener of this.listeners) {
-      try {
-        listener(this.getState());
-      } catch (err) {
-        console.error("Error en suscriptor de estado:", err);
-      }
+      try { listener(this.getState()); } catch (err) { console.error("Error en suscriptor de estado:", err); }
     }
   }
 
@@ -78,19 +68,26 @@ class QuizState {
 
   setAnswer(questionId, optionId, isMultiple = false) {
     const current = this.state.userAnswers[questionId] ? [...this.state.userAnswers[questionId]] : [];
-    let updated;
+    const updated = isMultiple
+      ? (current.includes(optionId) ? current.filter(id => id !== optionId) : [...current, optionId])
+      : [optionId];
 
-    if (isMultiple) {
-      updated = current.includes(optionId) 
-        ? current.filter(id => id !== optionId) 
-        : [...current, optionId];
-    } else {
-      updated = [optionId];
+    const updates = { userAnswers: { ...this.state.userAnswers, [questionId]: updated } };
+
+    // En Modo Repaso Rápido, opciones únicas evalúan inmediatamente al primer tap
+    if (this.state.executionMode === "quick" && !isMultiple) {
+      const qSet = new Set(this.state.quickEvaluatedQuestions || []);
+      qSet.add(questionId);
+      updates.quickEvaluatedQuestions = qSet;
     }
 
-    this.setState({
-      userAnswers: { ...this.state.userAnswers, [questionId]: updated }
-    });
+    this.setState(updates);
+  }
+
+  evaluateQuickQuestion(questionId) {
+    const qSet = new Set(this.state.quickEvaluatedQuestions || []);
+    qSet.add(questionId);
+    this.setState({ quickEvaluatedQuestions: qSet });
   }
 
   clearAnswer(questionId) {
@@ -101,67 +98,82 @@ class QuizState {
 
   toggleFlag(questionId) {
     const flags = new Set(this.state.flaggedQuestions);
-    if (flags.has(questionId)) {
-      flags.delete(questionId);
-    } else {
-      flags.add(questionId);
-    }
+    if (flags.has(questionId)) flags.delete(questionId); else flags.add(questionId);
     this.setState({ flaggedQuestions: flags });
   }
 
-  startAttempt(questions) {
-    this.setState({
-      currentQuestions: questions,
+  _initAttemptState(overrides = {}) {
+    return {
       userAnswers: {},
       flaggedQuestions: new Set(),
+      quickEvaluatedQuestions: new Set(),
       activeQuestionIndex: 0,
       quizStatus: "attempt",
       startTime: new Date(),
       finishTime: null,
       elapsedSeconds: 0,
       results: null,
-      isRetryMode: false
-    });
+      isRetryMode: false,
+      continuousSession: null,
+      ...overrides
+    };
+  }
+
+  startAttempt(questions) {
+    this.setState(this._initAttemptState({ currentQuestions: questions }));
+  }
+
+  startQuickAttempt(questions) {
+    this.setState(this._initAttemptState({
+      currentQuestions: questions,
+      executionMode: "quick",
+      quickViewMode: "single"
+    }));
   }
 
   startRetryAttempt(questions) {
-    this.setState({
+    this.setState(this._initAttemptState({
       currentQuestions: [...questions],
-      userAnswers: {},
-      flaggedQuestions: new Set(),
-      activeQuestionIndex: 0,
-      quizStatus: "attempt",
-      startTime: new Date(),
-      finishTime: null,
-      elapsedSeconds: 0,
-      results: null,
-      isRetryMode: true,
-      continuousSession: null
-    });
+      isRetryMode: true
+    }));
   }
 
-  goToSummary() {
-    this.setState({ quizStatus: "summary" });
+  goToNextQuestion() {
+    if (this.state.activeQuestionIndex < this.state.currentQuestions.length - 1) {
+      this.setState({ activeQuestionIndex: this.state.activeQuestionIndex + 1 });
+    }
   }
 
-  resumeAttempt() {
-    this.setState({ quizStatus: "attempt" });
+  goToPrevQuestion() {
+    if (this.state.activeQuestionIndex > 0) {
+      this.setState({ activeQuestionIndex: this.state.activeQuestionIndex - 1 });
+    }
   }
+
+  goToQuestion(index) {
+    const idx = Math.max(0, Math.min(this.state.currentQuestions.length - 1, index));
+    this.setState({ activeQuestionIndex: idx });
+  }
+
+  setQuickViewMode(mode) {
+    this.setState({ quickViewMode: mode === "list" ? "list" : "single" });
+  }
+
+  goToSummary() { this.setState({ quizStatus: "summary" }); }
+  resumeAttempt() { this.setState({ quizStatus: "attempt" }); }
 
   setExecutionMode(mode) {
-    if (["batches", "full", "random"].includes(mode)) {
+    if (["batches", "full", "random", "quick"].includes(mode)) {
       this.setState({ executionMode: mode });
     }
   }
 
   setBatchSize(size) {
-    const num = Math.max(1, parseInt(size, 10) || 10);
-    this.setState({ batchSize: num });
+    this.setState({ batchSize: Math.max(1, parseInt(size, 10) || 10) });
   }
 
   setRandomCount(count) {
-    const num = Math.max(1, parseInt(count, 10) || 4);
-    this.setState({ randomCount: num });
+    this.setState({ randomCount: Math.max(1, parseInt(count, 10) || 4) });
   }
 
   setShuffleQuestions(shuffle) {
@@ -194,38 +206,20 @@ class QuizState {
     const shuffleQuestions = options.shuffleQuestions ?? this.state.shuffleQuestions ?? true;
     const shuffleOptions = options.shuffleOptions ?? this.state.shuffleOptions ?? true;
     const { session, firstBatch } = createContinuousSession(questionsPool, batchSize, { shuffleQuestions, shuffleOptions });
-    this.setState({
+    this.setState(this._initAttemptState({
       continuousSession: session,
       batchSize: session.batchSize,
-      currentQuestions: firstBatch,
-      userAnswers: {},
-      flaggedQuestions: new Set(),
-      activeQuestionIndex: 0,
-      quizStatus: "attempt",
-      startTime: new Date(),
-      finishTime: null,
-      elapsedSeconds: 0,
-      results: null,
-      isRetryMode: false
-    });
+      currentQuestions: firstBatch
+    }));
   }
 
   nextContinuousBatch() {
     const result = advanceContinuousSession(this.state.continuousSession);
     if (!result) return;
-
-    this.setState({
+    this.setState(this._initAttemptState({
       continuousSession: result.updatedSession,
-      currentQuestions: result.nextBatch,
-      userAnswers: {},
-      flaggedQuestions: new Set(),
-      activeQuestionIndex: 0,
-      quizStatus: "attempt",
-      startTime: new Date(),
-      finishTime: null,
-      elapsedSeconds: 0,
-      results: null
-    });
+      currentQuestions: result.nextBatch
+    }));
   }
 
   finishAttempt(evaluationResults) {
@@ -273,6 +267,7 @@ class QuizState {
       currentQuestions: [],
       userAnswers: {},
       flaggedQuestions: new Set(),
+      quickEvaluatedQuestions: new Set(),
       results: null,
       continuousSession: null,
       isRetryMode: false

@@ -30,36 +30,7 @@ export function handleClickEvent(e) {
     return;
   }
 
-  // 2. Abrir / Cerrar Baúl
-  if (e.target.closest("#btn-open-vault") || e.target.closest("#btn-toggle-vault-inline")) {
-    e.preventDefault();
-    state.toggleVault(true);
-    return;
-  }
-  if (e.target.closest("#btn-close-vault") || e.target.id === "vault-drawer-overlay") {
-    state.toggleVault(false);
-    return;
-  }
-
-  // 3. Seleccionar Cuestionario desde el Baúl
-  const btnSelectQuiz = e.target.closest(".btn-select-quiz");
-  if (btnSelectQuiz) {
-    e.preventDefault();
-    state.setState({
-      activeSubjectId: btnSelectQuiz.dataset.subjectId,
-      activeUnitId: btnSelectQuiz.dataset.unitId,
-      activeQuizId: btnSelectQuiz.dataset.quizId,
-      quizStatus: "intro",
-      currentQuestions: [],
-      userAnswers: {},
-      flaggedQuestions: new Set(),
-      vaultOpen: false,
-      continuousSession: null
-    });
-    return;
-  }
-
-  // 4. Elegir Modalidad ('batches' | 'random' | 'full')
+  // 3. Elegir Modalidad ('batches' | 'random' | 'full')
   const btnMode = e.target.closest("[data-execution-mode]");
   if (btnMode) {
     e.preventDefault();
@@ -149,6 +120,11 @@ export function handleClickEvent(e) {
   const btnNavTarget = e.target.closest(".qnbutton");
   if (btnNavTarget) {
     e.preventDefault();
+    if (state.state.executionMode === "quick" && btnNavTarget.dataset.quickGoto !== undefined) {
+      state.goToQuestion(parseInt(btnNavTarget.dataset.quickGoto, 10));
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
     const el = document.getElementById(btnNavTarget.dataset.navTarget);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
     return;
@@ -161,6 +137,37 @@ export function handleClickEvent(e) {
       const el = document.getElementById(`question-${summaryLink.dataset.returnQid}`);
       if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 50);
+    return;
+  }
+
+  // Botones de Modo Repaso Rápido
+  if (e.target.closest("#btn-quick-next") || e.target.closest("#btn-quick-skip") || e.target.closest(".btn-quick-next-inline")) {
+    e.preventDefault();
+    state.goToNextQuestion();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
+  if (e.target.closest("#btn-quick-prev")) {
+    e.preventDefault();
+    state.goToPrevQuestion();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
+  if (e.target.closest("#btn-quick-finish") || e.target.closest("#btn-finish-quick-nav") || e.target.closest(".btn-quick-finish-inline")) {
+    e.preventDefault();
+    handleConfirmSubmit();
+    return;
+  }
+  const btnQuickView = e.target.closest("[data-quick-view]");
+  if (btnQuickView) {
+    e.preventDefault();
+    state.setQuickViewMode(btnQuickView.dataset.quickView);
+    return;
+  }
+  const btnCheck = e.target.closest(".btn-check-answer");
+  if (btnCheck && btnCheck.dataset.checkQid) {
+    e.preventDefault();
+    state.evaluateQuickQuestion(btnCheck.dataset.checkQid);
     return;
   }
 
@@ -235,6 +242,9 @@ function handleStartQuiz() {
     const count = Math.max(1, Math.min(quizQuestions.length, state.state.randomCount || 4));
     const prepared = prepareQuizQuestions(quizQuestions, { shuffleQuestions: true, shuffleOptions });
     state.startAttempt(prepared.slice(0, count));
+  } else if (mode === "quick") {
+    const prepared = prepareQuizQuestions(quizQuestions, { shuffleQuestions, shuffleOptions });
+    state.startQuickAttempt(prepared);
   } else {
     const prepared = prepareQuizQuestions(quizQuestions, { shuffleQuestions, shuffleOptions });
     state.startAttempt(prepared);

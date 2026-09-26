@@ -4,30 +4,36 @@
  * Cumple con directivas en AGENTS.md (Capa de Componentes)
  */
 
+import { evaluateSingleQuestion } from "../core/quiz-engine.js";
+
 export function renderQuestion(question, index, state, isReview = false, result = null) {
   const qId = question.id;
   const userSelected = state.userAnswers[qId] || [];
-  const isFlagged = state.flaggedQuestions.has(qId);
+  const isFlagged = state.flaggedQuestions ? state.flaggedQuestions.has(qId) : false;
   const isAnswered = userSelected.length > 0;
   const isMultiple = question.type === "multiple";
+  const isQuickMode = state.executionMode === "quick";
+  const isQuickEvaluated = isQuickMode && state.quickEvaluatedQuestions && state.quickEvaluatedQuestions.has(qId);
+  const effectiveResult = result || (isQuickEvaluated ? evaluateSingleQuestion(question, userSelected) : null);
+  const showFeedback = isReview || isQuickEvaluated;
 
   // Clases CSS de la pregunta
   let queClasses = `que ${isMultiple ? "multichoice" : "singlechoice"}`;
   let statusText = isAnswered ? "Respuesta guardada" : "Sin responder aún";
   let gradeText = `Puntúa como ${(question.points || 1.0).toFixed(2).replace(".", ",")}`;
 
-  if (isReview && result) {
-    if (result.status === "correct") {
+  if (showFeedback && effectiveResult) {
+    if (effectiveResult.status === "correct") {
       queClasses += " correct";
       statusText = "Correcta";
-    } else if (result.status === "partiallycorrect") {
+    } else if (effectiveResult.status === "partiallycorrect") {
       queClasses += " partiallycorrect";
       statusText = "Parcialmente correcta";
     } else {
       queClasses += " incorrect";
       statusText = "Incorrecta";
     }
-    gradeText = `Puntúa ${result.earnedPoints.toFixed(2).replace(".", ",")} sobre ${(question.points || 1.0).toFixed(2).replace(".", ",")}`;
+    gradeText = `Puntúa ${effectiveResult.earnedPoints.toFixed(2).replace(".", ",")} sobre ${(question.points || 1.0).toFixed(2).replace(".", ",")}`;
   }
 
   // Renderizar opciones
@@ -41,17 +47,34 @@ export function renderQuestion(question, index, state, isReview = false, result 
     let reviewFeedbackBadge = "";
     let optionRowClass = rowClass;
 
-    if (isReview && result) {
+    if (showFeedback && effectiveResult) {
       const isCorrectOption = question.correctAnswers.includes(opt.id);
       if (isChecked && isCorrectOption) {
         optionRowClass += " option-correct-selected";
-        reviewFeedbackBadge = `<span class="feedback-badge correct" title="Opción correcta seleccionada">✓</span>`;
       } else if (isChecked && !isCorrectOption) {
         optionRowClass += " option-incorrect-selected";
         reviewFeedbackBadge = `<span class="feedback-badge incorrect" title="Opción incorrecta seleccionada">✗</span>`;
       } else if (!isChecked && isCorrectOption) {
         optionRowClass += " option-correct-missed";
-        reviewFeedbackBadge = `<span class="feedback-badge missed" title="Esta opción era correcta">✓</span>`;
+      }
+    }
+
+    let quickInlineBtn = "";
+    if (showFeedback && effectiveResult && isQuickMode) {
+      const isCorrectOption = question.correctAnswers.includes(opt.id);
+      const isFirstCorrect = opt.id === (question.correctAnswers || [])[0];
+      if (isCorrectOption && isFirstCorrect) {
+        const totalQ = state?.currentQuestions?.length || 0;
+        const isLast = totalQ > 0 && index >= totalQ - 1;
+        const btnClass = isLast ? "btn-quick-finish-inline" : "btn-quick-next-inline";
+        const btnText = isLast ? "Siguiente &rarr;" : "Siguiente &rarr;";
+        const finalBtnText = isLast ? "Finalizar &rarr;" : btnText;
+        const btnTitle = isLast ? "Finalizar repaso y ver calificación" : "Pasar a la siguiente pregunta";
+        quickInlineBtn = `
+          <button type="button" class="btn btn-primary btn-sm ${btnClass} btn-quick-inline-action" title="${btnTitle}">
+            ${finalBtnText}
+          </button>
+        `;
       }
     }
 
@@ -63,7 +86,7 @@ export function renderQuestion(question, index, state, isReview = false, result 
           value="${opt.id}" 
           id="${inputId}"
           ${isChecked ? "checked" : ""}
-          ${isReview ? "disabled" : ""}
+          ${showFeedback ? "disabled" : ""}
           data-question-id="${qId}"
           data-option-id="${opt.id}"
           data-is-multiple="${isMultiple}"
@@ -74,6 +97,7 @@ export function renderQuestion(question, index, state, isReview = false, result 
           <span class="option-text">${escapeHtml(opt.text)}</span>
         </label>
         ${reviewFeedbackBadge}
+        ${quickInlineBtn}
       </div>
     `;
   }).join("");
@@ -81,18 +105,18 @@ export function renderQuestion(question, index, state, isReview = false, result 
   // Gráfico ilustrativo si la pregunta lo amerita
   const diagramHtml = renderDiagramSvg(question.diagram);
 
-  // Cuadro de retroalimentación final en modo revisión
+  // Cuadro de retroalimentación final o inmediata
   let outcomeHtml = "";
-  if (isReview && result) {
+  if (showFeedback && effectiveResult) {
     let outcomeBoxClass = "outcome";
     let outcomeTitle = "Respuesta correcta";
 
-    if (result.status === "correct") {
+    if (effectiveResult.status === "correct") {
       outcomeBoxClass += " outcome-correct";
       outcomeTitle = "Respuesta correcta";
-    } else if (result.status === "partiallycorrect") {
+    } else if (effectiveResult.status === "partiallycorrect") {
       outcomeBoxClass += " outcome-partial";
-      outcomeTitle = `Respuesta parcialmente correcta. Ha seleccionado correctamente ${result.earnedPoints.toFixed(2).replace(".", ",")}.`;
+      outcomeTitle = `Respuesta parcialmente correcta. Ha seleccionado correctamente ${effectiveResult.earnedPoints.toFixed(2).replace(".", ",")}.`;
     } else {
       outcomeBoxClass += " outcome-incorrect";
       outcomeTitle = "Respuesta incorrecta.";
@@ -155,7 +179,15 @@ export function renderQuestion(question, index, state, isReview = false, result 
             ${optionsHtml}
           </div>
 
-          ${!isReview && isAnswered ? `
+          ${isMultiple && isQuickMode && !isQuickEvaluated && isAnswered ? `
+            <div class="check-answer-wrapper" style="margin-top: 1rem;">
+              <button type="button" class="btn btn-primary btn-check-answer" data-check-qid="${qId}">
+                Comprobar respuesta
+              </button>
+            </div>
+          ` : ""}
+
+          ${!showFeedback && isAnswered && !isQuickMode ? `
             <div class="clear-choice-wrapper">
               <button type="button" class="btn-clear-choice" data-clear-qid="${qId}">
                 Quitar mi elección

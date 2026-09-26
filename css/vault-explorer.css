@@ -291,7 +291,7 @@
   font-size: 0.9rem;
 }
 
-.generaltable tr:hover td {
+:root:not([data-theme="dark"]) .generaltable tr:hover td {
   background-color: #fcfcfc;
 }
 
