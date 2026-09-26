@@ -15,4 +15,11 @@ export function setupEventListeners(root) {
   root.addEventListener("click", handleClickEvent);
   root.addEventListener("change", handleFormChangeEvent);
   root.addEventListener("input", handleRealtimeInputEvent);
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      document.getElementById("how-to-create-modal")?.classList.add("hidden");
+      document.getElementById("moodle-confirm-modal")?.classList.add("hidden");
+    }
+  });
 }

@@ -54,6 +54,16 @@ export function renderHeader(state, subject, unit, quiz) {
             <span class="theme-icon">${themeIconSvg}</span>
             <span class="theme-label">${isDark ? "Modo Claro" : "Modo Oscuro"}</span>
           </button>
+          <button type="button" id="btn-how-to-create" class="btn-how-to-create" title="¿Cómo se crean los cuestionarios?" aria-label="¿Cómo se crean los cuestionarios?">
+            <span class="btn-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+            </span>
+            <span class="btn-label">¿Cómo se crean los cuestionarios?</span>
+          </button>
         </div>
       </div>
 

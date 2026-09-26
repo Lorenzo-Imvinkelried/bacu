@@ -10,6 +10,7 @@ import { getSubjectById, getUnitById, getQuizById, getQuestionsForQuiz } from ".
 
 import { renderHeader } from "./components/header-component.js";
 import { renderAttemptSummary, renderConfirmationModal } from "./components/review-summary.js";
+import { renderHowToCreateModal } from "./components/how-to-create-modal.js";
 
 import { getFormattedQuizTitle } from "./app/quiz-title.js";
 import { renderIntroView } from "./app/intro-view.js";
@@ -58,6 +59,7 @@ function render(root, currentState) {
 
   const headerHtml = renderHeader(currentState, subject, unit, quiz ? { ...quiz, title: displayTitle } : null);
   const confirmModalHtml = renderConfirmationModal();
+  const howToCreateModalHtml = renderHowToCreateModal();
 
   let mainContentHtml = "";
 
@@ -92,6 +94,7 @@ function render(root, currentState) {
     </main>
 
     ${confirmModalHtml}
+    ${howToCreateModalHtml}
 
     <footer class="cv-footer">
       <p>BACU - Baúl de Cuestionarios &copy; 2026</p>

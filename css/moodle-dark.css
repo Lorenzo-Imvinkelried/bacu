@@ -270,3 +270,17 @@
 [data-theme="dark"] .btn-quick-inline-action { background-color: #0284c7 !important; border-color: #0369a1 !important; color: #ffffff !important; box-shadow: 0 2px 6px rgba(2, 132, 199, 0.35) !important; }
 [data-theme="dark"] .btn-quick-inline-action:hover { background-color: #0369a1 !important; border-color: #38bdf8 !important; }
 
+/* Modal ¿Cómo se crean los cuestionarios? (Modo Oscuro) */
+[data-theme="dark"] .how-to-create-dialogue-wrap { background-color: #151e2e; border-color: #273549; color: #f1f5f9; }
+[data-theme="dark"] .how-to-create-icon { color: #38bdf8; }
+[data-theme="dark"] .how-to-create-explanation { background-color: #101c33; border-color: #1e3a66; color: #cbd5e1; }
+[data-theme="dark"] .how-to-create-badge { color: #38bdf8; }
+[data-theme="dark"] .how-to-create-steps { border-top-color: #1e3a66; color: #cbd5e1; }
+[data-theme="dark"] .how-to-create-steps strong { color: #f8fafc; }
+[data-theme="dark"] .prompt-box-card { border-color: #273549; background-color: #0b0f19; }
+[data-theme="dark"] .prompt-box-header { background-color: #101726; border-bottom-color: #273549; color: #cbd5e1; }
+[data-theme="dark"] .prompt-text-pre { background-color: #080c14; color: #e2e8f0; border-color: #273549; }
+[data-theme="dark"] .btn-copy-prompt { background-color: #0284c7; color: #ffffff; }
+[data-theme="dark"] .btn-copy-prompt:hover { background-color: #0369a1; }
+
+
