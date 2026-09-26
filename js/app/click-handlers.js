@@ -122,7 +122,12 @@ export function handleClickEvent(e) {
     e.preventDefault();
     if (state.state.executionMode === "quick" && btnNavTarget.dataset.quickGoto !== undefined) {
       state.goToQuestion(parseInt(btnNavTarget.dataset.quickGoto, 10));
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      if ((state.state.quickViewMode || "single") === "single") {
+        scrollToQuickQuestionStage();
+      } else {
+        const el = document.getElementById(btnNavTarget.dataset.navTarget);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
       return;
     }
     const el = document.getElementById(btnNavTarget.dataset.navTarget);
@@ -144,13 +149,17 @@ export function handleClickEvent(e) {
   if (e.target.closest("#btn-quick-next") || e.target.closest("#btn-quick-skip") || e.target.closest(".btn-quick-next-inline")) {
     e.preventDefault();
     state.goToNextQuestion();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if ((state.state.quickViewMode || "single") === "single") {
+      scrollToQuickQuestionStage();
+    }
     return;
   }
   if (e.target.closest("#btn-quick-prev")) {
     e.preventDefault();
     state.goToPrevQuestion();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if ((state.state.quickViewMode || "single") === "single") {
+      scrollToQuickQuestionStage();
+    }
     return;
   }
   if (e.target.closest("#btn-quick-finish") || e.target.closest("#btn-finish-quick-nav") || e.target.closest(".btn-quick-finish-inline")) {
@@ -245,12 +254,29 @@ function handleStartQuiz() {
   } else if (mode === "quick") {
     const prepared = prepareQuizQuestions(quizQuestions, { shuffleQuestions, shuffleOptions });
     state.startQuickAttempt(prepared);
+    setTimeout(scrollToQuickQuestionStage, 30);
+    return;
   } else {
     const prepared = prepareQuizQuestions(quizQuestions, { shuffleQuestions, shuffleOptions });
     state.startAttempt(prepared);
   }
 
   window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/**
+ * Anclar scroll en el nivel del cuestionario y opciones en Repaso Rápido (1 a 1)
+ */
+function scrollToQuickQuestionStage() {
+  const target = document.querySelector(".quick-mode-header-card") || document.getElementById("quiz-main-stage");
+  if (!target) return;
+  const header = document.querySelector(".cv-header");
+  const headerHeight = header ? header.offsetHeight : 64;
+  const targetTop = target.getBoundingClientRect().top + window.scrollY;
+  const desiredScrollY = Math.max(0, targetTop - headerHeight - 10);
+  if (Math.abs(window.scrollY - desiredScrollY) > 15) {
+    window.scrollTo({ top: desiredScrollY, behavior: "smooth" });
+  }
 }
 
 /**
