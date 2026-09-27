@@ -22,6 +22,10 @@ import {
   BACKEND_UNIDAD_2_QUESTIONS,
   BACKEND_UNIDAD_3_QUESTIONS 
 } from "./fundamentos-backend/parcial-1/index.js";
+import {
+  GITHUB_COMANDOS_QUESTIONS,
+  GITHUB_COMANDOS_C1_QUESTIONS
+} from "./github/comandos/index.js";
 
 // Re-exportaciones individuales y por parcial
 export { 
@@ -44,10 +48,16 @@ export {
   BACKEND_UNIDAD_3_QUESTIONS 
 } from "./fundamentos-backend/parcial-1/index.js";
 
+export {
+  GITHUB_COMANDOS_QUESTIONS,
+  GITHUB_COMANDOS_C1_QUESTIONS
+} from "./github/comandos/index.js";
+
 // Banco global de preguntas de la aplicación
 export const QUESTION_BANK = [
   ...PARCIAL_1_QUESTIONS,
-  ...BACKEND_PARCIAL_1_QUESTIONS
+  ...BACKEND_PARCIAL_1_QUESTIONS,
+  ...GITHUB_COMANDOS_QUESTIONS
 ];
 
 /**

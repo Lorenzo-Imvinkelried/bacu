@@ -159,6 +159,39 @@ export const VAULT_STRUCTURE = {
           ]
         }
       ]
+    },
+    {
+      id: "github",
+      name: "GitHub",
+      department: "Ingeniería en Sistemas de Información",
+      units: [
+        {
+          id: "comandos",
+          name: "Comandos",
+          description: "Banco oficial de examen: Comandos Online y Offline de Git y GitHub",
+          questionCount: 25,
+          quizzes: [
+            {
+              id: "quiz-github-comandos-cuestionario-1",
+              quizId: "quiz-github-comandos-cuestionario-1",
+              title: "Cuestionario 1 (25 preguntas)",
+              description: "Banco oficial de comandos: clone, fetch, pull, push, ramas, merge, rebase, cherry-pick y utilidades.",
+              questionCount: 25,
+              maxScore: 10.0
+            },
+            {
+              id: "quiz-github-comandos-todos-wacho",
+              title: "TODOS WACHO",
+              description: "Banco consolidado con todas las preguntas de este parcial (25 preguntas).",
+              questionCount: 25,
+              maxScore: 10.0,
+              allForUnit: true,
+              subjectId: "github",
+              unitId: "comandos"
+            }
+          ]
+        }
+      ]
     }
   ]
 };
@@ -209,6 +242,9 @@ export function getQuestionsForQuiz(quiz, allQuestions = []) {
     }
     if (quiz.subjectId === "fundamentos-backend" || quiz.unitId === "fb-parcial-1" || quiz.id === "quiz-fb-p1-todos-wacho") {
       return allQuestions.filter(q => q.subject === "Fundamentos Backend" || q.id.startsWith("fb-p1-"));
+    }
+    if (quiz.subjectId === "github" || quiz.unitId === "comandos" || quiz.id === "quiz-github-comandos-todos-wacho") {
+      return allQuestions.filter(q => q.subject === "GitHub" || q.id.startsWith("gh-cmd-"));
     }
   }
 
