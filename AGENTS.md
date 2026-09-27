@@ -49,12 +49,18 @@ baul-de-cuestionarios/
 │   │   │           ├── index.js
 │   │   │           └── part-01.js ... part-14.js # Partes modulares de preguntas
 │   │   └── github/            # Asignatura GitHub
-│   │       └── comandos/      # Sección / Parcial Comandos
-│   │           ├── index.js   # Índice unificador de Comandos
-│   │           └── cuestionario-1/ # Cuestionario 1 modular (25 preguntas, 2 partes)
+│   │       ├── comandos/      # Sección / Parcial Comandos
+│   │       │   ├── index.js   # Índice unificador de Comandos
+│   │       │   └── cuestionario-1/ # Cuestionario 1 modular (25 preguntas, 2 partes)
+│   │       │       ├── index.js
+│   │       │       ├── part-01.js # Preguntas 1 a 13
+│   │       │       └── part-02.js # Preguntas 14 a 25
+│   │       └── ci-cd/         # Sección / Parcial CI/CD
+│   │           ├── index.js   # Índice unificador de CI/CD
+│   │           └── cuestionario-1/ # Cuestionario 1 modular (20 preguntas, 2 partes)
 │   │               ├── index.js
-│   │               ├── part-01.js # Preguntas 1 a 13
-│   │               └── part-02.js # Preguntas 14 a 25
+│   │               ├── part-01.js # Preguntas 1 a 10
+│   │               └── part-02.js # Preguntas 11 a 20
 │   ├── core/                  # Capa de lógica de negocio y estado
 │   │   ├── state.js           # Gestor reactivo de estado central (< 300 líneas)
 │   │   ├── continuous-session.js # Dominio de práctica continua por tandas

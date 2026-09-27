@@ -26,6 +26,10 @@ import {
   GITHUB_COMANDOS_QUESTIONS,
   GITHUB_COMANDOS_C1_QUESTIONS
 } from "./github/comandos/index.js";
+import {
+  GITHUB_CICD_QUESTIONS,
+  GITHUB_CICD_C1_QUESTIONS
+} from "./github/ci-cd/index.js";
 
 // Re-exportaciones individuales y por parcial
 export { 
@@ -53,11 +57,17 @@ export {
   GITHUB_COMANDOS_C1_QUESTIONS
 } from "./github/comandos/index.js";
 
+export {
+  GITHUB_CICD_QUESTIONS,
+  GITHUB_CICD_C1_QUESTIONS
+} from "./github/ci-cd/index.js";
+
 // Banco global de preguntas de la aplicación
 export const QUESTION_BANK = [
   ...PARCIAL_1_QUESTIONS,
   ...BACKEND_PARCIAL_1_QUESTIONS,
-  ...GITHUB_COMANDOS_QUESTIONS
+  ...GITHUB_COMANDOS_QUESTIONS,
+  ...GITHUB_CICD_QUESTIONS
 ];
 
 /**

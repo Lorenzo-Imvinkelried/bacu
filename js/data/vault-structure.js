@@ -182,12 +182,38 @@ export const VAULT_STRUCTURE = {
             {
               id: "quiz-github-comandos-todos-wacho",
               title: "TODOS WACHO",
-              description: "Banco consolidado con todas las preguntas de este parcial (25 preguntas).",
+              description: "Banco consolidado con todas las preguntas de esta unidad (25 preguntas).",
               questionCount: 25,
               maxScore: 10.0,
               allForUnit: true,
               subjectId: "github",
               unitId: "comandos"
+            }
+          ]
+        },
+        {
+          id: "ci-cd",
+          name: "CI/CD",
+          description: "Banco oficial de examen: Fundamentos de CI/CD, Pipelines, Runners, YAML, Workflows y Políticas de Calidad",
+          questionCount: 20,
+          quizzes: [
+            {
+              id: "quiz-github-ci-cd-cuestionario-1",
+              quizId: "quiz-github-ci-cd-cuestionario-1",
+              title: "Cuestionario 1 (20 preguntas)",
+              description: "Banco oficial de CI/CD: conceptos, Pipelines, Runners, sintaxis YAML, GitHub Actions, Steps, Secretos y Branch Protection.",
+              questionCount: 20,
+              maxScore: 10.0
+            },
+            {
+              id: "quiz-github-ci-cd-todos-wacho",
+              title: "TODOS WACHO",
+              description: "Banco consolidado con todas las preguntas de esta unidad (20 preguntas).",
+              questionCount: 20,
+              maxScore: 10.0,
+              allForUnit: true,
+              subjectId: "github",
+              unitId: "ci-cd"
             }
           ]
         }
@@ -196,30 +222,18 @@ export const VAULT_STRUCTURE = {
   ]
 };
 
-/**
- * Obtener materia por ID
- * @param {string} subjectId
- */
+/** Obtener materia por ID */
 export function getSubjectById(subjectId) {
   return VAULT_STRUCTURE.subjects.find(s => s.id === subjectId) || VAULT_STRUCTURE.subjects[0];
 }
 
-/**
- * Obtener unidad por ID
- * @param {string} subjectId
- * @param {string} unitId
- */
+/** Obtener unidad por ID */
 export function getUnitById(subjectId, unitId) {
   const subject = getSubjectById(subjectId);
   return subject?.units.find(u => u.id === unitId) || subject?.units[0];
 }
 
-/**
- * Obtener cuestionario por ID
- * @param {string} subjectId
- * @param {string} unitId
- * @param {string} quizId
- */
+/** Obtener cuestionario por ID */
 export function getQuizById(subjectId, unitId, quizId) {
   const unit = getUnitById(subjectId, unitId);
   if (!unit || !unit.quizzes || unit.quizzes.length === 0) return null;
@@ -243,8 +257,11 @@ export function getQuestionsForQuiz(quiz, allQuestions = []) {
     if (quiz.subjectId === "fundamentos-backend" || quiz.unitId === "fb-parcial-1" || quiz.id === "quiz-fb-p1-todos-wacho") {
       return allQuestions.filter(q => q.subject === "Fundamentos Backend" || q.id.startsWith("fb-p1-"));
     }
-    if (quiz.subjectId === "github" || quiz.unitId === "comandos" || quiz.id === "quiz-github-comandos-todos-wacho") {
-      return allQuestions.filter(q => q.subject === "GitHub" || q.id.startsWith("gh-cmd-"));
+    if (quiz.unitId === "comandos" || quiz.id === "quiz-github-comandos-todos-wacho") {
+      return allQuestions.filter(q => (q.subject === "GitHub" && q.unit === "Comandos") || q.id.startsWith("gh-cmd-"));
+    }
+    if (quiz.unitId === "ci-cd" || quiz.id === "quiz-github-ci-cd-todos-wacho") {
+      return allQuestions.filter(q => (q.subject === "GitHub" && q.unit === "CI/CD") || q.id.startsWith("gh-cicd-"));
     }
   }
 
