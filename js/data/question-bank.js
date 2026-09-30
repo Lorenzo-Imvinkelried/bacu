@@ -17,6 +17,13 @@ import {
   CALIDAD_UNIDAD_3_QUESTIONS
 } from "./ingenieria-y-calidad/parcial-1/index.js";
 
+import {
+  BACKEND_PARCIAL_1_QUESTIONS,
+  BACKEND_UNIDAD_1_QUESTIONS,
+  BACKEND_UNIDAD_2_QUESTIONS,
+  BACKEND_UNIDAD_3_QUESTIONS
+} from "./fundamentos-backend/parcial-1/index.js";
+
 // Re-exportaciones individuales y por parcial
 export { 
   PARCIAL_1_QUESTIONS,
@@ -31,9 +38,17 @@ export {
   CALIDAD_UNIDAD_3_QUESTIONS
 } from "./ingenieria-y-calidad/parcial-1/index.js";
 
+export {
+  BACKEND_PARCIAL_1_QUESTIONS,
+  BACKEND_UNIDAD_1_QUESTIONS,
+  BACKEND_UNIDAD_2_QUESTIONS,
+  BACKEND_UNIDAD_3_QUESTIONS
+} from "./fundamentos-backend/parcial-1/index.js";
+
 // Banco global de preguntas de la aplicación
 export const QUESTION_BANK = [
-  ...PARCIAL_1_QUESTIONS
+  ...PARCIAL_1_QUESTIONS,
+  ...BACKEND_PARCIAL_1_QUESTIONS
 ];
 
 /**

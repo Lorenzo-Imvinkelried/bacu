@@ -1,0 +1,1098 @@
+================================================================================
+BAÚL DE CUESTIONARIOS - PREGUNTAS Y RESPUESTAS OFICIALES
+Cuestionario: UNIDAD 3 (53 preguntas)
+Asignatura: Fundamentos Backend
+Unidad / Parcial: Parcial 1
+Institución: Universidad Tecnológica Nacional - Facultad Regional Santa Fe (UTN FRSF)
+Total de preguntas en este cuestionario: 53
+Fecha de exportación: 30/9/2026
+================================================================================
+
+--------------------------------------------------------------------------------
+PREGUNTA 1 (ID: fb-p1-u3-q01) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Grandes volúmenes de datos
+
+ENUNCIADO:
+¿Cuál es una característica esencial de los programas orientados al manejo de grandes volúmenes de datos (procesos batch)?
+
+OPCIONES:
+  [a] Requieren la confirmación interactiva y la autorización paso a paso de un operador sobre cada registro.
+  [b] Se ejecutan de forma programada y automatizada, sin intervención humana directa.  <--- [CORRECTA]
+  [c] Se diseñan específicamente para operar en ventanas diurnas coincidiendo con el pico de demanda de los usuarios.
+  [d] Solo pueden manipular estructuras transitorias que residen en la memoria volátil de clientes web remotos.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Se ejecutan de forma programada y automatizada, sin intervención humana directa.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Los procesos batch se definen como programas autónomos que se ejecutan de manera programada sin que sea necesaria la intervención humana durante su procesamiento. (Diapositiva 2)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 2 (ID: fb-p1-u3-q02) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Grandes volúmenes de datos
+
+ENUNCIADO:
+¿Por qué los procesos de procesamiento por lotes suelen ejecutarse en horarios de baja carga operativa?
+
+OPCIONES:
+  [a] Porque los sistemas operativos restringen el acceso concurrente a los canales de lectura y escritura durante el día.
+  [b] Para no saturar ni degradar el rendimiento del entorno transaccional con operaciones masivas de datos.  <--- [CORRECTA]
+  [c] Porque el framework Spring Batch requiere el cese programado de los servicios web para inicializar sus contextos.
+  [d] Para forzar la liberación periódica de conexiones y el reinicio preventivo de los motores de persistencia relacional.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Para no saturar ni degradar el rendimiento del entorno transaccional con operaciones masivas de datos.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Al procesar grandes volúmenes de datos que consumen recursos intensivos de E/S y CPU, se programan en ventanas de baja demanda para evitar afectar la experiencia de usuario y las transacciones en vivo. (Diapositiva 2)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 3 (ID: fb-p1-u3-q03) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Casos de uso Batch
+
+ENUNCIADO:
+¿Cuáles de los siguientes son casos de uso típicos para aplicaciones batch mencionados en el material? (Seleccione todas las opciones correctas)
+
+OPCIONES:
+  [a] Generación periódica de resúmenes de cuenta bancarios o comerciales.  <--- [CORRECTA]
+  [b] Generación masiva de documentos (por ejemplo, cartas de bienvenida a nuevos usuarios).  <--- [CORRECTA]
+  [c] Transmisión interactiva de mensajería bidireccional cliente-servidor mediante WebSockets en tiempo real.
+  [d] Validación síncrona de credenciales y autenticación biométrica instantánea de usuarios en un portal web.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Generación periódica de resúmenes de cuenta bancarios o comerciales.
+  -> Opción [b]: Generación masiva de documentos (por ejemplo, cartas de bienvenida a nuevos usuarios).
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva indica como ejemplos clásicos la generación de resúmenes de cuenta y la producción masiva de documentos. Las interacciones en tiempo real corresponden a sistemas transaccionales sincrónicos o reactivos. (Diapositiva 2)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 4 (ID: fb-p1-u3-q04) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Estrategia de procesamiento
+
+ENUNCIADO:
+¿En qué estrategia fundamental de procesamiento se basa el framework Spring Batch para gestionar grandes volúmenes de información de manera eficiente?
+
+OPCIONES:
+  [a] Carga masiva de la totalidad de los datos en memoria previa al procesamiento.
+  [b] Procesamiento orientado a lotes fraccionados denominados chunks.  <--- [CORRECTA]
+  [c] Procesamiento individual registro a registro con transacciones inmediatas.
+  [d] Delegación del cómputo exclusivo en stored procedures de la base de datos.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Procesamiento orientado a lotes fraccionados denominados chunks.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Spring Batch se fundamenta en el procesamiento basado en chunks (fragmentos o bloques de tamaño configurable), lo que permite leer, procesar y commitear transacciones en lotes controlados sin agotar la memoria. (Diapositiva 2)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 5 (ID: fb-p1-u3-q05) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Arquitectura General de Spring Batch
+
+ENUNCIADO:
+Según el diagrama arquitectónico de Spring Batch, ¿cuál es el componente central con el que interactúan tanto JobLauncher, como Job y Step para persistir su estado?
+
+OPCIONES:
+  [a] ItemWriter
+  [b] ItemProcessor
+  [c] JobRepository  <--- [CORRECTA]
+  [d] FlatFileItemReader
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: JobRepository
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En el diagrama general, JobRepository actúa como la infraestructura central de persistencia que mantiene comunicación bidireccional con el JobLauncher, el Job y los Steps para registrar metadatos de ejecución. (Diapositiva 3)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 6 (ID: fb-p1-u3-q06) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Arquitectura General de Spring Batch
+
+ENUNCIADO:
+De acuerdo con las cardinalidades reflejadas en la arquitectura de Spring Batch, ¿cuál es la relación cuantitativa entre un Job y sus Steps?
+
+OPCIONES:
+  [a] Un Job contiene estrictamente un único Step indivisible a lo largo de su ciclo.
+  [b] Un Job se compone de 1 a muchos (1..*) Steps ejecutados bajo su ciclo.  <--- [CORRECTA]
+  [c] Múltiples Jobs enlazan y comparten de forma obligatoria un único Step global común.
+  [d] Un Step coordina e invoca múltiples Jobs anidados de manera recursiva en su interior.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Un Job se compone de 1 a muchos (1..*) Steps ejecutados bajo su ciclo.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El diagrama especifica una relación de 1 a * entre Job y Step, indicando que un trabajo por lotes puede estar conformado por uno o varios pasos secuenciales de trabajo. (Diapositiva 3)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 7 (ID: fb-p1-u3-q07) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Arquitectura General de Spring Batch
+
+ENUNCIADO:
+En el modelo arquitectónico de un Step, ¿cuáles son los tres componentes funcionales que lo integran con cardinalidad 1 a 1?
+
+OPCIONES:
+  [a] JobLauncher, JobRepository y TransactionManager.
+  [b] ItemReader, ItemProcessor e ItemWriter.  <--- [CORRECTA]
+  [c] Controller, Service Layer y Repository.
+  [d] Model, JPA Entity y DataSource.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: ItemReader, ItemProcessor e ItemWriter.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Cada Step convencional basado en chunks conecta internamente con tres componentes especializados: un ItemReader (lectura), un ItemProcessor (transformación/negocio) y un ItemWriter (escritura/persistencia). (Diapositiva 3)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 8 (ID: fb-p1-u3-q08) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: JobRepository y Metadatos
+
+ENUNCIADO:
+¿Cuál es la función primaria del componente JobRepository en el ecosistema Spring Batch?
+
+OPCIONES:
+  [a] Compilar dinámicamente y validar el código Java de los procesadores antes de abrir las transacciones batch.
+  [b] Almacenar y administrar los datos y metadatos de las distintas ejecuciones de los jobs en la base de datos.  <--- [CORRECTA]
+  [c] Controlar la apertura, autenticación y cierre de conexiones HTTP seguras hacia los clientes externos.
+  [d] Transformar y serializar los registros CSV a estructuras binarias omitiendo la interacción con la base de datos.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Almacenar y administrar los datos y metadatos de las distintas ejecuciones de los jobs en la base de datos.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+JobRepository es el mecanismo encargado de persistir el historial, parámetros, estados y contextos de cada corrida en un conjunto predeterminado de tablas relacionales. (Diapositiva 4)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 9 (ID: fb-p1-u3-q09) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: JobRepository y Tablas
+
+ENUNCIADO:
+¿Cuáles de las siguientes tablas forman parte del esquema de base de datos administrado por JobRepository según el material? (Seleccione todas las opciones correctas)
+
+OPCIONES:
+  [a] BATCH_JOB_INSTANCE  <--- [CORRECTA]
+  [b] BATCH_JOB_EXECUTION  <--- [CORRECTA]
+  [c] BATCH_STEP_EXECUTION  <--- [CORRECTA]
+  [d] SPRING_SESSION_ATTRIBUTES
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: BATCH_JOB_INSTANCE
+  -> Opción [b]: BATCH_JOB_EXECUTION
+  -> Opción [c]: BATCH_STEP_EXECUTION
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva lista textualmente las tablas de Spring Batch: BATCH_JOB_INSTANCE, BATCH_JOB_EXECUTION, BATCH_JOB_EXECUTION_CONTEXT, BATCH_JOB_EXECUTION_PARAMS, BATCH_STEP_EXECUTION y BATCH_STEP_EXECUTION_CONTEXT. (Diapositiva 4)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 10 (ID: fb-p1-u3-q10) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: JobRepository y Tablas
+
+ENUNCIADO:
+Según el modelo relacional expuesto, ¿cuál es la relación de cardinalidad existente entre BATCH_JOB_INSTANCE y BATCH_JOB_EXECUTION?
+
+OPCIONES:
+  [a] 1 Instancia : 1 Corrida
+  [b] 1 Instancia : N Corridas (1 a muchos)  <--- [CORRECTA]
+  [c] N Instancias : 1 Corrida
+  [d] N Instancias : N Corridas
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: 1 Instancia : N Corridas (1 a muchos)
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva indica de forma explícita: «1 Instancia : N corridas». Una instancia representa la definición conceptual de un Job asociado a determinados parámetros identificatorios, mientras que cada corrida o intento de ejecución real genera una nueva entrada en BATCH_JOB_EXECUTION. (Diapositiva 4)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 11 (ID: fb-p1-u3-q11) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: JobRepository y Tablas
+
+ENUNCIADO:
+En la tabla BATCH_JOB_EXECUTION, ¿cuál es la columna que almacena el resultado o fase en la que se encuentra la ejecución (por ejemplo: STARTING, STARTED, COMPLETED, FAILED)?
+
+OPCIONES:
+  [a] PARAMETER_NAME
+  [b] SHORT_CONTEXT
+  [c] STATUS  <--- [CORRECTA]
+  [d] JOB_NAME
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: STATUS
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+De acuerdo con la estructura mostrada en el esquema relacional, BATCH_JOB_EXECUTION contiene los campos JOB_EXECUTION_ID (PK), JOB_INSTANCE_ID (FK) y STATUS (varchar). (Diapositiva 4)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 12 (ID: fb-p1-u3-q12) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: JobRepository y Tablas
+
+ENUNCIADO:
+¿Qué relación de cardinalidad vincula a la tabla BATCH_JOB_EXECUTION con BATCH_STEP_EXECUTION?
+
+OPCIONES:
+  [a] 1 : 1 (Un Job Execution se asocia estrictamente a un único Step Execution)
+  [b] 1 : N (Un Job Execution tiene 1 a N Step Executions)  <--- [CORRECTA]
+  [c] N : 1 (Múltiples Job Executions se agrupan bajo un único Step Execution)
+  [d] N : M (Múltiples Job Executions vinculados mediante una tabla intermedia)
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: 1 : N (Un Job Execution tiene 1 a N Step Executions)
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Como un Job puede constar de varios Steps, una ejecución de Job (BATCH_JOB_EXECUTION) se asocia con una o varias ejecuciones de pasos (BATCH_STEP_EXECUTION), representada en el diagrama con cardinalidad 1:N. (Diapositiva 4)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 13 (ID: fb-p1-u3-q13) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: JobRepository y Tablas
+
+ENUNCIADO:
+¿Cuáles de las siguientes tablas de Spring Batch están destinadas a almacenar pares clave-valor y estados serializados para permitir reinicios de trabajos (ExecutionContext)? (Seleccione todas las opciones correctas)
+
+OPCIONES:
+  [a] BATCH_JOB_EXECUTION_CONTEXT  <--- [CORRECTA]
+  [b] BATCH_STEP_EXECUTION_CONTEXT  <--- [CORRECTA]
+  [c] BATCH_JOB_INSTANCE
+  [d] BATCH_JOB_EXECUTION_PARAMS
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: BATCH_JOB_EXECUTION_CONTEXT
+  -> Opción [b]: BATCH_STEP_EXECUTION_CONTEXT
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Tanto a nivel de Job (BATCH_JOB_EXECUTION_CONTEXT) como a nivel de Step (BATCH_STEP_EXECUTION_CONTEXT), Spring Batch persiste el contexto de ejecución (SHORT_CONTEXT / serialized context) para registrar datos de progreso y estado recuperable. (Diapositiva 4)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 14 (ID: fb-p1-u3-q14) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: JobLauncher
+
+ENUNCIADO:
+¿Cuál es la responsabilidad principal asignada a JobLauncher en una aplicación Spring Batch?
+
+OPCIONES:
+  [a] Definir y ejecutar las consultas JPQL de lectura paginada dentro de los repositorios.
+  [b] Lanzar los procesos batch suministrando los parámetros de entrada deseados.  <--- [CORRECTA]
+  [c] Escribir y persistir físicamente los bloques de datos procesados en archivos planos.
+  [d] Generar automáticamente los esquemas DDL de base de datos en tiempo de arranque.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Lanzar los procesos batch suministrando los parámetros de entrada deseados.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El material indica textualmente que JobLauncher «es el componente encargado de lanzar los procesos suministrando los parámetros de entrada deseados». (Diapositiva 5)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 15 (ID: fb-p1-u3-q15) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: JobLauncher y Configuración
+
+ENUNCIADO:
+Con respecto a la anotación @EnableBatchProcessing, ¿cuál es su estado técnico según lo expresado en la diapositiva?
+
+OPCIONES:
+  [a] Es una anotación obligatoria en todas las versiones del framework para inicializar y compilar cualquier componente batch.
+  [b] Brinda la configuración por defecto del ecosistema batch, pero actualmente se considera opcional en versiones modernas de Spring Boot.  <--- [CORRECTA]
+  [c] Ha sido dada de baja en las especificaciones actuales y su declaración provoca fallas irreversibles durante el arranque.
+  [d] Solo se permite su declaración en clases de configuración que implementen explícitamente la interfaz ItemWriter.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Brinda la configuración por defecto del ecosistema batch, pero actualmente se considera opcional en versiones modernas de Spring Boot.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El texto explicita: «@EnableBatchProcessing es la anotación base que brinda la configuración por defecto. Si necesitamos sobreescribirlo, se puede declarar manualmente. -> Opcional actualmente». (Diapositiva 5)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 16 (ID: fb-p1-u3-q16) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: JobLauncher
+
+ENUNCIADO:
+¿Qué parámetros o dependencias se pueden configurar en un JobLauncher de acuerdo con la diapositiva? (Seleccione todas las opciones correctas)
+
+OPCIONES:
+  [a] El JobRepository a utilizar.  <--- [CORRECTA]
+  [b] El taskExecutor (pudiendo definirse de manera sincrónica o asincrónica).  <--- [CORRECTA]
+  [c] El dialecto SQL y la estrategia de conexión nativa del motor relacional.
+  [d] La codificación de caracteres y formato delimitador del archivo de salida.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: El JobRepository a utilizar.
+  -> Opción [b]: El taskExecutor (pudiendo definirse de manera sincrónica o asincrónica).
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva lista específicamente dos elementos clave configurables en el launcher: el JobRepository a utilizar y el taskExecutor (sincrónico o asincrónico). (Diapositiva 5)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 17 (ID: fb-p1-u3-q17) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: JobLauncher
+
+ENUNCIADO:
+¿Qué implicancia práctica tiene configurar un taskExecutor asincrónico en el JobLauncher?
+
+OPCIONES:
+  [a] El launcher retorna inmediatamente el control al hilo invocador (por ejemplo, una respuesta HTTP) mientras el batch continúa ejecutándose en segundo plano.  <--- [CORRECTA]
+  [b] El launcher bloquea de forma indefinida el hilo principal del servidor web hasta verificar que la totalidad de los chunks hayan concluido exitosamente.
+  [c] Se deshabilita por completo la gestión transaccional automática de la base de datos, forzando a realizar commits manuales en cada uno de los steps.
+  [d] El Job se particiona y distribuye obligatoriamente entre múltiples nodos remotos de cómputo que prescinden de una base de datos centralizada.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: El launcher retorna inmediatamente el control al hilo invocador (por ejemplo, una respuesta HTTP) mientras el batch continúa ejecutándose en segundo plano.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Al emplear un ejecutor asincrónico, el lanzamiento del trabajo no es bloqueante; la llamada devuelve inmediatamente un estado preliminar (permitiendo a una API responder de inmediato) mientras el procesamiento ocurre en un hilo independiente. (Diapositiva 5)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 18 (ID: fb-p1-u3-q18) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Job
+
+ENUNCIADO:
+¿Cómo se define conceptualmente al objeto Job en Spring Batch?
+
+OPCIONES:
+  [a] Es el componente encargado de deserializar cadenas JSON a entidades de dominio.
+  [b] Es el objeto que representa el proceso global que se debe llevar a cabo.  <--- [CORRECTA]
+  [c] Es un hilo reservado por el sistema operativo para ejecutar transacciones en la base.
+  [d] Es la entidad que registra las fallas transitorias en la tabla de migraciones.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Es el objeto que representa el proceso global que se debe llevar a cabo.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva señala explícitamente: «Es el objeto que representa el proceso que hay que llevar a cabo». (Diapositiva 6)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 19 (ID: fb-p1-u3-q19) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Job
+
+ENUNCIADO:
+Al configurar un objeto Job, ¿cuáles de los siguientes parámetros son de carácter obligatorio según el material? (Seleccione todas las opciones correctas)
+
+OPCIONES:
+  [a] name  <--- [CORRECTA]
+  [b] steps  <--- [CORRECTA]
+  [c] jobRepository  <--- [CORRECTA]
+  [d] incrementer
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: name
+  -> Opción [b]: steps
+  -> Opción [c]: jobRepository
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva clasifica explícitamente a name, steps y jobRepository como parámetros «(obligatorio)». Por su parte, restartable, incrementer y listeners figuran como «(opcional)». (Diapositiva 6)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 20 (ID: fb-p1-u3-q20) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Job
+
+ENUNCIADO:
+¿Cuáles de los siguientes parámetros de configuración de un Job son definidos como opcionales en la diapositiva? (Seleccione todas las opciones correctas)
+
+OPCIONES:
+  [a] restartable  <--- [CORRECTA]
+  [b] incrementer  <--- [CORRECTA]
+  [c] listeners  <--- [CORRECTA]
+  [d] steps
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: restartable
+  -> Opción [b]: incrementer
+  -> Opción [c]: listeners
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En la diapositiva 6, restartable, incrementer y listeners se encuentran expresamente categorizados como «(opcional)», mientras que steps es obligatorio. (Diapositiva 6)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 21 (ID: fb-p1-u3-q21) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Job
+
+ENUNCIADO:
+¿Para qué se utiliza el parámetro opcional incrementer en la configuración de un Job?
+
+OPCIONES:
+  [a] Para ajustar dinámicamente la capacidad del chunk y la memoria intermedia asignada a cada paso según la carga y disponibilidad de recursos del sistema.
+  [b] Para generar automáticamente nuevos identificadores de parámetros (por ejemplo un contador de corridas o timestamp) permitiendo iniciar nuevas instancias del Job sin duplicar parámetros manualmente.  <--- [CORRECTA]
+  [c] Para computar y registrar en tiempo real el volumen acumulado de registros leídos y procesados por el ItemReader dentro del contexto de ejecución.
+  [d] Para escalar horizontalmente la infraestructura aumentando de forma automática el número de réplicas y pods asignados a la tarea en el clúster.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Para generar automáticamente nuevos identificadores de parámetros (por ejemplo un contador de corridas o timestamp) permitiendo iniciar nuevas instancias del Job sin duplicar parámetros manualmente.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Un JobParametersIncrementer permite encadenar corridas consecutivas variando automáticamente un parámetro (como un ID secuencial o fecha), creando nuevas JobInstance sin violar la unicidad de parámetros. (Diapositiva 6)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 22 (ID: fb-p1-u3-q22) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Steps
+
+ENUNCIADO:
+¿Cómo define el material a un Step dentro de la arquitectura de Spring Batch?
+
+OPCIONES:
+  [a] Como un script DDL encargado de aplicar modificaciones al esquema de base de datos.
+  [b] Como una unidad de trabajo que representa un aspecto o fase del proceso total.  <--- [CORRECTA]
+  [c] Como un hilo de fondo responsable de supervisar el uso de memoria en el servidor.
+  [d] Como una anotación de Spring encargada de convertir URLs REST a métodos Java.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Como una unidad de trabajo que representa un aspecto o fase del proceso total.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La definición textual de la diapositiva indica: «Cada Step representa una unidad de trabajo, un aspecto del proceso total». (Diapositiva 7)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 23 (ID: fb-p1-u3-q23) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Steps
+
+ENUNCIADO:
+En la ejecución de un Job compuesto por múltiples Steps, ¿cuál es la forma de ejecución predeterminada entre ellos?
+
+OPCIONES:
+  [a] Se ejecutan de manera simultánea en hilos aleatorios no coordinados.
+  [b] Se ejecutan de manera secuencial, uno a continuación de otro.  <--- [CORRECTA]
+  [c] Se ejecuta únicamente el primer Step y los restantes quedan omitidos.
+  [d] Se ejecutan en orden inverso al declarado en la configuración del Job.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Se ejecutan de manera secuencial, uno a continuación de otro.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva especifica claramente respecto a los Steps que: «Se ejecutan de manera secuencial». (Diapositiva 7)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 24 (ID: fb-p1-u3-q24) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Steps - ItemProcessor
+
+ENUNCIADO:
+¿Cuál es la responsabilidad puntual asignada al ItemProcessor dentro de un Step?
+
+OPCIONES:
+  [a] Leer y extraer secuencialmente los registros directamente desde el almacenamiento o fuente física de entrada.
+  [b] Realizar el procesamiento, transformación o validación sobre los ítems del chunk que se está procesando.  <--- [CORRECTA]
+  [c] Consolidar y comitear de forma transaccional el bloque de datos en el repositorio o base de destino.
+  [d] Persistir el historial de fallas y códigos de error HTTP dentro de la tabla BATCH_JOB_EXECUTION.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Realizar el procesamiento, transformación o validación sobre los ítems del chunk que se está procesando.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El ItemProcessor tiene como rol tomar cada ítem leído y aplicar sobre él la lógica de negocio o transformación antes de pasarlo al componente de escritura. (Diapositiva 7)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 25 (ID: fb-p1-u3-q25) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Readers
+
+ENUNCIADO:
+Al examinar la interfaz ItemReader de Spring Batch:
+
+public interface ItemReader<T> {
+  T read() throws Exception;
+}
+
+¿Cuál es la mecánica de funcionamiento de su método read()?
+
+OPCIONES:
+  [a] Lee la totalidad de la base de datos de una sola vez y retorna una colección con todos los registros.
+  [b] Retorna un único ítem T cada vez que es invocado, o devuelve null cuando no quedan más elementos por leer.  <--- [CORRECTA]
+  [c] Retorna un arreglo de tamaño fijo que coincide exactamente con el total de pasos configurados en el Job.
+  [d] Escribe directamente los registros leídos en un archivo de salida descartando el paso por el procesador.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Retorna un único ítem T cada vez que es invocado, o devuelve null cuando no quedan más elementos por leer.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El contrato de ItemReader establece que read() procesa y entrega un elemento a la vez (T). Spring Batch invoca este método de forma iterativa hasta reunir un chunk completo o hasta recibir null, lo que señaliza el fin de los datos. (Diapositiva 8)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 26 (ID: fb-p1-u3-q26) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Readers
+
+ENUNCIADO:
+¿Qué tipo de fuentes de datos está diseñado para leer el componente FlatFileItemReader según el material?
+
+OPCIONES:
+  [a] Colecciones distribuidas en motores de bases de datos NoSQL orientados a grafos.
+  [b] Archivos de texto plano, ya sea con formato delimitado (CSV) o de ancho fijo.  <--- [CORRECTA]
+  [c] Tramos de paquetes binarios comprimidos transmitidos mediante sockets de red TCP.
+  [d] Encabezados y metadatos de peticiones HTTP interceptadas en los controladores.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Archivos de texto plano, ya sea con formato delimitado (CSV) o de ancho fijo.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva indica textualmente que FlatFileItemReader: «lee archivos de texto plano, sea CSV o de ancho fijo». (Diapositiva 8)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 27 (ID: fb-p1-u3-q27) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Readers
+
+ENUNCIADO:
+¿Cómo opera el lector JpaPagingItemReader (o su variante RepositoryItemReader) al consultar información de la base de datos?
+
+OPCIONES:
+  [a] Carga la totalidad de la tabla a memoria mediante una única consulta SQL masiva sin paginación.
+  [b] Trae los datos de a páginas, realizando una consulta de base de datos por cada página requerida.  <--- [CORRECTA]
+  [c] Extrae los registros a través de canales de mensajería asincrónica gestionados por RabbitMQ.
+  [d] Procesa secuencialmente archivos delimitados almacenados en el sistema de directorios local.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Trae los datos de a páginas, realizando una consulta de base de datos por cada página requerida.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El material indica que JpaPagingItemReader «trae los datos de a páginas (una consulta por página)», lo cual optimiza drásticamente el uso de memoria RAM en el servidor de aplicaciones. (Diapositiva 8)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 28 (ID: fb-p1-u3-q28) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Readers
+
+ENUNCIADO:
+¿Cuáles de las siguientes implementaciones de ItemReader mencionadas en la diapositiva se utilizan para consumir datos desde sistemas de colas de mensajería? (Seleccione todas las opciones correctas)
+
+OPCIONES:
+  [a] AmqpItemReader  <--- [CORRECTA]
+  [b] JmsItemReader  <--- [CORRECTA]
+  [c] FlatFileItemReader
+  [d] JpaPagingItemReader
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: AmqpItemReader
+  -> Opción [b]: JmsItemReader
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva agrupa a AmqpItemReader y JmsItemReader bajo la descripción: «leen desde una cola de mensajes». (Diapositiva 8)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 29 (ID: fb-p1-u3-q29) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Writers
+
+ENUNCIADO:
+Al contrastar la interfaz ItemWriter con ItemReader:
+
+public interface ItemWriter<T> {
+  void write(Chunk<? extends T> chunk) throws Exception;
+}
+
+¿Cuál es la principal diferencia funcional en la forma en que interactúan con los datos?
+
+OPCIONES:
+  [a] El Reader extrae colecciones completas en memoria, mientras que el Writer persiste registros individuales fila por fila.
+  [b] El Reader lee elemento por elemento (T), mientras que el Writer recibe y persiste un bloque completo (Chunk<? extends T>).  <--- [CORRECTA]
+  [c] El Reader se limita a consumir archivos planos, mientras que el Writer opera exclusivamente sobre tablas relacionales SQL.
+  [d] El Writer inicializa las tablas de destino de forma previa a que el Reader comience la lectura de cualquier registro.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: El Reader lee elemento por elemento (T), mientras que el Writer recibe y persiste un bloque completo (Chunk<? extends T>).
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La firma de ItemWriter recibe un objeto Chunk que agrupa todos los elementos leídos y procesados en esa iteración, escribiéndolos en bloque dentro de una misma transacción. (Diapositiva 8 y 9)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 30 (ID: fb-p1-u3-q30) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Writers
+
+ENUNCIADO:
+¿Qué mecanismo utiliza la implementación JpaItemWriter (o RepositoryItemWriter) para almacenar las entidades en la base de datos relacional?
+
+OPCIONES:
+  [a] Ejecuta sentencias SQL concatenadas directamente sobre el socket de red.
+  [b] Escribe en la base de datos utilizando el EntityManager de JPA.  <--- [CORRECTA]
+  [c] Exporta los registros a un archivo intermedio para importación diferida.
+  [d] Encola los objetos en un broker JMS para su persistencia asincrónica.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Escribe en la base de datos utilizando el EntityManager de JPA.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva explicita que JpaItemWriter: «escribe en la base de datos utilizando el EntityManager». (Diapositiva 9)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 31 (ID: fb-p1-u3-q31) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Writers
+
+ENUNCIADO:
+¿Cuál es el propósito de FlatFileItemWriter según la clasificación del documento?
+
+OPCIONES:
+  [a] Persistir entidades en la base de datos gestionando claves autoincrementales.
+  [b] Escribir el resultado del procesamiento en archivos de texto plano.  <--- [CORRECTA]
+  [c] Transmitir eventos y notificaciones a clientes web mediante HTTP/2.
+  [d] Limpiar las tablas de metadatos de JobRepository antes de cada corrida.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Escribir el resultado del procesamiento en archivos de texto plano.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva indica que FlatFileItemWriter: «escribe en archivos de texto plano». (Diapositiva 9)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 32 (ID: fb-p1-u3-q32) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: JobExecutionListener
+
+ENUNCIADO:
+¿Cuáles son los dos métodos fundamentales que definen el ciclo de vida de un Job en la interfaz JobExecutionListener?
+
+OPCIONES:
+  [a] initJob() y destroyJob()
+  [b] beforeJob() y afterJob()  <--- [CORRECTA]
+  [c] startStep() y stopStep()
+  [d] onOpen() y onClose()
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: beforeJob() y afterJob()
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva 10 detalla los dos métodos del ciclo de vida del listener del Job: beforeJob() (ejecutado antes de iniciar el procesamiento) y afterJob() (ejecutado al concluir el Job). (Diapositiva 10)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 33 (ID: fb-p1-u3-q33) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: JobExecutionListener
+
+ENUNCIADO:
+¿Qué tipo de información proporciona el objeto JobExecution que reciben los métodos de JobExecutionListener?
+
+OPCIONES:
+  [a] Credenciales de acceso, contraseñas del motor de persistencia y configuraciones de red en texto plano.
+  [b] Información sobre la ejecución del proceso (tales como estado de finalización, horarios, parámetros y contexto).  <--- [CORRECTA]
+  [c] El volcado íntegro en memoria de la totalidad de registros y archivos planos pendientes de procesar.
+  [d] Los parámetros de red, topología de puertos y balanceadores de carga asignados al clúster de ejecución.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Información sobre la ejecución del proceso (tales como estado de finalización, horarios, parámetros y contexto).
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El texto indica textualmente: «JobExecution -> contiene información de la ejecución», permitiendo inspeccionar estados (BatchStatus, ExitStatus), excepciones lanzadas, tiempos de ejecución y parámetros. (Diapositiva 10)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 34 (ID: fb-p1-u3-q34) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Ciclo de Ejecución
+
+ENUNCIADO:
+De acuerdo con el diagrama de flujo del ciclo de ejecución, ¿cuál es la primera acción que tiene lugar al comenzar la ejecución de un Job con listeners configurados?
+
+OPCIONES:
+  [a] Reader: lee un chunk
+  [b] beforeJob()  <--- [CORRECTA]
+  [c] Writer: persiste el chunk
+  [d] Processor: transforma cada item del chunk
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: beforeJob()
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El diagrama sitúa a beforeJob() como el punto inicial del flujo, ejecutándose previamente a cualquier lectura de chunks por parte de los steps. (Diapositiva 11)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 35 (ID: fb-p1-u3-q35) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Ciclo de Ejecución
+
+ENUNCIADO:
+Siguiendo el ciclo de procesamiento dentro de un Step, ¿cuál es el orden secuencial exacto de las fases para cada chunk?
+
+OPCIONES:
+  [a] Writer persiste el chunk -> Processor transforma cada item -> Reader lee un chunk
+  [b] Reader lee un chunk -> Processor transforma cada item del chunk -> Writer persiste el chunk  <--- [CORRECTA]
+  [c] Processor transforma cada item -> Writer persiste el chunk -> Reader lee un chunk
+  [d] Reader lee un chunk -> Writer persiste el chunk -> Processor transforma cada item
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Reader lee un chunk -> Processor transforma cada item del chunk -> Writer persiste el chunk
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El diagrama muestra el flujo: primero el Reader lee los elementos del chunk, luego el Processor transforma uno a uno los ítems leídos de ese chunk, y finalmente el Writer persiste el chunk consolidado. (Diapositiva 11)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 36 (ID: fb-p1-u3-q36) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Ciclo de Ejecución
+
+ENUNCIADO:
+En el diagrama del ciclo de ejecución, ¿qué ocurre inmediatamente después de que el Writer persiste un chunk?
+
+OPCIONES:
+  [a] El Job finaliza automáticamente su ejecución independientemente de si aún quedan datos pendientes en la fuente de entrada.
+  [b] Se evalúa la condición «¿Quedan más chunks?»: si la respuesta es Sí, el flujo regresa a la lectura del siguiente chunk.  <--- [CORRECTA]
+  [c] Se interrumpe el Step para invocar obligatoriamente el método afterJob() y liberar las conexiones activas en el repositorio.
+  [d] Se depuran de forma irreversible los registros de estado almacenados en las tablas de metadatos del framework Spring Batch.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Se evalúa la condición «¿Quedan más chunks?»: si la respuesta es Sí, el flujo regresa a la lectura del siguiente chunk.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Tras persistir el chunk, el flujo se bifurca en la decisión «¿Quedan más chunks?». De haber más datos disponibles (Sí), vuelve al Reader para procesar el nuevo bloque. (Diapositiva 11)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 37 (ID: fb-p1-u3-q37) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Ciclo de Ejecución
+
+ENUNCIADO:
+¿Bajo qué condición concluye formalmente un Job y se ejecuta el método afterJob() según el diagrama?
+
+OPCIONES:
+  [a] Cuando no quedan más chunks en el step actual y la evaluación de «¿Hay otro Step?» resulta en «No».  <--- [CORRECTA]
+  [b] En cuanto el primer chunk del step inicial es procesado y comiteado exitosamente por el Writer.
+  [c] Cuando se produce una excepción no controlada en el ItemReader que omite los steps siguientes.
+  [d] Cada vez que finaliza la lectura de una página de datos configurada en el JpaPagingItemReader.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Cuando no quedan más chunks en el step actual y la evaluación de «¿Hay otro Step?» resulta en «No».
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El diagrama indica que si no quedan más chunks y a la pregunta «¿Hay otro Step?» la respuesta es «No», se llega a «Job finalizado» y acto seguido se ejecuta afterJob(). Si hubiera otro step, el flujo se mueve al «Siguiente Step». (Diapositiva 11)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 38 (ID: fb-p1-u3-q38) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Maneras de Ejecutar un Job
+
+ENUNCIADO:
+¿Cuáles de las siguientes opciones corresponden a formas válidas de ejecutar un Job en Spring Batch según la lista presentada? (Seleccione todas las opciones correctas)
+
+OPCIONES:
+  [a] Automáticamente al arrancar la aplicación.  <--- [CORRECTA]
+  [b] Manualmente vía código (por ejemplo mediante CommandLineRunner).  <--- [CORRECTA]
+  [c] Programado con cron utilizando @Scheduled.  <--- [CORRECTA]
+  [d] Disparado a demanda desde un endpoint REST.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Automáticamente al arrancar la aplicación.
+  -> Opción [b]: Manualmente vía código (por ejemplo mediante CommandLineRunner).
+  -> Opción [c]: Programado con cron utilizando @Scheduled.
+  -> Opción [d]: Disparado a demanda desde un endpoint REST.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva enumera de forma completa: «Automáticamente al arrancar la aplicación», «Manualmente vía código (CommandLineRunner)», «Programado con cron (@Scheduled)», «Disparado desde un endpoint REST», «Desde línea de comandos (CommandLineJobRunner)» y «Mediante un scheduler externo». (Diapositiva 12)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 39 (ID: fb-p1-u3-q39) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Maneras de Ejecutar un Job
+
+ENUNCIADO:
+Si se requiere iniciar un proceso batch a partir de una acción directa de un usuario en un panel de administración web, ¿cuál de las alternativas listadas en el material resulta la más apropiada?
+
+OPCIONES:
+  [a] Configurar una expresión cron fija mediante @Scheduled para ejecutarse periódicamente.
+  [b] Disparar la ejecución del Job desde un endpoint REST expuesto en un controlador.  <--- [CORRECTA]
+  [c] Reiniciar el contenedor de la aplicación para desencadenar el Job durante el arranque.
+  [d] Compilar y desplegar un nuevo ejecutable JAR desde la consola con cada solicitud web.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Disparar la ejecución del Job desde un endpoint REST expuesto en un controlador.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva incluye explícitamente «Disparado desde un endpoint REST», lo que permite recibir una petición HTTP en un controlador e invocar a jobLauncher.run(job, jobParameters). (Diapositiva 12)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 40 (ID: fb-p1-u3-q40) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Maneras de Ejecutar un Job
+
+ENUNCIADO:
+¿Qué componente nativo provisto por el framework permite lanzar Jobs directamente desde la consola o terminal del sistema operativo?
+
+OPCIONES:
+  [a] CommandLineJobRunner  <--- [CORRECTA]
+  [b] RestJobController
+  [c] CronJobDispatcher
+  [d] DatabaseMigrationRunner
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: CommandLineJobRunner
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva lista textualmente: «Desde línea de comandos (CommandLineJobRunner)». (Diapositiva 12)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 41 (ID: fb-p1-u3-q41) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Consideraciones de Diseño
+
+ENUNCIADO:
+¿Por qué es fundamental prestar especial atención a la estrategia de lectura de ítems en relación con la base de datos según la diapositiva 13?
+
+OPCIONES:
+  [a] Porque el framework realiza un commit de base de datos antes de consultar los registros.
+  [b] Porque la consulta de datos se ejecuta por cada chunk que se procesa en el Step.  <--- [CORRECTA]
+  [c] Porque los lectores de Spring Batch invalidan automáticamente los índices SQL de las tablas.
+  [d] Porque el compilador no permite utilizar repositorios JPA dentro de un Step.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Porque la consulta de datos se ejecuta por cada chunk que se procesa en el Step.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El material advierte explícitamente: «Prestar atención a la manera de leer los ítems, la consulta se ejecuta por cada chunk», lo que puede ocasionar problemas de rendimiento o lecturas inconsistentes si las consultas o paginaciones no están bien diseñadas. (Diapositiva 13)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 42 (ID: fb-p1-u3-q42) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Consideraciones de Diseño
+
+ENUNCIADO:
+¿Cuáles de las siguientes recomendaciones prácticas se señalan en la diapositiva «SpringBatch - Tener en cuenta»? (Seleccione todas las opciones correctas)
+
+OPCIONES:
+  [a] Determinar correctamente el tamaño de cada chunk (chunk size).  <--- [CORRECTA]
+  [b] Utilizar Listeners para enriquecer la funcionalidad del proceso batch.  <--- [CORRECTA]
+  [c] Evitar siempre el uso de JobRepository para no consumir espacio en base de datos.
+  [d] Ejecutar todos los Steps de forma paralela y concurrente obligatoria.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Determinar correctamente el tamaño de cada chunk (chunk size).
+  -> Opción [b]: Utilizar Listeners para enriquecer la funcionalidad del proceso batch.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Los tres puntos destacados en la diapositiva son: prestar atención a cómo se leen los ítems (consulta por cada chunk), utilizar listeners para enriquecer funcionalidad y determinar correctamente el tamaño de cada chunk. (Diapositiva 13)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 43 (ID: fb-p1-u3-q43) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Consideraciones de Diseño
+
+ENUNCIADO:
+¿Qué impacto técnico tiene definir un tamaño de chunk (chunk size) inadecuado (demasiado pequeño o excesivamente grande)?
+
+OPCIONES:
+  [a] Un chunk mal dimensionado desactiva las optimizaciones automáticas del recolector de basura, provocando incompatibilidades con la máquina virtual de Java.
+  [b] Un tamaño muy pequeño genera un exceso de transacciones y sobrecarga de E/S; un tamaño excesivamente grande puede saturar la memoria RAM y generar problemas de rendimiento o caídas.  <--- [CORRECTA]
+  [c] Bloquea los mecanismos de migración de Flyway al inicio, impidiendo que el motor de base de datos verifique el esquema de tablas antes de procesar el lote.
+  [d] Fuerza la reestructuración del Job hacia un modelo monolítico cerrado, anulando la separación en capas y la delegación de tareas en servicios desacoplados.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Un tamaño muy pequeño genera un exceso de transacciones y sobrecarga de E/S; un tamaño excesivamente grande puede saturar la memoria RAM y generar problemas de rendimiento o caídas.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El tamaño del chunk determina cuántos elementos se cargan en memoria antes de escribir y comitear. El balance es clave: chunks mínimos multiplican el overhead transaccional, mientras que chunks masivos aumentan drásticamente el consumo de memoria y el riesgo ante fallos. (Diapositiva 13)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 44 (ID: fb-p1-u3-q44) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Caso Práctico - fillClientesJob
+
+ENUNCIADO:
+En el caso de estudio presentado en la diapositiva 14, ¿cuál es el objetivo del Job denominado fillClientesJob?
+
+OPCIONES:
+  [a] Identificar y depurar de forma permanente a todos los clientes que no registren transacciones ni movimientos durante el último período anual.
+  [b] Buscar clientes con teléfono o dirección nulos, asignarles valores por defecto y persistirlos nuevamente en la base de datos.  <--- [CORRECTA]
+  [c] Generar y enviar notificaciones masivas por correo electrónico con promociones comerciales personalizadas para la nómina completa de usuarios.
+  [d] Extraer la información consolidada de clientes y exportarla a un archivo de texto plano delimitado por comas para su archivo histórico.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Buscar clientes con teléfono o dirección nulos, asignarles valores por defecto y persistirlos nuevamente en la base de datos.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El enunciado detalla: «El job fillClientesJob busca clientes con telefono o direccion nulos, les asigna valores por defecto ("0000-0000" y "Sin domicilio") y los persiste de nuevo en la base, procesando de a chunks de 10». (Diapositiva 14)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 45 (ID: fb-p1-u3-q45) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Caso Práctico - fillClientesJob
+
+ENUNCIADO:
+De acuerdo con la descripción del fillClientesJob, ¿cuál es el tamaño de chunk configurado para dicho procesamiento por lotes?
+
+OPCIONES:
+  [a] Chunks de 1 registro individual.
+  [b] Chunks de 10 registros.  <--- [CORRECTA]
+  [c] Chunks de 100 registros.
+  [d] Chunks de 50 registros.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Chunks de 10 registros.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva indica de forma textual y precisa: «...procesando de a chunks de 10». (Diapositiva 14)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 46 (ID: fb-p1-u3-q46) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Caso Práctico - fillClientesJob
+
+ENUNCIADO:
+¿Qué valores por defecto asigna el fillClientesJob a los campos que se encuentran nulos en los registros de clientes?
+
+OPCIONES:
+  [a] Teléfono: "N/A" | Dirección: "Desconocida"
+  [b] Teléfono: "0000-0000" | Dirección: "Sin domicilio"  <--- [CORRECTA]
+  [c] Teléfono: "1234-5678" | Dirección: "Domicilio central"
+  [d] Teléfono: "Sin datos" | Dirección: "Pendiente"
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Teléfono: "0000-0000" | Dirección: "Sin domicilio"
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva explicita puntualmente: «les asigna valores por defecto ("0000-0000" y "Sin domicilio")». (Diapositiva 14)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 47 (ID: fb-p1-u3-q47) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Sincronización entre Pods
+
+ENUNCIADO:
+En una arquitectura moderna basada en microservicios y contenedores, ¿cuándo surge el problema de «Sincronización entre pods» en relación con los procesos batch?
+
+OPCIONES:
+  [a] Cuando las réplicas del backend pierden conectividad externa y no pueden verificar los certificados de seguridad en el entorno de producción.
+  [b] Cuando existen múltiples réplicas o instancias (pods) del mismo servicio conectadas a la misma base de datos ejecutando el batch simultáneamente.  <--- [CORRECTA]
+  [c] Cuando se implementa Project Lombok en conjunto con entidades JPA generando colisiones entre los identificadores autoincrementales de las tablas.
+  [d] Cuando la base de datos transaccional se reemplaza por intermediarios de colas AMQP sin soporte para sincronización distribuida entre nodos.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Cuando existen múltiples réplicas o instancias (pods) del mismo servicio conectadas a la misma base de datos ejecutando el batch simultáneamente.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El problema se manifiesta cuando el microservicio está escalado horizontalmente (ej. Microservicio 1 Pod 1, Pod 2 y Pod 3) y cada uno de los pods dispara el mismo proceso batch al mismo tiempo contra la misma base de datos. (Diapositiva 15)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 48 (ID: fb-p1-u3-q48) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Sincronización entre Pods
+
+ENUNCIADO:
+¿Cuáles son las consecuencias negativas directas identificadas en el material si múltiples pods corren el mismo proceso batch en simultáneo? (Seleccione todas las opciones correctas)
+
+OPCIONES:
+  [a] Errores a nivel de bases de datos, tales como bloqueos mutuos (dead-locks).  <--- [CORRECTA]
+  [b] Degradación severa de la performance del sistema de almacenamiento.  <--- [CORRECTA]
+  [c] Incompatibilidad de clases por alteración del bytecode en tiempo de ejecución.
+  [d] Cierre abrupto de las conexiones TCP en todos los navegadores conectados.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Errores a nivel de bases de datos, tales como bloqueos mutuos (dead-locks).
+  -> Opción [b]: Degradación severa de la performance del sistema de almacenamiento.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva señala explícitamente: «Al correr en simultáneo, pueden ocurrir errores a nivel de bases de datos (dead-locks), así como también degradar la performance». (Diapositiva 15)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 49 (ID: fb-p1-u3-q49) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Sincronización entre Pods
+
+ENUNCIADO:
+¿Cuál es el principio imperativo que se debe garantizar al implementar ejecuciones batch en entornos distribuidos multi-instancia?
+
+OPCIONES:
+  [a] Se debe duplicar la base de datos para que cada pod tenga su esquema aislado.
+  [b] Se debe asegurar que sólo una instancia ejecute el batch job a la vez.  <--- [CORRECTA]
+  [c] Se debe apagar el clúster de Kubernetes cada vez que inicie una migración.
+  [d] Se debe evitar el uso de cualquier mecanismo de locking o control de concurrencia.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Se debe asegurar que sólo una instancia ejecute el batch job a la vez.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva concluye como regla crítica: «Se debe asegurar que sólo una instancia ejecute el batch job». (Diapositiva 15)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 50 (ID: fb-p1-u3-q50) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Sincronización entre Pods
+
+ENUNCIADO:
+¿Cuáles de los siguientes enfoques de sincronización entre pods son propuestos en la diapositiva 16? (Seleccione todas las opciones correctas)
+
+OPCIONES:
+  [a] Un solo pod "líder" ejecuta el scheduling (Leader Election).  <--- [CORRECTA]
+  [b] Locking distribuido (por ejemplo utilizando librerías como ShedLock).  <--- [CORRECTA]
+  [c] Desacoplar el scheduling de la aplicación (por ejemplo creando un pod dedicado mediante Kubernetes).  <--- [CORRECTA]
+  [d] Bloquear manualmente los puertos de red del servidor de base de datos antes de cada corrida.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Un solo pod "líder" ejecuta el scheduling (Leader Election).
+  -> Opción [b]: Locking distribuido (por ejemplo utilizando librerías como ShedLock).
+  -> Opción [c]: Desacoplar el scheduling de la aplicación (por ejemplo creando un pod dedicado mediante Kubernetes).
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva enumera: «Un solo pod "líder" ejecuta el scheduling (Leader Election)», «Locking distribuido (ej: ShedLock)», «Desacoplar el scheduling de la aplicación (por ejemplo crear un pod dedicado a esto mediante Kubernetes)» y «Diseñar el Job para ser idempotente». (Diapositiva 16)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 51 (ID: fb-p1-u3-q51) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Sincronización entre Pods
+
+ENUNCIADO:
+En el marco de las estrategias para mitigar conflictos de concurrencia en batches distribuidos, ¿qué rol cumple «Diseñar el Job para ser idempotente»?
+
+OPCIONES:
+  [a] Actúa como un sustituto autosuficiente que hace innecesario cualquier otro mecanismo de sincronización.
+  [b] Actúa como un enfoque complementario de robustez, no como un sustituto del control de concurrencia.  <--- [CORRECTA]
+  [c] Invalida y bloquea la creación de tablas de metadatos del JobRepository en la base de datos.
+  [d] Restringe a los clientes forzándolos a utilizar peticiones HTTP GET en lugar de verbos mutables.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Actúa como un enfoque complementario de robustez, no como un sustituto del control de concurrencia.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El material enfatiza: «Diseñar el Job para ser idempotente (complementario, no sustituto)». Si bien la idempotencia asegura que procesar los mismos datos múltiples veces no genere inconsistencias lógicas, no previene por sí sola la degradación de performance ni las contiendas por locks a nivel de base de datos. (Diapositiva 16)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 52 (ID: fb-p1-u3-q52) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Sincronización entre Pods
+
+ENUNCIADO:
+¿En qué consiste la solución de «Desacoplar el scheduling de la aplicación» mencionada en el material?
+
+OPCIONES:
+  [a] En trasladar la programación y el disparo del batch fuera de los pods web regulares, empleando un componente externo como un Job o CronJob dedicado de Kubernetes.  <--- [CORRECTA]
+  [b] En delegar la temporización en scripts del cliente web para que disparen peticiones REST consecutivas en ventanas de tiempo previamente acordadas.
+  [c] En prescindir de tecnologías de virtualización y contenedores para ejecutar el backend de forma nativa sobre servidores dedicados de hardware local.
+  [d] En reemplazar las tablas del repositorio por colas de mensajería AMQP sin persistencia que descarten los eventos no consumidos en el período activo.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: En trasladar la programación y el disparo del batch fuera de los pods web regulares, empleando un componente externo como un Job o CronJob dedicado de Kubernetes.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En lugar de que cada réplica de la aplicación tenga un @Scheduled interno que compita con los demás pods, se delega la ejecución en un orquestador externo (como un Job / CronJob de Kubernetes) que levanta un único contenedor efímero dedicado a correr el proceso por lotes. (Diapositiva 16)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 53 (ID: fb-p1-u3-q53) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Sincronización entre Pods
+
+ENUNCIADO:
+¿Cuál es el mecanismo operativo que utiliza una solución de «Locking distribuido» como ShedLock en una arquitectura de microservicios?
+
+OPCIONES:
+  [a] Envía una señal de apagado preventivo a todos los pods secundarios del clúster, permitiendo que únicamente la réplica con menor dirección IP procese la tarea.
+  [b] Adquiere un bloqueo compartido en un recurso central (como una tabla de base de datos o Redis), garantizando que solo el primer pod que obtenga el lock pueda ejecutar la tarea programada.  <--- [CORRECTA]
+  [c] Fragmenta el archivo de entrada en bloques independientes según la cantidad de núcleos de CPU disponibles, distribuyendo un hilo de trabajo por cada nodo activo.
+  [d] Inyecta directivas de sincronización en el bytecode de los controladores REST durante la compilación, impidiendo la atención concurrente de peticiones web.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Adquiere un bloqueo compartido en un recurso central (como una tabla de base de datos o Redis), garantizando que solo el primer pod que obtenga el lock pueda ejecutar la tarea programada.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+ShedLock utiliza un almacenamiento centralizado accesible por todos los nodos (habitualmente una tabla en la base de datos compartida o Redis) para registrar un bloqueo con tiempo de expiración. El primer nodo en adquirir el lock ejecuta el batch mientras los demás detectan el bloqueo y omiten la ejecución. (Diapositiva 16)
+--------------------------------------------------------------------------------

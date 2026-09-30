@@ -118,6 +118,56 @@ export const VAULT_STRUCTURE = {
       ]
     },
     {
+      id: "fundamentos-backend",
+      name: "Fundamentos Backend",
+      code: "ISI-312",
+      department: "Ingeniería en Sistemas de Información",
+      units: [
+        {
+          id: "parcial-1",
+          name: "Parcial 1",
+          description: "Spring Boot, Arquitecturas, REST APIs, HTTP, ResponseEntity, Jackson, Genéricos, Spring Batch y Procesamiento por Lotes",
+          questionCount: 148,
+          quizzes: [
+            {
+              id: "quiz-fb-p1-unidad-1",
+              title: "UNIDAD 1 (42 preguntas)",
+              description: "Spring Boot, Application Context, Protocolo HTTP, Lombok, Flyway y Arquitecturas (Monolito vs Microservicios).",
+              questionCount: 42,
+              timeLimitMinutes: 60,
+              maxScore: 10.0,
+              quizId: "quiz-fb-p1-unidad-1"
+            },
+            {
+              id: "quiz-fb-p1-unidad-2",
+              title: "UNIDAD 2 (53 preguntas)",
+              description: "Comunicación síncrona/asíncrona, REST APIs, convenciones y casings, métodos HTTP, ResponseEntity, genéricos en Java, Jackson y Postman.",
+              questionCount: 53,
+              timeLimitMinutes: 60,
+              maxScore: 10.0,
+              quizId: "quiz-fb-p1-unidad-2"
+            },
+            {
+              id: "quiz-fb-p1-unidad-3",
+              title: "UNIDAD 3 (53 preguntas)",
+              description: "Procesamiento Batch, Spring Batch (JobLauncher, Job, Step, Readers, Processors, Writers), JobRepository, Listeners y sincronización distribuida entre pods.",
+              questionCount: 53,
+              timeLimitMinutes: 60,
+              maxScore: 10.0,
+              quizId: "quiz-fb-p1-unidad-3"
+            }
+          ]
+        },
+        {
+          id: "parcial-2",
+          name: "Parcial 2",
+          description: "Seguridad, Autenticación JWT, Docker, API REST y Persistencia Avanzada",
+          questionCount: 0,
+          quizzes: []
+        }
+      ]
+    },
+    {
       id: "sistemas-operativos",
       name: "Sistemas Operativos",
       code: "ISI-302",
@@ -169,7 +219,7 @@ export const VAULT_STRUCTURE = {
  * @param {string} subjectId
  */
 export function getSubjectById(subjectId) {
-  return VAULT_STRUCTURE.subjects.find(s => s.id === subjectId) || VAULT_STRUCTURE.subjects[0];
+  return VAULT_STRUCTURE.subjects.find(s => s.id === subjectId || (subjectId === "backend" && s.id === "fundamentos-backend")) || VAULT_STRUCTURE.subjects[0];
 }
 
 /**

@@ -1,0 +1,1119 @@
+================================================================================
+BAÚL DE CUESTIONARIOS - PREGUNTAS Y RESPUESTAS OFICIALES
+Cuestionario: UNIDAD 2 (53 preguntas)
+Asignatura: Fundamentos Backend
+Unidad / Parcial: Parcial 1
+Institución: Universidad Tecnológica Nacional - Facultad Regional Santa Fe (UTN FRSF)
+Total de preguntas en este cuestionario: 53
+Fecha de exportación: 30/9/2026
+================================================================================
+
+--------------------------------------------------------------------------------
+PREGUNTA 1 (ID: fb-p1-u2-q01) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Arquitecturas y Comunicación
+
+ENUNCIADO:
+¿Cuál es la premisa central sobre la interacción entre módulos que se destaca al contrastar arquitecturas de software?
+
+OPCIONES:
+  [a] La comunicación intermodular es una propiedad exclusiva de arquitecturas distribuidas basadas en microservicios.
+  [b] En cualquier arquitectura existe comunicación entre sus distintos componentes.  <--- [CORRECTA]
+  [c] Las aplicaciones monolíticas operan como bloques cerrados que prescinden de cualquier intercambio entre capas.
+  [d] La comunicación entre módulos solo cobra relevancia técnica cuando intervienen llamadas a través de redes remotas.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: En cualquier arquitectura existe comunicación entre sus distintos componentes.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva enfatiza de manera destacada que «En cualquier arquitectura tenemos comunicación entre componentes», cambiando únicamente el medio y la forma en que esta se implementa. (Diapositiva 2)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 2 (ID: fb-p1-u2-q02) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Arquitecturas y Comunicación
+
+ENUNCIADO:
+Según el esquema arquitectónico comparativo, ¿cómo difiere el almacenamiento de datos entre el modelo Monolítico y el modelo de Microservicios?
+
+OPCIONES:
+  [a] El monolito particiona sus datos asignando un motor por módulo, mientras que los microservicios centralizan toda su información en una única base compartida.
+  [b] El monolito se conecta a una base de datos centralizada, mientras que en microservicios cada servicio cuenta con su propia base de datos dedicada.  <--- [CORRECTA]
+  [c] El monolito delega el almacenamiento en sistemas distribuidos en la nube, mientras que los microservicios omiten bases de datos para reducir la latencia.
+  [d] El monolito administra esquemas de persistencia aislados por capa funcional, mientras que los microservicios sincronizan tablas comunes sin aislamiento.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: El monolito se conecta a una base de datos centralizada, mientras que en microservicios cada servicio cuenta con su propia base de datos dedicada.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El diagrama ilustra que la aplicación monolítica interactúa con una única base de datos global, mientras que cada microservicio tiene su base de datos propia e independiente (patrón database-per-service). (Diapositiva 2)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 3 (ID: fb-p1-u2-q03) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Arquitecturas y Comunicación
+
+ENUNCIADO:
+En el diagrama de microservicios mostrado, ¿cómo se distribuye el flujo de comunicación cuando un usuario realiza una solicitud?
+
+OPCIONES:
+  [a] El usuario envía su petición a un microservicio de entrada y los microservicios se comunican entre sí para completar las operaciones.  <--- [CORRECTA]
+  [b] El usuario despacha solicitudes simultáneas a todos los servicios del clúster para que procesen la tarea de manera paralela.
+  [c] El usuario interactúa de forma directa con el motor de base de datos, el cual orquesta las llamadas hacia cada microservicio.
+  [d] El usuario canaliza cada interacción por separado hacia servicios aislados que tienen prohibido comunicarse entre sí.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: El usuario envía su petición a un microservicio de entrada y los microservicios se comunican entre sí para completar las operaciones.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El diagrama muestra flechas bidireccionales de interacción entre el usuario y un servicio inicial, y luego múltiples conexiones directas entre los distintos microservicios para coordinar procesos. (Diapositiva 2)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 4 (ID: fb-p1-u2-q04) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Comunicación Sincrónica
+
+ENUNCIADO:
+¿Cuál es la característica distintiva del modelo de «Comunicación Sincrónica» según la definición del material?
+
+OPCIONES:
+  [a] El cliente emite una petición y reanuda sus tareas sin aguardar la confirmación o el resultado del servidor.
+  [b] Se envía un request y el cliente espera activamente la respuesta del servidor antes de continuar.  <--- [CORRECTA]
+  [c] El servidor procesa y remite los datos de manera preventiva antes de recibir la solicitud formal del cliente.
+  [d] La transferencia de mensajes se realiza exclusivamente mediante colas persistentes con entrega postergada en el tiempo.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Se envía un request y el cliente espera activamente la respuesta del servidor antes de continuar.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva define textualmente la comunicación sincrónica como: «Se envía un request y se espera la respuesta». (Diapositiva 3)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 5 (ID: fb-p1-u2-q05) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Comunicación Sincrónica
+
+ENUNCIADO:
+¿Qué protocolo estándar se asocia en el material como ejemplo representativo de comunicación sincrónica?
+
+OPCIONES:
+  [a] Protocolo UDP
+  [b] Protocolo SMTP
+  [c] Protocolo HTTP  <--- [CORRECTA]
+  [d] Protocolo AMQP
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: Protocolo HTTP
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva indica de forma expresa «Protocolo HTTP» como el mecanismo estándar de solicitud y respuesta sincrónica entre cliente y servidor. (Diapositiva 3)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 6 (ID: fb-p1-u2-q06) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: REST APIs
+
+ENUNCIADO:
+De acuerdo con la definición formal presentada en la diapositiva, ¿qué es REST (Representational State Transfer)?
+
+OPCIONES:
+  [a] Un protocolo estricto de transporte y cifrado binario que reemplaza la capa TCP/IP en la comunicación de servicios.
+  [b] Un estándar internacional promovido por la W3C que obliga al intercambio de mensajes exclusivamente en formato XML.
+  [c] Un conjunto de restricciones (constraints) que permite construir servicios web escalables, simples y desacoplados.  <--- [CORRECTA]
+  [d] Un framework de desarrollo web integrado en el núcleo de Java para la gestión automatizada de peticiones HTTP.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: Un conjunto de restricciones (constraints) que permite construir servicios web escalables, simples y desacoplados.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva aclara: «No es un protocolo, ni un estándar, sino un conjunto de restricciones (constraints) que, si se cumplen, permiten construir servicios web con ciertas propiedades deseables: escalabilidad, simplicidad, y desacoplamiento entre cliente y servidor». (Diapositiva 4)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 7 (ID: fb-p1-u2-q07) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: REST APIs
+
+ENUNCIADO:
+¿Cuáles de las siguientes propiedades deseables se obtienen al cumplir con las restricciones arquitectónicas de REST? (Seleccione todas las opciones correctas)
+
+OPCIONES:
+  [a] Escalabilidad  <--- [CORRECTA]
+  [b] Simplicidad  <--- [CORRECTA]
+  [c] Acoplamiento fuerte entre cliente y servidor
+  [d] Desacoplamiento entre cliente y servidor  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Escalabilidad
+  -> Opción [b]: Simplicidad
+  -> Opción [d]: Desacoplamiento entre cliente y servidor
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El cumplimiento de las directrices REST busca garantizar escalabilidad, simplicidad y un desacoplamiento efectivo entre el cliente y el servidor. El acoplamiento fuerte es lo contrario a las buenas prácticas de diseño distribuido. (Diapositiva 4)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 8 (ID: fb-p1-u2-q08) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: REST APIs
+
+ENUNCIADO:
+¿Cómo define el material a una API (Application Programming Interface)?
+
+OPCIONES:
+  [a] Como un lenguaje de programación compilado de propósito general orientado a la construcción de microservicios backend de alto rendimiento en la nube.
+  [b] Como un conjunto de reglas y definiciones que permite que dos componentes de software se comuniquen sin conocer detalles internos de implementación mutuos.  <--- [CORRECTA]
+  [c] Como un entorno de persistencia y mapeo relacional que sustituye a los repositorios de Spring Data para la consulta directa de tablas en memoria.
+  [d] Como un marco de trabajo especializado en la eliminación de código repetitivo y la autogeneración de clases de dominio dentro del modelo backend.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Como un conjunto de reglas y definiciones que permite que dos componentes de software se comuniquen sin conocer detalles internos de implementación mutuos.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La definición textual señala que es un «conjunto de reglas y definiciones que permite que dos componentes de software se comuniquen entre sí, sin que cada una necesite conocer los detalles internos de implementación de la otra». (Diapositiva 4)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 9 (ID: fb-p1-u2-q09) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Diseño de APIs REST - Fundamentos
+
+ENUNCIADO:
+¿Qué principio fundamental debe regir el diseño de un endpoint REST según los fundamentos expuestos?
+
+OPCIONES:
+  [a] Un endpoint REST debe contener un verbo explicativo que detalle la acción a ejecutar.
+  [b] Un endpoint REST debe representar recursos (cosas), no acciones.  <--- [CORRECTA]
+  [c] Un endpoint REST debe replicar de forma directa la firma del método en el código Java.
+  [d] Un endpoint REST debe estructurarse según el rol y nivel de acceso del cliente conectado.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Un endpoint REST debe representar recursos (cosas), no acciones.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva establece como pilar fundamental: «Un endpoint REST debe representar recursos (cosas), no acciones». (Diapositiva 5)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 10 (ID: fb-p1-u2-q10) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Diseño de APIs REST - Fundamentos
+
+ENUNCIADO:
+Dentro del diseño de APIs REST, ¿cuál es el mecanismo destinado a representar las acciones sobre los recursos?
+
+OPCIONES:
+  [a] Los segmentos léxicos definidos en las rutas de la URL.
+  [b] Los métodos HTTP (verbos como GET, POST, PUT, DELETE).  <--- [CORRECTA]
+  [c] Los encabezados personalizados de autorización del cliente.
+  [d] Los identificadores primarios y claves del modelo relacional.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Los métodos HTTP (verbos como GET, POST, PUT, DELETE).
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Los métodos HTTP (verbos de protocolo) representan la acción a efectuar sobre el recurso referenciado en el endpoint. (Diapositiva 5)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 11 (ID: fb-p1-u2-q11) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Diseño de APIs REST - Fundamentos
+
+ENUNCIADO:
+¿Qué elemento debe utilizarse para comunicar el resultado de una operación en una API REST?
+
+OPCIONES:
+  [a] Mensajes de error personalizados codificados en los parámetros de la URL.
+  [b] Los códigos de estado del protocolo HTTP (HTTP status codes).  <--- [CORRECTA]
+  [c] Banderas booleanas obligatorias agregadas en la cabecera de la respuesta.
+  [d] Cierres de conexión TCP acompañados de códigos de excepción de sockets.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Los códigos de estado del protocolo HTTP (HTTP status codes).
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El material explicita: «Utilizar los códigos de estado para representar el resultado» (por ejemplo 200 para éxito, 400 para error de validación, etc.). (Diapositiva 5)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 12 (ID: fb-p1-u2-q12) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Diseño de APIs REST - Fundamentos
+
+ENUNCIADO:
+En el ejemplo de Swagger mostrado para la operación GET /pet/findByStatus, ¿qué código de respuesta HTTP se especifica formalmente para indicar un «Invalid status value»?
+
+OPCIONES:
+  [a] 200
+  [b] 400  <--- [CORRECTA]
+  [c] 500
+  [d] 201
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: 400
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En la captura de Swagger de la diapositiva 5, el código asociado a «successful operation» es 200 y el asociado a «Invalid status value» es 400. (Diapositiva 5)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 13 (ID: fb-p1-u2-q13) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Diseño de APIs REST - Sustantivos vs Verbos
+
+ENUNCIADO:
+En el diseño de rutas de una API REST, ¿cuál es la buena práctica fundamental respecto al uso de términos léxicos?
+
+OPCIONES:
+  [a] Usar verbos de acción explícitos.
+  [b] Usar sustantivos, no verbos.  <--- [CORRECTA]
+  [c] Combinar sustantivos con adjetivos.
+  [d] Incluir nombres de clases Java.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Usar sustantivos, no verbos.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La regla destacada en la diapositiva indica de forma taxativa: «Usar sustantivos, no verbos». (Diapositiva 6)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 14 (ID: fb-p1-u2-q14) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Diseño de APIs REST - Sustantivos vs Verbos
+
+ENUNCIADO:
+¿Cuál de los siguientes pares representa un diseño de endpoint INCORRECTO frente a su alternativa CORRECTA según los ejemplos del documento?
+
+OPCIONES:
+  [a] Incorrecto: GET /users | Correcto: GET /getUsers
+  [b] Incorrecto: POST /createOrder | Correcto: POST /orders  <--- [CORRECTA]
+  [c] Incorrecto: DELETE /products/123 | Correcto: DELETE /deleteProduct/123
+  [d] Incorrecto: PUT /orders/1 | Correcto: PUT /modifyOrders/1
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Incorrecto: POST /createOrder | Correcto: POST /orders
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva marca con cruz roja POST /createOrder por usar verbos y con tilde verde POST /orders por apoyarse en el método HTTP y nombrar el recurso en sustantivo. (Diapositiva 6)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 15 (ID: fb-p1-u2-q15) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Diseño de APIs REST - Sustantivos vs Verbos
+
+ENUNCIADO:
+De acuerdo con los ejemplos ilustrados, ¿cuál de las siguientes opciones constituye una mala práctica de diseño REST?
+
+OPCIONES:
+  [a] GET /users
+  [b] POST /orders
+  [c] DELETE /deleteProduct/123  <--- [CORRECTA]
+  [d] DELETE /products/123
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: DELETE /deleteProduct/123
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+DELETE /deleteProduct/123 repite la acción en el método y en la URL (verbo redundante). Lo correcto según el material es DELETE /products/123. (Diapositiva 6)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 16 (ID: fb-p1-u2-q16) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Diseño de APIs REST - Convenciones y Casings
+
+ENUNCIADO:
+¿Cuáles de las siguientes directrices forman parte de las buenas prácticas de diseño de APIs REST listadas en la diapositiva 7? (Seleccione todas las opciones correctas)
+
+OPCIONES:
+  [a] Mantener las URL predecibles  <--- [CORRECTA]
+  [b] Utilizar kebab-case en las URLs  <--- [CORRECTA]
+  [c] Utilizar PascalCase de forma obligatoria en las rutas de URLs
+  [d] Utilizar versionado  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Mantener las URL predecibles
+  -> Opción [b]: Utilizar kebab-case en las URLs
+  -> Opción [d]: Utilizar versionado
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Las directrices señaladas son: mantener las URL predecibles, utilizar kebab-case en las URLs, utilizar camelCase o snake_case para el cuerpo (body) y utilizar versionado. (Diapositiva 7)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 17 (ID: fb-p1-u2-q17) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Diseño de APIs REST - Convenciones y Casings
+
+ENUNCIADO:
+Según el material, ¿qué convenciones de nomenclatura de mayúsculas/minúsculas son recomendadas para los campos del cuerpo (body) de un request o response?
+
+OPCIONES:
+  [a] kebab-case exclusivamente en todos los casos de intercambio.
+  [b] camelCase o snake_case (dependiendo del ecosistema).  <--- [CORRECTA]
+  [c] UPPER_SNAKE_CASE obligatorio para todas las propiedades.
+  [d] PascalCase combinado con guiones bajos en cada identificador.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: camelCase o snake_case (dependiendo del ecosistema).
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva indica textualmente: «Utilizar camelCase o snake_case para el body (dependiendo del ecosistema)». (Diapositiva 7)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 18 (ID: fb-p1-u2-q18) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Diseño de APIs REST - Convenciones y Casings
+
+ENUNCIADO:
+Siguiendo el esquema de «URLs predecibles» mostrado en la diapositiva, ¿cuál es el endpoint y método HTTP apropiado para modificar los datos del usuario con ID 123?
+
+OPCIONES:
+  [a] POST /users/update/123
+  [b] PUT /users/123  <--- [CORRECTA]
+  [c] GET /users/123/edit
+  [d] PUT /users?id=123
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: PUT /users/123
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En la lista de ejemplos predecibles se detalla: PUT /users/123 -> Update user. (Diapositiva 7)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 19 (ID: fb-p1-u2-q19) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Diseño de APIs REST - Convenciones y Casings
+
+ENUNCIADO:
+Si se necesita obtener el listado completo de todos los usuarios registrados en el sistema, ¿cuál es la ruta REST predecible según el material?
+
+OPCIONES:
+  [a] GET /users  <--- [CORRECTA]
+  [b] GET /users/all
+  [c] POST /users/getAll
+  [d] GET /list-users
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: GET /users
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El listado completo de una colección se consulta mediante GET /users («List all users»). (Diapositiva 7)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 20 (ID: fb-p1-u2-q20) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Diseño de APIs REST - Métodos e Idempotencia
+
+ENUNCIADO:
+Según la clasificación del material, ¿cuáles de los siguientes métodos HTTP son considerados idempotentes? (Seleccione todas las opciones correctas)
+
+OPCIONES:
+  [a] POST
+  [b] PUT  <--- [CORRECTA]
+  [c] PATCH  <--- [CORRECTA]
+  [d] DELETE
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: PUT
+  -> Opción [c]: PATCH
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva 8 señala explícitamente tanto a PUT («Modifica recursos. -> Idempotente») como a PATCH («Modifica parcialmente recursos. -> Idempotente») con la aclaración de idempotencia. (Diapositiva 8)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 21 (ID: fb-p1-u2-q21) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Diseño de APIs REST - Métodos e Idempotencia
+
+ENUNCIADO:
+¿Cuál es la diferencia conceptual entre PUT y PATCH establecida en el material?
+
+OPCIONES:
+  [a] PUT crea recursos totalmente nuevos en el servidor, mientras que PATCH elimina registros existentes de forma definitiva.
+  [b] PUT modifica el recurso (típicamente de forma completa), mientras que PATCH modifica parcialmente el recurso.  <--- [CORRECTA]
+  [c] PUT opera mediante comunicación puramente asincrónica, mientras que PATCH exige procesamiento síncrono bloqueante.
+  [d] PUT se aplica de forma exclusiva sobre colecciones completas, mientras que PATCH procesa un único atributo escalar.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: PUT modifica el recurso (típicamente de forma completa), mientras que PATCH modifica parcialmente el recurso.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva define: PUT -> Modifica recursos y PATCH -> Modifica parcialmente recursos. (Diapositiva 8)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 22 (ID: fb-p1-u2-q22) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Diseño de APIs REST - Métodos e Idempotencia
+
+ENUNCIADO:
+¿Qué beneficio directo aporta utilizar adecuadamente los métodos HTTP según la nota explicativa de la diapositiva?
+
+OPCIONES:
+  [a] Evita tener que incluir códigos de estado numéricos en las respuestas.
+  [b] Permite limpiar de acciones las URLs de los endpoints.  <--- [CORRECTA]
+  [c] Elimina la necesidad de utilizar bases de datos relacionales en el servidor.
+  [d] Transforma peticiones sincrónicas en eventos asincrónicos sin intermediarios.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Permite limpiar de acciones las URLs de los endpoints.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La nota explicita: «Esto permite limpiar de acciones las url», ya que el verbo HTTP comunica la operación sin ensuciar la ruta. (Diapositiva 8)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 23 (ID: fb-p1-u2-q23) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Búsqueda con Múltiples Filtros
+
+ENUNCIADO:
+En una interfaz de búsqueda de personas con múltiples campos opcionales (Nombre, Apellido, DNI, Fecha de nacimiento, Email, Ciudad), ¿cuál es el método HTTP correcto a emplear según las buenas prácticas presentadas?
+
+OPCIONES:
+  [a] POST
+  [b] GET  <--- [CORRECTA]
+  [c] DELETE
+  [d] PUT
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: GET
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva titula expresamente: «Utilizar bien los métodos http: GET -> Leer datos» junto al formulario de búsqueda, recordando que las consultas de lectura y filtrado de datos deben ser solicitudes GET (utilizando query parameters). (Diapositiva 9)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 24 (ID: fb-p1-u2-q24) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Búsqueda con Múltiples Filtros
+
+ENUNCIADO:
+Al implementar la búsqueda de personas de la diapositiva 9 mediante una API REST, ¿cómo deberían enviarse los valores de los filtros seleccionados por el usuario?
+
+OPCIONES:
+  [a] Incrustados en el cuerpo (Request Body) de una petición POST con formato JSON codificado.
+  [b] Como parámetros de consulta (query parameters) en la URL dentro de una petición GET.  <--- [CORRECTA]
+  [c] Como encabezados HTTP de metadatos personalizados agregados por cada campo del formulario.
+  [d] Definiendo segmentos jerárquicos fijos en la ruta (path variables) para cada valor ingresado.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Como parámetros de consulta (query parameters) en la URL dentro de una petición GET.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Al tratarse de una operación de lectura (GET), los filtros opcionales de búsqueda deben viajar en la URL como parámetros de consulta (/personas?nombre=Maria&ciudad=SantaFe). (Diapositiva 8 y 9)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 25 (ID: fb-p1-u2-q25) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Códigos de Estado HTTP
+
+ENUNCIADO:
+De acuerdo con la convención resumida en la diapositiva, ¿a qué familia de códigos corresponde cada categoría de resultado?
+
+OPCIONES:
+  [a] 2xx: Errores del servidor | 4xx: Códigos de éxito | 5xx: Errores del cliente
+  [b] 2xx: Códigos de éxito | 4xx: Errores del cliente | 5xx: Errores del servidor  <--- [CORRECTA]
+  [c] 2xx: Redirecciones de red | 4xx: Códigos de éxito | 5xx: Errores de sintaxis
+  [d] 2xx: Errores del cliente | 4xx: Errores del servidor | 5xx: Códigos de éxito
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: 2xx: Códigos de éxito | 4xx: Errores del cliente | 5xx: Errores del servidor
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva clasifica: 2xx -> Códigos de éxito, 4xx -> Errores del cliente y 5xx -> Errores del servidor. (Diapositiva 10)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 26 (ID: fb-p1-u2-q26) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Códigos de Estado HTTP
+
+ENUNCIADO:
+¿Por qué es fundamental que el código de estado HTTP comunique con precisión lo sucedido durante el procesamiento del request?
+
+OPCIONES:
+  [a] Porque fuerza al navegador web a habilitar la compresión y el almacenamiento en caché de los datos.
+  [b] Porque evita tener que agregar información redundante de estado dentro del cuerpo de la respuesta.  <--- [CORRECTA]
+  [c] Porque de lo contrario los cortafuegos intermedios rechazan la conexión TCP por motivos de seguridad.
+  [d] Porque los servidores REST prohíben retornar mensajes descriptivos de texto en los cuerpos de respuesta.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Porque evita tener que agregar información redundante de estado dentro del cuerpo de la respuesta.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva indica que «el código de estado indica lo que sucedió al procesar el request, esto evita agregar información de este tipo en la respuesta» (como campos booleanos success: true innecesarios). (Diapositiva 10)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 27 (ID: fb-p1-u2-q27) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Manejo de Errores y Formato de Respuestas
+
+ENUNCIADO:
+¿Cuáles de las siguientes recomendaciones deben aplicarse para los errores que explican lo que sucedió en una API REST? (Seleccione todas las opciones correctas)
+
+OPCIONES:
+  [a] Estandarizar las respuestas y respetar el formato siempre.  <--- [CORRECTA]
+  [b] Si hay más de un error, retornarlos todos juntos en la respuesta.  <--- [CORRECTA]
+  [c] Responder siempre con código 200 OK incluyendo el detalle del fallo en el cuerpo para no alarmar al cliente.
+  [d] Enmascarar las fallas de validación del cliente detrás de códigos 500 genéricos para ocultar la lógica interna.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Estandarizar las respuestas y respetar el formato siempre.
+  -> Opción [b]: Si hay más de un error, retornarlos todos juntos en la respuesta.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El material indica textualmente: «Estandarizar las respuestas y respetar el formato siempre» y «Si hay más de un error, retornarlos todos juntos en la respuesta». (Diapositiva 11)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 28 (ID: fb-p1-u2-q28) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Manejo de Errores y Formato de Respuestas
+
+ENUNCIADO:
+En la diapositiva 11 se plantea la pregunta: «¿Qué problema tiene esta respuesta?» al devolver una lista plana directa en la raíz del JSON:
+[
+  { "nombre": "Teclado mecánico", "precio": 45.99, "stock": 120 },
+  { "nombre": "Mouse inalámbrico", "precio": 19.50, "stock": 80 }
+]
+¿Cuál es la limitación técnica de devolver directamente un array como raíz de la respuesta?
+
+OPCIONES:
+  [a] Provoca fallos en los analizadores de los navegadores modernos al ser incapaces de procesar arreglos directos en la raíz.
+  [b] Dificulta la extensibilidad futura (por ejemplo, agregar metadatos, paginación o enlaces) sin romper la compatibilidad con el cliente.  <--- [CORRECTA]
+  [c] Impide que la biblioteca de serialización convierta adecuadamente los tipos numéricos y cadenas de texto al formato estándar.
+  [d] Obliga al servidor a generar identificadores únicos consecutivos para cada elemento del arreglo antes de emitir la respuesta.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Dificulta la extensibilidad futura (por ejemplo, agregar metadatos, paginación o enlaces) sin romper la compatibilidad con el cliente.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Al retornar un array raíz sin envolverlo en un objeto contenedor (por ejemplo { "data": [...], "pagination": {...} }), no se «piensa la respuesta con el futuro en mente», complicando agregar metadatos como paginación, total de registros o filtros aplicados. (Diapositiva 11)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 29 (ID: fb-p1-u2-q29) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Programación Genérica - Runtime
+
+ENUNCIADO:
+Al analizar el siguiente código de Java tradicional sin genéricos:
+
+List lista = new ArrayList();
+lista.add("texto");
+lista.add(123);
+String s = (String) lista.get(1);
+
+¿Qué ocurre durante su ejecución?
+
+OPCIONES:
+  [a] El compilador detecta incompatibilidad de tipos en lista.add(123) impidiendo generar el archivo de bytecode.
+  [b] Compila sin problemas, pero arroja una excepción ClassCastException en tiempo de ejecución (runtime).  <--- [CORRECTA]
+  [c] La máquina virtual ejecuta un casteo implícito del número entero a String sin provocar excepciones ni advertencias.
+  [d] Se interrumpe la ejecución con un error NullPointerException al intentar leer el índice mediante lista.get(1).
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Compila sin problemas, pero arroja una excepción ClassCastException en tiempo de ejecución (runtime).
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Sin genéricos, la lista almacena instancias de tipo Object. Al insertar un entero en la posición 1 e intentar castearlo forzosamente a (String), la máquina virtual lanza ClassCastException en runtime. (Diapositiva 13)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 30 (ID: fb-p1-u2-q30) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Programación Genérica - Runtime
+
+ENUNCIADO:
+¿Cuál era la desventaja de que la verificación de tipos se diera en tiempo de ejecución (runtime) antes del uso de tipos genéricos?
+
+OPCIONES:
+  [a] El proceso de compilación requería mayores ciclos de procesamiento estático antes de autorizar el despliegue del sistema.
+  [b] Los errores de casteo solo se descubrían cuando el código ya estaba en ejecución, provocando caídas inesperadas del sistema.  <--- [CORRECTA]
+  [c] Las estructuras de almacenamiento aumentaban drásticamente el consumo de memoria heap al omitir validaciones estáticas.
+  [d] Se bloqueaba por completo la posibilidad de almacenar objetos de distintas jerarquías dentro de una misma colección de datos.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Los errores de casteo solo se descubrían cuando el código ya estaba en ejecución, provocando caídas inesperadas del sistema.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Si la verificación ocurre en runtime, los fallos de incompatibilidad de tipos se manifiestan frente al usuario o en producción en lugar de ser advertidos de inmediato por el compilador. (Diapositiva 13)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 31 (ID: fb-p1-u2-q31) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Programación Genérica - Compilación
+
+ENUNCIADO:
+En el siguiente fragmento de código adaptado con colecciones genéricas:
+
+List<String> lista = new ArrayList<>();
+lista.add("texto");
+lista.add(123);
+String s = lista.get(0);
+
+¿Qué comportamiento exhibe el compilador frente a la línea lista.add(123)?
+
+OPCIONES:
+  [a] Admite el valor y realiza un autoboxing automático transformándolo en String.
+  [b] Provoca un error de compilación impidiendo generar el binario ejecutable.  <--- [CORRECTA]
+  [c] Genera una advertencia (warning) pero permite la ejecución hasta fallar en runtime.
+  [d] Convierte el dato a tipo Object omitiendo la parametrización de tipo definida.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Provoca un error de compilación impidiendo generar el binario ejecutable.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Gracias a la parametrización de tipos (List<String>), el compilador detecta inmediatamente que 123 no es un String y rechaza la compilación («error de compilación, no compila»). (Diapositiva 14)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 32 (ID: fb-p1-u2-q32) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Programación Genérica - Compilación
+
+ENUNCIADO:
+¿Qué ventaja directa ofrece la parametrización de tipos al recuperar elementos de la lista mediante lista.get(0)?
+
+OPCIONES:
+  [a] Optimiza el ciclo de vida del objeto forzando la intervención del Garbage Collector.
+  [b] No hace falta realizar casteo explícito, ya que el tipo retornado se conoce de forma segura.  <--- [CORRECTA]
+  [c] Permite mutar la parametrización de la colección de manera dinámica en memoria.
+  [d] Habilita la serialización directa de la lista sin requerir librerías de mapeo JSON.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: No hace falta realizar casteo explícito, ya que el tipo retornado se conoce de forma segura.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva destaca que con genéricos «no hace falta castear», puesto que el compilador garantiza que el elemento recuperado es de tipo String. (Diapositiva 14)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 33 (ID: fb-p1-u2-q33) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Programación Genérica - Concepto
+
+ENUNCIADO:
+¿Cuál es el principio fundamental que sustenta a la programación genérica según la diapositiva 15?
+
+OPCIONES:
+  [a] Duplicar algoritmos específicos e independientes para cada uno de los tipos de datos existentes.
+  [b] Aplicar un comportamiento común programado de forma genérica sobre objetos de distintos tipos.  <--- [CORRECTA]
+  [c] Restringir las estructuras de colecciones para operar exclusivamente con tipos numéricos primitivos.
+  [d] Trasladar la verificación de tipos al motor de persistencia relacional durante el guardado de datos.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Aplicar un comportamiento común programado de forma genérica sobre objetos de distintos tipos.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva señala: «El comportamiento común se aplica con objetos de distintos tipos. Se programa el comportamiento genérico». (Diapositiva 15)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 34 (ID: fb-p1-u2-q34) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Programación Genérica - Concepto
+
+ENUNCIADO:
+En el caso de una estructura de lista, ¿cuáles de las siguientes operaciones constituyen «comportamientos comunes» independientes del tipo de dato contenido? (Seleccione todas las opciones correctas)
+
+OPCIONES:
+  [a] Agregar un elemento  <--- [CORRECTA]
+  [b] Remover un elemento  <--- [CORRECTA]
+  [c] Recorrer la lista  <--- [CORRECTA]
+  [d] Contar la cantidad de elementos  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Agregar un elemento
+  -> Opción [b]: Remover un elemento
+  -> Opción [c]: Recorrer la lista
+  -> Opción [d]: Contar la cantidad de elementos
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva 15 lista textualmente estas cuatro operaciones como comportamiento común universal de una lista, con total independencia del tipo de datos que aloje. (Diapositiva 15)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 35 (ID: fb-p1-u2-q35) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Programación Genérica - Sintaxis
+
+ENUNCIADO:
+Al declarar una estructura genérica en Java mediante la sintaxis:
+List<T> elementos = new ArrayList<>();
+¿Qué representa el símbolo <T>?
+
+OPCIONES:
+  [a] Un modificador de acceso especial que determina la visibilidad del arreglo dentro del paquete donde fue declarado.
+  [b] Un parámetro de tipo formal que representa de forma abstracta el tipo de elementos con el que operará la colección.  <--- [CORRECTA]
+  [c] Una constante numérica estática que define la capacidad inicial asignada a la colección en la memoria heap.
+  [d] Una anotación de Spring Boot que expone automáticamente la lista como un endpoint de solo lectura en la API.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Un parámetro de tipo formal que representa de forma abstracta el tipo de elementos con el que operará la colección.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+T actúa como un parámetro de tipo genérico (type parameter), permitiendo definir métodos y atributos cuya tipificación concreta se define al instanciar o parametrizar la clase. (Diapositiva 16)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 36 (ID: fb-p1-u2-q36) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: REST APIs en Spring Boot
+
+ENUNCIADO:
+En la arquitectura interna de una aplicación Spring Boot orientada a servicios REST, ¿en qué capa residen las definiciones y puntos de entrada de la API?
+
+OPCIONES:
+  [a] En la capa Database
+  [b] En la capa Model
+  [c] En la capa de Controladores  <--- [CORRECTA]
+  [d] En la capa de Repositorios
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: En la capa de Controladores
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva enfatiza: «Todo está en la capa de Controladores», siendo la responsable de recibir las solicitudes de los clientes y coordinar las respuestas. (Diapositiva 17)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 37 (ID: fb-p1-u2-q37) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: REST APIs en Spring Boot
+
+ENUNCIADO:
+¿Cuál es el mecanismo central utilizado en Spring Boot para definir y mapear el comportamiento de las APIs REST en los controladores?
+
+OPCIONES:
+  [a] Archivos XML de configuración externa obligatorios.
+  [b] Anotaciones de Java provistas por el framework.  <--- [CORRECTA]
+  [c] Scripts SQL de migración gestionados por Flyway.
+  [d] Clases abstractas intermedias de sockets nativos.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Anotaciones de Java provistas por el framework.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El material explicita: «Usamos anotaciones» como la base declarativa para configurar controladores, rutas y respuestas en Spring Boot. (Diapositiva 17)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 38 (ID: fb-p1-u2-q38) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: ResponseEntity
+
+ENUNCIADO:
+¿Qué capacidad otorga el uso de ResponseEntity<> al retornar respuestas desde un controlador en Spring Boot?
+
+OPCIONES:
+  [a] Permite retornar cualquier objeto teniendo control explícito sobre encabezados (headers), código de estado (status code) y cuerpo (body).  <--- [CORRECTA]
+  [b] Transforma el canal síncrono HTTP en un socket binario no bloqueante con soporte nativo para streaming continuo de eventos.
+  [c] Establece de forma estricta un código 200 OK en todas las respuestas independientemente de las excepciones internas lanzadas.
+  [d] Sincroniza y persiste automáticamente el objeto en la base de datos relacional omitiendo la llamada a los repositorios CRUD.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Permite retornar cualquier objeto teniendo control explícito sobre encabezados (headers), código de estado (status code) y cuerpo (body).
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva resume: «Nos permite retornar cualquier objeto desde un controlador. Tenemos control sobre la respuesta: headers, status code, body». (Diapositiva 18)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 39 (ID: fb-p1-u2-q39) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: ResponseEntity
+
+ENUNCIADO:
+¿Qué observación o crítica respecto a la separación de responsabilidades se menciona en la diapositiva en relación con el uso directo de ResponseEntity?
+
+OPCIONES:
+  [a] Dificulta el proceso de serialización automática de entidades hacia objetos en formato JSON.
+  [b] Puede dar lugar a código que mezcla el manejo de la respuesta HTTP con la lógica de negocio.  <--- [CORRECTA]
+  [c] Impide que el controlador pueda retornar códigos de respuesta pertenecientes a las familias 4xx y 5xx.
+  [d] Invalida el uso de la inyección de dependencias al vincular servicios con los controladores de Spring.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Puede dar lugar a código que mezcla el manejo de la respuesta HTTP con la lógica de negocio.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva advierte como aspecto de atención: «Código que mezcla manejo de respuesta con lógica de negocio». (Diapositiva 18)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 40 (ID: fb-p1-u2-q40) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Anotaciones Spring Boot para REST
+
+ENUNCIADO:
+¿Cuáles de las siguientes anotaciones forman parte del conjunto estándar de Spring Boot para construcción de APIs REST presentadas en el material? (Seleccione todas las opciones correctas)
+
+OPCIONES:
+  [a] @RestController  <--- [CORRECTA]
+  [b] @RequestMapping  <--- [CORRECTA]
+  [c] @GetMapping  <--- [CORRECTA]
+  [d] @ResponseStatus  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: @RestController
+  -> Opción [b]: @RequestMapping
+  -> Opción [c]: @GetMapping
+  -> Opción [d]: @ResponseStatus
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva enumera: @RestController, @RequestMapping, @GetMapping, @PostMapping, @ResponseEntity y @ResponseStatus. (Diapositiva 19)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 41 (ID: fb-p1-u2-q41) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Anotaciones Spring Boot para REST
+
+ENUNCIADO:
+¿Qué propósito cumple la anotación @ResponseStatus en un endpoint o manejador de errores de Spring Boot?
+
+OPCIONES:
+  [a] Mapea el cuerpo de una petición entrante vinculándolo con un parámetro del método para su posterior deserialización automática.
+  [b] Permite definir estáticamente el código de estado HTTP que se retornará cuando la ejecución culmine exitosamente o capture una excepción.  <--- [CORRECTA]
+  [c] Instancia y registra un nuevo repositorio transaccional en el contexto de Spring para gestionar consultas de base de datos.
+  [d] Configura los encabezados de autenticación JWT requeridos para validar el token de seguridad enviado por el cliente web.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Permite definir estáticamente el código de estado HTTP que se retornará cuando la ejecución culmine exitosamente o capture una excepción.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+@ResponseStatus se utiliza para especificar el código de estado HTTP que se asociará a la respuesta de un método o clase de excepción determinada. (Diapositiva 19)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 42 (ID: fb-p1-u2-q42) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: JSON - Jackson
+
+ENUNCIADO:
+¿Qué librería viene incluida por defecto en spring-boot-starter-web para realizar tareas de serialización y deserialización JSON?
+
+OPCIONES:
+  [a] Gson
+  [b] Jackson  <--- [CORRECTA]
+  [c] Fastjson
+  [d] Moshi
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Jackson
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva señala textualmente: «Jackson: Viene incluido por defecto en spring-boot-starter-web». (Diapositiva 20)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 43 (ID: fb-p1-u2-q43) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: JSON - Jackson
+
+ENUNCIADO:
+En el ecosistema de Spring Boot y Jackson, ¿cuál es la diferencia funcional entre «serializar» y «deserializar»?
+
+OPCIONES:
+  [a] Serializar transforma cadenas JSON entrantes en instancias Java; deserializar exporta el estado de los objetos a registros en base de datos.
+  [b] Serializar convierte objetos Java a JSON en las respuestas (@RestController); deserializar transforma JSON a objetos Java en los requests (@RequestBody).  <--- [CORRECTA]
+  [c] Serializar genera esquemas de validación DDL en runtime; deserializar ejecuta consultas SQL a través del mapeador objeto-relacional.
+  [d] Serializar cifra los encabezados de autenticación HTTP; deserializar valida los certificados de seguridad en el intercambio de mensajes.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Serializar convierte objetos Java a JSON en las respuestas (@RestController); deserializar transforma JSON a objetos Java en los requests (@RequestBody).
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva explicita: «Serializa automáticamente objetos Java a JSON en las respuestas (@RestController) y deserializa JSON a objetos Java en los requests (@RequestBody)». (Diapositiva 20)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 44 (ID: fb-p1-u2-q44) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: JSON - Jackson
+
+ENUNCIADO:
+¿Cuál es la estrategia de nomenclatura (naming case) predeterminada que utiliza Jackson en Spring Boot para generar las claves JSON?
+
+OPCIONES:
+  [a] SNAKE_CASE (por ejemplo: "first_name")
+  [b] KEBAB_CASE (por ejemplo: "first-name")
+  [c] LOWER_CAMEL_CASE (por ejemplo: "firstName")  <--- [CORRECTA]
+  [d] UPPER_CAMEL_CASE (por ejemplo: "FirstName")
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: LOWER_CAMEL_CASE (por ejemplo: "firstName")
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El texto indica: «Naming case por defecto: LOWER_CAMEL_CASE -> respeta el nombre tal cual está en Java (firstName -> "firstName")». (Diapositiva 20)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 45 (ID: fb-p1-u2-q45) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: JSON - Jackson
+
+ENUNCIADO:
+Si un desarrollador necesita alterar el nombre de una propiedad específica en el JSON generado sin cambiar el nombre del atributo en la clase Java, ¿qué recurso debe emplear según el material?
+
+OPCIONES:
+  [a] Configurar una variable de entorno personalizada a nivel de sistema operativo.
+  [b] Aplicar la anotación @JsonProperty("nombre_custom") sobre el atributo.  <--- [CORRECTA]
+  [c] Renombrar la columna física correspondiente en el esquema de la base de datos.
+  [d] Sobrescribir manualmente el método toString en la clase de entidad del modelo.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Aplicar la anotación @JsonProperty("nombre_custom") sobre el atributo.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Para personalizar un campo particular, el material indica usar la anotación @JsonProperty("nombre_custom"). Para cambios globales se usa spring.jackson.property-naming-strategy. (Diapositiva 20)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 46 (ID: fb-p1-u2-q46) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Postman
+
+ENUNCIADO:
+Según la interfaz de Postman ilustrada en la diapositiva 21, ¿qué tipo de operación HTTP y formato de carga útil (payload) se está configurando en la pestaña activa?
+
+OPCIONES:
+  [a] Un método GET sin encabezados de autenticación.
+  [b] Un método PUT con cuerpo de datos en formato JSON.  <--- [CORRECTA]
+  [c] Un método DELETE con carga útil en texto plano.
+  [d] Un método POST enviando archivos binarios multipart.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Un método PUT con cuerpo de datos en formato JSON.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En la captura de Postman se observa seleccionado el método PUT en el selector de verbo y la pestaña Body con formato raw -> JSON. (Diapositiva 21)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 47 (ID: fb-p1-u2-q47) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Postman
+
+ENUNCIADO:
+¿Cuál es la utilidad primordial de una herramienta como Postman durante el desarrollo de soluciones backend?
+
+OPCIONES:
+  [a] Funcionar como motor de base de datos relacional para ejecutar transacciones SQL y gestionar tablas en memoria durante pruebas.
+  [b] Probar, simular y documentar peticiones HTTP (GET, POST, PUT, DELETE) hacia endpoints inspeccionando encabezados, cuerpos y códigos de estado.  <--- [CORRECTA]
+  [c] Compilar el código fuente Java generando bytecode optimizado para su ejecución directa en la máquina virtual del servidor.
+  [d] Administrar el versionado de esquemas y automatizar la aplicación de scripts de migración dentro de las bases de datos de desarrollo.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Probar, simular y documentar peticiones HTTP (GET, POST, PUT, DELETE) hacia endpoints inspeccionando encabezados, cuerpos y códigos de estado.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Postman es un cliente HTTP gráfico ampliamente utilizado para construir peticiones, enviar payloads, verificar respuestas del servidor y validar el comportamiento de las APIs desarrolladas. (Diapositiva 21)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 48 (ID: fb-p1-u2-q48) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Estructura de Controladores - Inyección
+
+ENUNCIADO:
+Al inspeccionar la clase ClienteControlador.java en la diapositiva 22:
+
+public class ClienteControlador {
+  private final ClienteServicio servicio;
+  public ClienteControlador(ClienteServicio servicio) {
+    this.servicio = servicio;
+  }
+  // ...
+}
+
+¿Qué patrón de diseño se implementa para vincular el servicio con el controlador?
+
+OPCIONES:
+  [a] Instanciación manual mediante la creación de objetos con new.
+  [b] Inyección de dependencias a través del constructor.  <--- [CORRECTA]
+  [c] Implementación del patrón Service Locator estático.
+  [d] Herencia múltiple de interfaces y clases de servicio.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Inyección de dependencias a través del constructor.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El controlador declara el campo como private final y lo recibe como argumento en su constructor público, que es el mecanismo predilecto de Inyección de Dependencias promovido por Spring. (Diapositiva 22)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 49 (ID: fb-p1-u2-q49) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Estructura de Controladores - DTO y Mappers
+
+ENUNCIADO:
+En los métodos expuestos dentro de ClienteControlador.java se observa la interacción entre ClienteDTO y ClienteMapper:
+
+return servicio.crear(ClienteMapper.toEntity(clienteDTO));
+
+¿Cuál es el beneficio de utilizar objetos DTO (Data Transfer Object) y Mappers en el controlador en lugar de recibir directamente la entidad de la base de datos?
+
+OPCIONES:
+  [a] Impedir que los controladores ejecuten consultas a la base de datos sin compilar previamente el proyecto.
+  [b] Desacoplar el modelo de datos interno/persistencia del contrato externo expuesto a los clientes de la API.  <--- [CORRECTA]
+  [c] Suprimir el uso de la biblioteca Jackson para evitar la serialización de atributos en formato JSON.
+  [d] Convertir de forma automática cada llamada síncrona en un mensaje desacoplado dentro de una cola de eventos.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Desacoplar el modelo de datos interno/persistencia del contrato externo expuesto a los clientes de la API.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El uso de DTOs y Mappers evita exponer directamente la estructura interna de la base de datos al exterior, otorgando mayor seguridad, flexibilidad y desacoplamiento en el diseño de APIs REST. (Diapositiva 22)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 50 (ID: fb-p1-u2-q50) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Comunicación Asincrónica
+
+ENUNCIADO:
+Frente al modelo de comunicación sincrónica tradicional, ¿qué desafíos de los entornos en la nube motivan la incorporación de arquitecturas asincrónicas según la diapositiva 23?
+
+OPCIONES:
+  [a] La falta de protocolos de transporte capaces de transferir estructuras JSON complejas a través de redes públicas distribuidas.
+  [b] Factores de red como latencia, fallas transitorias de conectividad y la necesidad de desacoplar procesos pesados para evitar bloqueos.  <--- [CORRECTA]
+  [c] Las limitaciones de rendimiento impuestas por las máquinas virtuales de Java al ejecutar aplicaciones en infraestructuras remotas.
+  [d] La imposibilidad técnica de desplegar servidores web embebidos como Tomcat dentro de entornos gestionados de contenedores en la nube.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Factores de red como latencia, fallas transitorias de conectividad y la necesidad de desacoplar procesos pesados para evitar bloqueos.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En sistemas distribuidos y entornos cloud («¿Qué problema nos puede traer una nube?»), la comunicación síncrona puede degradarse por problemas de red, caídas de servicios encadenados y cuellos de botella; la asincronía mitiga el acoplamiento temporal y la fragilidad del enlace directo. (Diapositiva 23)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 51 (ID: fb-p1-u2-q51) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Comunicación Asincrónica
+
+ENUNCIADO:
+Según la diapositiva 24, ¿cuáles son los componentes principales de un sistema de comunicación asincrónica? (Seleccione todas las opciones correctas)
+
+OPCIONES:
+  [a] Productor  <--- [CORRECTA]
+  [b] Broker  <--- [CORRECTA]
+  [c] Consumidor  <--- [CORRECTA]
+  [d] Cola o Tópico  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Productor
+  -> Opción [b]: Broker
+  -> Opción [c]: Consumidor
+  -> Opción [d]: Cola o Tópico
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva lista formalmente: «Productor», «Broker», «Consumidor», «Cola o Tópico» y «Almacenamiento». (Diapositiva 24)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 52 (ID: fb-p1-u2-q52) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Comunicación Asincrónica
+
+ENUNCIADO:
+¿Cuál es el rol específico que desempeña el componente «Productor» dentro del esquema asincrónico presentado?
+
+OPCIONES:
+  [a] Extraer los mensajes encolados y confirmar su eliminación.
+  [b] Generar mensajes y agregarlos a la cola de mensajes.  <--- [CORRECTA]
+  [c] Gestionar el almacenamiento físico del broker de eventos.
+  [d] Bloquear las conexiones entrantes de clientes no autenticados.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Generar mensajes y agregarlos a la cola de mensajes.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En el diagrama y texto de la diapositiva 24 se define claramente: Productor: Genera mensajes (acción: «agrega» a la cola). (Diapositiva 24)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 53 (ID: fb-p1-u2-q53) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Comunicación Asincrónica
+
+ENUNCIADO:
+En el diagrama de flujo de la cola de mensajes, ¿cuál es la función de la «Cola de mensajes» y del «Consumidor»?
+
+OPCIONES:
+  [a] La cola filtra los mensajes según su contenido; el consumidor supervisa el estado de la red.
+  [b] La cola guarda los mensajes en orden; el consumidor toma y procesa dichos mensajes.  <--- [CORRECTA]
+  [c] La cola serializa los datos en formato binario; el consumidor valida las firmas de seguridad.
+  [d] La cola actúa como cliente de peticiones HTTP; el consumidor responde como servidor web.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: La cola guarda los mensajes en orden; el consumidor toma y procesa dichos mensajes.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El esquema detalla que la «Cola de mensajes» «Guarda mensajes en orden» (ilustrado con elementos 1, 2, 3), mientras que el «Consumidor» «Procesa mensajes» tomándolos de la cola cuando tiene capacidad de procesamiento. (Diapositiva 24)
+--------------------------------------------------------------------------------

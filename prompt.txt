@@ -1,0 +1,494 @@
+Quiero que analices exhaustivamente el PDF que te voy a proporcionar y lo conviertas en un banco de preguntas de opción múltiple para estudiar y comprobar mi comprensión real del contenido.
+
+El objetivo es cubrir TODOS los conceptos educativos importantes del material, sin dejar temas relevantes afuera y sin limitar artificialmente la cantidad de preguntas.
+
+La prioridad absoluta es:
+
+1. Fidelidad al PDF.
+2. Cobertura exhaustiva.
+3. Calidad de las preguntas.
+4. Capacidad real de evaluar comprensión.
+5. Ausencia de pistas que permitan acertar sin conocer el contenido.
+
+---
+
+# 1. ANÁLISIS DEL MATERIAL
+
+Analiza el PDF diapositiva por diapositiva, respetando el orden original.
+
+Para cada diapositiva:
+
+* Identifica conceptos, definiciones, principios, características, procedimientos, ejemplos, diferencias, relaciones, condiciones, ventajas, limitaciones y detalles técnicos relevantes.
+* No generes preguntas sobre diapositivas que contengan únicamente títulos, separadores, índices o información sin contenido educativo.
+* Si una diapositiva contiene varios conceptos importantes, genera tantas preguntas como sean necesarias para cubrirlos correctamente.
+* NO te limites a una pregunta por diapositiva.
+* Una misma diapositiva puede generar varias preguntas independientes.
+* Si un concepto es demasiado amplio, divídelo en varias preguntas que evalúen aspectos diferentes.
+* No repitas preguntas que evalúen exactamente el mismo conocimiento.
+* Si un mismo concepto aparece en varias diapositivas, intégralo de forma coherente y evita duplicaciones innecesarias.
+
+No generes preguntas simplemente para aumentar la cantidad. Cada pregunta debe evaluar conocimiento diferente o una dimensión diferente de un concepto.
+
+---
+
+# 2. GENERACIÓN DE PREGUNTAS
+
+Por cada concepto relevante, crea una o más preguntas de opción múltiple que permitan comprobar si realmente comprendí el contenido.
+
+Cada pregunta debe:
+
+* Tener un enunciado claro, preciso y completamente comprensible por sí solo.
+* Tener exactamente 4 opciones: A, B, C y D.
+* Tener 1 respuesta correcta por defecto.
+* Tener 3 distractores incorrectos pero plausibles.
+* Evaluar comprensión, aplicación, comparación, interpretación o razonamiento cuando el contenido lo permita.
+* Evitar depender de la memorización literal de una frase del PDF cuando pueda evaluarse la comprensión.
+* No requerir conocimientos externos al PDF para resolverla, salvo que se indique explícitamente.
+
+---
+
+# 3. REGLAS CRÍTICAS ANTI-PISTAS
+
+ESTA SECCIÓN ES OBLIGATORIA Y TIENE PRIORIDAD SOBRE LA REDACCIÓN CONVENIENTE.
+
+Las opciones deben estar diseñadas de forma que NO sea posible identificar la respuesta correcta por su apariencia.
+
+## 3.1 Longitud de las opciones
+
+La respuesta correcta NO debe ser sistemáticamente:
+
+* la opción más larga;
+* la opción más detallada;
+* la opción más específica;
+* la opción con más palabras;
+* la opción con más información técnica;
+* la única opción que contiene una explicación completa;
+* la única opción que utiliza vocabulario técnico mientras las demás utilizan lenguaje genérico.
+
+Los distractores deben tener una longitud y nivel de detalle comparables a la respuesta correcta.
+
+IMPORTANTE:
+
+No basta con que las opciones "parezcan" similares.
+
+Después de crear cada pregunta, compara las cuatro opciones entre sí y verifica que la correcta no destaque por longitud o nivel de detalle.
+
+Si la respuesta correcta es considerablemente más larga que las demás, REESCRIBE las opciones.
+
+---
+
+## 3.2 Distribución de respuestas correctas
+
+NO utilices patrones predecibles para colocar las respuestas correctas.
+
+No hagas que:
+
+* la mayoría sean B;
+* la mayoría sean C;
+* la respuesta correcta sea frecuentemente la opción más larga;
+* la respuesta correcta aparezca repetidamente en la misma posición;
+* exista un patrón como A-B-C-D-A-B-C-D;
+* la posición de la respuesta correcta pueda inferirse por frecuencia.
+
+Distribuye las respuestas correctas de forma equilibrada y aparentemente aleatoria entre A, B, C y D.
+
+La distribución debe ser razonablemente balanceada a lo largo del banco completo.
+
+IMPORTANTE:
+
+La distribución debe ser independiente del contenido. No debes colocar una respuesta en determinada letra porque "queda mejor" o porque fue la primera opción que redactaste.
+
+---
+
+## 3.3 No convertir la correcta en una explicación
+
+NO hagas esto:
+
+A) Concepto incorrecto.
+
+B) Concepto incorrecto.
+
+C) Concepto correcto explicado con mucho más detalle y contexto.
+
+D) Concepto incorrecto.
+
+Esto hace que la respuesta C sea identificable incluso sin conocer el contenido.
+
+En su lugar, las cuatro opciones deben estar redactadas con una estructura comparable.
+
+---
+
+## 3.4 No hacer distractores absurdos
+
+Los distractores no deben ser obviamente falsos.
+
+EVITA:
+
+A) Respuesta técnicamente correcta.
+
+B) Algo completamente absurdo.
+
+C) Algo que no tiene ninguna relación con el tema.
+
+D) Una respuesta obviamente exagerada.
+
+Los distractores deben representar errores razonables que podría cometer alguien que entendió parcialmente el concepto.
+
+Por ejemplo:
+
+* confundir dos conceptos similares;
+* invertir una relación;
+* confundir causa y consecuencia;
+* aplicar una condición en el contexto equivocado;
+* intercambiar características de dos conceptos;
+* omitir una condición importante;
+* generalizar incorrectamente una regla;
+* confundir una ventaja con una limitación.
+
+---
+
+## 3.5 No utilizar palabras que delaten la respuesta
+
+Evita que la respuesta correcta sea la única opción que contiene palabras como:
+
+* "siempre";
+* "nunca";
+* "principalmente";
+* "específicamente";
+* "únicamente";
+* "generalmente";
+* "en determinados casos";
+* "según el documento".
+
+No agregues matices innecesarios solamente a la respuesta correcta.
+
+Todas las opciones deben tener un nivel de precisión comparable.
+
+---
+
+## 3.6 Estructura paralela
+
+Cuando sea posible, las cuatro opciones deben tener una estructura gramatical similar.
+
+Por ejemplo, si la pregunta pide identificar una característica:
+
+A) Permite gestionar X.
+
+B) Permite gestionar Y.
+
+C) Permite gestionar Z.
+
+D) Permite gestionar W.
+
+Evita:
+
+A) Gestionar X.
+
+B) Gestionar Y.
+
+C) Gestionar Z mediante un mecanismo que además permite controlar...
+
+D) Gestionar W.
+
+La opción C tendría una pista estructural.
+
+---
+
+# 4. CALIDAD DE LOS DISTRACTORES
+
+Los distractores deben ser incorrectos según el contenido del PDF, pero suficientemente plausibles como para que una persona que no comprendió completamente el tema pueda elegirlos.
+
+Prioriza distractores basados en:
+
+* errores conceptuales comunes;
+* conceptos relacionados;
+* definiciones parcialmente correctas;
+* relaciones invertidas;
+* condiciones incorrectas;
+* ejemplos que pertenecen a otro concepto;
+* consecuencias confundidas con causas;
+* características pertenecientes a conceptos similares.
+
+NO inventes errores arbitrarios únicamente para rellenar las cuatro opciones.
+
+---
+
+# 5. TIPO DE PREGUNTAS
+
+No generes únicamente preguntas del tipo:
+
+"¿Qué es X?"
+
+Diversifica las preguntas cuando el contenido lo permita.
+
+Incluye preguntas sobre:
+
+* definiciones;
+* características;
+* diferencias;
+* relaciones entre conceptos;
+* causa y consecuencia;
+* ventajas;
+* limitaciones;
+* condiciones;
+* casos de uso;
+* aplicación práctica;
+* interpretación;
+* identificación de ejemplos;
+* comparación;
+* fragmentos de código;
+* diagramas;
+* tablas;
+* esquemas;
+* procedimientos;
+* resultados de aplicar una regla;
+* consecuencias de modificar una condición.
+
+Prioriza preguntas que obliguen a comprender el concepto y no simplemente reconocer una frase memorizada.
+
+---
+
+# 6. PREGUNTAS CON MÚLTIPLES RESPUESTAS CORRECTAS
+
+Cuando el contenido lo justifique, incluye preguntas donde haya más de una opción correcta.
+
+Utiliza este formato solamente cuando aporte valor educativo.
+
+Es especialmente apropiado para:
+
+* listas de características;
+* combinaciones de condiciones;
+* propiedades;
+* clasificaciones;
+* relaciones entre conceptos;
+* conjuntos de afirmaciones verdaderas.
+
+Indica claramente en el enunciado:
+
+"Selecciona todas las opciones correctas."
+
+Mantén exactamente 4 opciones.
+
+Debe existir al menos una respuesta correcta y al menos una incorrecta.
+
+Indica exactamente cuáles son las respuestas correctas.
+
+No conviertas innecesariamente preguntas normales en preguntas de selección múltiple.
+
+---
+
+# 7. COBERTURA Y PROFUNDIDAD
+
+La prioridad es lograr una cobertura completa del contenido educativo del PDF.
+
+NO establezcas un límite fijo de preguntas por:
+
+* diapositiva;
+* capítulo;
+* unidad;
+* sección;
+* documento.
+
+Si una diapositiva contiene mucha información, genera suficientes preguntas para cubrir sus diferentes conceptos y detalles relevantes.
+
+Si una diapositiva contiene poco contenido, no inventes preguntas innecesarias.
+
+Si un concepto importante aparece varias veces:
+
+* intégralo de forma coherente;
+* evita repetir exactamente la misma pregunta;
+* utiliza las distintas apariciones para evaluar dimensiones diferentes cuando corresponda.
+
+Incluye preguntas sobre:
+
+* diferencias entre conceptos similares;
+* casos de uso;
+* ventajas;
+* limitaciones;
+* condiciones de aplicación;
+* consecuencias;
+* relaciones entre conceptos.
+
+Si hay ejemplos prácticos, código, diagramas, tablas o esquemas relevantes, utilízalos para crear preguntas de interpretación o aplicación.
+
+---
+
+# 8. FIDELIDAD AL PDF
+
+No inventes información.
+
+La respuesta correcta debe poder justificarse directamente con el contenido del PDF.
+
+No utilices conocimientos externos para convertir una afirmación en correcta si el documento no la respalda.
+
+Si existe una ambigüedad en el PDF, no inventes una interpretación. Reformula la pregunta para que solamente evalúe aquello que el documento permite afirmar con seguridad.
+
+Si una explicación utiliza información externa para aclarar algo, indícalo explícitamente y no lo presentes como contenido del documento.
+
+---
+
+# 9. FORMATO DE SALIDA
+
+NO generes JSON.
+
+NO generes código.
+
+Quiero las preguntas en texto plano, organizadas y fáciles de copiar para posteriormente pasárselas a otro agente.
+
+Utiliza exactamente este formato:
+
+Pregunta 1: (Enunciado)
+
+A) (Opción A)
+B) (Opción B)
+C) (Opción C)
+D) (Opción D)
+
+Respuesta correcta: (Letra o letras correctas).
+
+Explicación: (Breve explicación de por qué la respuesta es correcta y, cuando aporte valor, por qué las demás son incorrectas).
+
+Diapositiva de origen: (Número de diapositiva).
+
+Para preguntas con múltiples respuestas correctas, indícalo claramente en el enunciado:
+
+"Selecciona todas las opciones correctas."
+
+---
+
+# 10. CONTROL DE CALIDAD OBLIGATORIO
+
+ANTES de entregar cualquier pregunta, realiza internamente una revisión de calidad.
+
+No muestres este proceso interno. Solamente entrega el resultado final.
+
+Para cada pregunta verifica:
+
+### Contenido
+
+1. ¿La pregunta evalúa un concepto realmente presente en el PDF?
+2. ¿La respuesta correcta está respaldada por el PDF?
+3. ¿La pregunta evalúa comprensión y no simplemente una frase trivial?
+4. ¿Existe una única interpretación correcta, salvo preguntas explícitamente multirrespuesta?
+
+### Opciones
+
+5. ¿Hay exactamente 4 opciones?
+6. ¿Los 3 distractores son plausibles?
+7. ¿Los distractores representan errores razonables?
+8. ¿Ningún distractor es absurdamente fácil de descartar?
+9. ¿Las cuatro opciones tienen una estructura gramatical comparable?
+10. ¿Las cuatro opciones tienen una longitud y nivel de detalle similares?
+
+### ANTI-PISTAS
+
+11. ¿La respuesta correcta es claramente más larga que las demás?
+
+Si SÍ → REESCRIBE las opciones.
+
+12. ¿La respuesta correcta contiene más detalles que las demás?
+
+Si SÍ → REESCRIBE las opciones.
+
+13. ¿La respuesta correcta utiliza vocabulario técnico que no aparece en los distractores?
+
+Si SÍ → REESCRIBE las opciones.
+
+14. ¿La respuesta correcta es la única opción cuidadosamente matizada o explicada?
+
+Si SÍ → REESCRIBE las opciones.
+
+15. ¿Existe alguna palabra o estructura que permita identificar la correcta sin conocer el contenido?
+
+Si SÍ → REESCRIBE la pregunta.
+
+16. Si alguien respondiera siempre la opción más larga, ¿podría obtener una cantidad anormalmente alta de respuestas correctas?
+
+Si SÍ → REESCRIBE las preguntas afectadas.
+
+### Distribución
+
+17. Comprueba que las respuestas correctas estén razonablemente distribuidas entre A, B, C y D.
+
+18. Evita cualquier patrón reconocible en la posición de las respuestas correctas.
+
+19. No permitas que la posición de la respuesta correcta pueda utilizarse como estrategia para acertar.
+
+### Banco completo
+
+20. ¿Se cubrieron todas las diapositivas con contenido educativo relevante?
+
+21. ¿Todos los conceptos importantes tienen al menos una pregunta?
+
+22. ¿Hay duplicaciones innecesarias?
+
+23. ¿Hay conceptos importantes que solamente aparecen mencionados pero nunca son evaluados?
+
+24. ¿El conjunto de preguntas cubre diferentes niveles de comprensión?
+
+25. ¿Las preguntas son suficientemente variadas como para que memorizar las respuestas no sea equivalente a comprender el material?
+
+---
+
+# 11. REGLA ESPECIAL SOBRE LA RESPUESTA MÁS LARGA
+
+Esta regla es especialmente importante:
+
+NO utilices la longitud como mecanismo para explicar la respuesta correcta.
+
+La respuesta correcta debe poder expresarse de forma concisa cuando las demás opciones también son concisas.
+
+Si una respuesta correcta necesita necesariamente una explicación más larga para ser precisa, modifica el ENUNCIADO de la pregunta para que las cuatro opciones puedan mantener una longitud comparable.
+
+NO soluciones este problema haciendo simplemente que los distractores sean artificialmente largos.
+
+El objetivo es que las cuatro opciones sean naturalmente comparables.
+
+---
+
+# 12. REGLA ESPECIAL SOBRE PREGUNTAS OBVIAS
+
+NO generes preguntas cuya respuesta pueda determinarse sin conocer el contenido del PDF.
+
+Evita preguntas donde:
+
+* una opción sea claramente más técnica que las demás;
+* tres opciones sean absurdas;
+* una opción sea una definición formal y las demás sean frases genéricas;
+* la pregunta prácticamente contenga la respuesta;
+* una opción repita literalmente el enunciado;
+* una opción tenga un nivel de precisión muy superior;
+* la respuesta pueda deducirse únicamente por sentido común cuando el objetivo es evaluar conocimiento técnico.
+
+Si una pregunta resulta demasiado fácil por la forma en que fue redactada, REESCRÍBELA.
+
+Una pregunta fácil puede ser válida si el concepto realmente es básico, pero NO debe ser fácil debido a pistas artificiales en las opciones.
+
+---
+
+# 13. PRIORIDAD FINAL
+
+Sigue esta prioridad:
+
+1. Fidelidad al contenido del PDF.
+2. Cobertura completa de los conceptos importantes.
+3. Preguntas que realmente evalúen comprensión.
+4. Distractores plausibles.
+5. Ausencia de pistas estructurales.
+6. Distribución equilibrada de respuestas.
+7. Variedad de tipos de preguntas.
+8. Claridad y legibilidad.
+
+NO optimices para generar muchas preguntas.
+
+Optimiza para generar un banco de preguntas que sea difícil de resolver correctamente sin haber comprendido el material.
+
+Es preferible generar 80 preguntas excelentes que 150 preguntas obvias.
+
+También es preferible generar 150 preguntas excelentes si el contenido realmente requiere esa profundidad.
+
+La cantidad final debe depender exclusivamente de la cantidad y complejidad del contenido educativo del PDF.
+
+Si el documento es demasiado extenso para una sola respuesta, divídelo en partes consecutivas, manteniendo estrictamente el orden de las diapositivas y sin omitir contenido.
+
+IMPORTANTE: las reglas de anti-pistas, plausibilidad de distractores, longitud comparable y distribución de respuestas deben aplicarse a TODO el banco, no solamente a cada pregunta de manera aislada.
