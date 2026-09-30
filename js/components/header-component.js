@@ -16,14 +16,14 @@ export function renderHeader(state, subject, unit, quiz) {
   // Opciones del desplegable de Materias
   const subjectsOptionsHtml = VAULT_STRUCTURE.subjects.map(s => `
     <option value="${s.id}" ${s.id === currentSubjectId ? "selected" : ""}>
-      ${s.name} (${s.code})
+      ${s.name}
     </option>
   `).join("");
 
   // Opciones del desplegable de Parciales de la materia activa
   const unitsOptionsHtml = (subject?.units || []).map(u => `
     <option value="${u.id}" ${u.id === currentUnitId ? "selected" : ""}>
-      ${u.name} ${u.questionCount > 0 ? `(${u.questionCount} preguntas)` : "(Próximamente)"}
+      ${u.name} (${u.questionCount} preg.)
     </option>
   `).join("");
 
@@ -34,39 +34,36 @@ export function renderHeader(state, subject, unit, quiz) {
     </option>
   `).join("");
 
+  const isDark = state?.theme === "dark" || state?.state?.theme === "dark";
+  const themeIconSvg = isDark
+    ? `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`
+    : `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+
   return `
     <header class="cv-header">
       <div class="cv-header-main">
         <div class="cv-brand">
-          <div class="cv-logo-badge">
-            <svg class="cv-utn-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-              <circle cx="10" cy="8" r="2"/>
-              <path d="M14 12v3"/>
-              <path d="M10 15h4"/>
-            </svg>
-          </div>
           <div class="cv-brand-text">
             <span class="cv-title">BACU</span>
-            <span class="cv-subtitle">baúl de cuestionarios</span>
+            <span class="cv-subtitle">Baúl de Cuestionarios</span>
           </div>
         </div>
 
         <div class="cv-header-actions">
-          <button type="button" id="btn-theme-toggle" class="btn-theme-toggle" title="Cambiar a ${state?.theme === "dark" || state?.state?.theme === "dark" ? "Modo Claro ☀️" : "Modo Oscuro 🌙"}" aria-label="Cambiar tema visual">
-            <span class="theme-icon">${state?.theme === "dark" || state?.state?.theme === "dark" ? "☀️" : "🌙"}</span>
-            <span class="theme-label">${state?.theme === "dark" || state?.state?.theme === "dark" ? "Modo Claro" : "Modo Oscuro"}</span>
+          <button type="button" id="btn-theme-toggle" class="btn-theme-toggle" title="Cambiar a ${isDark ? "Modo Claro" : "Modo Oscuro"}" aria-label="Cambiar tema visual">
+            <span class="theme-icon">${themeIconSvg}</span>
+            <span class="theme-label">${isDark ? "Modo Claro" : "Modo Oscuro"}</span>
           </button>
-
-          <div class="cv-user-profile">
-            <div class="cv-avatar">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          <button type="button" id="btn-how-to-create" class="btn-how-to-create" title="¿Cómo se crean los cuestionarios?" aria-label="¿Cómo se crean los cuestionarios?">
+            <span class="btn-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
               </svg>
-            </div>
-            <span class="cv-username">Estudiante ISI</span>
-          </div>
+            </span>
+            <span class="btn-label">¿Cómo se crean los cuestionarios?</span>
+          </button>
         </div>
       </div>
 
@@ -95,17 +92,11 @@ export function renderHeader(state, subject, unit, quiz) {
         </ol>
       </nav>
 
-      <!-- Barra Desplegable de Selección: Materia y Parcial -->
+      <!-- Barra Desplegable de Selección: Materia, Parcial y Cuestionario -->
       <div class="cv-dropdown-selector-bar">
         <div class="cv-selector-container">
           <div class="cv-selector-group">
-            <label for="select-subject" class="cv-selector-label">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-              </svg>
-              <span>Materia:</span>
-            </label>
+            <label for="select-subject" class="cv-selector-label">Materia:</label>
             <div class="cv-select-wrapper">
               <select id="select-subject" class="cv-select-control">
                 ${subjectsOptionsHtml}
@@ -114,15 +105,7 @@ export function renderHeader(state, subject, unit, quiz) {
           </div>
 
           <div class="cv-selector-group">
-            <label for="select-unit" class="cv-selector-label">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                <line x1="16" y1="2" x2="16" y2="6"/>
-                <line x1="8" y1="2" x2="8" y2="6"/>
-                <line x1="3" y1="10" x2="21" y2="10"/>
-              </svg>
-              <span>Parcial / Unidad:</span>
-            </label>
+            <label for="select-unit" class="cv-selector-label">Parcial:</label>
             <div class="cv-select-wrapper">
               <select id="select-unit" class="cv-select-control">
                 ${unitsOptionsHtml}
@@ -132,15 +115,7 @@ export function renderHeader(state, subject, unit, quiz) {
 
           ${(unit?.quizzes && unit.quizzes.length > 0) ? `
             <div class="cv-selector-group">
-              <label for="select-quiz" class="cv-selector-label">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <polyline points="14 2 14 8 20 8"></polyline>
-                  <line x1="16" y1="13" x2="8" y2="13"></line>
-                  <line x1="16" y1="17" x2="8" y2="17"></line>
-                </svg>
-                <span>Cuestionario:</span>
-              </label>
+              <label for="select-quiz" class="cv-selector-label">Cuestionario:</label>
               <div class="cv-select-wrapper">
                 <select id="select-quiz" class="cv-select-control">
                   ${quizzesOptionsHtml}

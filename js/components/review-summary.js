@@ -20,7 +20,7 @@ export function renderAttemptSummary(questions, state) {
           <a href="#question-${q.id}" class="summary-q-link" data-return-qid="${q.id}">
             Pregunta ${idx + 1}
           </a>
-          ${isFlagged ? '<span class="summary-flag-indicator" title="Pregunta señalada">⚑</span>' : ""}
+          ${isFlagged ? '<span class="summary-flag-indicator" title="Pregunta señalada"><svg width="12" height="12" viewBox="0 0 24 24" fill="#dc3545" stroke="#dc3545" stroke-width="2" style="vertical-align: middle; margin-left: 4px;"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></span>' : ""}
         </td>
         <td class="cell c1 ${isAnswered ? "state-saved" : "state-notyet"}">
           ${isAnswered ? "Respuesta guardada" : "Sin responder aún"}
@@ -165,7 +165,7 @@ export function renderContinuousBanner(continuousSession, results) {
     <div class="continuous-batch-banner">
       <div class="continuous-banner-header">
         <div class="continuous-batch-pill">
-          🎲 Tanda ${batchNumber} de ${totalBatches} finalizada
+          Tanda ${batchNumber} de ${totalBatches} finalizada
         </div>
         <div class="continuous-progress-text">
           <strong>${completedQuestionsCount}</strong> de <strong>${totalQuestions}</strong> preguntas respondidas (<strong>${percentCompleted}%</strong>)
@@ -198,11 +198,10 @@ export function renderContinuousBanner(continuousSession, results) {
       <div class="continuous-banner-actions">
         ${remaining > 0 ? `
           <button type="button" id="btn-next-continuous-batch" class="btn btn-primary btn-lg">
-            Continuar con las siguientes ${nextBatchCount} preguntas al azar (sin repetir) ➡️
+            Continuar con las siguientes ${nextBatchCount} preguntas al azar (sin repetir)
           </button>
         ` : `
           <div class="continuous-completion-notice">
-            <div class="completion-trophy">🏆</div>
             <div class="completion-details">
               <h4>¡Felicitaciones! Has completado las ${totalQuestions} preguntas del banco sin repetir</h4>
               <p>Calificación final acumulada: <strong>${globalGrade} / 10,00</strong> (${cumulativeCorrect} respuestas correctas de ${totalQuestions})</p>
@@ -210,7 +209,7 @@ export function renderContinuousBanner(continuousSession, results) {
             <div class="continuous-completion-actions">
               ${(continuousSession.missedQuestions && continuousSession.missedQuestions.length > 0) ? `
                 <button type="button" id="btn-retry-missed-continuous" class="btn btn-warning btn-lg btn-retry-missed-action">
-                  🔄 Rehacer preguntas incorrectas o parciales (${continuousSession.missedQuestions.length})
+                  Rehacer preguntas incorrectas o parciales (${continuousSession.missedQuestions.length})
                 </button>
               ` : ""}
               <button type="button" id="btn-restart-continuous-session" class="btn btn-primary">
@@ -234,7 +233,6 @@ export function renderRetryNotice(missedQuestions = []) {
     return `
       <div class="quiz-retry-card perfect-score">
         <div class="quiz-retry-content">
-          <div class="quiz-retry-icon">🌟</div>
           <div class="quiz-retry-info">
             <h4 class="quiz-retry-title">¡Excelente desempeño!</h4>
             <p class="quiz-retry-desc">No tuviste preguntas incorrectas ni con puntaje parcial en este intento.</p>
@@ -248,7 +246,6 @@ export function renderRetryNotice(missedQuestions = []) {
   return `
     <div class="quiz-retry-card">
       <div class="quiz-retry-content">
-        <div class="quiz-retry-icon">🎯</div>
         <div class="quiz-retry-info">
           <h4 class="quiz-retry-title">¿Deseas reforzar tus errores?</h4>
           <p class="quiz-retry-desc">
@@ -257,7 +254,7 @@ export function renderRetryNotice(missedQuestions = []) {
         </div>
       </div>
       <button type="button" id="btn-retry-missed-top" class="btn btn-warning btn-retry-missed-action">
-        🔄 Rehacer preguntas incorrectas o parciales (${count})
+        Rehacer preguntas incorrectas o parciales (${count})
       </button>
     </div>
   `;

@@ -4,12 +4,18 @@
  * Cumple con directivas en AGENTS.md (Capa de Componentes)
  */
 
+import { evaluateSingleQuestion } from "../core/quiz-engine.js";
+
 export function renderNavBlock(questions, state, isReview = false, results = null) {
+  const isQuickMode = state.executionMode === "quick";
+
   const buttonsHtml = questions.map((q, idx) => {
     const qId = q.id;
-    const isFlagged = state.flaggedQuestions.has(qId);
+    const isFlagged = state.flaggedQuestions ? state.flaggedQuestions.has(qId) : false;
     const userSelected = state.userAnswers[qId] || [];
     const isAnswered = userSelected.length > 0;
+    const isQuickEvaluated = isQuickMode && state.quickEvaluatedQuestions && state.quickEvaluatedQuestions.has(qId);
+    const isCurrent = isQuickMode && idx === state.activeQuestionIndex;
 
     let qnClasses = "qnbutton";
     let trafficLightClass = "trafficlight";
@@ -28,6 +34,18 @@ export function renderNavBlock(questions, state, isReview = false, results = nul
           trafficLightClass += " incorrect";
         }
       }
+    } else if (isQuickEvaluated) {
+      const qRes = evaluateSingleQuestion(q, userSelected);
+      if (qRes.status === "correct") {
+        qnClasses += " correct";
+        trafficLightClass += " correct";
+      } else if (qRes.status === "partiallycorrect") {
+        qnClasses += " partiallycorrect";
+        trafficLightClass += " partiallycorrect";
+      } else {
+        qnClasses += " incorrect";
+        trafficLightClass += " incorrect";
+      }
     } else {
       if (isAnswered) {
         qnClasses += " answersaved complete";
@@ -40,12 +58,17 @@ export function renderNavBlock(questions, state, isReview = false, results = nul
       qnClasses += " flagged";
     }
 
+    if (isCurrent) {
+      qnClasses += " current-question";
+    }
+
     return `
       <a 
         href="#question-${qId}" 
         class="${qnClasses}" 
         id="quiznavbutton-${idx + 1}"
         data-nav-target="question-${qId}"
+        data-quick-goto="${idx}"
         title="Pregunta ${idx + 1}: ${isAnswered ? "Respuesta guardada" : "Sin responder aún"}${isFlagged ? " (Señalada)" : ""}"
       >
         <span class="thispageholder"></span>
@@ -69,7 +92,7 @@ export function renderNavBlock(questions, state, isReview = false, results = nul
           <div class="nav-action-wrapper">
             ${!isReview ? `
               <button type="button" id="btn-finish-attempt-nav" class="btn btn-finish-attempt">
-                Terminar intento...
+                ${isQuickMode ? "Finalizar repaso..." : "Terminar intento..."}
               </button>
             ` : `
               <button type="button" id="btn-finish-review" class="btn btn-finish-review">

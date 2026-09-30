@@ -291,7 +291,7 @@
   font-size: 0.9rem;
 }
 
-.generaltable tr:hover td {
+:root:not([data-theme="dark"]) .generaltable tr:hover td {
   background-color: #fcfcfc;
 }
 
@@ -442,4 +442,142 @@
   display: flex;
   justify-content: flex-end;
   gap: 0.75rem;
+}
+
+/* Modal ¿Cómo se crean los cuestionarios? */
+.how-to-create-dialogue-wrap {
+  width: 94%;
+  max-width: 820px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.how-to-create-hd-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.how-to-create-icon {
+  color: var(--cv-primary);
+  display: flex;
+  align-items: center;
+}
+
+.how-to-create-dialogue-bd {
+  padding: 1.25rem 1.5rem;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.how-to-create-explanation {
+  background: #f0f7ff;
+  border: 1px solid #bfdbfe;
+  border-radius: var(--cv-radius);
+  padding: 1rem 1.25rem;
+  color: #1e3a8a;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.how-to-create-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #1d4ed8;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.how-to-create-steps {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed #bfdbfe;
+  color: #1e293b;
+  font-size: 0.9rem;
+}
+
+.prompt-box-card {
+  border: 1px solid #cbd5e1;
+  border-radius: var(--cv-radius);
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.prompt-box-header {
+  background: #f8fafc;
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #334155;
+  gap: 0.75rem;
+}
+
+.prompt-box-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.btn-copy-prompt {
+  background: var(--cv-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.15s ease;
+}
+
+.btn-copy-prompt:hover {
+  background: #003662;
+  transform: translateY(-1px);
+}
+
+.btn-copy-prompt:active {
+  transform: translateY(0);
+}
+
+.prompt-text-pre {
+  margin: 0;
+  padding: 1.15rem 1.25rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  color: #1e293b;
+  background: #fafbfe;
+  max-height: 380px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  user-select: text;
+}
+
+.how-to-create-dialogue-ft {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-copy-footer {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }

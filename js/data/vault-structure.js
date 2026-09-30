@@ -10,7 +10,6 @@ export const VAULT_STRUCTURE = {
     {
       id: "ing-calidad",
       name: "Ingeniería y Calidad de Software",
-      code: "ISI-401",
       department: "Ingeniería en Sistemas de Información",
       units: [
         {
@@ -95,149 +94,146 @@ export const VAULT_STRUCTURE = {
               title: "UNIDAD 3 (51 preguntas)",
               description: "Gestión de la Configuración del Software (GCSW), control de versiones, ramas, versionado semántico, builds, entregas y Estándar IEEE 828-2012.",
               questionCount: 51,
-              timeLimitMinutes: 60,
               maxScore: 10.0,
               quizId: "quiz-p1-unidad-3"
+            },
+            {
+              id: "quiz-p1-todos-wacho",
+              title: "TODOS WACHO",
+              description: "Banco consolidado con todos los cuestionarios de este parcial (217 preguntas).",
+              questionCount: 217,
+              maxScore: 10.0,
+              allForUnit: true,
+              subjectId: "ing-calidad",
+              unitId: "parcial-1"
             }
           ]
-        },
-        {
-          id: "parcial-2",
-          name: "Parcial 2",
-          description: "Métricas de software, pruebas, aseguramiento de la calidad (SQA) y mantenimiento",
-          questionCount: 0,
-          quizzes: []
-        },
-        {
-          id: "examen-final",
-          name: "Examen Final",
-          description: "Evaluación integradora de toda la materia",
-          questionCount: 0,
-          quizzes: []
         }
       ]
     },
     {
       id: "fundamentos-backend",
       name: "Fundamentos Backend",
-      code: "ISI-312",
       department: "Ingeniería en Sistemas de Información",
       units: [
         {
-          id: "parcial-1",
+          id: "fb-parcial-1",
           name: "Parcial 1",
-          description: "Spring Boot, Arquitecturas, REST APIs, HTTP, ResponseEntity, Jackson, Genéricos, Spring Batch y Procesamiento por Lotes",
+          description: "Banco oficial de examen: Spring Boot, Arquitectura, HTTP, REST APIs, Genéricos, Jackson, Postman, Asincronía y Spring Batch",
           questionCount: 148,
           quizzes: [
             {
               id: "quiz-fb-p1-unidad-1",
+              quizId: "quiz-fb-p1-unidad-1",
               title: "UNIDAD 1 (42 preguntas)",
-              description: "Spring Boot, Application Context, Protocolo HTTP, Lombok, Flyway y Arquitecturas (Monolito vs Microservicios).",
+              description: "Banco oficial Unidad 1: Spring Boot, Arquitectura, Protocolo HTTP, Lombok, Flyway, Monolitos y Microservicios.",
               questionCount: 42,
-              timeLimitMinutes: 60,
-              maxScore: 10.0,
-              quizId: "quiz-fb-p1-unidad-1"
+              maxScore: 10.0
             },
             {
               id: "quiz-fb-p1-unidad-2",
+              quizId: "quiz-fb-p1-unidad-2",
               title: "UNIDAD 2 (53 preguntas)",
-              description: "Comunicación síncrona/asíncrona, REST APIs, convenciones y casings, métodos HTTP, ResponseEntity, genéricos en Java, Jackson y Postman.",
+              description: "Banco oficial Unidad 2: Arquitecturas y Comunicación, REST APIs, Convenciones, Genéricos, Spring Boot REST, Jackson, Postman y Asincronía.",
               questionCount: 53,
-              timeLimitMinutes: 60,
-              maxScore: 10.0,
-              quizId: "quiz-fb-p1-unidad-2"
+              maxScore: 10.0
             },
             {
               id: "quiz-fb-p1-unidad-3",
+              quizId: "quiz-fb-p1-unidad-3",
               title: "UNIDAD 3 (53 preguntas)",
-              description: "Procesamiento Batch, Spring Batch (JobLauncher, Job, Step, Readers, Processors, Writers), JobRepository, Listeners y sincronización distribuida entre pods.",
+              description: "Banco oficial Unidad 3: Spring Batch, Arquitectura, JobRepository, JobLauncher, Steps, Readers, Writers, Ciclo de Ejecución y Sincronización en Pods.",
               questionCount: 53,
-              timeLimitMinutes: 60,
+              maxScore: 10.0
+            },
+            {
+              id: "quiz-fb-p1-todos-wacho",
+              title: "TODOS WACHO",
+              description: "Banco consolidado con todas las unidades de este parcial (148 preguntas).",
+              questionCount: 148,
               maxScore: 10.0,
-              quizId: "quiz-fb-p1-unidad-3"
+              allForUnit: true,
+              subjectId: "fundamentos-backend",
+              unitId: "fb-parcial-1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id: "github",
+      name: "GitHub",
+      department: "Ingeniería en Sistemas de Información",
+      units: [
+        {
+          id: "comandos",
+          name: "Comandos",
+          description: "Banco oficial de examen: Comandos Online y Offline de Git y GitHub",
+          questionCount: 25,
+          quizzes: [
+            {
+              id: "quiz-github-comandos-cuestionario-1",
+              quizId: "quiz-github-comandos-cuestionario-1",
+              title: "Cuestionario 1 (25 preguntas)",
+              description: "Banco oficial de comandos: clone, fetch, pull, push, ramas, merge, rebase, cherry-pick y utilidades.",
+              questionCount: 25,
+              maxScore: 10.0
+            },
+            {
+              id: "quiz-github-comandos-todos-wacho",
+              title: "TODOS WACHO",
+              description: "Banco consolidado con todas las preguntas de esta unidad (25 preguntas).",
+              questionCount: 25,
+              maxScore: 10.0,
+              allForUnit: true,
+              subjectId: "github",
+              unitId: "comandos"
             }
           ]
         },
         {
-          id: "parcial-2",
-          name: "Parcial 2",
-          description: "Seguridad, Autenticación JWT, Docker, API REST y Persistencia Avanzada",
-          questionCount: 0,
-          quizzes: []
-        }
-      ]
-    },
-    {
-      id: "sistemas-operativos",
-      name: "Sistemas Operativos",
-      code: "ISI-302",
-      department: "Ingeniería en Sistemas de Información",
-      units: [
-        {
-          id: "so-parcial-1",
-          name: "Parcial 1",
-          description: "Procesos, hilos, planificación de CPU y sincronización",
-          questionCount: 0,
-          quizzes: []
-        },
-        {
-          id: "so-parcial-2",
-          name: "Parcial 2",
-          description: "Memoria virtual, sistemas de archivos y E/S",
-          questionCount: 0,
-          quizzes: []
-        }
-      ]
-    },
-    {
-      id: "diseno-sistemas",
-      name: "Diseño de Sistemas",
-      code: "ISI-305",
-      department: "Ingeniería en Sistemas de Información",
-      units: [
-        {
-          id: "ds-parcial-1",
-          name: "Parcial 1",
-          description: "Patrones de diseño, arquitectura y modelado UML",
-          questionCount: 0,
-          quizzes: []
-        },
-        {
-          id: "ds-parcial-2",
-          name: "Parcial 2",
-          description: "Diseño de persistencia, microservicios e integración",
-          questionCount: 0,
-          quizzes: []
+          id: "ci-cd",
+          name: "CI/CD",
+          description: "Banco oficial de examen: Fundamentos de CI/CD, Pipelines, Runners, YAML, Workflows y Políticas de Calidad",
+          questionCount: 20,
+          quizzes: [
+            {
+              id: "quiz-github-ci-cd-cuestionario-1",
+              quizId: "quiz-github-ci-cd-cuestionario-1",
+              title: "Cuestionario 1 (20 preguntas)",
+              description: "Banco oficial de CI/CD: conceptos, Pipelines, Runners, sintaxis YAML, GitHub Actions, Steps, Secretos y Branch Protection.",
+              questionCount: 20,
+              maxScore: 10.0
+            },
+            {
+              id: "quiz-github-ci-cd-todos-wacho",
+              title: "TODOS WACHO",
+              description: "Banco consolidado con todas las preguntas de esta unidad (20 preguntas).",
+              questionCount: 20,
+              maxScore: 10.0,
+              allForUnit: true,
+              subjectId: "github",
+              unitId: "ci-cd"
+            }
+          ]
         }
       ]
     }
   ]
 };
 
-/**
- * Obtener materia por ID
- * @param {string} subjectId
- */
+/** Obtener materia por ID */
 export function getSubjectById(subjectId) {
-  return VAULT_STRUCTURE.subjects.find(s => s.id === subjectId || (subjectId === "backend" && s.id === "fundamentos-backend")) || VAULT_STRUCTURE.subjects[0];
+  return VAULT_STRUCTURE.subjects.find(s => s.id === subjectId) || VAULT_STRUCTURE.subjects[0];
 }
 
-/**
- * Obtener unidad por ID
- * @param {string} subjectId
- * @param {string} unitId
- */
+/** Obtener unidad por ID */
 export function getUnitById(subjectId, unitId) {
   const subject = getSubjectById(subjectId);
   return subject?.units.find(u => u.id === unitId) || subject?.units[0];
 }
 
-/**
- * Obtener cuestionario por ID
- * @param {string} subjectId
- * @param {string} unitId
- * @param {string} quizId
- */
+/** Obtener cuestionario por ID */
 export function getQuizById(subjectId, unitId, quizId) {
   const unit = getUnitById(subjectId, unitId);
   if (!unit || !unit.quizzes || unit.quizzes.length === 0) return null;
@@ -253,6 +249,22 @@ export function getQuizById(subjectId, unitId, quizId) {
 export function getQuestionsForQuiz(quiz, allQuestions = []) {
   if (!quiz || !allQuestions || allQuestions.length === 0) return [];
   
+  // Opción "TODOS WACHO" (consolida todas las preguntas del parcial correspondiente)
+  if (quiz.allForUnit || quiz.id?.endsWith("-todos-wacho")) {
+    if (quiz.subjectId === "ing-calidad" || quiz.unitId === "parcial-1" || quiz.id === "quiz-p1-todos-wacho") {
+      return allQuestions.filter(q => q.subject === "Ingeniería y Calidad" || q.id.startsWith("ing-cal-p1-"));
+    }
+    if (quiz.subjectId === "fundamentos-backend" || quiz.unitId === "fb-parcial-1" || quiz.id === "quiz-fb-p1-todos-wacho") {
+      return allQuestions.filter(q => q.subject === "Fundamentos Backend" || q.id.startsWith("fb-p1-"));
+    }
+    if (quiz.unitId === "comandos" || quiz.id === "quiz-github-comandos-todos-wacho") {
+      return allQuestions.filter(q => (q.subject === "GitHub" && q.unit === "Comandos") || q.id.startsWith("gh-cmd-"));
+    }
+    if (quiz.unitId === "ci-cd" || quiz.id === "quiz-github-ci-cd-todos-wacho") {
+      return allQuestions.filter(q => (q.subject === "GitHub" && q.unit === "CI/CD") || q.id.startsWith("gh-cicd-"));
+    }
+  }
+
   if (quiz.questionIds && Array.isArray(quiz.questionIds)) {
     return allQuestions.filter(q => quiz.questionIds.includes(q.id));
   }

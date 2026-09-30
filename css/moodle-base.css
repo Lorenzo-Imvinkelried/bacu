@@ -161,6 +161,24 @@ body {
   border-color: #b1b8be;
 }
 
+.btn-outline {
+  color: var(--cv-primary);
+  background-color: transparent;
+  border: 1px solid var(--cv-border-color);
+}
+
+.btn-outline:hover {
+  background-color: #f1f5f9;
+  border-color: #94a3b8;
+  color: var(--cv-primary-dark);
+}
+
+.btn-outline:focus,
+.btn-outline:active {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 75, 135, 0.2);
+}
+
 .hidden {
   display: none !important;
 }
@@ -172,6 +190,11 @@ body {
   padding: 1.5rem 1rem;
   margin-top: auto;
   font-size: 0.85rem;
+  text-align: center;
+}
+
+.cv-footer p {
+  margin: 0 auto;
   text-align: center;
 }
 
