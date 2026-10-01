@@ -218,6 +218,63 @@ export const VAULT_STRUCTURE = {
           ]
         }
       ]
+    },
+    {
+      id: "administracion-de-sistemas",
+      name: "Administración de Sistemas",
+      department: "Ingeniería en Sistemas de Información",
+      units: [
+        {
+          id: "as-parcial-3",
+          name: "Parcial 3",
+          description: "Banco oficial de examen: Unidades 7, 8, 9 y 10 de Administración de Sistemas",
+          questionCount: 57,
+          quizzes: [
+            {
+              id: "quiz-as-p3-unidad-7",
+              quizId: "quiz-as-p3-unidad-7",
+              title: "UNIDAD 7 (57 preguntas)",
+              description: "Banco oficial Unidad 7: Planificación de Proyectos Informáticos (PMBOK, Ciclo de Vida, EDT, Estimaciones, Riesgos y Cronograma).",
+              questionCount: 57,
+              maxScore: 10.0
+            },
+            {
+              id: "quiz-as-p3-unidad-8",
+              quizId: "quiz-as-p3-unidad-8",
+              title: "UNIDAD 8",
+              description: "Banco oficial Unidad 8: Temario de Administración de Sistemas.",
+              questionCount: 0,
+              maxScore: 10.0
+            },
+            {
+              id: "quiz-as-p3-unidad-9",
+              quizId: "quiz-as-p3-unidad-9",
+              title: "UNIDAD 9",
+              description: "Banco oficial Unidad 9: Temario de Administración de Sistemas.",
+              questionCount: 0,
+              maxScore: 10.0
+            },
+            {
+              id: "quiz-as-p3-unidad-10",
+              quizId: "quiz-as-p3-unidad-10",
+              title: "UNIDAD 10",
+              description: "Banco oficial Unidad 10: Temario de Administración de Sistemas.",
+              questionCount: 0,
+              maxScore: 10.0
+            },
+            {
+              id: "quiz-as-p3-todos-wacho",
+              title: "TODOS WACHO",
+              description: "Banco consolidado con todas las preguntas cargadas de este parcial (57 preguntas).",
+              questionCount: 57,
+              maxScore: 10.0,
+              allForUnit: true,
+              subjectId: "administracion-de-sistemas",
+              unitId: "as-parcial-3"
+            }
+          ]
+        }
+      ]
     }
   ]
 };
@@ -263,14 +320,16 @@ export function getQuestionsForQuiz(quiz, allQuestions = []) {
     if (quiz.unitId === "ci-cd" || quiz.id === "quiz-github-ci-cd-todos-wacho") {
       return allQuestions.filter(q => (q.subject === "GitHub" && q.unit === "CI/CD") || q.id.startsWith("gh-cicd-"));
     }
+    if (quiz.subjectId === "administracion-de-sistemas" || quiz.unitId === "as-parcial-3" || quiz.id === "quiz-as-p3-todos-wacho") {
+      return allQuestions.filter(q => q.subject === "Administración de Sistemas" || q.id.startsWith("as-p3-"));
+    }
   }
 
   if (quiz.questionIds && Array.isArray(quiz.questionIds)) {
     return allQuestions.filter(q => quiz.questionIds.includes(q.id));
   }
   if (quiz.quizId) {
-    const matched = allQuestions.filter(q => q.quizId === quiz.quizId);
-    if (matched.length > 0) return matched;
+    return allQuestions.filter(q => q.quizId === quiz.quizId);
   }
   const matchedById = allQuestions.filter(q => q.quizId === quiz.id);
   if (matchedById.length > 0) return matchedById;
@@ -283,5 +342,5 @@ export function getQuestionsForQuiz(quiz, allQuestions = []) {
     const [start, end] = quiz.questionRange;
     return allQuestions.filter(q => q.num >= start && q.num <= end);
   }
-  return [...allQuestions];
+  return [];
 }

@@ -6,6 +6,7 @@
 
 import { handleClickEvent } from "./click-handlers.js";
 import { handleFormChangeEvent, handleRealtimeInputEvent } from "./form-handlers.js";
+import { handleAnnotationsClickEvent, handleAnnotationsSubmitEvent } from "./annotations-handlers.js";
 
 /**
  * Registrar y delegar todos los eventos de la interfaz
@@ -13,6 +14,8 @@ import { handleFormChangeEvent, handleRealtimeInputEvent } from "./form-handlers
  */
 export function setupEventListeners(root) {
   root.addEventListener("click", handleClickEvent);
+  root.addEventListener("click", handleAnnotationsClickEvent);
+  root.addEventListener("submit", handleAnnotationsSubmitEvent);
   root.addEventListener("change", handleFormChangeEvent);
   root.addEventListener("input", handleRealtimeInputEvent);
 

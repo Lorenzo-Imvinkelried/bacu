@@ -6,6 +6,7 @@
 
 import { evaluateSingleQuestion } from "../core/quiz-engine.js";
 import { formatExplanation, escapeHtml } from "./explanation-formatter.js";
+import { renderAnnotationsSection } from "./annotations-component.js";
 
 export function renderQuestion(question, index, state, isReview = false, result = null) {
   const qId = question.id;
@@ -204,6 +205,7 @@ export function renderQuestion(question, index, state, isReview = false, result 
         </div>
 
         ${outcomeHtml}
+        ${renderAnnotationsSection(qId)}
       </div>
     </div>
   `;

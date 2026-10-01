@@ -20,6 +20,7 @@ baul-de-cuestionarios/
 │   ├── moodle-quiz.css        # Componente de preguntas (.que, .info, .formulation, .answer, .outcome)
 │   ├── moodle-navblock.css    # Bloque de navegación del cuestionario (#mod_quiz_navblock, grilla .qnbutton)
 │   ├── moodle-dark.css        # Tema de Modo Oscuro ergonómico y descansador para la vista
+│   ├── annotations.css        # Estilos para anotaciones colaborativas de la comunidad
 │   └── vault-explorer.css     # Explorador del baúl (árbol de materias, parciales, modales)
 ├── js/
 │   ├── data/                  # Capa de datos y persistencia
@@ -61,18 +62,30 @@ baul-de-cuestionarios/
 │   │               ├── index.js
 │   │               ├── part-01.js # Preguntas 1 a 10
 │   │               └── part-02.js # Preguntas 11 a 20
+│   │   └── administracion-de-sistemas/ # Asignatura Administración de Sistemas
+│   │       └── parcial-3/     # Parcial 3 modular
+│   │           ├── index.js   # Índice unificador de Parcial 3
+│   │           ├── unidad-7/  # Cuestionario modular UNIDAD 7 (57 preguntas, 5 partes)
+│   │           │   ├── index.js
+│   │           │   └── part-01.js ... part-05.js
+│   │           ├── unidad-8/  # Cuestionario modular UNIDAD 8 (index.js, part-01.js)
+│   │           ├── unidad-9/  # Cuestionario modular UNIDAD 9 (index.js, part-01.js)
+│   │           └── unidad-10/ # Cuestionario modular UNIDAD 10 (index.js, part-01.js)
 │   ├── core/                  # Capa de lógica de negocio y estado
 │   │   ├── state.js           # Gestor reactivo de estado central (< 300 líneas)
 │   │   ├── continuous-session.js # Dominio de práctica continua por tandas
 │   │   ├── history-storage.js # Persistencia de intentos en localStorage
-│   │   └── quiz-engine.js     # Motor evaluador (cálculo de puntaje, validaciones, tiempo)
+│   │   ├── quiz-engine.js     # Motor evaluador (cálculo de puntaje, validaciones, tiempo)
+│   │   ├── firebase-config.js # Credenciales y estado de conexión con Firebase
+│   │   └── annotations-service.js # Servicio de lectura/escritura de notas comunitarias
 │   ├── components/            # Capa de componentes de interfaz (renderizado puro)
 │   │   ├── header-component.js       # Renderiza encabezado y breadcrumbs estilo Campus Virtual UTN
 │   │   ├── question-component.js     # Renderiza las tarjetas .que para intento y revisión
 │   │   ├── navblock-component.js     # Renderiza la grilla de navegación interactiva y semáforos
 │   │   ├── review-summary.js         # Renderiza tablas de resumen de intento y revisión final
 │   │   ├── vault-drawer.js           # Renderiza el explorador del baúl de materias y parciales
-│   │   └── how-to-create-modal.js    # Modal con prompt maestro de creación con Gemini
+│   │   ├── how-to-create-modal.js    # Modal con prompt maestro de creación con Gemini
+│   │   └── annotations-component.js  # Renderiza lista de aportes y formulario de notas
 │   ├── app/                   # Capa de vistas y controladores de la aplicación (< 300 líneas c/u)
 │   │   ├── intro-view.js      # Vista de bienvenida y selección de modalidad
 │   │   ├── attempt-view.js    # Vista del intento en curso y revisión
@@ -80,6 +93,7 @@ baul-de-cuestionarios/
 │   │   ├── click-handlers.js  # Manejador de eventos de clic
 │   │   ├── form-handlers.js   # Manejador de eventos de cambio e input
 │   │   ├── event-handlers.js  # Orquestador de eventos delegados en el DOM
+│   │   ├── annotations-handlers.js # Manejador de eventos de interacción de anotaciones
 │   │   └── export-service.js  # Servicio de exportación de preguntas a archivo TXT
 │   └── app.js                 # Punto de entrada / bootstrap orquestador (< 110 líneas)
 └── Preguntas parcial 1 ING Y CALIDAD.txt # Archivo fuente original de preguntas

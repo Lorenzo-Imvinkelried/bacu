@@ -34,6 +34,14 @@ import {
   GITHUB_CICD_C1_QUESTIONS
 } from "./github/ci-cd/index.js";
 
+import {
+  ADMIN_SISTEMAS_PARCIAL_3_QUESTIONS,
+  ADMIN_SISTEMAS_UNIDAD_7_QUESTIONS,
+  ADMIN_SISTEMAS_UNIDAD_8_QUESTIONS,
+  ADMIN_SISTEMAS_UNIDAD_9_QUESTIONS,
+  ADMIN_SISTEMAS_UNIDAD_10_QUESTIONS
+} from "./administracion-de-sistemas/parcial-3/index.js";
+
 // Re-exportaciones individuales y por parcial
 export { 
   PARCIAL_1_QUESTIONS,
@@ -65,12 +73,21 @@ export {
   GITHUB_CICD_C1_QUESTIONS
 } from "./github/ci-cd/index.js";
 
+export {
+  ADMIN_SISTEMAS_PARCIAL_3_QUESTIONS,
+  ADMIN_SISTEMAS_UNIDAD_7_QUESTIONS,
+  ADMIN_SISTEMAS_UNIDAD_8_QUESTIONS,
+  ADMIN_SISTEMAS_UNIDAD_9_QUESTIONS,
+  ADMIN_SISTEMAS_UNIDAD_10_QUESTIONS
+} from "./administracion-de-sistemas/parcial-3/index.js";
+
 // Banco global de preguntas de la aplicación
 export const QUESTION_BANK = [
   ...PARCIAL_1_QUESTIONS,
   ...BACKEND_PARCIAL_1_QUESTIONS,
   ...GITHUB_COMANDOS_QUESTIONS,
-  ...GITHUB_CICD_QUESTIONS
+  ...GITHUB_CICD_QUESTIONS,
+  ...ADMIN_SISTEMAS_PARCIAL_3_QUESTIONS
 ];
 
 /**

@@ -16,21 +16,23 @@ import { getFormattedQuizTitle } from "./quiz-title.js";
  * @returns {string} HTML
  */
 export function renderIntroView(quiz, unit, currentState) {
-  if (!unit || unit.questionCount === 0 || !quiz) {
+  const quizQuestions = quiz ? getQuestionsForQuiz(quiz, QUESTION_BANK) : [];
+
+  if (!unit || unit.questionCount === 0 || !quiz || quizQuestions.length === 0) {
+    const title = quiz?.title || unit?.name || "Cuestionario";
     return `
       <div class="quiz-intro-card">
         <div class="empty-unit-notice">
-          <h3>${unit ? unit.name : "Unidad"} - Próximamente</h3>
-          <p>Esta unidad o materia aún no contiene preguntas cargadas en el baúl.</p>
-          <p>Para practicar con las preguntas de examen, seleccioná <strong>Ingeniería y Calidad de Software &rarr; Parcial 1</strong> en el menú superior.</p>
-          <button type="button" class="btn btn-primary" id="btn-switch-to-p1">Ir a Parcial 1</button>
+          <h3>${title} - Sin preguntas cargadas</h3>
+          <p>Este cuestionario aún no contiene preguntas cargadas en el baúl.</p>
+          <p>Estructura lista para incorporar las preguntas. Podés alternar entre cuestionarios o volver a los disponibles.</p>
+          <button type="button" class="btn btn-primary" id="btn-switch-to-p1">Ir a Parcial 1 (Ing. y Calidad)</button>
         </div>
       </div>
     `;
   }
 
-  const quizQuestions = getQuestionsForQuiz(quiz, QUESTION_BANK);
-  const totalQuestions = quizQuestions.length || unit.questionCount || 92;
+  const totalQuestions = quizQuestions.length;
   const executionMode = currentState.executionMode || "batches";
   const batchSize = Math.min(totalQuestions, Math.max(1, currentState.batchSize || 10));
   const randomCount = Math.min(totalQuestions, Math.max(1, currentState.randomCount || 4));
