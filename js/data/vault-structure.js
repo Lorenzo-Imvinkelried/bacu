@@ -228,7 +228,7 @@ export const VAULT_STRUCTURE = {
           id: "as-parcial-3",
           name: "Parcial 3",
           description: "Banco oficial de examen: Unidades 7, 8, 9 y 10 de Administración de Sistemas",
-          questionCount: 129,
+          questionCount: 165,
           quizzes: [
             {
               id: "quiz-as-p3-unidad-7",
@@ -257,16 +257,16 @@ export const VAULT_STRUCTURE = {
             {
               id: "quiz-as-p3-unidad-10",
               quizId: "quiz-as-p3-unidad-10",
-              title: "UNIDAD 10",
-              description: "Banco oficial Unidad 10: Temario de Administración de Sistemas.",
-              questionCount: 0,
+              title: "UNIDAD 10 (36 preguntas)",
+              description: "Banco oficial Unidad 10: Seguridad en el Trabajo, Prevención de Accidentes, Teletrabajo y Ergonomía (Binomio Hombre-Máquina y Factores de Riesgo).",
+              questionCount: 36,
               maxScore: 10.0
             },
             {
               id: "quiz-as-p3-todos-wacho",
               title: "TODOS WACHO",
-              description: "Banco consolidado con todas las preguntas cargadas de este parcial (129 preguntas).",
-              questionCount: 129,
+              description: "Banco consolidado con todas las preguntas cargadas de este parcial (165 preguntas).",
+              questionCount: 165,
               maxScore: 10.0,
               allForUnit: true,
               subjectId: "administracion-de-sistemas",
