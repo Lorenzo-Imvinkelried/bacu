@@ -224,7 +224,7 @@ export function evaluateSingleQuestion(question, userSelected = []) {
   }
 
   if (question.type === "single") {
-    const isCorrect = userSelected.length === 1 && userSelected[0] === correctOptions[0];
+    const isCorrect = userSelected.length === 1 && correctOptions.includes(userSelected[0]);
     earnedPoints = isCorrect ? questionMaxPoints : 0;
     status = isCorrect ? "correct" : "incorrect";
   } else if (question.type === "multiple") {

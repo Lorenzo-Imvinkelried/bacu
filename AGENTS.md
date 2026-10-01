@@ -65,6 +65,9 @@ baul-de-cuestionarios/
 │   │   └── administracion-de-sistemas/ # Asignatura Administración de Sistemas
 │   │       └── parcial-3/     # Parcial 3 modular
 │   │           ├── index.js   # Índice unificador de Parcial 3
+│   │           ├── pdf-100-paginas/ # Cuestionario modular PDF 100 PÁGINAS (17 preguntas, 2 partes)
+│   │           │   ├── index.js
+│   │           │   └── part-01.js ... part-02.js
 │   │           ├── unidad-7/  # Cuestionario modular UNIDAD 7 (57 preguntas, 5 partes)
 │   │           │   ├── index.js
 │   │           │   └── part-01.js ... part-05.js

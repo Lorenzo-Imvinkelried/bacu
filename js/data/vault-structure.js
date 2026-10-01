@@ -228,8 +228,16 @@ export const VAULT_STRUCTURE = {
           id: "as-parcial-3",
           name: "Parcial 3",
           description: "Banco oficial de examen: Unidades 7, 8, 9 y 10 de Administración de Sistemas",
-          questionCount: 165,
+          questionCount: 182,
           quizzes: [
+            {
+              id: "quiz-as-p3-pdf-100-paginas",
+              quizId: "quiz-as-p3-pdf-100-paginas",
+              title: "PDF 100 PAGINAS PARCIAL 3 (17 preguntas)",
+              description: "Banco oficial extraído del documento de 100 páginas de Campus Virtual (Seguridad Informática, Auditoría, Teletrabajo, Ergonomía e Higiene y Seguridad).",
+              questionCount: 17,
+              maxScore: 10.0
+            },
             {
               id: "quiz-as-p3-unidad-7",
               quizId: "quiz-as-p3-unidad-7",
@@ -265,8 +273,8 @@ export const VAULT_STRUCTURE = {
             {
               id: "quiz-as-p3-todos-wacho",
               title: "TODOS WACHO",
-              description: "Banco consolidado con todas las preguntas cargadas de este parcial (165 preguntas).",
-              questionCount: 165,
+              description: "Banco consolidado con todas las preguntas cargadas de este parcial (182 preguntas).",
+              questionCount: 182,
               maxScore: 10.0,
               allForUnit: true,
               subjectId: "administracion-de-sistemas",
