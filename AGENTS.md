@@ -68,8 +68,12 @@ baul-de-cuestionarios/
 │   │           ├── unidad-7/  # Cuestionario modular UNIDAD 7 (57 preguntas, 5 partes)
 │   │           │   ├── index.js
 │   │           │   └── part-01.js ... part-05.js
-│   │           ├── unidad-8/  # Cuestionario modular UNIDAD 8 (index.js, part-01.js)
-│   │           ├── unidad-9/  # Cuestionario modular UNIDAD 9 (index.js, part-01.js)
+│   │           ├── unidad-8/  # Cuestionario modular UNIDAD 8 (38 preguntas, 3 partes)
+│   │           │   ├── index.js
+│   │           │   └── part-01.js ... part-03.js
+│   │           ├── unidad-9/  # Cuestionario modular UNIDAD 9 (34 preguntas, 3 partes)
+│   │           │   ├── index.js
+│   │           │   └── part-01.js ... part-03.js
 │   │           └── unidad-10/ # Cuestionario modular UNIDAD 10 (index.js, part-01.js)
 │   ├── core/                  # Capa de lógica de negocio y estado
 │   │   ├── state.js           # Gestor reactivo de estado central (< 300 líneas)
