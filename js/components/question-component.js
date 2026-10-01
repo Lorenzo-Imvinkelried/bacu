@@ -5,6 +5,7 @@
  */
 
 import { evaluateSingleQuestion } from "../core/quiz-engine.js";
+import { formatExplanation, escapeHtml } from "./explanation-formatter.js";
 
 export function renderQuestion(question, index, state, isReview = false, result = null) {
   const qId = question.id;
@@ -137,7 +138,13 @@ export function renderQuestion(question, index, state, isReview = false, result 
         </div>
         ${question.explanation ? `
           <div class="feedback-explanation">
-            <strong>Justificación teórica:</strong> ${escapeHtml(question.explanation)}
+            <div class="feedback-explanation-header">
+              <span class="feedback-explanation-icon" aria-hidden="true">💡</span>
+              <strong>Justificación teórica:</strong>
+            </div>
+            <div class="feedback-explanation-body">
+              ${formatExplanation(question.explanation)}
+            </div>
           </div>
         ` : ""}
       </div>
@@ -266,14 +273,4 @@ function renderDiagramSvg(diagramType) {
   }
 
   return "";
-}
-
-function escapeHtml(text) {
-  if (!text) return "";
-  return text
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
 }

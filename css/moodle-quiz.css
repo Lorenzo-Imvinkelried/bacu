@@ -399,6 +399,11 @@
   color: #1a202c;
 }
 
+.qtext p {
+  margin: 0;
+  white-space: pre-line;
+}
+
 .prompt {
   font-size: 0.88rem;
   font-style: italic;
@@ -564,6 +569,170 @@
   padding-top: 0.75rem;
   border-top: 1px dashed rgba(0, 0, 0, 0.15);
   font-size: 0.88rem;
+}
+
+.feedback-explanation-header {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.4rem;
+  font-weight: 700;
+  color: inherit;
+}
+
+.feedback-explanation-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.feedback-explanation-body {
+  line-height: 1.55;
+}
+
+.feedback-explanation-body p.explanation-p {
+  margin: 0.35rem 0 0.5rem 0;
+}
+
+.feedback-explanation-body p.explanation-p:last-child {
+  margin-bottom: 0;
+}
+
+.feedback-explanation-body .explanation-h3 {
+  font-size: 0.98rem;
+  font-weight: 700;
+  margin: 0.9rem 0 0.35rem 0;
+  color: inherit;
+}
+
+.feedback-explanation-body .explanation-h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0.75rem 0 0.25rem 0;
+  color: inherit;
+}
+
+.feedback-explanation-body .explanation-hr {
+  border: 0;
+  border-top: 1px dashed rgba(0, 0, 0, 0.2);
+  margin: 0.75rem 0;
+}
+
+.feedback-explanation-body code.explanation-inline-code {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.85em;
+  background-color: rgba(0, 0, 0, 0.08);
+  color: #c7254e;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  word-break: break-word;
+}
+
+.explanation-code-container {
+  margin: 0.6rem 0;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.explanation-code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0f172a;
+  padding: 0.3rem 0.75rem;
+  border-bottom: 1px solid #334155;
+}
+
+.code-lang-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #38bdf8;
+  letter-spacing: 0.05em;
+}
+
+.code-copy-hint {
+  font-size: 0.7rem;
+  color: #94a3b8;
+}
+
+.explanation-code-block {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  overflow-x: auto;
+  background: transparent;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #f8fafc;
+}
+
+.explanation-code-block code {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Tokens de resaltado de sintaxis */
+.syntax-keyword { color: #f472b6; font-weight: 600; }
+.syntax-annotation { color: #fcd34d; font-weight: 600; }
+.syntax-string { color: #4ade80; }
+.syntax-comment { color: #94a3b8; font-style: italic; }
+.syntax-class { color: #38bdf8; }
+
+/* Listas y viñetas de retroalimentación */
+.explanation-ul {
+  margin: 0.4rem 0 0.6rem 1.25rem;
+  padding: 0;
+  list-style-type: disc;
+}
+
+.explanation-ul li {
+  margin-bottom: 0.35rem;
+  line-height: 1.5;
+}
+
+/* Tablas estilizadas en retroalimentación */
+.explanation-table-wrapper {
+  margin: 0.75rem 0;
+  overflow-x: auto;
+  border-radius: var(--cv-radius);
+  border: 1px solid var(--cv-formulation-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.explanation-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  text-align: left;
+  background-color: #ffffff;
+}
+
+.explanation-table th {
+  background-color: #f1f5f9;
+  font-weight: 700;
+  padding: 0.55rem 0.85rem;
+  border-bottom: 2px solid #cbd5e1;
+  color: #1e293b;
+}
+
+.explanation-table td {
+  padding: 0.5rem 0.85rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #334155;
+  vertical-align: top;
+}
+
+.explanation-table tr:last-child td {
+  border-bottom: none;
+}
+
+.explanation-table tr:hover {
+  background-color: #f8fafc;
 }
 
 /* Diagramas y Gráficos SVG */

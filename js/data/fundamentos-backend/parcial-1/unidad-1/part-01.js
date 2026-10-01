@@ -1,8 +1,8 @@
 /**
  * Banco de Preguntas - UNIDAD 1 (Fundamentos Backend - Parcial 1)
- * Parte 01 (Preguntas 1 a 9)
+ * Parte 01 (Preguntas 1 a 7)
  * Temas: Spring Boot (Tipos de aplicaciones, Cloud-Native, Servidor Embebido, Características,
- * Auto-Configuración, Diagrama Arquitectónico, JPA/Spring Data, Repository en Service Layer, Application Context).
+ * Auto-Configuración, Diagrama Arquitectónico: Client, Controller, JPA/Spring Data y Database).
  * Cumple estrictamente con directivas en AGENTS.md (Capa de Datos, < 300 líneas)
  */
 
@@ -143,47 +143,105 @@ export const questionsPart01 = [
       { id: "d", text: "Administrar el ciclo de vida de los componentes y coordinar la inyección de dependencias dentro de los controladores REST." }
     ],
     correctAnswers: ["a"],
-    explanation: "En el diagrama, JPA/Spring Data actúa como el intermediario que conecta las entidades del Model con la persistencia en la Database. (Diapositiva 5)",
-    diagram: null,
-    points: 1
-  },
-  {
-    id: "fb-p1-u1-q08",
-    num: 8,
-    subject: "Fundamentos Backend",
-    unit: "Parcial 1",
-    quizId: "quiz-fb-p1-unidad-1",
-    topic: "Spring Boot - Arquitectura",
-    type: "single",
-    prompt: "De acuerdo con las flechas de inyección y comunicación del diagrama arquitectónico, ¿en qué componente se inyecta la «Repository Class Extending CRUD Services» mediante Dependency Injection?",
-    options: [
-      { id: "a", text: "En el Client" },
-      { id: "b", text: "En el Model" },
-      { id: "c", text: "En el Service Layer" },
-      { id: "d", text: "En el Controller" }
-    ],
-    correctAnswers: ["c"],
-    explanation: "La flecha de «Dependency Injection» vincula a la clase repositorio que extiende servicios CRUD directamente con la capa Service Layer, permitiendo a los servicios ejecutar operaciones de negocio y persistencia. (Diapositiva 5)",
-    diagram: null,
-    points: 1
-  },
-  {
-    id: "fb-p1-u1-q09",
-    num: 9,
-    subject: "Fundamentos Backend",
-    unit: "Parcial 1",
-    quizId: "quiz-fb-p1-unidad-1",
-    topic: "Spring Boot - Application Context",
-    type: "single",
-    prompt: "Según la definición del material, ¿qué es el «Application Context» en Spring Boot?",
-    options: [
-      { id: "a", text: "Una base de datos relacional integrada en memoria para almacenar información transitoria de las sesiones activas." },
-      { id: "b", text: "El contenedor central que almacena y gestiona los objetos requeridos para el funcionamiento del sistema." },
-      { id: "c", text: "Un protocolo de transporte y comunicación alternativo diseñado para reemplazar las conexiones HTTP convencionales." },
-      { id: "d", text: "Una interfaz de monitoreo en tiempo real diseñada para supervisar el consumo de CPU y memoria de la aplicación." }
-    ],
-    correctAnswers: ["b"],
-    explanation: "La diapositiva indica textualmente que el Application Context «contiene los objetos que se necesitan para llevar adelante el funcionamiento» del sistema backend. (Diapositiva 6)",
+    explanation: `En el diagrama, JPA/Spring Data actúa como el intermediario que conecta las entidades del Model con la persistencia en la Database. (Diapositiva 5)
+
+La pregunta aborda el rol de **JPA / Spring Data** como puente de persistencia y **mapeo objeto-relacional (ORM)**: traduce los objetos Java en registros de tablas SQL (y viceversa) para no tener que escribir consultas JDBC manuales ni lidiar con \`ResultSet\`.
+
+---
+
+### 1. La capa «Model» (Entidad JPA)
+
+Representa una tabla en la base de datos mediante una clase Java anotada con \`@Entity\`:
+
+\`\`\`java
+package com.ejemplo.demo.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "productos")
+public class Producto {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String nombre;
+    private Double precio;
+
+    public Producto() {}
+
+    public Producto(String nombre, Double precio) {
+        this.nombre = nombre;
+        this.precio = precio;
+    }
+
+    // Getters y setters...
+    public Long getId() { return id; }
+    public String getNombre() { return nombre; }
+    public Double getPrecio() { return precio; }
+}
+\`\`\`
+
+---
+
+### 2. El rol de Spring Data JPA (Repositorio)
+
+Spring Data genera automáticamente las operaciones SQL subyacentes (\`INSERT\`, \`SELECT\`, \`UPDATE\`, \`DELETE\`) con solo declarar una interfaz que extienda \`JpaRepository\`:
+
+\`\`\`java
+package com.ejemplo.demo.repository;
+
+import com.ejemplo.demo.model.Producto;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+
+public interface ProductoRepository extends JpaRepository<Producto, Long> {
+    // Spring Data infiere el SQL ("SELECT * FROM productos WHERE precio < ?") por el nombre del método
+    List<Producto> findByPrecioLessThan(Double precioMaximo);
+}
+\`\`\`
+
+---
+
+### 3. Conexión con la «Database» en la capa de Servicio
+
+El servicio interactúa con objetos del dominio sin escribir sentencias SQL:
+
+\`\`\`java
+package com.ejemplo.demo.service;
+
+import com.ejemplo.demo.model.Producto;
+import com.ejemplo.demo.repository.ProductoRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class CatalogoService {
+
+    private final ProductoRepository productoRepo;
+
+    public CatalogoService(ProductoRepository productoRepo) {
+        this.productoRepo = productoRepo;
+    }
+
+    public void guardarProducto() {
+        Producto nuevo = new Producto("Teclado Mecánico", 120.0);
+        // JPA/Spring Data traduce esto internamente a un: INSERT INTO productos (nombre, precio) VALUES ('Teclado Mecánico', 120.0);
+        productoRepo.save(nuevo);
+    }
+
+    public List<Producto> buscarBaratos() {
+        // JPA/Spring Data ejecuta el SELECT y transforma cada fila devuelta en una instancia de Producto
+        return productoRepo.findByPrecioLessThan(150.0);
+    }
+}
+\`\`\``,
     diagram: null,
     points: 1
   }

@@ -4,7 +4,7 @@ Cuestionario: UNIDAD 1 (42 preguntas)
 Asignatura: Fundamentos Backend
 Unidad / Parcial: Parcial 1
 Institución: Universidad Tecnológica Nacional - Facultad Regional Santa Fe (UTN FRSF)
-Total de preguntas en este cuestionario: 42
+Total de preguntas en este cuestionario: 43
 Fecha de exportación: 30/9/2026
 ================================================================================
 
@@ -150,6 +150,104 @@ RESPUESTA(S) CORRECTA(S):
 
 JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
 En el diagrama, JPA/Spring Data actúa como el intermediario que conecta las entidades del Model con la persistencia en la Database. (Diapositiva 5)
+
+La pregunta aborda el rol de **JPA / Spring Data** como puente de persistencia y **mapeo objeto-relacional (ORM)**: traduce los objetos Java en registros de tablas SQL (y viceversa) para no tener que escribir consultas JDBC manuales ni lidiar con `ResultSet`.
+
+---
+
+### 1. La capa «Model» (Entidad JPA)
+
+Representa una tabla en la base de datos mediante una clase Java anotada con `@Entity`:
+
+```java
+package com.ejemplo.demo.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "productos")
+public class Producto {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String nombre;
+    private Double precio;
+
+    public Producto() {}
+
+    public Producto(String nombre, Double precio) {
+        this.nombre = nombre;
+        this.precio = precio;
+    }
+
+    // Getters y setters...
+    public Long getId() { return id; }
+    public String getNombre() { return nombre; }
+    public Double getPrecio() { return precio; }
+}
+```
+
+---
+
+### 2. El rol de Spring Data JPA (Repositorio)
+
+Spring Data genera automáticamente las operaciones SQL subyacentes (`INSERT`, `SELECT`, `UPDATE`, `DELETE`) con solo declarar una interfaz que extienda `JpaRepository`:
+
+```java
+package com.ejemplo.demo.repository;
+
+import com.ejemplo.demo.model.Producto;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+
+public interface ProductoRepository extends JpaRepository<Producto, Long> {
+    // Spring Data infiere el SQL ("SELECT * FROM productos WHERE precio < ?") por el nombre del método
+    List<Producto> findByPrecioLessThan(Double precioMaximo);
+}
+```
+
+---
+
+### 3. Conexión con la «Database» en la capa de Servicio
+
+El servicio interactúa con objetos del dominio sin escribir sentencias SQL:
+
+```java
+package com.ejemplo.demo.service;
+
+import com.ejemplo.demo.model.Producto;
+import com.ejemplo.demo.repository.ProductoRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class CatalogoService {
+
+    private final ProductoRepository productoRepo;
+
+    public CatalogoService(ProductoRepository productoRepo) {
+        this.productoRepo = productoRepo;
+    }
+
+    public void guardarProducto() {
+        Producto nuevo = new Producto("Teclado Mecánico", 120.0);
+        // JPA/Spring Data traduce esto internamente a un: INSERT INTO productos (nombre, precio) VALUES ('Teclado Mecánico', 120.0);
+        productoRepo.save(nuevo);
+    }
+
+    public List<Producto> buscarBaratos() {
+        // JPA/Spring Data ejecuta el SELECT y transforma cada fila devuelta en una instancia de Producto
+        return productoRepo.findByPrecioLessThan(150.0);
+    }
+}
+```
 --------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
@@ -190,6 +288,88 @@ RESPUESTA(S) CORRECTA(S):
 
 JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
 La diapositiva indica textualmente que el Application Context «contiene los objetos que se necesitan para llevar adelante el funcionamiento» del sistema backend. (Diapositiva 6)
+
+El **ApplicationContext** en Spring Boot es el **contenedor de Inversión de Control (IoC)** central del framework. Se encarga de instanciar, configurar, ensamblar y gestionar el ciclo de vida completo de los objetos de la aplicación (conocidos como **Beans**).
+
+En lugar de crear dependencias manualmente con `new`, el ApplicationContext las detecta (mediante anotaciones o configuración), crea las instancias (generalmente como *singletons* por defecto) y las inyecta donde se necesiten. Además, gestiona la carga de archivos de propiedades, publica eventos del sistema y resuelve mensajes de internacionalización.
+
+---
+
+### Ejemplo práctico
+
+#### 1. Definir un Bean (servicio)
+
+Marcamos la clase con `@Service` para que el ApplicationContext la detecte y la registre:
+
+```java
+package com.ejemplo.demo.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class MensajeService {
+    public String obtenerSaludo() {
+        return "¡Hola desde el bean gestionado por el ApplicationContext!";
+    }
+}
+```
+
+#### 2. Inyección habitual (lo recomendado en el día a día)
+
+Spring se apoya en el contexto para inyectar automáticamente `MensajeService` en un controlador o en otro componente:
+
+```java
+package com.ejemplo.demo.controller;
+
+import com.ejemplo.demo.service.MensajeService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class SaludoController {
+
+    private final MensajeService mensajeService;
+
+    // Spring inyecta la instancia que reside en el ApplicationContext
+    public SaludoController(MensajeService mensajeService) {
+        this.mensajeService = mensajeService;
+    }
+
+    @GetMapping("/saludo")
+    public String saludar() {
+        return mensajeService.obtenerSaludo();
+    }
+}
+```
+
+#### 3. Acceso directo al ApplicationContext (en el arranque)
+
+`SpringApplication.run()` devuelve directamente la instancia del `ApplicationContext` (`ConfigurableApplicationContext`), lo que permite interactuar con él de forma explícita:
+
+```java
+package com.ejemplo.demo;
+
+import com.ejemplo.demo.service.MensajeService;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
+@SpringBootApplication
+public class DemoApplication {
+
+    public static void main(String[] args) {
+        // Obtenemos el ApplicationContext al iniciar la aplicación
+        ApplicationContext context = SpringApplication.run(DemoApplication.class, args);
+
+        // Recuperar un bean manualmente por su clase
+        MensajeService servicio = context.getBean(MensajeService.class);
+        System.out.println(servicio.obtenerSaludo());
+
+        // Consultar metadatos del contexto (por ejemplo, cuántos beans contiene)
+        System.out.println("Total de beans registrados: " + context.getBeanDefinitionCount());
+    }
+}
+```
 --------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
@@ -517,6 +697,18 @@ RESPUESTA(S) CORRECTA(S):
 
 JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
 Según la tabla provista: 200 es OK, 201 es Created, 202 es Accepted y 203 es Non-Authoritative Information. (Diapositiva 12)
+
+---
+
+### Resumen rápido
+
+| Rango | Familia | Responsable / Significado | Ejemplo típico |
+| --- | --- | --- | --- |
+| **1xx** | Informativo | La solicitud fue recibida y continúa el proceso | `100 Continue` |
+| **2xx** | Éxito | La acción se recibió, entendió y procesó con éxito | `200 OK`, `201 Created` |
+| **3xx** | Redirección | El recurso cambió de ubicación o requiere otra acción | `301 Moved`, `304 Not Modified` |
+| **4xx** | Error de Cliente (navegador) | El cliente mandó mal algo o pidió algo que no existe | `400 Bad Request`, `404 Not Found` |
+| **5xx** | Error de Servidor | El servidor tuvo un problema interno al procesar | `500 Internal Error`, `503 Unavailable` |
 --------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
@@ -537,6 +729,28 @@ RESPUESTA(S) CORRECTA(S):
 
 JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
 En la diapositiva: 404 = «Not Found: The requested resource was not found on the server», mientras que 500 = «Internal Server Error: The server encountered an error while processing the request». (Diapositiva 12)
+
+La clasificación estándar por centenas es:
+
+* **3xx (Redirección):** No es error de cliente. Indica que el cliente debe tomar una acción adicional para completar la solicitud (por ejemplo, `301 Moved Permanently` o `302 Found`).
+* **4xx (Error del Cliente):** Indica que el problema proviene de la solicitud enviada por el cliente (sintaxis inválida, falta de autenticación, recurso inexistente, etc.).
+* **404 (Not Found):** Es un código específico dentro de esta familia que significa **recurso no encontrado**.
+* Otros ejemplos: `400 Bad Request` (solicitud mal formada), `401 Unauthorized` (falta autenticación), `403 Forbidden` (sin permisos).
+* **5xx (Error del Servidor):** Indica que el servidor falló al intentar procesar una solicitud válida.
+* **500 (Internal Server Error):** Error genérico e inesperado en el backend al ejecutar la lógica.
+* Otros ejemplos: `502 Bad Gateway`, `503 Service Unavailable`, `504 Gateway Timeout`.
+
+---
+
+### Resumen rápido
+
+| Rango | Familia | Responsable / Significado | Ejemplo típico |
+| --- | --- | --- | --- |
+| **1xx** | Informativo | La solicitud fue recibida y continúa el proceso | `100 Continue` |
+| **2xx** | Éxito | La acción se recibió, entendió y procesó con éxito | `200 OK`, `201 Created` |
+| **3xx** | Redirección | El recurso cambió de ubicación o requiere otra acción | `301 Moved`, `304 Not Modified` |
+| **4xx** | Error de Cliente (navegador) | El cliente mandó mal algo o pidió algo que no existe | `400 Bad Request`, `404 Not Found` |
+| **5xx** | Error de Servidor | El servidor tuvo un problema interno al procesar | `500 Internal Error`, `503 Unavailable` |
 --------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
@@ -870,4 +1084,97 @@ RESPUESTA(S) CORRECTA(S):
 
 JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
 En la diapositiva 15 se resalta como ventaja del monolito ser «Más fácil de testear/debuggear», mientras que en la diapositiva 16 se lista como desventaja de los microservicios que es «Mucho más difícil de testear (varios microservicios pueden estar involucrados)». (Diapositiva 15 y 16)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 43 (ID: fb-p1-u1-q43) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Spring Boot - Arquitectura en Capas
+
+ENUNCIADO:
+En la arquitectura en capas estándar de una aplicación Spring Boot (presentada en el diagrama arquitectónico de la cátedra), cada componente asume una responsabilidad específica dentro del flujo de la solución.
+
+Relacione cada componente arquitectónico con su definición y responsabilidad técnica principal:
+
+Componentes:
+1. MODEL
+2. REPOSITORY
+3. SERVICE
+4. CONTROLLER
+
+Definiciones:
+I. Expone los endpoints HTTP/REST, procesa las solicitudes entrantes del cliente, valida datos iniciales y retorna las respuestas (ResponseEntity/DTOs).
+II. Encapsula las reglas del negocio, validaciones complejas, transacciones (@Transactional) y orquesta la interacción entre capas.
+III. Abstrae el acceso y la persistencia hacia la base de datos, proveyendo métodos CRUD y consultas especializadas mediante JPA / Spring Data.
+IV. Representa las entidades del dominio y el esquema de datos que se mapea directamente con las tablas de la base de datos relacional.
+
+¿Cuál es la combinación que relaciona correctamente cada componente con su definición?
+
+OPCIONES:
+  [a] 1-II, 2-III, 3-IV, 4-I (Model: Lógica de negocio | Repository: Persistencia | Service: Entidades | Controller: Endpoints HTTP)
+  [b] 1-III, 2-IV, 3-I, 4-II (Model: Persistencia | Repository: Entidades | Service: Endpoints HTTP | Controller: Lógica de negocio)
+  [c] 1-IV, 2-III, 3-II, 4-I (Model: Entidades de dominio | Repository: Persistencia CRUD | Service: Lógica de negocio | Controller: Endpoints HTTP)  <--- [CORRECTA]
+  [d] 1-IV, 2-I, 3-II, 4-III (Model: Entidades de dominio | Repository: Endpoints HTTP | Service: Lógica de negocio | Controller: Persistencia CRUD)
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: 1-IV, 2-III, 3-II, 4-I (Model: Entidades de dominio | Repository: Persistencia CRUD | Service: Lógica de negocio | Controller: Endpoints HTTP)
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La arquitectura en capas de Spring Boot sigue una estricta separación de responsabilidades:
+
+* **1. MODEL -> IV (Entidades del dominio):** Representa las clases del dominio del negocio y los datos que se persisten. Mediante JPA (`@Entity`, `@Table`, `@Id`) mapea directamente con las tablas de la base de datos relacional.
+* **2. REPOSITORY -> III (Persistencia y CRUD):** Capa de acceso a datos (`@Repository`). Extiende interfaces como `JpaRepository` o `CrudRepository` para ejecutar operaciones de persistencia sin requerir consultas SQL manuales. Se inyecta en el Service mediante Inyección de Dependencias.
+* **3. SERVICE -> II (Lógica de negocio y transacciones):** Capa intermedia (`@Service`). Centraliza las reglas de negocio, validaciones de dominio, orquestación de llamadas a repositorios y control transaccional (`@Transactional`).
+* **4. CONTROLLER -> I (Punto de entrada y endpoints HTTP):** Capa de presentación/API (`@RestController`). Es el punto de contacto directo con el cliente externo; intercepta los requests HTTP, extrae parámetros/cuerpos y delega el procesamiento a la capa Service para responder al cliente.
+
+---
+
+### Ejemplo de flujo de responsabilidades en código:
+
+```java
+// 1. MODEL: Estructura de la entidad persistente
+@Entity
+public class Producto {
+    @Id @GeneratedValue
+    private Long id;
+    private String nombre;
+    private Double precio;
+}
+
+// 2. REPOSITORY: Abstracción de acceso a datos (CRUD)
+@Repository
+public interface ProductoRepository extends JpaRepository<Producto, Long> {
+}
+
+// 3. SERVICE: Reglas de negocio y orquestación
+@Service
+public class ProductoService {
+    private final ProductoRepository repository;
+
+    public ProductoService(ProductoRepository repository) {
+        this.repository = repository;
+    }
+
+    public Producto registrarProducto(Producto nuevo) {
+        if (nuevo.getPrecio() <= 0) throw new IllegalArgumentException("Precio inválido");
+        return repository.save(nuevo);
+    }
+}
+
+// 4. CONTROLLER: Recepción de peticiones HTTP
+@RestController
+@RequestMapping("/productos")
+public class ProductoController {
+    private final ProductoService service;
+
+    public ProductoController(ProductoService service) {
+        this.service = service;
+    }
+
+    @PostMapping
+    public ResponseEntity<Producto> crear(@RequestBody Producto prod) {
+        return ResponseEntity.ok(service.registrarProducto(prod));
+    }
+}
+```
+(Diapositiva 5: Diagrama Arquitectónico de Spring Boot)
 --------------------------------------------------------------------------------

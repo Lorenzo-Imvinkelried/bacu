@@ -1,13 +1,135 @@
 /**
  * Banco de Preguntas - UNIDAD 1 (Fundamentos Backend - Parcial 1)
- * Parte 02 (Preguntas 10 a 18)
- * Temas: Inversión de Control / Inyección de Dependencias, Protocolo HTTP (Elementos de request,
- * Modelo Cliente-Servidor, Estructura de URLs: Path, Scheme, Host, Query, Delimitadores,
- * Métodos HTTP: HEAD, POST vs PUT, DELETE).
+ * Parte 02 (Preguntas 8 a 14)
+ * Temas: Spring Boot Arquitectura (Repository en Service Layer, Application Context),
+ * Inversión de Control / Inyección de Dependencias, Protocolo HTTP (Elementos de request,
+ * Modelo Cliente-Servidor, Estructura de URLs: Scheme, Host, Path, Query).
  * Cumple estrictamente con directivas en AGENTS.md (Capa de Datos, < 300 líneas)
  */
 
 export const questionsPart02 = [
+  {
+    id: "fb-p1-u1-q08",
+    num: 8,
+    subject: "Fundamentos Backend",
+    unit: "Parcial 1",
+    quizId: "quiz-fb-p1-unidad-1",
+    topic: "Spring Boot - Arquitectura",
+    type: "single",
+    prompt: "De acuerdo con las flechas de inyección y comunicación del diagrama arquitectónico, ¿en qué componente se inyecta la «Repository Class Extending CRUD Services» mediante Dependency Injection?",
+    options: [
+      { id: "a", text: "En el Client" },
+      { id: "b", text: "En el Model" },
+      { id: "c", text: "En el Service Layer" },
+      { id: "d", text: "En el Controller" }
+    ],
+    correctAnswers: ["c"],
+    explanation: "La flecha de «Dependency Injection» vincula a la clase repositorio que extiende servicios CRUD directamente con la capa Service Layer, permitiendo a los servicios ejecutar operaciones de negocio y persistencia. (Diapositiva 5)",
+    diagram: null,
+    points: 1
+  },
+  {
+    id: "fb-p1-u1-q09",
+    num: 9,
+    subject: "Fundamentos Backend",
+    unit: "Parcial 1",
+    quizId: "quiz-fb-p1-unidad-1",
+    topic: "Spring Boot - Application Context",
+    type: "single",
+    prompt: "Según la definición del material, ¿qué es el «Application Context» en Spring Boot?",
+    options: [
+      { id: "a", text: "Una base de datos relacional integrada en memoria para almacenar información transitoria de las sesiones activas." },
+      { id: "b", text: "El contenedor central que almacena y gestiona los objetos requeridos para el funcionamiento del sistema." },
+      { id: "c", text: "Un protocolo de transporte y comunicación alternativo diseñado para reemplazar las conexiones HTTP convencionales." },
+      { id: "d", text: "Una interfaz de monitoreo en tiempo real diseñada para supervisar el consumo de CPU y memoria de la aplicación." }
+    ],
+    correctAnswers: ["b"],
+    explanation: `La diapositiva indica textualmente que el Application Context «contiene los objetos que se necesitan para llevar adelante el funcionamiento» del sistema backend. (Diapositiva 6)
+
+El **ApplicationContext** en Spring Boot es el **contenedor de Inversión de Control (IoC)** central del framework. Se encarga de instanciar, configurar, ensamblar y gestionar el ciclo de vida completo de los objetos de la aplicación (conocidos como **Beans**).
+
+En lugar de crear dependencias manualmente con \`new\`, el ApplicationContext las detecta (mediante anotaciones o configuración), crea las instancias (generalmente como *singletons* por defecto) y las inyecta donde se necesiten. Además, gestiona la carga de archivos de propiedades, publica eventos del sistema y resuelve mensajes de internacionalización.
+
+---
+
+### Ejemplo práctico
+
+#### 1. Definir un Bean (servicio)
+
+Marcamos la clase con \`@Service\` para que el ApplicationContext la detecte y la registre:
+
+\`\`\`java
+package com.ejemplo.demo.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class MensajeService {
+    public String obtenerSaludo() {
+        return "¡Hola desde el bean gestionado por el ApplicationContext!";
+    }
+}
+\`\`\`
+
+#### 2. Inyección habitual (lo recomendado en el día a día)
+
+Spring se apoya en el contexto para inyectar automáticamente \`MensajeService\` en un controlador o en otro componente:
+
+\`\`\`java
+package com.ejemplo.demo.controller;
+
+import com.ejemplo.demo.service.MensajeService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class SaludoController {
+
+    private final MensajeService mensajeService;
+
+    // Spring inyecta la instancia que reside en el ApplicationContext
+    public SaludoController(MensajeService mensajeService) {
+        this.mensajeService = mensajeService;
+    }
+
+    @GetMapping("/saludo")
+    public String saludar() {
+        return mensajeService.obtenerSaludo();
+    }
+}
+\`\`\`
+
+#### 3. Acceso directo al ApplicationContext (en el arranque)
+
+\`SpringApplication.run()\` devuelve directamente la instancia del \`ApplicationContext\` (\`ConfigurableApplicationContext\`), lo que permite interactuar con él de forma explícita:
+
+\`\`\`java
+package com.ejemplo.demo;
+
+import com.ejemplo.demo.service.MensajeService;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
+@SpringBootApplication
+public class DemoApplication {
+
+    public static void main(String[] args) {
+        // Obtenemos el ApplicationContext al iniciar la aplicación
+        ApplicationContext context = SpringApplication.run(DemoApplication.class, args);
+
+        // Recuperar un bean manualmente por su clase
+        MensajeService servicio = context.getBean(MensajeService.class);
+        System.out.println(servicio.obtenerSaludo());
+
+        // Consultar metadatos del contexto (por ejemplo, cuántos beans contiene)
+        System.out.println("Total de beans registrados: " + context.getBeanDefinitionCount());
+    }
+}
+\`\`\``,
+    diagram: null,
+    points: 1
+  },
   {
     id: "fb-p1-u1-q10",
     num: 10,
@@ -105,86 +227,6 @@ export const questionsPart02 = [
     ],
     correctAnswers: ["a"],
     explanation: "De acuerdo con la descomposición gráfica mostrada en la diapositiva: el scheme es el protocolo (https), el host es el destino (www.freecodecamp.org), el path es la ruta al recurso (/news/search) y la query corresponde a los parámetros (?query=svg). (Diapositiva 8)",
-    diagram: null,
-    points: 1
-  },
-  {
-    id: "fb-p1-u1-q15",
-    num: 15,
-    subject: "Fundamentos Backend",
-    unit: "Parcial 1",
-    quizId: "quiz-fb-p1-unidad-1",
-    topic: "Protocolo HTTP - URLs",
-    type: "single",
-    prompt: "¿Qué caracteres delimitan el inicio y la concatenación de parámetros en la sección «Query» de una URL?",
-    options: [
-      { id: "a", text: "Comienza con / y cada atributo se une con ," },
-      { id: "b", text: "Comienza con ? y cada atributo se une con &" },
-      { id: "c", text: "Comienza con # y cada atributo se une con ;" },
-      { id: "d", text: "Comienza con ! y cada atributo se une con %" }
-    ],
-    correctAnswers: ["b"],
-    explanation: "El material señala que la Query «comienza con '?' y cada atributo se une con '&'». (Diapositiva 8)",
-    diagram: null,
-    points: 1
-  },
-  {
-    id: "fb-p1-u1-q16",
-    num: 16,
-    subject: "Fundamentos Backend",
-    unit: "Parcial 1",
-    quizId: "quiz-fb-p1-unidad-1",
-    topic: "Protocolo HTTP - Métodos",
-    type: "single",
-    prompt: "Según la tabla de métodos HTTP del material, ¿cuál es el propósito específico del método HEAD?",
-    options: [
-      { id: "a", text: "Indicar al servidor que debe suprimir permanentemente el registro asociado al recurso de la base de datos." },
-      { id: "b", text: "Preguntar al servidor por el estado (tamaño, disponibilidad) de un recurso sin solicitar su contenido completo." },
-      { id: "c", text: "Reemplazar la totalidad del contenido del recurso existente mediante la carga de un nuevo payload en JSON." },
-      { id: "d", text: "Transmitir las credenciales de autorización para verificar la identidad del usuario antes de otorgar acceso." }
-    ],
-    correctAnswers: ["b"],
-    explanation: "La tabla define HEAD como: «Asks the server for status (size, availability) of a resource», permitiendo inspeccionar metadatos en los encabezados sin descargar el cuerpo. (Diapositiva 9)",
-    diagram: null,
-    points: 1
-  },
-  {
-    id: "fb-p1-u1-q17",
-    num: 17,
-    subject: "Fundamentos Backend",
-    unit: "Parcial 1",
-    quizId: "quiz-fb-p1-unidad-1",
-    topic: "Protocolo HTTP - Métodos",
-    type: "single",
-    prompt: "Según las definiciones dadas en la tabla de la diapositiva, ¿cuál es la diferencia de propósito entre POST y PUT?",
-    options: [
-      { id: "a", text: "POST se destina a la consulta masiva de datos en el servidor, mientras que PUT se enfoca en darlos de baja lógicamente." },
-      { id: "b", text: "POST solicita al servidor crear un nuevo recurso, mientras que PUT solicita editar/actualizar un recurso existente." },
-      { id: "c", text: "POST envía metadatos exclusivamente en las cabeceras HTTP, mientras que PUT transmite archivos binarios en el cuerpo." },
-      { id: "d", text: "POST opera de manera exclusiva en entornos de microservicios, mientras que PUT se restringe a arquitecturas monolíticas." }
-    ],
-    correctAnswers: ["b"],
-    explanation: "La tabla define: POST: «Asks the server to create a new resource» y PUT: «Asks the server to edit/update an existing resource». (Diapositiva 9)",
-    diagram: null,
-    points: 1
-  },
-  {
-    id: "fb-p1-u1-q18",
-    num: 18,
-    subject: "Fundamentos Backend",
-    unit: "Parcial 1",
-    quizId: "quiz-fb-p1-unidad-1",
-    topic: "Protocolo HTTP - Métodos",
-    type: "single",
-    prompt: "¿Cuál de las siguientes afirmaciones describe con precisión el método DELETE de acuerdo con la tabla presentada?",
-    options: [
-      { id: "a", text: "Solicita al servidor remover o eliminar un recurso determinado." },
-      { id: "b", text: "Modifica el estado del recurso marcándolo como temporalmente inactivo." },
-      { id: "c", text: "Invalida y borra las credenciales de sesión activas en el cliente web." },
-      { id: "d", text: "Purga la memoria caché del servidor web sin modificar los datos reales." }
-    ],
-    correctAnswers: ["a"],
-    explanation: "La definición en la tabla indica textualmente: «Asks the server to delete a resource». (Diapositiva 9)",
     diagram: null,
     points: 1
   }

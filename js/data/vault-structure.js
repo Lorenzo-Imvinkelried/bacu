@@ -125,9 +125,9 @@ export const VAULT_STRUCTURE = {
             {
               id: "quiz-fb-p1-unidad-1",
               quizId: "quiz-fb-p1-unidad-1",
-              title: "UNIDAD 1 (42 preguntas)",
+              title: "UNIDAD 1 (43 preguntas)",
               description: "Banco oficial Unidad 1: Spring Boot, Arquitectura, Protocolo HTTP, Lombok, Flyway, Monolitos y Microservicios.",
-              questionCount: 42,
+              questionCount: 43,
               maxScore: 10.0
             },
             {
@@ -149,8 +149,8 @@ export const VAULT_STRUCTURE = {
             {
               id: "quiz-fb-p1-todos-wacho",
               title: "TODOS WACHO",
-              description: "Banco consolidado con todas las unidades de este parcial (148 preguntas).",
-              questionCount: 148,
+              description: "Banco consolidado con todas las unidades de este parcial (149 preguntas).",
+              questionCount: 149,
               maxScore: 10.0,
               allForUnit: true,
               subjectId: "fundamentos-backend",
