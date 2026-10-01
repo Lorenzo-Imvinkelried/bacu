@@ -1,39 +1,146 @@
 /**
  * Manejador de Eventos de Anotaciones
- * Responsabilidad: Procesar clics de apertura/cierre y envío de notas colaborativas
+ * Responsabilidad: Procesar apertura/cierre, envío, edición y eliminación de notas colaborativas
  * Cumple estrictamente con directivas en AGENTS.md (Capa de Controladores, < 300 líneas)
  */
 
 import { 
   fetchAnnotationsForQuestion, 
-  addAnnotationForQuestion 
+  addAnnotationForQuestion,
+  updateAnnotation,
+  deleteAnnotation
 } from "../core/annotations-service.js";
 import { isFirebaseConfigured } from "../core/firebase-config.js";
 import { renderAnnotationsContentHtml } from "../components/annotations-component.js";
+import { escapeHtml } from "../components/explanation-formatter.js";
 
 /**
  * Escuchador delegado para eventos de clic en el bloque de anotaciones
  * @param {MouseEvent} e
  */
 export async function handleAnnotationsClickEvent(e) {
+  // 1. Alternar visualización del panel
   const toggleBtn = e.target.closest("[data-toggle-annotations-qid]");
-  if (!toggleBtn) return;
+  if (toggleBtn) {
+    const qId = toggleBtn.getAttribute("data-toggle-annotations-qid");
+    const panel = document.getElementById(`annotations-panel-${qId}`);
+    if (!panel) return;
 
-  const qId = toggleBtn.getAttribute("data-toggle-annotations-qid");
-  const panel = document.getElementById(`annotations-panel-${qId}`);
-  if (!panel) return;
+    const isCurrentlyHidden = panel.classList.contains("hidden");
+    if (isCurrentlyHidden) {
+      panel.classList.remove("hidden");
+      toggleBtn.setAttribute("aria-expanded", "true");
+      await loadAndDisplayAnnotations(qId);
+    } else {
+      panel.classList.add("hidden");
+      toggleBtn.setAttribute("aria-expanded", "false");
+    }
+    return;
+  }
 
-  const isCurrentlyHidden = panel.classList.contains("hidden");
+  // 2. Eliminar nota
+  const deleteBtn = e.target.closest("[data-action='delete-note']");
+  if (deleteBtn) {
+    const noteId = deleteBtn.getAttribute("data-note-id");
+    const qId = deleteBtn.getAttribute("data-qid");
+    if (!noteId || !qId) return;
 
-  if (isCurrentlyHidden) {
-    // Abrir panel
-    panel.classList.remove("hidden");
-    toggleBtn.setAttribute("aria-expanded", "true");
-    await loadAndDisplayAnnotations(qId);
-  } else {
-    // Cerrar panel
-    panel.classList.add("hidden");
-    toggleBtn.setAttribute("aria-expanded", "false");
+    const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar este comentario?");
+    if (!confirmDelete) return;
+
+    deleteBtn.disabled = true;
+    deleteBtn.textContent = "⏳";
+
+    try {
+      await deleteAnnotation(noteId);
+      await loadAndDisplayAnnotations(qId);
+    } catch (err) {
+      console.error("Error al eliminar anotación:", err);
+      alert("Hubo un error al eliminar el comentario. Revisa tu conexión.");
+      deleteBtn.disabled = false;
+      deleteBtn.textContent = "🗑️";
+    }
+    return;
+  }
+
+  // 3. Activar modo edición
+  const editBtn = e.target.closest("[data-action='edit-note']");
+  if (editBtn) {
+    const noteId = editBtn.getAttribute("data-note-id");
+    const qId = editBtn.getAttribute("data-qid");
+    const card = document.getElementById(`note-${noteId}`);
+    const bodyEl = document.getElementById(`note-body-${noteId}`);
+    if (!card || !bodyEl) return;
+
+    const textView = bodyEl.querySelector(".annotation-text-view");
+    const currentText = textView ? textView.textContent.trim() : "";
+    card.dataset.originalText = currentText;
+
+    bodyEl.innerHTML = `
+      <div class="annotation-edit-container">
+        <textarea class="textarea-annotation-edit" maxlength="600" rows="3">${escapeHtml(currentText)}</textarea>
+        <div class="annotation-edit-actions">
+          <button type="button" class="btn-annotation-action btn-cancel-edit" data-action="cancel-edit" data-note-id="${noteId}" data-qid="${qId}">
+            Cancelar
+          </button>
+          <button type="button" class="btn-annotation-action btn-save-edit" data-action="save-edit" data-note-id="${noteId}" data-qid="${qId}">
+            Guardar cambios
+          </button>
+        </div>
+      </div>
+    `;
+
+    const editArea = bodyEl.querySelector(".textarea-annotation-edit");
+    if (editArea) {
+      editArea.focus();
+      editArea.setSelectionRange(editArea.value.length, editArea.value.length);
+    }
+    return;
+  }
+
+  // 4. Cancelar edición
+  const cancelBtn = e.target.closest("[data-action='cancel-edit']");
+  if (cancelBtn) {
+    const noteId = cancelBtn.getAttribute("data-note-id");
+    const card = document.getElementById(`note-${noteId}`);
+    const bodyEl = document.getElementById(`note-body-${noteId}`);
+    if (!card || !bodyEl) return;
+
+    const originalText = card.dataset.originalText || "";
+    bodyEl.innerHTML = `<div class="annotation-text-view">${escapeHtml(originalText)}</div>`;
+    return;
+  }
+
+  // 5. Guardar edición
+  const saveBtn = e.target.closest("[data-action='save-edit']");
+  if (saveBtn) {
+    const noteId = saveBtn.getAttribute("data-note-id");
+    const qId = saveBtn.getAttribute("data-qid");
+    const bodyEl = document.getElementById(`note-body-${noteId}`);
+    if (!bodyEl) return;
+
+    const editArea = bodyEl.querySelector(".textarea-annotation-edit");
+    const newText = editArea ? editArea.value.trim() : "";
+
+    if (!newText) {
+      alert("El comentario no puede estar vacío.");
+      editArea?.focus();
+      return;
+    }
+
+    saveBtn.disabled = true;
+    saveBtn.textContent = "Guardando...";
+
+    try {
+      await updateAnnotation(noteId, newText);
+      await loadAndDisplayAnnotations(qId);
+    } catch (err) {
+      console.error("Error al actualizar anotación:", err);
+      alert("Hubo un error al guardar los cambios del comentario.");
+      saveBtn.disabled = false;
+      saveBtn.textContent = "Guardar cambios";
+    }
+    return;
   }
 }
 
@@ -62,7 +169,6 @@ export async function handleAnnotationsSubmitEvent(e) {
     return;
   }
 
-  // Estado de carga en el botón
   if (submitBtn) {
     submitBtn.disabled = true;
     submitBtn.textContent = "Publicando...";
@@ -70,7 +176,6 @@ export async function handleAnnotationsSubmitEvent(e) {
 
   try {
     await addAnnotationForQuestion(qId, author, text);
-    // Limpiar textarea y refrescar lista
     if (textInput) textInput.value = "";
     await loadAndDisplayAnnotations(qId);
   } catch (err) {
@@ -98,7 +203,6 @@ async function loadAndDisplayAnnotations(qId) {
   try {
     const isCloud = isFirebaseConfigured();
     const annotations = await fetchAnnotationsForQuestion(qId);
-
     bodyEl.innerHTML = renderAnnotationsContentHtml(qId, annotations, isCloud);
   } catch (err) {
     console.error("Error al cargar notas de pregunta:", qId, err);

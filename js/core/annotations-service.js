@@ -1,6 +1,6 @@
 /**
  * Servicio de Anotaciones Colaborativas (Firebase Firestore & Fallback Local)
- * Responsabilidad: Gestión de lectura y escritura de notas comunitarias por pregunta
+ * Responsabilidad: Gestión de lectura, escritura, edición y eliminación de notas comunitarias por pregunta
  * Cumple estrictamente con directivas en AGENTS.md (Capa de Lógica y Estado, < 300 líneas)
  */
 
@@ -84,7 +84,6 @@ export async function fetchAnnotationsForQuestion(questionId) {
       return list;
     } catch (err) {
       console.error("Error al obtener notas desde Firestore:", err);
-      // Fallback a local ante errores de red o cuota
       return getLocalAnnotationsForQuestion(questionId);
     }
   }
@@ -135,7 +134,6 @@ export async function addAnnotationForQuestion(questionId, author, text) {
     }
   }
 
-  // Guardar en local como fallback
   const localAnnotation = saveLocalAnnotation(newAnnotation);
   return {
     success: true,
@@ -145,8 +143,70 @@ export async function addAnnotationForQuestion(questionId, author, text) {
 }
 
 /**
- * Auxiliar: Obtener notas del almacenamiento local
+ * Editar una anotación existente
+ * @param {string} annotationId
+ * @param {string} newText
+ * @returns {Promise<{success: boolean, isCloud: boolean}>}
  */
+export async function updateAnnotation(annotationId, newText) {
+  const cleanText = newText?.trim();
+  if (!cleanText) {
+    throw new Error("El texto no puede estar vacío.");
+  }
+
+  const isLocal = annotationId.startsWith("local_");
+  const db = !isLocal ? await initFirestore() : null;
+
+  if (db) {
+    try {
+      const { doc, updateDoc } = await import(
+        "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js"
+      );
+      const docRef = doc(db, "annotations", annotationId);
+      await updateDoc(docRef, {
+        text: cleanText,
+        updatedAt: new Date().toISOString()
+      });
+      return { success: true, isCloud: true };
+    } catch (err) {
+      console.error("Error al actualizar nota en Firestore:", err);
+      throw err;
+    }
+  }
+
+  updateLocalAnnotation(annotationId, cleanText);
+  return { success: true, isCloud: false };
+}
+
+/**
+ * Eliminar una anotación
+ * @param {string} annotationId
+ * @returns {Promise<{success: boolean, isCloud: boolean}>}
+ */
+export async function deleteAnnotation(annotationId) {
+  const isLocal = annotationId.startsWith("local_");
+  const db = !isLocal ? await initFirestore() : null;
+
+  if (db) {
+    try {
+      const { doc, deleteDoc } = await import(
+        "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js"
+      );
+      const docRef = doc(db, "annotations", annotationId);
+      await deleteDoc(docRef);
+      return { success: true, isCloud: true };
+    } catch (err) {
+      console.error("Error al eliminar nota en Firestore:", err);
+      throw err;
+    }
+  }
+
+  deleteLocalAnnotation(annotationId);
+  return { success: true, isCloud: false };
+}
+
+/* ==================== MÉTODOS LOCALES ==================== */
+
 function getLocalAnnotationsForQuestion(questionId) {
   try {
     const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -159,9 +219,6 @@ function getLocalAnnotationsForQuestion(questionId) {
   }
 }
 
-/**
- * Auxiliar: Guardar nota en almacenamiento local
- */
 function saveLocalAnnotation(annotation) {
   try {
     const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -173,4 +230,26 @@ function saveLocalAnnotation(annotation) {
   } catch (_) {
     return { id: `local_${Date.now()}`, ...annotation };
   }
+}
+
+function updateLocalAnnotation(annotationId, newText) {
+  try {
+    const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const all = raw ? JSON.parse(raw) : [];
+    const idx = all.findIndex(item => item.id === annotationId);
+    if (idx !== -1) {
+      all[idx].text = newText;
+      all[idx].updatedAt = new Date().toISOString();
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(all));
+    }
+  } catch (_) {}
+}
+
+function deleteLocalAnnotation(annotationId) {
+  try {
+    const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const all = raw ? JSON.parse(raw) : [];
+    const filtered = all.filter(item => item.id !== annotationId);
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(filtered));
+  } catch (_) {}
 }

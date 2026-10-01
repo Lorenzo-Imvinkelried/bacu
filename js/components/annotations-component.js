@@ -1,6 +1,6 @@
 /**
  * Componente: Anotaciones de la Comunidad (.annotations-panel)
- * Responsabilidad: Renderizado puro del botón, panel de comentarios y formulario
+ * Responsabilidad: Renderizado puro del botón, panel de comentarios, acciones (editar/borrar) y formulario
  * Cumple estrictamente con directivas en AGENTS.md (Capa de Componentes, < 300 líneas)
  */
 
@@ -61,23 +61,46 @@ export function renderAnnotationsContentHtml(questionId, annotations = [], isClo
   const notesListHtml = annotations.length > 0
     ? annotations.map(note => {
         const dateStr = formatDate(note.createdAt);
+        const updatedTag = note.updatedAt 
+          ? `<span class="annotation-updated-tag" title="Editado el ${formatDate(note.updatedAt)}">(editado)</span>` 
+          : "";
         const authorInitial = (note.author || "A").trim().charAt(0).toUpperCase();
         const noteBadge = note.id?.startsWith("local_")
           ? `<span class="note-type-badge local" title="Guardada en tu navegador">Local</span>`
           : `<span class="note-type-badge cloud" title="Sincronizada en Firebase">Comunidad</span>`;
 
         return `
-          <div class="annotation-card" id="note-${note.id}">
+          <div class="annotation-card" id="note-${note.id}" data-note-id="${note.id}" data-qid="${questionId}">
             <div class="annotation-card-header">
               <div class="annotation-avatar">${authorInitial}</div>
               <div class="annotation-meta">
                 <span class="annotation-author">${escapeHtml(note.author || "Estudiante anónimo")}</span>
-                <span class="annotation-date">${dateStr}</span>
+                <span class="annotation-date">${dateStr} ${updatedTag}</span>
               </div>
               ${noteBadge}
+              <div class="annotation-card-actions">
+                <button 
+                  type="button" 
+                  class="btn-card-action btn-edit-annotation" 
+                  data-action="edit-note" 
+                  data-note-id="${note.id}" 
+                  data-qid="${questionId}"
+                  title="Editar este comentario"
+                  aria-label="Editar comentario"
+                >✏️</button>
+                <button 
+                  type="button" 
+                  class="btn-card-action btn-delete-annotation" 
+                  data-action="delete-note" 
+                  data-note-id="${note.id}" 
+                  data-qid="${questionId}"
+                  title="Eliminar este comentario"
+                  aria-label="Eliminar comentario"
+                >🗑️</button>
+              </div>
             </div>
-            <div class="annotation-card-body">
-              ${escapeHtml(note.text)}
+            <div class="annotation-card-body" id="note-body-${note.id}">
+              <div class="annotation-text-view">${escapeHtml(note.text)}</div>
             </div>
           </div>
         `;
@@ -145,7 +168,7 @@ export function renderAnnotationsContentHtml(questionId, annotations = [], isClo
 /**
  * Formatear fecha para mostrar en las tarjetas
  */
-function formatDate(dateInput) {
+export function formatDate(dateInput) {
   if (!dateInput) return "Recientemente";
   try {
     const d = new Date(dateInput);
