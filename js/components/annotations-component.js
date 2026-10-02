@@ -5,7 +5,7 @@
  */
 
 import { isFirebaseConfigured } from "../core/firebase-config.js";
-import { getStoredAuthorName } from "../core/annotations-service.js";
+import { getStoredAuthorName, getCachedAnnotationCount } from "../core/annotations-service.js";
 import { escapeHtml } from "./explanation-formatter.js";
 
 /**
@@ -19,18 +19,22 @@ export function renderAnnotationsSection(questionId) {
     ? `<span class="badge-cloud-status cloud-on" title="Conectado a Firebase Firestore">☁️ Comunitario</span>`
     : `<span class="badge-cloud-status cloud-off" title="Guardado local. Conecta Firebase para compartir con todos.">💾 Local</span>`;
 
+  const cachedCount = getCachedAnnotationCount(questionId);
+  const countHtml = cachedCount > 0 ? ` (${cachedCount})` : "";
+  const hasNotesClass = cachedCount > 0 ? " has-annotations" : "";
+
   return `
     <div class="question-annotations-container" data-annotations-qid="${questionId}">
       <div class="annotations-header-bar">
         <button 
           type="button" 
-          class="btn-toggle-annotations" 
+          class="btn-toggle-annotations${hasNotesClass}" 
           data-toggle-annotations-qid="${questionId}"
           aria-expanded="false"
           aria-controls="annotations-panel-${questionId}"
         >
           <span class="annotations-icon" aria-hidden="true">💬</span>
-          <span class="annotations-title">Anotaciones y Aportes</span>
+          <span class="annotations-title">Anotaciones y Aportes<span class="annotations-count" data-annotations-count-qid="${questionId}">${countHtml}</span></span>
           ${statusBadge}
           <span class="annotations-chevron">▼</span>
         </button>
@@ -46,6 +50,27 @@ export function renderAnnotationsSection(questionId) {
       </div>
     </div>
   `;
+}
+
+/**
+ * Actualizar visualmente el contador en el botón de anotaciones de una pregunta
+ * @param {string} questionId
+ * @param {number} count
+ */
+export function updateAnnotationBadge(questionId, count) {
+  const countEl = document.querySelector(`[data-annotations-count-qid="${questionId}"]`);
+  const toggleBtn = document.querySelector(`[data-toggle-annotations-qid="${questionId}"]`);
+
+  if (countEl) {
+    countEl.textContent = count > 0 ? ` (${count})` : "";
+  }
+  if (toggleBtn) {
+    if (count > 0) {
+      toggleBtn.classList.add("has-annotations");
+    } else {
+      toggleBtn.classList.remove("has-annotations");
+    }
+  }
 }
 
 /**

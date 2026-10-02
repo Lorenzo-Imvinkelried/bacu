@@ -31,8 +31,22 @@
   border-color: var(--cv-primary, #004b87);
 }
 
+.btn-toggle-annotations.has-annotations {
+  border-color: #90caf9;
+  background: #f0f7ff;
+}
+.btn-toggle-annotations.has-annotations:hover {
+  background: #e1effe;
+  border-color: var(--cv-primary, #004b87);
+}
+
 .annotations-icon { font-size: 1rem; }
 .annotations-title { margin-right: 0.25rem; }
+.annotations-count {
+  font-weight: 700;
+  color: var(--cv-primary, #004b87);
+  margin-left: 0.15rem;
+}
 
 .badge-cloud-status {
   font-size: 0.72rem;
@@ -229,6 +243,14 @@
 /* Modo oscuro */
 [data-theme="dark"] .btn-toggle-annotations { border-color: #3e4451; color: #58a6ff; }
 [data-theme="dark"] .btn-toggle-annotations:hover { background: rgba(56, 139, 253, 0.15); }
+[data-theme="dark"] .btn-toggle-annotations.has-annotations {
+  border-color: #1f6feb;
+  background: rgba(56, 139, 253, 0.12);
+}
+[data-theme="dark"] .btn-toggle-annotations.has-annotations:hover {
+  background: rgba(56, 139, 253, 0.22);
+}
+[data-theme="dark"] .annotations-count { color: #58a6ff; }
 [data-theme="dark"] .annotations-panel { background: #1e222d; border-color: #30363d; }
 [data-theme="dark"] .annotation-card { background: #161b22; border-color: #21262d; }
 [data-theme="dark"] .input-annotation-author,

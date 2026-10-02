@@ -17,6 +17,7 @@ import { renderIntroView } from "./app/intro-view.js";
 import { renderAttemptView } from "./app/attempt-view.js";
 import { setupEventListeners } from "./app/event-handlers.js";
 import { exportQuestionsToTxt } from "./app/export-service.js";
+import { refreshAnnotationCountsForQuestions } from "./app/annotations-handlers.js";
 
 // Re-exportar para compatibilidad si fuera requerido externamente
 export { exportQuestionsToTxt };
@@ -100,4 +101,8 @@ function render(root, currentState) {
       <p>BACU - Baúl de Cuestionarios &copy; 2026</p>
     </footer>
   `;
+
+  if (currentState.quizStatus === "attempt" || currentState.quizStatus === "review") {
+    refreshAnnotationCountsForQuestions(currentState.currentQuestions);
+  }
 }

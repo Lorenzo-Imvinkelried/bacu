@@ -8,10 +8,11 @@ import {
   fetchAnnotationsForQuestion, 
   addAnnotationForQuestion,
   updateAnnotation,
-  deleteAnnotation
+  deleteAnnotation,
+  fetchAnnotationCounts
 } from "../core/annotations-service.js";
 import { isFirebaseConfigured } from "../core/firebase-config.js";
-import { renderAnnotationsContentHtml } from "../components/annotations-component.js";
+import { renderAnnotationsContentHtml, updateAnnotationBadge } from "../components/annotations-component.js";
 import { escapeHtml } from "../components/explanation-formatter.js";
 
 /**
@@ -52,7 +53,7 @@ export async function handleAnnotationsClickEvent(e) {
     deleteBtn.textContent = "⏳";
 
     try {
-      await deleteAnnotation(noteId);
+      await deleteAnnotation(noteId, qId);
       await loadAndDisplayAnnotations(qId);
     } catch (err) {
       console.error("Error al eliminar anotación:", err);
@@ -203,6 +204,7 @@ async function loadAndDisplayAnnotations(qId) {
   try {
     const isCloud = isFirebaseConfigured();
     const annotations = await fetchAnnotationsForQuestion(qId);
+    updateAnnotationBadge(qId, annotations.length);
     bodyEl.innerHTML = renderAnnotationsContentHtml(qId, annotations, isCloud);
   } catch (err) {
     console.error("Error al cargar notas de pregunta:", qId, err);
@@ -214,5 +216,24 @@ async function loadAndDisplayAnnotations(qId) {
     `;
   } finally {
     if (loadingEl) loadingEl.style.display = "none";
+  }
+}
+
+/**
+ * Refrescar en segundo plano los contadores en las solapas de las preguntas dadas
+ * @param {Array<object>} questions
+ */
+export async function refreshAnnotationCountsForQuestions(questions) {
+  if (!questions || !questions.length) return;
+  const qIds = questions.map(q => q.id).filter(Boolean);
+  if (!qIds.length) return;
+
+  try {
+    const counts = await fetchAnnotationCounts(qIds);
+    qIds.forEach(id => {
+      updateAnnotationBadge(id, counts[id] || 0);
+    });
+  } catch (err) {
+    console.warn("No se pudieron refrescar los contadores de anotaciones:", err);
   }
 }
