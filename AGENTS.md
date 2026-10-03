@@ -35,9 +35,12 @@ baul-de-cuestionarios/
 │   │   │       ├── unidad-2/  # Cuestionario modular UNIDAD 2 (53 preguntas, 5 partes)
 │   │   │       │   ├── index.js
 │   │   │       │   └── part-01.js ... part-05.js
-│   │   │       └── unidad-3/  # Cuestionario modular UNIDAD 3 (53 preguntas, 5 partes)
+│   │   │       ├── unidad-3/  # Cuestionario modular UNIDAD 3 (53 preguntas, 5 partes)
+│   │   │       │   ├── index.js
+│   │   │       │   └── part-01.js ... part-05.js
+│   │   │       └── unidad-4/  # Cuestionario modular UNIDAD 4 (25 preguntas, 3 partes)
 │   │   │           ├── index.js
-│   │   │           └── part-01.js ... part-05.js
+│   │   │           └── part-01.js ... part-03.js
 │   │   ├── ingenieria-y-calidad/ # Asignatura organizada por parciales
 │   │   │   └── parcial-1/     # Parcial 1 con sus cuestionarios modulares (< 300 líneas c/u)
 │   │   │       ├── index.js   # Índice unificador del Parcial 1

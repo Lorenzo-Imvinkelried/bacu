@@ -1,0 +1,514 @@
+================================================================================
+BAÚL DE CUESTIONARIOS - PREGUNTAS Y RESPUESTAS OFICIALES
+Cuestionario: UNIDAD 4 (25 preguntas)
+Asignatura: Fundamentos Backend
+Unidad / Parcial: Parcial 1
+Institución: Universidad Tecnológica Nacional - Facultad Regional Santa Fe (UTN FRSF)
+Total de preguntas en este cuestionario: 25
+Fecha de exportación: 3/10/2026
+================================================================================
+
+--------------------------------------------------------------------------------
+PREGUNTA 1 (ID: fb-p1-u4-q01) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Ciclo TDD
+
+ENUNCIADO:
+¿Cuál es la secuencia de pasos que compone el ciclo iterativo básico de Test Driven Development (TDD)?
+
+OPCIONES:
+  [a] Escribir un test que falle, hacer que el test pase y refactorizar el código resultante.  <--- [CORRECTA]
+  [b] Escribir el código de producción, refactorizar la implementación y crear las pruebas unitarias.
+  [c] Ejecutar los tests existentes, refactorizar la arquitectura y escribir el código faltante.
+  [d] Crear la base de datos, escribir las pruebas de integración y adaptar la capa del servicio.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Escribir un test que falle, hacer que el test pase y refactorizar el código resultante.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El ciclo de TDD se basa en tres etapas consecutivas e iterativas: primero escribir un test que falle ("Write a failing test"), luego implementar el código mínimo para hacerlo pasar ("Make the test pass"), y finalmente refactorizar el código manteniendo las pruebas pasando ("Refactor"). (Diapositivas 2 y 3)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 2 (ID: fb-p1-u4-q02) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Diagrama de Flujo TDD
+
+ENUNCIADO:
+Según el diagrama de flujo de TDD, ¿qué acción inmediata debe realizarse tras ejecutar un test y obtener un resultado fallido (Fail)?
+
+OPCIONES:
+  [a] Detener inmediatamente el desarrollo del sistema.
+  [b] Escribir un test adicional antes de modificar algo.
+  [c] Realizar los cambios necesarios en el código.  <--- [CORRECTA]
+  [d] Iniciar directamente la fase de refactorización.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: Realizar los cambios necesarios en el código.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En el diagrama de flujo de TDD, cuando la ejecución de un test resulta en fallo ("Fail"), el paso directo a seguir es modificar el código de producción ("Make changes to the code") y volver a ejecutar el test. (Diapositiva 2)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 3 (ID: fb-p1-u4-q03) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Beneficios de TDD
+
+ENUNCIADO:
+¿Cuáles de los siguientes elementos son señalados explícitamente como beneficios de aplicar Test Driven Development (TDD)? (Selecciona todas las opciones correctas)
+
+OPCIONES:
+  [a] Detección de issues mucho más temprano.  <--- [CORRECTA]
+  [b] Eliminación absoluta de la necesidad de refactorizar.
+  [c] Garantía de compatibilidad automática con bases de datos.
+  [d] Mayor cobertura de testing y mejor diseño.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Detección de issues mucho más temprano.
+  -> Opción [d]: Mayor cobertura de testing y mejor diseño.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Los beneficios explícitos enumerados para TDD son: mejora en la calidad del código, detección de issues mucho más temprano, mejor diseño, refactorización más rápida y mayor cobertura de testing. No elimina la necesidad de refactorizar ni garantiza compatibilidad de bases de datos. (Diapositiva 3)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 4 (ID: fb-p1-u4-q04) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Beneficios de TDD
+
+ENUNCIADO:
+¿Cómo impacta la adopción de TDD en el proceso de refactorización según el contenido presentado?
+
+OPCIONES:
+  [a] Provoca que la refactorización sea un proceso más lento pero seguro.
+  [b] Invalida la necesidad de refactorizar al escribir tests con anterioridad.
+  [c] Reemplaza la refactorización por la reescritura completa del módulo.
+  [d] Permite efectuar una refactorización de código de manera más rápida.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [d]: Permite efectuar una refactorización de código de manera más rápida.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Uno de los beneficios específicos mencionados de TDD es lograr una "Refactorización más rápida", ya que se cuenta con una suite de pruebas que valida que el comportamiento no cambie durante el rediseño. (Diapositiva 3)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 5 (ID: fb-p1-u4-q05) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Pirámide de Testing
+
+ENUNCIADO:
+En la pirámide de testing, ¿qué características definen a las pruebas unitarias (Unit test) en comparación con los otros niveles?
+
+OPCIONES:
+  [a] Menor nivel de aislamiento, ejecución más lenta y costo más elevado.
+  [b] Mayor nivel de aislamiento, ejecución más rápida y menor costo monetario.  <--- [CORRECTA]
+  [c] Mayor nivel de integración, ejecución más rápida y costo intermedio.
+  [d] Menor nivel de integración, ejecución más lenta y costo económico bajo.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Mayor nivel de aislamiento, ejecución más rápida y menor costo monetario.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En la base de la pirámide se ubican los "Unit test", los cuales se caracterizan por ofrecer mayor aislamiento ("More isolation"), ser más rápidos ("Faster") y tener un menor costo económico ("$"). (Diapositiva 4)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 6 (ID: fb-p1-u4-q06) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Pirámide de Testing
+
+ENUNCIADO:
+Considerando la pirámide de testing, ¿cómo se posicionan los tests de UI frente a los tests de Service/Integration?
+
+OPCIONES:
+  [a] Tienen mayor integración, son más lentos de ejecutar y conllevan un mayor costo.  <--- [CORRECTA]
+  [b] Tienen mayor aislamiento, son más rápidos de ejecutar y resultan más económicos.
+  [c] Tienen menor integración, son más lentos de ejecutar y resultan más económicos.
+  [d] Tienen mayor aislamiento, son más rápidos de ejecutar y conllevan un mayor costo.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Tienen mayor integración, son más lentos de ejecutar y conllevan un mayor costo.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Los tests de UI están situados en el vértice superior de la pirámide, lo que implica que poseen mayor grado de integración ("More integration"), son más lentos ("Slower") y son los más costosos ("$$$"). (Diapositiva 4)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 7 (ID: fb-p1-u4-q07) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Manejo de Dependencias
+
+ENUNCIADO:
+Sin importar el tipo de test que se esté implementando, ¿dónde reside la diferencia principal entre ellos?
+
+OPCIONES:
+  [a] En el lenguaje de programación elegido para redactar las aserciones.
+  [b] En la velocidad del procesador donde se ejecutan las pruebas.
+  [c] En la cantidad de clases modelo que intervienen en la prueba.
+  [d] En la manera en que se gestionan y manejan las dependencias.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [d]: En la manera en que se gestionan y manejan las dependencias.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La diapositiva establece expresamente que "sin importar el tipo de test que estemos implementando, la diferencia principal está en cómo manejamos las dependencias" entre las distintas capas (Controller, Service, Repository, DB, Models). (Diapositiva 5)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 8 (ID: fb-p1-u4-q08) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Estructura de Unit Test
+
+ENUNCIADO:
+En la estructura de un test unitario, ¿a qué corresponde la fase identificada como "WHEN"?
+
+OPCIONES:
+  [a] A la configuración del escenario inicial y preparación de los datos.
+  [b] A la verificación final de que el resultado obtenido coincide con el esperado.
+  [c] A la ejecución de la acción o el comportamiento específico a probar.  <--- [CORRECTA]
+  [d] A la inicialización del contexto general de la aplicación en memoria.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: A la ejecución de la acción o el comportamiento específico a probar.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En la convención BDD (Given-When-Then), la sección "WHEN" representa el momento en que ocurre la acción o el comportamiento exacto que se desea evaluar (por ejemplo, llamar al método sumar). (Diapositiva 6)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 9 (ID: fb-p1-u4-q09) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Mocks y Stubbing
+
+ENUNCIADO:
+En el contexto del manejo de dependencias mediante Mocks, ¿en qué consiste el concepto de "Stubbing"?
+
+OPCIONES:
+  [a] En configurar los valores de entrada esperados y las respuestas esperadas en los mocks.  <--- [CORRECTA]
+  [b] En verificar cuántas veces fue invocado un método durante la prueba.
+  [c] En levantar el contexto completo de Spring para realizar pruebas integrales.
+  [d] En capturar excepciones no controladas generadas por la base de datos.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: En configurar los valores de entrada esperados y las respuestas esperadas en los mocks.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El concepto de "Stubbing" se define en el material como la acción de setear o definir los valores de entrada esperados en los mocks y las respuestas simuladas que estos deben retornar. (Diapositiva 6)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 10 (ID: fb-p1-u4-q10) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Estructura de Unit Test
+
+ENUNCIADO:
+¿Qué acciones o comprobaciones forman parte de la etapa de verificación en un test unitario según el material? (Selecciona todas las opciones correctas)
+
+OPCIONES:
+  [a] Modificar la estructura del esquema de tablas en la base de datos.
+  [b] Comprobar valores mediante métodos como Assertions.assertEquals().  <--- [CORRECTA]
+  [c] Verificar las invocaciones e interacciones realizadas sobre los mocks.  <--- [CORRECTA]
+  [d] Validar el lanzamiento de excepciones mediante Assertions.assertThrows().  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Comprobar valores mediante métodos como Assertions.assertEquals().
+  -> Opción [c]: Verificar las invocaciones e interacciones realizadas sobre los mocks.
+  -> Opción [d]: Validar el lanzamiento de excepciones mediante Assertions.assertThrows().
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Entre las verificaciones mencionadas se destacan la evaluación de valores mediante Assertions.assertEquals(), el uso de Assertions.assertThrows() para excepciones, y la verificación de las invocaciones e interacciones producidas sobre los objetos Mocks. (Diapositiva 6)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 11 (ID: fb-p1-u4-q11) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Ciclo de Vida JUnit
+
+ENUNCIADO:
+Durante el ciclo de vida de ejecución de JUnit, ¿en qué momento se ejecuta un método anotado con @BeforeEach?
+
+OPCIONES:
+  [a] Una sola vez al principio, antes de que se ejecute cualquier método de test.
+  [b] Únicamente cuando la totalidad de los métodos anotados con @Test han finalizado.
+  [c] Justo después de la ejecución de cada método @Test para limpiar el contexto.
+  [d] Inmediatamente antes de la ejecución de cada uno de los métodos de prueba @Test.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [d]: Inmediatamente antes de la ejecución de cada uno de los métodos de prueba @Test.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Según el diagrama del ciclo de vida de JUnit, @BeforeEach se ejecuta inmediatamente antes de cada método individual anotado con @Test. Si hay múltiples @Test, se vuelve a ejecutar antes de cada uno. (Diapositiva 7)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 12 (ID: fb-p1-u4-q12) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Ciclo de Vida JUnit
+
+ENUNCIADO:
+¿Qué característica de definición comparten las anotaciones @BeforeAll y @AfterAll en el ciclo de vida de JUnit?
+
+OPCIONES:
+  [a] Deben ser aplicadas sobre métodos estáticos dentro de la clase de prueba.  <--- [CORRECTA]
+  [b] Deben aplicarse exclusivamente sobre métodos no estáticos dentro de la clase.
+  [c] Se ejecutan repetidamente antes y después de cada método anotado con @Test.
+  [d] Requieren obligatoriamente la presencia de un contexto de Spring cargado.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Deben ser aplicadas sobre métodos estáticos dentro de la clase de prueba.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En el diagrama del ciclo de vida de JUnit se explicita que tanto @BeforeAll como @AfterAll son métodos estáticos ((estático)), ejecutándose una sola vez al inicio y al final de la suite completa respectivamente. (Diapositiva 7)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 13 (ID: fb-p1-u4-q13) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Unit Testing sin Dependencias
+
+ENUNCIADO:
+Dentro del ámbito del Unit Testing, ¿cuál es considerado el caso más simple de probar?
+
+OPCIONES:
+  [a] Aquel donde el componente a probar interactúa con varias bases de datos.
+  [b] Aquel en el que se requiere simular la capa REST mediante clientes HTTP.
+  [c] Aquel en el que no existen dependencias en el componente bajo prueba.  <--- [CORRECTA]
+  [d] Aquel que necesita levantar el contexto completo de Spring Boot.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: Aquel en el que no existen dependencias en el componente bajo prueba.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+El material indica explícitamente que dentro de las pruebas unitarias "el caso más simple es cuando no hay dependencias", siendo además mucho más rápido y menos costoso de ejecutar. (Diapositiva 8)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 14 (ID: fb-p1-u4-q14) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Testing de Repositorios
+
+ENUNCIADO:
+Al realizar pruebas en la capa de Repositorio (Repository) en Java, ¿cuál es la dependencia principal y qué recurso se utiliza comúnmente para gestionarla?
+
+OPCIONES:
+  [a] La capa de servicios, utilizando Mocks gestionados por la librería Mockito.
+  [b] La base de datos, utilizando una base de datos en memoria como H2.  <--- [CORRECTA]
+  [c] Los controladores REST, utilizando la herramienta cliente MockMvc.
+  [d] Las APIs externas, utilizando un servidor simulado como MockServer.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: La base de datos, utilizando una base de datos en memoria como H2.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En los tests de Repository, la dependencia directa es la base de datos. Para testear las consultas agregadas sin afectar entornos reales, se utiliza una base de datos en memoria como H2. (Diapositiva 9)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 15 (ID: fb-p1-u4-q15) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Testing de Repositorios
+
+ENUNCIADO:
+¿Cuál es el propósito principal de utilizar la anotación @DataJpaTest al probar repositorios?
+
+OPCIONES:
+  [a] Cargar únicamente las clases que están relacionadas con el acceso a datos.  <--- [CORRECTA]
+  [b] Cargar el contexto completo del sistema incluyendo controladores y servicios.
+  [c] Mockear automáticamente las respuestas del servicio WebMvc en las pruebas.
+  [d] Levantar servidores HTTP simulados para realizar peticiones externas.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Cargar únicamente las clases que están relacionadas con el acceso a datos.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La anotación @DataJpaTest se emplea en Java para cargar únicamente los componentes y clases relacionados con la capa de acceso a datos (JPA/Hibernate), optimizando la ejecución de la prueba. (Diapositiva 9)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 16 (ID: fb-p1-u4-q16) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Testing de Servicios
+
+ENUNCIADO:
+Al testear la capa de Servicio (Service) en Java, ¿qué aspecto se está evaluando y cómo se manejan sus dependencias?
+
+OPCIONES:
+  [a] Se evalúa la capa REST y sus dependencias se gestionan con bases de datos H2.
+  [b] Se evalúa el acceso a datos y sus dependencias se manejan mediante @SpringBootTest.
+  [c] Se evalúan las llamadas externas y sus dependencias se manejan con MockServer.
+  [d] Se evalúa la capa de negocio y sus dependencias se manejan con Mocks (Mockito).  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [d]: Se evalúa la capa de negocio y sus dependencias se manejan con Mocks (Mockito).
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Al probar la capa de Service se testea la lógica de negocio. Como la dependencia directa es la capa de Repositorios, se utilizan Mocks (Mockito) para aislar la prueba de las dependencias propias del proyecto. (Diapositiva 10)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 17 (ID: fb-p1-u4-q17) | Tipo: Selección Múltiple (una o más) | Puntaje: 1.00 ptos.
+Tópico / Unidad: Mockito y Extensiones
+
+ENUNCIADO:
+¿Cuáles de las siguientes funciones realiza la extensión @ExtendWith(MockitoExtension.class) durante la ejecución de los tests? (Selecciona todas las opciones correctas)
+
+OPCIONES:
+  [a] Inicializar automáticamente los objetos mocks anotados con @Mock.  <--- [CORRECTA]
+  [b] Inyectar los mocks creados dentro de la clase anotada con @InjectMocks.  <--- [CORRECTA]
+  [c] Validar el uso correcto de los mocks una vez finalizado el test.  <--- [CORRECTA]
+  [d] Crear tablas automáticas dentro de una base de datos PostgreSQL real.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Inicializar automáticamente los objetos mocks anotados con @Mock.
+  -> Opción [b]: Inyectar los mocks creados dentro de la clase anotada con @InjectMocks.
+  -> Opción [c]: Validar el uso correcto de los mocks una vez finalizado el test.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+@ExtendWith(MockitoExtension.class) se encarga de: 1) Inicializar automáticamente los mocks anotados con @Mock, 2) Inyectarlos en la instancia anotada con @InjectMocks, y 3) Validar el uso correcto de los mocks al finalizar la prueba. (Diapositiva 11)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 18 (ID: fb-p1-u4-q18) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Testing de Controladores
+
+ENUNCIADO:
+Para llevar a cabo las pruebas unitarias de la capa de Controladores (Controller / capa REST) en Java, ¿qué tecnologías específicas se mencionan?
+
+OPCIONES:
+  [a] Uso de @DataJpaTest junto con una base de datos H2 en memoria.
+  [b] Uso de @SpringBootTest junto con contenedores de Docker para servicios.
+  [c] Uso de @WebMvcTest y la herramienta MockMvc para instanciar controladores.  <--- [CORRECTA]
+  [d] Uso exclusivo de MockServer para simular las peticiones del controlador.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: Uso de @WebMvcTest y la herramienta MockMvc para instanciar controladores.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Para testear la capa REST en los controladores se utiliza la anotación @WebMvcTest acompañada de MockMvc para instanciar y enviar peticiones a los controladores. (Diapositiva 12)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 19 (ID: fb-p1-u4-q19) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Testing de Controladores
+
+ENUNCIADO:
+Al probar la capa REST de un Controller, ¿cuál es la dependencia directa que se debe reemplazar mediante Mocks?
+
+OPCIONES:
+  [a] La capa de servicios.  <--- [CORRECTA]
+  [b] La capa de repositorios.
+  [c] El motor de base de datos.
+  [d] El servidor web de producción.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: La capa de servicios.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+La dependencia directa de la capa de controladores (Controller) es la capa de servicios (Service); por lo tanto, en las pruebas de controladores se emplean Mocks (Mockito) para reemplazar a los servicios. (Diapositiva 12)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 20 (ID: fb-p1-u4-q20) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: MockServer y APIs Externas
+
+ENUNCIADO:
+¿Qué herramienta se utiliza en Java para mockear llamadas a APIs externas y qué alcance puede tener dicha API según la documentación?
+
+OPCIONES:
+  [a] Se utiliza Mockito; la API solo puede ser un servicio externo de terceros.
+  [b] Se utiliza MockServer; la API puede ser externa o ser otro microservicio del sistema.  <--- [CORRECTA]
+  [c] Se utiliza MockMvc; la API representa únicamente repositorios locales.
+  [d] Se utiliza JaCoCo; la API solo puede ser una base de datos relacional.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Se utiliza MockServer; la API puede ser externa o ser otro microservicio del sistema.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Se utiliza MockServer para simular llamadas HTTP a APIs externas. El documento resalta que una API externa puede ser tanto un sistema ajeno como otro microservicio perteneciente al propio sistema. (Diapositiva 13)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 21 (ID: fb-p1-u4-q21) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Tests de Integración
+
+ENUNCIADO:
+¿Qué define a un test de integración a nivel de alcance y contexto en Spring Boot?
+
+OPCIONES:
+  [a] Testea un solo componente de forma aislada sin cargar ninguna configuración.
+  [b] Testea únicamente sentencias SQL utilizando una base de datos H2 con @DataJpaTest.
+  [c] Testea exclusivamente serializaciones JSON mediante el uso aislado de MockMvc.
+  [d] Testea más de un componente utilizando la anotación @SpringBootTest y el contexto completo.  <--- [CORRECTA]
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [d]: Testea más de un componente utilizando la anotación @SpringBootTest y el contexto completo.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Los tests de integración evalúan más de un componente de manera simultánea utilizando el contexto completo del sistema mediante la anotación @SpringBootTest. (Diapositiva 14)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 22 (ID: fb-p1-u4-q22) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Tests de Integración
+
+ENUNCIADO:
+En el contexto de los tests de integración, ¿cómo pueden tratarse las dependencias de componentes externos?
+
+OPCIONES:
+  [a] Deben ser reemplazadas obligatoriamente por arreglos estáticos de datos.
+  [b] Es obligatorio eliminarlas del código fuente antes de ejecutar los tests.
+  [c] Se pueden utilizar dependencias reales (mediante Docker) o emplear mocks.  <--- [CORRECTA]
+  [d] Se deben reemplazar únicamente mediante scripts de base de datos H2.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: Se pueden utilizar dependencias reales (mediante Docker) o emplear mocks.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Para la gestión de componentes externos en pruebas de integración, el material explicita que se pueden utilizar dependencias reales (por ejemplo, levantadas con Docker) o bien recurrir al uso de mocks. (Diapositiva 14)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 23 (ID: fb-p1-u4-q23) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Cobertura de Código y CI/CD
+
+ENUNCIADO:
+¿Qué utilidad práctica ofrece la medición del porcentaje de cobertura de código al integrarse en un flujo de CI/CD?
+
+OPCIONES:
+  [a] Corrige automáticamente los errores de sintaxis detectados en el código antes de compilar.
+  [b] Permite saber si un Pull Request altera la cobertura y puede hacer fallar el build si no alcanza el umbral.  <--- [CORRECTA]
+  [c] Genera instancias de base de datos en memoria para cada prueba unitaria que se ejecute.
+  [d] Aumenta la velocidad de compilación al descartar los tests que tienen menor cobertura.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [b]: Permite saber si un Pull Request altera la cobertura y puede hacer fallar el build si no alcanza el umbral.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+Al integrar la medición de cobertura con herramientas de CI/CD, es posible detectar si un PR modifica el porcentaje de cobertura y configurar reglas para que la construcción (build) falle si no se cumple el umbral aceptado por la organización. (Diapositiva 15)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 24 (ID: fb-p1-u4-q24) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: JaCoCo
+
+ENUNCIADO:
+¿Qué es JaCoCo según lo expresado en el material?
+
+OPCIONES:
+  [a] Una librería gratuita de cobertura de código para Java (Java Code Coverage Library).  <--- [CORRECTA]
+  [b] Un framework de aserciones para reemplazar JUnit en proyectos de Java.
+  [c] Una herramienta para la creación de contenedores Docker en pruebas integrales.
+  [d] Un plugin de Spring Boot utilizado para la instanciación de controladores web.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [a]: Una librería gratuita de cobertura de código para Java (Java Code Coverage Library).
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+JaCoCo se define como una librería libre/gratuita de cobertura de código para Java ("JaCoCo Java Code Coverage Library"). (Diapositiva 15)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+PREGUNTA 25 (ID: fb-p1-u4-q25) | Tipo: Selección Única | Puntaje: 1.00 ptos.
+Tópico / Unidad: Patrón de Delegación Controlador-Servicio
+
+ENUNCIADO:
+Al observar la implementación del controlador (ClienteControlador), ¿qué patrón de delegación se aprecia entre el Controlador y la Capa de Servicio?
+
+OPCIONES:
+  [a] El controlador ejecuta consultas SQL directamente mediante la llamada al repositorio.
+  [b] El servicio invoca directamente las anotaciones @WebMvcTest para transformar los datos.
+  [c] El controlador delega las operaciones de negocio (crear, buscarPorId, eliminar) a la capa de servicio.  <--- [CORRECTA]
+  [d] El controlador gestiona la base de datos H2 sin pasar por las entidades de modelo.
+
+RESPUESTA(S) CORRECTA(S):
+  -> Opción [c]: El controlador delega las operaciones de negocio (crear, buscarPorId, eliminar) a la capa de servicio.
+
+JUSTIFICACIÓN / EXPLICACIÓN DE CÁTEDRA:
+En el código presentado en la diapositiva 16, la clase ClienteControlador recibe una instancia de ClienteServicio y delega en ella las operaciones REST como servicio.crear(), servicio.buscarPorId(), servicio.buscarTodos(), servicio.actualizar() y servicio.eliminar(). (Diapositiva 16)
+--------------------------------------------------------------------------------

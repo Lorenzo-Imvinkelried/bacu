@@ -119,8 +119,8 @@ export const VAULT_STRUCTURE = {
         {
           id: "fb-parcial-1",
           name: "Parcial 1",
-          description: "Banco oficial de examen: Spring Boot, Arquitectura, HTTP, REST APIs, Genéricos, Jackson, Postman, Asincronía y Spring Batch",
-          questionCount: 148,
+          description: "Banco oficial de examen: Spring Boot, Arquitectura, HTTP, REST APIs, Genéricos, Jackson, Postman, Asincronía, Spring Batch y Testing / TDD",
+          questionCount: 174,
           quizzes: [
             {
               id: "quiz-fb-p1-unidad-1",
@@ -147,10 +147,18 @@ export const VAULT_STRUCTURE = {
               maxScore: 10.0
             },
             {
+              id: "quiz-fb-p1-unidad-4",
+              quizId: "quiz-fb-p1-unidad-4",
+              title: "UNIDAD 4 (25 preguntas)",
+              description: "Banco oficial Unidad 4: Test Driven Development (TDD), Pirámide de Testing, JUnit, Mockito, MockMvc, MockServer, Tests de Integración y JaCoCo.",
+              questionCount: 25,
+              maxScore: 10.0
+            },
+            {
               id: "quiz-fb-p1-todos-wacho",
               title: "TODOS WACHO",
-              description: "Banco consolidado con todas las unidades de este parcial (149 preguntas).",
-              questionCount: 149,
+              description: "Banco consolidado con todas las unidades de este parcial (174 preguntas).",
+              questionCount: 174,
               maxScore: 10.0,
               allForUnit: true,
               subjectId: "fundamentos-backend",
