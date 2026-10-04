@@ -234,6 +234,7 @@ export function handleClickEvent(e) {
 }
 
 function handleStartQuiz() {
+  document.getElementById("multiplayer-modal")?.classList.add("hidden");
   const currentQuiz = getQuizById(state.state.activeSubjectId, state.state.activeUnitId, state.state.activeQuizId);
   const quizQuestions = getQuestionsForQuiz(currentQuiz, QUESTION_BANK);
   const mode = state.state.executionMode || "batches";

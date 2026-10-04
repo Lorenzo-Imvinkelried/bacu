@@ -105,8 +105,9 @@ export function handleMultiplayerNextQuick() {
 
   if (set.size >= requiredCount) {
     readyNextMap.delete(currentIndex);
-    state.goToNextQuestion();
-    multiplayerService.broadcastMessage({ type: "NAVIGATE", index: currentIndex + 1 });
+    const targetIdx = currentIndex + 1;
+    if (state.state.activeQuestionIndex !== targetIdx) state.goToQuestion(targetIdx);
+    multiplayerService.broadcastMessage({ type: "NAVIGATE", index: targetIdx });
     window.scrollTo({ top: 0, behavior: "smooth" });
   } else {
     state.notify();
@@ -137,8 +138,11 @@ export function handlePlayerReadyNext(qIndex, userId) {
 
   if (set.size >= requiredCount) {
     readyNextMap.delete(qIndex);
-    state.goToNextQuestion();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const targetIdx = qIndex + 1;
+    if (state.state.activeQuestionIndex !== targetIdx) {
+      state.goToQuestion(targetIdx);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   } else if (qIndex === currentIndex) {
     state.notify();
   }
@@ -166,7 +170,10 @@ export function syncReadyNextFromFirestore(readyNextData) {
 
   if (set.size >= requiredCount) {
     readyNextMap.delete(currentIndex);
-    state.goToNextQuestion();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const targetIdx = currentIndex + 1;
+    if (state.state.activeQuestionIndex !== targetIdx) {
+      state.goToQuestion(targetIdx);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   }
 }

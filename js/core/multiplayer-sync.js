@@ -145,6 +145,7 @@ export function syncSelectionsFromFirestore(selections) {
 function handleRemoteStartQuiz(msg) {
   isRemoteUpdateInProgress = true;
   try {
+    document.getElementById("multiplayer-modal")?.classList.add("hidden");
     const { config, preparedQuestions, continuousSession } = msg;
     if (config) {
       state.setState({
@@ -168,6 +169,7 @@ function handleRemoteStartQuiz(msg) {
     } else {
       state.startAttempt(questionsToUse);
     }
+    window.scrollTo({ top: 0, behavior: "smooth" });
   } finally { isRemoteUpdateInProgress = false; }
 }
 
@@ -192,6 +194,7 @@ function applyRoomDataToState(roomData) {
     }
 
     if (quizState.quizStatus === "attempt") {
+      document.getElementById("multiplayer-modal")?.classList.add("hidden");
       const mode = config.executionMode || state.state.executionMode || "quick";
       if (state.state.quizStatus !== "attempt" || !state.state.currentQuestions?.length) {
         state.setState(updates);
