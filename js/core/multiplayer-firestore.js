@@ -58,6 +58,19 @@ export async function joinFirestoreRoom(code, user) {
   }
 }
 
+export async function getFirestoreRoom(code) {
+  const db = await getFirestoreInstance();
+  if (!db) return null;
+  try {
+    const { doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js");
+    const snap = await getDoc(doc(db, "multiplayer_rooms", code));
+    if (snap.exists()) return snap.data();
+  } catch (e) {
+    console.warn("Fallo al consultar sala en Firestore:", e);
+  }
+  return null;
+}
+
 export async function subscribeToFirestoreRoom(code, onUpdate) {
   const db = await getFirestoreInstance();
   if (!db) return null;

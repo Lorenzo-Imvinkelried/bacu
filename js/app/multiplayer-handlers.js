@@ -1,6 +1,6 @@
 /**
  * Manejador de Eventos de Interfaz Multijugador
- * Responsabilidad: Procesar interacciones del usuario con modales, creación/unión de salas y copia de enlaces
+ * Responsabilidad: Procesar interacciones del usuario con modales, alternancia de pestañas y unión a salas
  * Cumple estrictamente con directivas en AGENTS.md (Capa de Controladores, < 300 líneas)
  */
 
@@ -17,10 +17,7 @@ let activeModalTab = "create";
  * @param {HTMLElement} root
  */
 export function setupMultiplayerEvents(root) {
-  // Manejador delegado para acciones multijugador
   root.addEventListener("click", handleMultiplayerClicks);
-
-  // Detectar parámetro ?sala= o ?room= en la URL para unirse automáticamente
   checkUrlForRoomInvite();
 }
 
@@ -52,8 +49,7 @@ export function handleMultiplayerClicks(e) {
   const tabBtn = e.target.closest("[data-mp-tab]");
   if (tabBtn) {
     e.preventDefault();
-    activeModalTab = tabBtn.dataset.mpTab;
-    reRenderModalContent();
+    switchMultiplayerTab(tabBtn.dataset.mpTab);
     return;
   }
 
@@ -102,15 +98,46 @@ export function handleMultiplayerClicks(e) {
 }
 
 /**
+ * Alternar entre pestañas de Crear y Unirse en el modal
+ * @param {"create" | "join"} tab
+ */
+export function switchMultiplayerTab(tab = "create") {
+  activeModalTab = tab;
+  const tabCreate = document.getElementById("mp-tab-btn-create");
+  const tabJoin = document.getElementById("mp-tab-btn-join");
+  const panelCreate = document.getElementById("mp-panel-create");
+  const panelJoin = document.getElementById("mp-panel-join");
+  const btnCreate = document.getElementById("btn-mp-create-room");
+  const btnJoin = document.getElementById("btn-mp-join-room");
+
+  if (tabCreate) tabCreate.classList.toggle("active", tab === "create");
+  if (tabJoin) tabJoin.classList.toggle("active", tab === "join");
+
+  if (panelCreate) panelCreate.classList.toggle("hidden", tab !== "create");
+  if (panelJoin) panelJoin.classList.toggle("hidden", tab !== "join");
+
+  if (btnCreate) btnCreate.classList.toggle("hidden", tab !== "create");
+  if (btnJoin) btnJoin.classList.toggle("hidden", tab !== "join");
+
+  if (tab === "join") {
+    setTimeout(() => document.getElementById("mp-input-room-code")?.focus(), 50);
+  }
+}
+
+/**
  * Abrir el modal de multijugador
  */
 export function openMultiplayerModal(tab = null) {
-  if (tab) activeModalTab = tab;
   const modal = document.getElementById("multiplayer-modal");
   if (modal) {
     modal.classList.remove("hidden");
     const nameInput = document.getElementById("mp-input-name");
     if (nameInput) nameInput.value = multiplayerService.localUser.name || "";
+    if (tab) {
+      switchMultiplayerTab(tab);
+    } else {
+      switchMultiplayerTab(activeModalTab || "create");
+    }
   }
 }
 
@@ -128,6 +155,13 @@ async function handleCreateRoomAction() {
   const nameInput = document.getElementById("mp-input-name");
   const hostName = (nameInput?.value || "").trim() || "Anfitrión";
   multiplayerService.saveLocalUser({ name: hostName });
+
+  const btnCreate = document.getElementById("btn-mp-create-room");
+  const origText = btnCreate ? btnCreate.textContent : "Crear Sala de Estudio";
+  if (btnCreate) {
+    btnCreate.disabled = true;
+    btnCreate.textContent = "Creando sala...";
+  }
 
   const currentState = state.getState();
   const currentQuiz = getQuizById(currentState.activeSubjectId, currentState.activeUnitId, currentState.activeQuizId);
@@ -149,12 +183,17 @@ async function handleCreateRoomAction() {
   };
 
   try {
-    const code = await multiplayerService.createRoom(roomConfig, prepared);
+    await multiplayerService.createRoom(roomConfig, prepared);
     state.notify();
     openMultiplayerModal();
   } catch (err) {
     alert("No se pudo crear la sala. Intente nuevamente.");
     console.error(err);
+  } finally {
+    if (btnCreate) {
+      btnCreate.disabled = false;
+      btnCreate.textContent = origText;
+    }
   }
 }
 
@@ -168,9 +207,16 @@ async function handleJoinRoomAction() {
   const code = (codeInput?.value || "").trim().toUpperCase();
 
   if (!code) {
-    alert("Por favor ingresa un código de sala.");
+    alert("Por favor ingresa un código de sala (ej: BACU-XXXX).");
     codeInput?.focus();
     return;
+  }
+
+  const joinBtn = document.getElementById("btn-mp-join-room");
+  const origText = joinBtn ? joinBtn.textContent : "Unirse a la Sala";
+  if (joinBtn) {
+    joinBtn.disabled = true;
+    joinBtn.textContent = "Conectando...";
   }
 
   try {
@@ -178,8 +224,13 @@ async function handleJoinRoomAction() {
     state.notify();
     openMultiplayerModal();
   } catch (err) {
-    alert("Código de sala inválido o no se pudo conectar.");
+    alert(err.message || "No se pudo conectar a la sala. Verificá que el código sea correcto.");
     console.error(err);
+  } finally {
+    if (joinBtn) {
+      joinBtn.disabled = false;
+      joinBtn.textContent = origText;
+    }
   }
 }
 
@@ -240,8 +291,4 @@ function checkUrlForRoomInvite() {
       if (input) input.value = roomCode.toUpperCase();
     }, 300);
   }
-}
-
-function reRenderModalContent() {
-  state.notify();
 }

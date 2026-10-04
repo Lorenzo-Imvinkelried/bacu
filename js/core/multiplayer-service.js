@@ -6,6 +6,7 @@
 
 import { initLocalUser, saveLocalUser, generateRoomCode } from "./multiplayer-user.js";
 import {
+  getFirestoreRoom,
   createFirestoreRoom,
   joinFirestoreRoom,
   subscribeToFirestoreRoom,
@@ -102,6 +103,14 @@ class MultiplayerService {
     if (isCreating && initialData) {
       await createFirestoreRoom(code, initialData);
     } else {
+      const existingData = await getFirestoreRoom(code);
+      if (existingData) {
+        this.currentRoom = {
+          ...this.currentRoom,
+          ...existingData,
+          participants: existingData.participants || {}
+        };
+      }
       await joinFirestoreRoom(code, this.localUser);
     }
 
@@ -113,7 +122,7 @@ class MultiplayerService {
     this.startHeartbeat();
 
     this.broadcastMessage({ type: "PEER_JOINED", user: this.localUser });
-    this.emit("room_connected", { code, isHost: Boolean(isCreating) });
+    this.emit("room_connected", { code, isHost: Boolean(isCreating), roomData: this.currentRoom });
   }
 
   handleFirestoreRoomUpdate(data) {

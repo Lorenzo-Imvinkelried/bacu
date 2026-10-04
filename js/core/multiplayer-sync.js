@@ -39,6 +39,20 @@ export function initMultiplayerSync() {
     state.notify();
   });
 
+  multiplayerService.on("room_connected", (evt) => {
+    if (evt?.roomData && !evt.isHost) {
+      applyRoomDataToState(evt.roomData);
+    }
+    state.notify();
+  });
+
+  multiplayerService.on("room_updated", (roomData) => {
+    if (roomData && !multiplayerService.currentRoom?.isHost) {
+      applyRoomDataToState(roomData);
+    }
+    state.notify();
+  });
+
   multiplayerService.on("remote_answer", (msg) => {
     isRemoteUpdateInProgress = true;
     try {
@@ -151,6 +165,36 @@ function handleRemoteStartQuiz(msg) {
   }
 }
 
+function applyRoomDataToState(roomData) {
+  if (!roomData) return;
+  isRemoteUpdateInProgress = true;
+  try {
+    const config = roomData.config || {};
+    const quizState = roomData.quizState || {};
+    const updates = {};
+
+    if (config.subjectId) updates.activeSubjectId = config.subjectId;
+    if (config.unitId) updates.activeUnitId = config.unitId;
+    if (config.quizId) updates.activeQuizId = config.quizId;
+    if (config.executionMode) updates.executionMode = config.executionMode;
+    if (config.batchSize) updates.batchSize = config.batchSize;
+    if (config.randomCount) updates.randomCount = config.randomCount;
+
+    if (roomData.preparedQuestions && roomData.preparedQuestions.length > 0) {
+      updates.currentQuestions = reconstructPreparedQuestions(roomData.preparedQuestions);
+    }
+    if (quizState.quizStatus) updates.quizStatus = quizState.quizStatus;
+    if (typeof quizState.activeQuestionIndex === "number") {
+      updates.activeQuestionIndex = quizState.activeQuestionIndex;
+    }
+    if (quizState.userAnswers) updates.userAnswers = { ...quizState.userAnswers };
+
+    state.setState(updates);
+  } finally {
+    isRemoteUpdateInProgress = false;
+  }
+}
+
 function reconstructPreparedQuestions(serializedList) {
   const bankMap = new Map(QUESTION_BANK.map(q => [q.id, q]));
   const result = [];
@@ -208,16 +252,10 @@ function decorateStateMethods() {
   };
 
   const origStartAttempt = state.startAttempt.bind(state);
-  state.startAttempt = function(questions) {
-    origStartAttempt(questions);
-    broadcastStartIfNeeded("full", questions);
-  };
+  state.startAttempt = (q) => { origStartAttempt(q); broadcastStartIfNeeded("full", q); };
 
   const origStartQuickAttempt = state.startQuickAttempt.bind(state);
-  state.startQuickAttempt = function(questions) {
-    origStartQuickAttempt(questions);
-    broadcastStartIfNeeded("quick", questions);
-  };
+  state.startQuickAttempt = (q) => { origStartQuickAttempt(q); broadcastStartIfNeeded("quick", q); };
 
   const origStartContinuousSession = state.startContinuousSession.bind(state);
   state.startContinuousSession = function(allQuestions, batchSize, options) {

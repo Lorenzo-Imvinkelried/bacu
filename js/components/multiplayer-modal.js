@@ -14,10 +14,9 @@ const PALETTE = [
 /**
  * Renderizar modal multijugador completo
  * @param {object} currentState
- * @param {string} activeTab - "create" | "join"
  * @returns {string} HTML
  */
-export function renderMultiplayerModal(currentState, activeTab = "create") {
+export function renderMultiplayerModal(currentState) {
   const isInRoom = multiplayerService.isInRoom();
   const room = multiplayerService.getCurrentRoom();
   const user = multiplayerService.localUser;
@@ -36,7 +35,6 @@ export function renderMultiplayerModal(currentState, activeTab = "create") {
 
   if (isInRoom && room) {
     const participantsList = Object.values(room.participants || {});
-    const isHost = room.isHost || (room.hostId === user.id);
 
     contentHtml = `
       <div class="mp-room-info-card">
@@ -55,7 +53,7 @@ export function renderMultiplayerModal(currentState, activeTab = "create") {
 
       <div class="mp-form-group">
         <label class="mp-form-label">Compañeros en la Sala (${participantsList.length}):</label>
-        <div class="mp-participants-list">
+        <div class="mp-participants-list" id="mp-participants-container">
           ${participantsList.map(p => `
             <div class="mp-participant-row">
               <div class="mp-participant-info">
@@ -76,13 +74,12 @@ export function renderMultiplayerModal(currentState, activeTab = "create") {
       </div>
     `;
   } else {
-    // Pestañas de Crear o Unirse
     contentHtml = `
       <div class="mp-modal-tabs">
-        <button type="button" class="mp-modal-tab ${activeTab === "create" ? "active" : ""}" data-mp-tab="create">
+        <button type="button" class="mp-modal-tab active" data-mp-tab="create" id="mp-tab-btn-create">
           Crear Nueva Sala
         </button>
-        <button type="button" class="mp-modal-tab ${activeTab === "join" ? "active" : ""}" data-mp-tab="join">
+        <button type="button" class="mp-modal-tab" data-mp-tab="join" id="mp-tab-btn-join">
           Unirse con Código
         </button>
       </div>
@@ -107,7 +104,8 @@ export function renderMultiplayerModal(currentState, activeTab = "create") {
           </div>
         </div>
 
-        ${activeTab === "create" ? `
+        <!-- Panel Crear Sala -->
+        <div id="mp-panel-create" class="mp-tab-panel">
           <div class="mp-room-info-card" style="margin-top: 1rem;">
             <div class="mp-room-info-title">Configuración del Cuestionario</div>
             <p style="margin: 0.3rem 0; font-size: 0.88rem; color: #1e293b;">
@@ -117,7 +115,10 @@ export function renderMultiplayerModal(currentState, activeTab = "create") {
               Se generará una sala vinculada a las preguntas de este parcial para que ambos resuelvan juntos a la par.
             </p>
           </div>
-        ` : `
+        </div>
+
+        <!-- Panel Unirse a Sala -->
+        <div id="mp-panel-join" class="mp-tab-panel hidden">
           <div class="mp-form-group" style="margin-top: 1rem;">
             <label for="mp-input-room-code" class="mp-form-label">Código de Sala (ej: BACU-842):</label>
             <input 
@@ -126,9 +127,13 @@ export function renderMultiplayerModal(currentState, activeTab = "create") {
               class="mp-form-input mp-code-input" 
               placeholder="BACU-XXXX" 
               maxlength="10"
+              autocomplete="off"
             />
+            <p style="margin: 0.4rem 0 0 0; font-size: 0.8rem; color: #64748b;">
+              Pegá el código de 4 a 6 letras que te compartió tu compañero o anfitrión.
+            </p>
           </div>
-        `}
+        </div>
       </div>
     `;
   }
@@ -159,10 +164,8 @@ export function renderMultiplayerModal(currentState, activeTab = "create") {
             <button type="button" class="btn btn-primary" id="btn-mp-done-modal">Entendido / Continuar</button>
           ` : `
             <button type="button" class="btn btn-outline" id="btn-mp-cancel">Cancelar</button>
-            ${activeTab === "create" 
-              ? `<button type="button" class="btn btn-primary" id="btn-mp-create-room">Crear Sala de Estudio</button>`
-              : `<button type="button" class="btn btn-primary" id="btn-mp-join-room">Unirse a la Sala</button>`
-            }
+            <button type="button" class="btn btn-primary" id="btn-mp-create-room">Crear Sala de Estudio</button>
+            <button type="button" class="btn btn-primary hidden" id="btn-mp-join-room">Unirse a la Sala</button>
           `}
         </div>
       </div>
