@@ -5,6 +5,7 @@
  */
 
 import { VAULT_STRUCTURE } from "../data/vault-structure.js";
+import { multiplayerService } from "../core/multiplayer-service.js";
 
 export function renderHeader(state, subject, unit, quiz) {
   const currentSubjectId = subject ? subject.id : "ing-calidad";
@@ -12,6 +13,10 @@ export function renderHeader(state, subject, unit, quiz) {
   const subjectName = subject ? subject.name : "Ingeniería y Calidad de Software";
   const unitName = unit ? unit.name : "Parcial 1";
   const quizTitle = quiz ? quiz.title : "Cuestionario";
+
+  const isInRoom = multiplayerService.isInRoom();
+  const room = multiplayerService.getCurrentRoom();
+  const roomParticipantsCount = room?.participants ? Object.keys(room.participants).length : 1;
 
   // Opciones del desplegable de Materias
   const subjectsOptionsHtml = VAULT_STRUCTURE.subjects.map(s => `
@@ -50,6 +55,17 @@ export function renderHeader(state, subject, unit, quiz) {
         </div>
 
         <div class="cv-header-actions">
+          <button type="button" id="btn-multiplayer-header" class="btn-multiplayer-header ${isInRoom ? "is-active-room" : ""}" title="Modo Estudio Colaborativo en Tiempo Real">
+            <span class="btn-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </span>
+            <span class="btn-label">${isInRoom ? `Sala en Vivo (${roomParticipantsCount})` : "Sala de Estudio"}</span>
+          </button>
           <button type="button" id="btn-theme-toggle" class="btn-theme-toggle" title="Cambiar a ${isDark ? "Modo Claro" : "Modo Oscuro"}" aria-label="Cambiar tema visual">
             <span class="theme-icon">${themeIconSvg}</span>
             <span class="theme-label">${isDark ? "Modo Claro" : "Modo Oscuro"}</span>

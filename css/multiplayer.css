@@ -1,0 +1,232 @@
+/**
+ * Estilos para Cursores, Halos y Barra Superior Multijugador
+ * Responsabilidad: Capa visual de cursores en tiempo real, halo de selecciones y barra de sesión activa
+ * Cumple con directivas en AGENTS.md (Capa de Estilos, < 300 líneas)
+ */
+
+/* 1. Capa de Cursores Multijugador */
+#multiplayer-cursors-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 99999;
+  overflow: hidden;
+}
+
+.mp-remote-cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 100000;
+  will-change: transform;
+  transition: transform 0.08s cubic-bezier(0.2, 0.9, 0.4, 1.1), opacity 0.25s ease;
+  opacity: 1;
+}
+
+.mp-remote-cursor.is-idle { opacity: 0.35; }
+.mp-remote-cursor.is-hidden { opacity: 0; }
+.mp-cursor-svg { filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.35)); display: block; }
+
+.mp-cursor-badge {
+  position: absolute;
+  top: 18px;
+  left: 12px;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  line-height: 1.2;
+  user-select: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.mp-cursor-badge::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+}
+
+/* 2. Halos y Badges de Selección Colaborativa en Opciones */
+.r0.peer-selected,
+.r1.peer-selected {
+  position: relative;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.peer-selection-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-left: 8px;
+  vertical-align: middle;
+  animation: peerTagPop 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.peer-selection-tag svg { width: 11px; height: 11px; }
+
+@keyframes peerTagPop {
+  0% { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* 3. Barra de Estado de Sala Activa (Pinned Bar) */
+.mp-session-bar {
+  background: linear-gradient(90deg, #0d3b66 0%, #004b87 50%, #0070f3 100%);
+  color: #ffffff;
+  padding: 0.5rem 1.25rem;
+  box-shadow: 0 3px 10px rgba(0, 75, 135, 0.25);
+  position: sticky;
+  top: 0;
+  z-index: 101;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  animation: slideDownBar 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideDownBar {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+.mp-bar-left { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+
+.mp-live-pill {
+  background: #10b981;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+.mp-live-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  animation: mpPulse 1.4s infinite;
+}
+
+@keyframes mpPulse {
+  0% { transform: scale(0.9); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.4; }
+  100% { transform: scale(0.9); opacity: 1; }
+}
+
+.mp-room-code-tag {
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  font-family: monospace;
+}
+
+.mp-bar-participants { display: flex; align-items: center; gap: 6px; }
+
+.mp-user-chip {
+  padding: 3px 10px;
+  border-radius: 14px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.mp-user-chip.is-self::after {
+  content: "(Vos)";
+  font-weight: 500;
+  font-size: 0.68rem;
+  opacity: 0.85;
+}
+
+.mp-bar-actions { display: flex; align-items: center; gap: 0.5rem; }
+
+.btn-mp-action {
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.btn-mp-action:hover {
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+.btn-mp-leave { background: rgba(220, 53, 69, 0.85); border-color: rgba(220, 53, 69, 1); }
+.btn-mp-leave:hover { background: #dc3545; }
+
+/* 4. Botón en Header de la App */
+.btn-multiplayer-header {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.08) 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  padding: 0.38rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.btn-multiplayer-header:hover {
+  background: rgba(255, 255, 255, 0.28);
+  border-color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-multiplayer-header.is-active-room {
+  background: #10b981;
+  border-color: #34d399;
+}

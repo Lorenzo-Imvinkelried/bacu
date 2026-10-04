@@ -11,11 +11,15 @@ import { getSubjectById, getUnitById, getQuizById, getQuestionsForQuiz } from ".
 import { renderHeader } from "./components/header-component.js";
 import { renderAttemptSummary, renderConfirmationModal } from "./components/review-summary.js";
 import { renderHowToCreateModal } from "./components/how-to-create-modal.js";
+import { renderMultiplayerModal } from "./components/multiplayer-modal.js";
+import { renderMultiplayerBar } from "./components/multiplayer-bar.js";
 
 import { getFormattedQuizTitle } from "./app/quiz-title.js";
 import { renderIntroView } from "./app/intro-view.js";
 import { renderAttemptView } from "./app/attempt-view.js";
 import { setupEventListeners } from "./app/event-handlers.js";
+import { setupMultiplayerEvents } from "./app/multiplayer-handlers.js";
+import { initMultiplayerSync, refreshPeerSelectionBadgesInDom } from "./core/multiplayer-sync.js";
 import { exportQuestionsToTxt } from "./app/export-service.js";
 import { refreshAnnotationCountsForQuestions } from "./app/annotations-handlers.js";
 
@@ -36,6 +40,10 @@ export function initApp() {
   state.subscribe((currentState) => {
     render(root, currentState);
   });
+
+  // Inicializar sincronización en tiempo real y eventos de multijugador
+  initMultiplayerSync();
+  setupMultiplayerEvents(root);
 
   // Configurar eventos globales delegados
   setupEventListeners(root);
@@ -58,9 +66,11 @@ function render(root, currentState) {
   const totalQuestions = quizQuestions.length || unit?.questionCount || 92;
   const displayTitle = getFormattedQuizTitle(quiz, currentState, totalQuestions);
 
+  const multiplayerBarHtml = renderMultiplayerBar();
   const headerHtml = renderHeader(currentState, subject, unit, quiz ? { ...quiz, title: displayTitle } : null);
   const confirmModalHtml = renderConfirmationModal();
   const howToCreateModalHtml = renderHowToCreateModal();
+  const multiplayerModalHtml = renderMultiplayerModal(currentState);
 
   let mainContentHtml = "";
 
@@ -75,6 +85,7 @@ function render(root, currentState) {
   }
 
   root.innerHTML = `
+    ${multiplayerBarHtml}
     ${headerHtml}
     <main class="cv-main-wrapper">
       <div class="cv-page-title-section">
@@ -96,6 +107,7 @@ function render(root, currentState) {
 
     ${confirmModalHtml}
     ${howToCreateModalHtml}
+    ${multiplayerModalHtml}
 
     <footer class="cv-footer">
       <p>BACU - Baúl de Cuestionarios &copy; 2026</p>
@@ -104,5 +116,6 @@ function render(root, currentState) {
 
   if (currentState.quizStatus === "attempt" || currentState.quizStatus === "review") {
     refreshAnnotationCountsForQuestions(currentState.currentQuestions);
+    refreshPeerSelectionBadgesInDom();
   }
 }
