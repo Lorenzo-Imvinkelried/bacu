@@ -7,6 +7,7 @@
 import { evaluateSingleQuestion } from "../core/quiz-engine.js";
 import { formatExplanation, escapeHtml } from "./explanation-formatter.js";
 import { renderAnnotationsSection } from "./annotations-component.js";
+import { renderDuelSummary, renderWaitingPartnerNotice, getPeerSelectionInfo } from "./multiplayer-dom.js";
 
 export function renderQuestion(question, index, state, isReview = false, result = null) {
   const qId = question.id;
@@ -80,8 +81,12 @@ export function renderQuestion(question, index, state, isReview = false, result 
       }
     }
 
+    const peerInfo = state?.isMultiplayer ? getPeerSelectionInfo(qId, opt.id) : null;
+    if (peerInfo?.isSelected) optionRowClass += " peer-selected";
+    const optionStyleAttr = peerInfo?.isSelected ? `style="box-shadow: inset 3px 0 0 ${peerInfo.user?.color || "#0070f3"}, 0 0 8px rgba(0, 112, 243, 0.15);"` : "";
+
     return `
-      <div class="${optionRowClass}">
+      <div class="${optionRowClass}" ${optionStyleAttr}>
         <input 
           type="${inputType}" 
           name="${inputName}" 
@@ -97,6 +102,7 @@ export function renderQuestion(question, index, state, isReview = false, result 
         <label for="${inputId}" class="option-label">
           <span class="answernumber">${opt.id}. </span>
           <span class="option-text">${escapeHtml(opt.text)}</span>
+          ${peerInfo?.badgeHtml || ""}
         </label>
         ${reviewFeedbackBadge}
         ${quickInlineBtn}
@@ -132,6 +138,7 @@ export function renderQuestion(question, index, state, isReview = false, result 
 
     outcomeHtml = `
       <div class="${outcomeBoxClass}">
+        ${renderDuelSummary(question, state)}
         <div class="feedback-title">${outcomeTitle}</div>
         <div class="feedback-correct-answer">
           La respuesta correcta es:<br/>
@@ -178,6 +185,7 @@ export function renderQuestion(question, index, state, isReview = false, result 
           </div>
 
           ${diagramHtml}
+          ${renderWaitingPartnerNotice(question, state)}
 
           <div class="prompt">
             ${isMultiple ? "Seleccione una o más de una:" : "Seleccione una:"}

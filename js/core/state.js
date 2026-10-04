@@ -74,8 +74,8 @@ class QuizState {
 
     const updates = { userAnswers: { ...this.state.userAnswers, [questionId]: updated } };
 
-    // En Modo Repaso Rápido, opciones únicas evalúan inmediatamente al primer tap
-    if (this.state.executionMode === "quick" && !isMultiple) {
+    // En Modo Repaso Rápido individual, opciones únicas evalúan inmediatamente al primer tap
+    if (this.state.executionMode === "quick" && !isMultiple && !this.state.isMultiplayer) {
       const qSet = new Set(this.state.quickEvaluatedQuestions || []);
       qSet.add(questionId);
       updates.quickEvaluatedQuestions = qSet;

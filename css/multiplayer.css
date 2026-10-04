@@ -230,3 +230,18 @@
   background: #10b981;
   border-color: #34d399;
 }
+
+/* 5. Duelos y Espera en Modo Rápido (1 a 1) */
+.mp-waiting-notice { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; padding: 0.6rem 0.9rem; border-radius: 6px; font-size: 0.84rem; font-weight: 600; margin: 0.75rem 0; display: flex; align-items: center; gap: 8px; }
+.mp-waiting-pulse { width: 8px; height: 8px; border-radius: 50%; background: #3b82f6; animation: mpPulse 1.2s infinite; }
+.mp-duel-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 0.6rem 0.8rem; margin-bottom: 0.6rem; }
+.mp-duel-title { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; color: #64748b; margin-bottom: 0.4rem; }
+.mp-duel-chips-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.mp-duel-chip { font-size: 0.76rem; padding: 3px 8px; border-radius: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+.mp-duel-chip.is-correct { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+.mp-duel-chip.is-incorrect { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+[data-theme="dark"] .mp-waiting-notice { background: #1e3a8a; border-color: #3b82f6; color: #bfdbfe; }
+[data-theme="dark"] .mp-duel-card { background: #1e293b; border-color: #334155; }
+[data-theme="dark"] .mp-duel-title { color: #94a3b8; }
+[data-theme="dark"] .mp-duel-chip.is-correct { background: #064e3b; color: #6ee7b7; border-color: #047857; }
+[data-theme="dark"] .mp-duel-chip.is-incorrect { background: #7f1d1d; color: #fca5a5; border-color: #b91c1c; }

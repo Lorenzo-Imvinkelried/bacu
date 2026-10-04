@@ -9,27 +9,22 @@ import { evaluateAttempt, getMissedQuestions, prepareQuizQuestions } from "../co
 import { QUESTION_BANK } from "../data/question-bank.js";
 import { getQuizById, getQuestionsForQuiz } from "../data/vault-structure.js";
 import { exportQuestionsToTxt } from "./export-service.js";
+import { getSharedMultiplayerQuestions } from "../core/multiplayer-questions.js";
+import { handleMultiplayerNextQuick } from "../core/multiplayer-duel.js";
 
-/**
- * Procesar evento de clic delegado
- * @param {MouseEvent} e
- */
 export function handleClickEvent(e) {
-  // 1. Alternar Modo Oscuro / Modo Claro
   if (e.target.closest("#btn-theme-toggle")) {
     e.preventDefault();
     state.toggleTheme();
     return;
   }
 
-  // 2. Exportar Cuestionario a TXT
   if (e.target.closest("#btn-export-questions-page") || e.target.closest("#btn-export-questions-intro")) {
     e.preventDefault();
     exportQuestionsToTxt();
     return;
   }
 
-  // 3. Modalidad y preajustes
   const btnMode = e.target.closest("[data-execution-mode]");
   if (btnMode) { e.preventDefault(); state.setExecutionMode(btnMode.dataset.executionMode); return; }
   const btnBatch = e.target.closest("[data-batch-size]");
@@ -37,14 +32,12 @@ export function handleClickEvent(e) {
   const btnRandom = e.target.closest("[data-random-count]");
   if (btnRandom) { e.preventDefault(); state.setRandomCount(parseInt(btnRandom.dataset.randomCount, 10)); return; }
 
-  // 7. Iniciar Cuestionario
   if (e.target.closest("#btn-start-quiz")) {
     e.preventDefault();
     handleStartQuiz();
     return;
   }
 
-  // 8. Próxima tanda en práctica continua
   if (e.target.closest("#btn-next-continuous-batch") || e.target.closest("#btn-next-continuous-batch-bottom")) {
     e.preventDefault();
     state.nextContinuousBatch();
@@ -52,7 +45,6 @@ export function handleClickEvent(e) {
     return;
   }
 
-  // 9. Reiniciar sesión de práctica continua
   if (e.target.closest("#btn-restart-continuous-session")) {
     e.preventDefault();
     const currentQuiz = getQuizById(state.state.activeSubjectId, state.state.activeUnitId, state.state.activeQuizId);
@@ -64,7 +56,6 @@ export function handleClickEvent(e) {
     return;
   }
 
-  // 10. Rehacer preguntas incorrectas o con puntaje parcial
   if (e.target.closest(".btn-retry-missed-action") || e.target.closest("#btn-retry-missed-questions")) {
     e.preventDefault();
     const missed = getMissedQuestions(state.getState());
@@ -81,7 +72,6 @@ export function handleClickEvent(e) {
     return;
   }
 
-  // 11. Alternar bandera / Quitar mi elección
   const btnFlag = e.target.closest(".btn-flag");
   if (btnFlag?.dataset.flagQid) {
     e.preventDefault();
@@ -95,24 +85,25 @@ export function handleClickEvent(e) {
     return;
   }
 
-  // 12. Navegación por bloque navblock o enlace de resumen
   const btnNavTarget = e.target.closest(".qnbutton");
-  if (btnNavTarget) {
+  if (btnNavTarget?.dataset.qindex !== undefined) {
     e.preventDefault();
-    if (state.state.executionMode === "quick" && btnNavTarget.dataset.quickGoto !== undefined) {
-      state.goToQuestion(parseInt(btnNavTarget.dataset.quickGoto, 10));
-      if ((state.state.quickViewMode || "single") === "single") {
-        scrollToQuickQuestionStage();
+    const targetIdx = parseInt(btnNavTarget.dataset.qindex, 10);
+    if (!isNaN(targetIdx)) {
+      if (state.state.isMultiplayer && state.state.executionMode === "quick") return;
+      state.goToQuestion(targetIdx);
+      if (state.state.executionMode === "quick" && (state.state.quickViewMode || "single") === "single") {
+        setTimeout(scrollToQuickQuestionStage, 30);
       } else {
-        document.getElementById(btnNavTarget.dataset.navTarget)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        const targetQ = document.getElementById(`question-${state.state.currentQuestions[targetIdx]?.id}`);
+        targetQ?.scrollIntoView({ behavior: "smooth", block: "start" });
       }
-      return;
     }
-    document.getElementById(btnNavTarget.dataset.navTarget)?.scrollIntoView({ behavior: "smooth", block: "start" });
     return;
   }
-  const summaryLink = e.target.closest(".summary-q-link");
-  if (summaryLink) {
+
+  const summaryLink = e.target.closest(".return-to-question-link");
+  if (summaryLink?.dataset.returnQid) {
     e.preventDefault();
     state.resumeAttempt();
     setTimeout(() => {
@@ -121,9 +112,12 @@ export function handleClickEvent(e) {
     return;
   }
 
-  // Botones de Modo Repaso Rápido
   if (e.target.closest("#btn-quick-next") || e.target.closest("#btn-quick-skip") || e.target.closest(".btn-quick-next-inline")) {
     e.preventDefault();
+    if (state.state.isMultiplayer) {
+      handleMultiplayerNextQuick();
+      return;
+    }
     state.goToNextQuestion();
     if ((state.state.quickViewMode || "single") === "single") scrollToQuickQuestionStage();
     return;
@@ -139,6 +133,7 @@ export function handleClickEvent(e) {
     handleConfirmSubmit();
     return;
   }
+
   const btnQuickView = e.target.closest("[data-quick-view]");
   if (btnQuickView) {
     e.preventDefault();
@@ -152,7 +147,6 @@ export function handleClickEvent(e) {
     return;
   }
 
-  // 13. Ir a resumen / Volver al intento
   if (e.target.closest("#btn-finish-attempt-nav") || e.target.closest("#btn-finish-attempt-bottom")) {
     e.preventDefault();
     state.goToSummary();
@@ -165,7 +159,6 @@ export function handleClickEvent(e) {
     return;
   }
 
-  // 14. Modales de confirmación y envío definitivo
   if (e.target.closest("#btn-submit-attempt-modal")) {
     e.preventDefault();
     document.getElementById("moodle-confirm-modal")?.classList.remove("hidden");
@@ -182,7 +175,6 @@ export function handleClickEvent(e) {
     return;
   }
 
-  // 15. Modal "¿Cómo se crean los cuestionarios?"
   if (e.target.closest("#btn-how-to-create")) {
     e.preventDefault();
     document.getElementById("how-to-create-modal")?.classList.remove("hidden");
@@ -203,10 +195,7 @@ export function handleClickEvent(e) {
       setTimeout(() => { btnCopyPrompt.innerHTML = orig; }, 2000);
     };
     if (navigator.clipboard?.writeText) {
-      navigator.clipboard.writeText(promptText).then(showCopied).catch(() => {
-        copyFallback(promptText);
-        showCopied();
-      });
+      navigator.clipboard.writeText(promptText).then(showCopied).catch(() => { copyFallback(promptText); showCopied(); });
     } else {
       copyFallback(promptText);
       showCopied();
@@ -214,7 +203,6 @@ export function handleClickEvent(e) {
     return;
   }
 
-  // 16. Finalizar revisión / Volver a P1
   if (e.target.closest("#btn-finish-review") || e.target.closest("#btn-finish-review-bottom")) {
     e.preventDefault();
     state.exitReview();
@@ -236,9 +224,6 @@ export function handleClickEvent(e) {
   }
 }
 
-/**
- * Iniciar intento según la modalidad seleccionada
- */
 function handleStartQuiz() {
   const currentQuiz = getQuizById(state.state.activeSubjectId, state.state.activeUnitId, state.state.activeQuizId);
   const quizQuestions = getQuestionsForQuiz(currentQuiz, QUESTION_BANK);
@@ -246,25 +231,24 @@ function handleStartQuiz() {
   const shuffleQuestions = state.state.shuffleQuestions ?? true;
   const shuffleOptions = state.state.shuffleOptions ?? true;
   const opts = { shuffleQuestions, shuffleOptions };
+  const shared = getSharedMultiplayerQuestions();
+  const pool = shared || quizQuestions;
 
   if (mode === "batches") {
-    state.startContinuousSession(quizQuestions, Math.max(1, state.state.batchSize || 10), opts);
+    state.startContinuousSession(pool, Math.max(1, state.state.batchSize || 10), state.state.isMultiplayer ? { shuffleQuestions: false, shuffleOptions: false } : opts);
   } else if (mode === "random") {
-    const count = Math.max(1, Math.min(quizQuestions.length, state.state.randomCount || 4));
-    state.startAttempt(prepareQuizQuestions(quizQuestions, { shuffleQuestions: true, shuffleOptions }).slice(0, count));
+    const count = Math.max(1, Math.min(pool.length, state.state.randomCount || 4));
+    state.startAttempt(shared ? pool.slice(0, count) : prepareQuizQuestions(pool, { shuffleQuestions: true, shuffleOptions }).slice(0, count));
   } else if (mode === "quick") {
-    state.startQuickAttempt(prepareQuizQuestions(quizQuestions, opts));
+    state.startQuickAttempt(shared || prepareQuizQuestions(pool, opts));
     setTimeout(scrollToQuickQuestionStage, 30);
     return;
   } else {
-    state.startAttempt(prepareQuizQuestions(quizQuestions, opts));
+    state.startAttempt(shared || prepareQuizQuestions(pool, opts));
   }
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-/**
- * Anclar scroll en el nivel del cuestionario y opciones en Repaso Rápido (1 a 1)
- */
 function scrollToQuickQuestionStage() {
   const target = document.querySelector(".quick-mode-header-card") || document.getElementById("quiz-main-stage");
   if (!target) return;

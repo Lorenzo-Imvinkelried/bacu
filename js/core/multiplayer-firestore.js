@@ -96,13 +96,15 @@ export async function syncPayloadToFirestore(code, payload, localUser) {
     const updates = { lastActive: Date.now() };
 
     if (payload.type === "SET_ANSWER") {
-      updates[`quizState.userAnswers.${payload.questionId}`] = payload.options;
-      updates[`quizState.lastSelectedBy.${payload.questionId}`] = {
+      updates[`quizState.selections.${payload.questionId}.${localUser.id}`] = {
         userId: localUser.id,
         userName: localUser.name,
         userColor: localUser.color,
         optionId: payload.optionId
       };
+      updates[`quizState.userAnswers.${localUser.id}.${payload.questionId}`] = payload.options;
+    } else if (payload.type === "READY_NEXT") {
+      updates[`quizState.readyNext.${payload.questionIndex}.${localUser.id}`] = true;
     } else if (payload.type === "NAVIGATE") {
       updates["quizState.activeQuestionIndex"] = payload.index;
     } else if (payload.type === "START_QUIZ") {

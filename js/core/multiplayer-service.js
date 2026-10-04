@@ -5,6 +5,7 @@
  */
 
 import { initLocalUser, saveLocalUser, generateRoomCode } from "./multiplayer-user.js";
+import { state } from "./state.js";
 import {
   getFirestoreRoom,
   createFirestoreRoom,
@@ -58,7 +59,7 @@ class MultiplayerService {
         num: q.num,
         optionsOrder: q.options?.map(o => o.id) || []
       })),
-      quizState: { activeQuestionIndex: 0, quizStatus: "intro", userAnswers: {} },
+      quizState: { activeQuestionIndex: 0, quizStatus: "intro", userAnswers: {}, selections: {}, readyNext: {} },
       participants: {
         [this.localUser.id]: {
           id: this.localUser.id,
@@ -121,6 +122,11 @@ class MultiplayerService {
     // 3. Latido de presencia
     this.startHeartbeat();
 
+    state.setState({ isMultiplayer: true });
+    if (typeof window !== "undefined") {
+      window._bacuCurrentRoom = this.currentRoom;
+      window._bacuLocalUserId = this.localUser.id;
+    }
     this.broadcastMessage({ type: "PEER_JOINED", user: this.localUser });
     this.emit("room_connected", { code, isHost: Boolean(isCreating), roomData: this.currentRoom });
   }
@@ -132,6 +138,10 @@ class MultiplayerService {
       ...data,
       participants: data.participants || {}
     };
+    if (typeof window !== "undefined") {
+      window._bacuCurrentRoom = this.currentRoom;
+      window._bacuLocalUserId = this.localUser.id;
+    }
     this.emit("room_updated", this.currentRoom);
   }
 
@@ -148,6 +158,7 @@ class MultiplayerService {
       START_QUIZ: "remote_start_quiz",
       NEXT_BATCH: "remote_next_batch",
       QUICK_EVALUATE: "remote_quick_evaluate",
+      READY_NEXT: "remote_ready_next",
       SUBMIT_QUIZ: "remote_submit_quiz"
     };
 
@@ -174,7 +185,7 @@ class MultiplayerService {
       try { this.broadcastChannel.postMessage(payload); } catch (_) {}
     }
 
-    if (["SET_ANSWER", "NAVIGATE", "START_QUIZ", "NEXT_BATCH", "QUICK_EVALUATE"].includes(message.type)) {
+    if (["SET_ANSWER", "NAVIGATE", "START_QUIZ", "NEXT_BATCH", "QUICK_EVALUATE", "READY_NEXT"].includes(message.type)) {
       syncPayloadToFirestore(this.currentRoom?.code, payload, this.localUser);
     }
   }
@@ -218,6 +229,7 @@ class MultiplayerService {
 
     const oldCode = this.currentRoom.code;
     this.currentRoom = null;
+    state.setState({ isMultiplayer: false });
     this.emit("room_left", oldCode);
   }
 
