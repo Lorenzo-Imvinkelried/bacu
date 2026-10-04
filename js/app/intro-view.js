@@ -64,7 +64,13 @@ export function renderIntroView(quiz, unit, currentState) {
     <div class="quiz-intro-card">
       <div class="quiz-mode-selection-header">
         <h2 class="section-title">¿Cómo querés resolver este cuestionario?</h2>
-        <p class="section-subtitle">Elegí la modalidad que mejor se adapte a tu objetivo de estudio:</p>
+        ${isMulti ? `
+          <p class="section-subtitle" style="color: #0284c7; font-weight: 700;">
+            Modo Sala Activo &bull; Por ahora en sala solo se permite Repaso Rápido (1 a 1)
+          </p>
+        ` : `
+          <p class="section-subtitle">Elegí la modalidad que mejor se adapte a tu objetivo de estudio:</p>
+        `}
       </div>
 
       ${(currentState.lastMissedQuestions && currentState.lastMissedQuestions.length > 0) ? `
@@ -84,8 +90,9 @@ export function renderIntroView(quiz, unit, currentState) {
       <div class="quiz-modes-grid">
         <button 
           type="button" 
-          class="quiz-mode-card ${isBatches ? "active highlight-continuous" : ""}" 
+          class="quiz-mode-card ${isBatches ? "active highlight-continuous" : ""} ${isMulti ? "mode-disabled-multiplayer" : ""}" 
           data-execution-mode="batches"
+          ${isMulti ? "disabled title='Bloqueado en sala (Por ahora solo 1 a 1)'" : ""}
         >
           <div class="mode-card-header">
             <span class="mode-badge-pill continuous-pill">Repasar todas &bull; Sin repetir</span>
@@ -100,8 +107,9 @@ export function renderIntroView(quiz, unit, currentState) {
 
         <button 
           type="button" 
-          class="quiz-mode-card ${isRandom ? "active highlight-random" : ""}" 
+          class="quiz-mode-card ${isRandom ? "active highlight-random" : ""} ${isMulti ? "mode-disabled-multiplayer" : ""}" 
           data-execution-mode="random"
+          ${isMulti ? "disabled title='Bloqueado en sala (Por ahora solo 1 a 1)'" : ""}
         >
           <div class="mode-card-header">
             <span class="mode-badge-pill random-pill">Simulacro Rápido</span>
@@ -116,8 +124,9 @@ export function renderIntroView(quiz, unit, currentState) {
 
         <button 
           type="button" 
-          class="quiz-mode-card ${isFull ? "active highlight-full" : ""}" 
+          class="quiz-mode-card ${isFull ? "active highlight-full" : ""} ${isMulti ? "mode-disabled-multiplayer" : ""}" 
           data-execution-mode="full"
+          ${isMulti ? "disabled title='Bloqueado en sala (Por ahora solo 1 a 1)'" : ""}
         >
           <div class="mode-card-header">
             <span class="mode-badge-pill pool-pill">Examen Completo</span>

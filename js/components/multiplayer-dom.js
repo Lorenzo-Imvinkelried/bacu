@@ -7,6 +7,8 @@
 let throttleCursorTimer = null;
 let lastCursorCoords = null;
 
+import { confirmedSubmissionsMap } from "../core/multiplayer-duel.js";
+
 export function setupLocalCursorTracking(onCursorMove) {
   document.addEventListener("pointermove", (e) => {
     const docWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 1);
@@ -33,7 +35,7 @@ export function getPeerSelectionInfo(qId, optId, peerSelectionsMap) {
   if (!user && typeof window !== "undefined" && window._bacuCurrentRoom?.quizState?.selections) {
     const qSels = window._bacuCurrentRoom.quizState.selections[qId] || {};
     for (const [uId, sel] of Object.entries(qSels)) {
-      if (sel && sel.optionId === optId && uId !== window._bacuLocalUserId) {
+      if (sel && (sel.optionId === optId || (sel.optionIds && sel.optionIds.includes(optId))) && uId !== window._bacuLocalUserId) {
         user = { id: uId, name: sel.userName || "Compañero", color: sel.userColor || "#0070f3" };
         break;
       }
@@ -97,6 +99,21 @@ export function renderWaitingPartnerNotice(question, state) {
   const qId = question?.id;
   const userSelected = (state?.userAnswers && state.userAnswers[qId]) || [];
   const isEvaluated = state?.quickEvaluatedQuestions && typeof state.quickEvaluatedQuestions.has === "function" && state.quickEvaluatedQuestions.has(qId);
+  const isMultiple = question?.type === "multiple";
+
+  if (isMultiple) {
+    const localId = (typeof window !== "undefined" && window._bacuLocalUserId) || "";
+    const isConfirmed = confirmedSubmissionsMap.get(qId)?.has(localId);
+    if (isConfirmed && !isEvaluated) {
+      return `
+        <div class="mp-waiting-notice">
+          <span class="mp-waiting-pulse"></span>
+          <span>Respuestas comprobadas. Esperando a que tu compañero compruebe sus opciones para evaluar...</span>
+        </div>
+      `;
+    }
+    return "";
+  }
 
   if (userSelected.length > 0 && !isEvaluated) {
     return `
@@ -116,18 +133,37 @@ export function renderDuelSummary(question, state) {
   const participants = Object.values(room?.participants || {});
   if (!participants.length) return "";
 
+  const isMultiple = question?.type === "multiple";
+  const correctAnswers = question?.correctAnswers || [];
+
   const chips = participants.map(p => {
     let sel = selections[p.id];
     if (!sel && typeof window !== "undefined" && p.id === window._bacuLocalUserId && state?.userAnswers?.[question?.id]?.length) {
-      sel = { optionId: state.userAnswers[question.id][0], userName: p.name, userColor: p.color };
+      const ans = state.userAnswers[question.id];
+      sel = isMultiple ? { optionIds: ans, userName: p.name, userColor: p.color } : { optionId: ans[0], userName: p.name, userColor: p.color };
     }
-    if (!sel || !sel.optionId) return `<span class="mp-duel-chip"><strong>${escapeHtml(p.name)}</strong>: sin responder</span>`;
-    const isCorrect = (question?.correctAnswers || []).includes(sel.optionId);
-    return `
-      <span class="mp-duel-chip ${isCorrect ? "is-correct" : "is-incorrect"}">
-        ${isCorrect ? "✓" : "✗"} <strong>${escapeHtml(p.name)}</strong> eligió ${sel.optionId.toUpperCase()} (${isCorrect ? "Correcto" : "Incorrecto"})
-      </span>
-    `;
+    if (!sel || (!sel.optionId && (!sel.optionIds || !sel.optionIds.length))) {
+      return `<span class="mp-duel-chip"><strong>${escapeHtml(p.name)}</strong>: sin responder</span>`;
+    }
+
+    if (isMultiple) {
+      const chosen = (sel.optionIds || []).slice().sort();
+      const target = correctAnswers.slice().sort();
+      const isCorrect = chosen.length === target.length && chosen.every((val, idx) => val === target[idx]);
+      const chosenStr = chosen.map(o => o.toUpperCase()).join(", ") || "-";
+      return `
+        <span class="mp-duel-chip ${isCorrect ? "is-correct" : "is-incorrect"}">
+          ${isCorrect ? "✓" : "✗"} <strong>${escapeHtml(p.name)}</strong> eligió [${chosenStr}] (${isCorrect ? "Correcto" : "Incorrecto"})
+        </span>
+      `;
+    } else {
+      const isCorrect = correctAnswers.includes(sel.optionId);
+      return `
+        <span class="mp-duel-chip ${isCorrect ? "is-correct" : "is-incorrect"}">
+          ${isCorrect ? "✓" : "✗"} <strong>${escapeHtml(p.name)}</strong> eligió ${sel.optionId.toUpperCase()} (${isCorrect ? "Correcto" : "Incorrecto"})
+        </span>
+      `;
+    }
   }).join("");
 
   return `

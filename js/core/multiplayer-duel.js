@@ -8,9 +8,47 @@ import { state } from "./state.js";
 import { multiplayerService } from "./multiplayer-service.js";
 
 export const readyNextMap = new Map();
+export const confirmedSubmissionsMap = new Map();
 
 /**
- * Evaluar pregunta en modo rápido solo cuando todos los participantes hayan seleccionado opción
+ * Confirmar respuesta en preguntas de selección múltiple (Duelo 1 a 1)
+ * @param {string} qId
+ */
+export function handleConfirmMultipleAnswer(qId) {
+  if (!qId || !multiplayerService.isInRoom()) return;
+  const localId = multiplayerService.localUser.id;
+  const userAnswers = state.state.userAnswers?.[qId] || [];
+  if (userAnswers.length === 0) return;
+
+  if (!confirmedSubmissionsMap.has(qId)) confirmedSubmissionsMap.set(qId, new Set());
+  confirmedSubmissionsMap.get(qId).add(localId);
+
+  const room = multiplayerService.getCurrentRoom();
+  if (room) {
+    if (!room.quizState) room.quizState = {};
+    if (!room.quizState.selections) room.quizState.selections = {};
+    if (!room.quizState.selections[qId]) room.quizState.selections[qId] = {};
+    room.quizState.selections[qId][localId] = {
+      userId: localId,
+      userName: multiplayerService.localUser.name,
+      userColor: multiplayerService.localUser.color,
+      optionIds: userAnswers
+    };
+  }
+
+  multiplayerService.broadcastMessage({
+    type: "CONFIRM_MULTIPLE",
+    questionId: qId,
+    options: userAnswers,
+    user: multiplayerService.localUser
+  });
+
+  checkIfBothAnsweredQuick(qId);
+  state.notify();
+}
+
+/**
+ * Evaluar pregunta en modo rápido solo cuando todos los participantes hayan confirmado
  * @param {string} qId
  */
 export function checkIfBothAnsweredQuick(qId) {
@@ -21,13 +59,24 @@ export function checkIfBothAnsweredQuick(qId) {
   const participants = Object.values(room.participants || {});
   if (participants.length < 2) return;
 
-  const selections = room.quizState?.selections?.[qId] || {};
-  const hasLocal = (state.state.userAnswers?.[qId] || []).length > 0;
-  const answeredCount = Object.keys(selections).length + (hasLocal && !selections[multiplayerService.localUser.id] ? 1 : 0);
+  const question = (state.state.currentQuestions || []).find(q => q.id === qId);
+  const isMultiple = question ? (question.type === "multiple") : false;
 
-  if (answeredCount >= participants.length) {
-    state.evaluateQuickQuestion(qId);
-    multiplayerService.broadcastMessage({ type: "QUICK_EVALUATE", questionId: qId });
+  if (isMultiple) {
+    const confirmedSet = confirmedSubmissionsMap.get(qId) || new Set();
+    if (confirmedSet.size >= participants.length) {
+      state.evaluateQuickQuestion(qId);
+      multiplayerService.broadcastMessage({ type: "QUICK_EVALUATE", questionId: qId });
+    }
+  } else {
+    const selections = room.quizState?.selections?.[qId] || {};
+    const hasLocal = (state.state.userAnswers?.[qId] || []).length > 0;
+    const answeredCount = Object.keys(selections).length + (hasLocal && !selections[multiplayerService.localUser.id] ? 1 : 0);
+
+    if (answeredCount >= participants.length) {
+      state.evaluateQuickQuestion(qId);
+      multiplayerService.broadcastMessage({ type: "QUICK_EVALUATE", questionId: qId });
+    }
   }
 }
 

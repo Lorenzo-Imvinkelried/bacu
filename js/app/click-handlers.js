@@ -10,7 +10,7 @@ import { QUESTION_BANK } from "../data/question-bank.js";
 import { getQuizById, getQuestionsForQuiz } from "../data/vault-structure.js";
 import { exportQuestionsToTxt } from "./export-service.js";
 import { getSharedMultiplayerQuestions } from "../core/multiplayer-questions.js";
-import { handleMultiplayerNextQuick } from "../core/multiplayer-duel.js";
+import { handleMultiplayerNextQuick, handleConfirmMultipleAnswer } from "../core/multiplayer-duel.js";
 
 export function handleClickEvent(e) {
   if (e.target.closest("#btn-theme-toggle")) {
@@ -26,7 +26,12 @@ export function handleClickEvent(e) {
   }
 
   const btnMode = e.target.closest("[data-execution-mode]");
-  if (btnMode) { e.preventDefault(); state.setExecutionMode(btnMode.dataset.executionMode); return; }
+  if (btnMode) {
+    e.preventDefault();
+    if (state.state.isMultiplayer && btnMode.dataset.executionMode !== "quick") return;
+    state.setExecutionMode(btnMode.dataset.executionMode);
+    return;
+  }
   const btnBatch = e.target.closest("[data-batch-size]");
   if (btnBatch) { e.preventDefault(); state.setBatchSize(parseInt(btnBatch.dataset.batchSize, 10)); return; }
   const btnRandom = e.target.closest("[data-random-count]");
@@ -143,6 +148,10 @@ export function handleClickEvent(e) {
   const btnCheck = e.target.closest(".btn-check-answer");
   if (btnCheck?.dataset.checkQid) {
     e.preventDefault();
+    if (state.state.isMultiplayer) {
+      handleConfirmMultipleAnswer(btnCheck.dataset.checkQid);
+      return;
+    }
     state.evaluateQuickQuestion(btnCheck.dataset.checkQid);
     return;
   }

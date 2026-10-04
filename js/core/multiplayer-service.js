@@ -122,7 +122,7 @@ class MultiplayerService {
     // 3. Latido de presencia
     this.startHeartbeat();
 
-    state.setState({ isMultiplayer: true });
+    state.setState({ isMultiplayer: true, executionMode: "quick" });
     if (typeof window !== "undefined") {
       window._bacuCurrentRoom = this.currentRoom;
       window._bacuLocalUserId = this.localUser.id;
@@ -154,6 +154,7 @@ class MultiplayerService {
       PEER_HEARTBEAT: "peer_presence",
       PEER_LEFT: "peer_left",
       SET_ANSWER: "remote_answer",
+      CONFIRM_MULTIPLE: "remote_confirm_multiple",
       NAVIGATE: "remote_navigate",
       START_QUIZ: "remote_start_quiz",
       NEXT_BATCH: "remote_next_batch",
@@ -185,7 +186,7 @@ class MultiplayerService {
       try { this.broadcastChannel.postMessage(payload); } catch (_) {}
     }
 
-    if (["SET_ANSWER", "NAVIGATE", "START_QUIZ", "NEXT_BATCH", "QUICK_EVALUATE", "READY_NEXT"].includes(message.type)) {
+    if (["SET_ANSWER", "CONFIRM_MULTIPLE", "NAVIGATE", "START_QUIZ", "NEXT_BATCH", "QUICK_EVALUATE", "READY_NEXT"].includes(message.type)) {
       syncPayloadToFirestore(this.currentRoom?.code, payload, this.localUser);
     }
   }

@@ -9,11 +9,11 @@ import { multiplayerService } from "./multiplayer-service.js";
 import { updatePeerCursor, removePeerCursor, clearAllCursors } from "../components/multiplayer-cursors.js";
 import { setupLocalCursorTracking, renderPeerSelectionBadges } from "../components/multiplayer-dom.js";
 import { reconstructPreparedQuestions, serializeQuestionsForRoom, getSharedMultiplayerQuestions } from "./multiplayer-questions.js";
-import { checkIfBothAnsweredQuick, handleMultiplayerNextQuick, handlePlayerReadyNext, syncReadyNextFromFirestore, readyNextMap } from "./multiplayer-duel.js";
+import { checkIfBothAnsweredQuick, handleMultiplayerNextQuick, handlePlayerReadyNext, syncReadyNextFromFirestore, readyNextMap, confirmedSubmissionsMap } from "./multiplayer-duel.js";
 import { getQuizById, getQuestionsForQuiz } from "../data/vault-structure.js";
 import { QUESTION_BANK } from "../data/question-bank.js";
 
-export { getSharedMultiplayerQuestions, handleMultiplayerNextQuick, readyNextMap };
+export { getSharedMultiplayerQuestions, handleMultiplayerNextQuick, readyNextMap, confirmedSubmissionsMap };
 
 let isRemoteUpdateInProgress = false;
 export const peerSelectionsMap = new Map();
@@ -31,6 +31,7 @@ export function initMultiplayerSync() {
     clearAllCursors();
     peerSelectionsMap.clear();
     readyNextMap.clear();
+    confirmedSubmissionsMap.clear();
     refreshPeerSelectionBadgesInDom();
     state.notify();
   });
@@ -61,6 +62,29 @@ export function initMultiplayerSync() {
         userId: msg.senderId, userName: user?.name || "Compañero", userColor: user?.color || "#0070f3", optionId
       };
     }
+    checkIfBothAnsweredQuick(questionId);
+    state.notify();
+    refreshPeerSelectionBadgesInDom();
+  });
+  multiplayerService.on("remote_confirm_multiple", (msg) => {
+    const { questionId, options, user } = msg;
+    if (!peerSelectionsMap.has(questionId)) peerSelectionsMap.set(questionId, {});
+    const qMap = peerSelectionsMap.get(questionId);
+    for (const [k, u] of Object.entries(qMap)) { if (u.id === msg.senderId) delete qMap[k]; }
+    (options || []).forEach(optId => {
+      qMap[optId] = { id: msg.senderId, name: user?.name || "Compañero", color: user?.color || "#0070f3" };
+    });
+    const room = multiplayerService.getCurrentRoom();
+    if (room) {
+      if (!room.quizState) room.quizState = {};
+      if (!room.quizState.selections) room.quizState.selections = {};
+      if (!room.quizState.selections[questionId]) room.quizState.selections[questionId] = {};
+      room.quizState.selections[questionId][msg.senderId] = {
+        userId: msg.senderId, userName: user?.name || "Compañero", userColor: user?.color || "#0070f3", optionIds: options || []
+      };
+    }
+    if (!confirmedSubmissionsMap.has(questionId)) confirmedSubmissionsMap.set(questionId, new Set());
+    confirmedSubmissionsMap.get(questionId).add(msg.senderId);
     checkIfBothAnsweredQuick(questionId);
     state.notify();
     refreshPeerSelectionBadgesInDom();
@@ -101,7 +125,16 @@ export function syncSelectionsFromFirestore(selections) {
     if (!peerSelectionsMap.has(qId)) peerSelectionsMap.set(qId, {});
     const qMap = peerSelectionsMap.get(qId);
     for (const [uId, sel] of Object.entries(userMap)) {
-      if (sel && uId !== localId) qMap[sel.optionId] = { id: uId, name: sel.userName || "Compañero", color: sel.userColor || "#0070f3" };
+      if (!sel || uId === localId) continue;
+      if (sel.optionIds && Array.isArray(sel.optionIds)) {
+        sel.optionIds.forEach(optId => {
+          qMap[optId] = { id: uId, name: sel.userName || "Compañero", color: sel.userColor || "#0070f3" };
+        });
+        if (!confirmedSubmissionsMap.has(qId)) confirmedSubmissionsMap.set(qId, new Set());
+        confirmedSubmissionsMap.get(qId).add(uId);
+      } else if (sel.optionId) {
+        qMap[sel.optionId] = { id: uId, name: sel.userName || "Compañero", color: sel.userColor || "#0070f3" };
+      }
     }
   }
   refreshPeerSelectionBadgesInDom();
@@ -183,6 +216,7 @@ function decorateStateMethods() {
   state.setAnswer = function(qId, optId, isMultiple = false) {
     origSetAnswer(qId, optId, isMultiple);
     if (!isRemoteUpdateInProgress && multiplayerService.isInRoom()) {
+      if (isMultiple) return;
       const room = multiplayerService.getCurrentRoom();
       if (room) {
         if (!room.quizState) room.quizState = {};

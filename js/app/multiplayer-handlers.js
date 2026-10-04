@@ -175,7 +175,7 @@ async function handleCreateRoomAction() {
     subjectId: currentState.activeSubjectId,
     unitId: currentState.activeUnitId,
     quizId: currentState.activeQuizId,
-    executionMode: currentState.executionMode || "batches",
+    executionMode: "quick",
     batchSize: currentState.batchSize || 10,
     randomCount: currentState.randomCount || 4,
     shuffleQuestions,

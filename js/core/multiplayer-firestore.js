@@ -103,6 +103,14 @@ export async function syncPayloadToFirestore(code, payload, localUser) {
         optionId: payload.optionId
       };
       updates[`quizState.userAnswers.${localUser.id}.${payload.questionId}`] = payload.options;
+    } else if (payload.type === "CONFIRM_MULTIPLE") {
+      updates[`quizState.selections.${payload.questionId}.${localUser.id}`] = {
+        userId: localUser.id,
+        userName: localUser.name,
+        userColor: localUser.color,
+        optionIds: payload.options || []
+      };
+      updates[`quizState.userAnswers.${localUser.id}.${payload.questionId}`] = payload.options;
     } else if (payload.type === "READY_NEXT") {
       updates[`quizState.readyNext.${payload.questionIndex}.${localUser.id}`] = true;
     } else if (payload.type === "NAVIGATE") {

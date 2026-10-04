@@ -8,7 +8,7 @@ import { evaluateSingleQuestion } from "../core/quiz-engine.js";
 import { formatExplanation, escapeHtml } from "./explanation-formatter.js";
 import { renderAnnotationsSection } from "./annotations-component.js";
 import { renderDuelSummary, renderWaitingPartnerNotice, getPeerSelectionInfo } from "./multiplayer-dom.js";
-import { readyNextMap } from "../core/multiplayer-duel.js";
+import { readyNextMap, confirmedSubmissionsMap } from "../core/multiplayer-duel.js";
 
 export function renderQuestion(question, index, state, isReview = false, result = null) {
   const qId = question.id;
@@ -27,16 +27,10 @@ export function renderQuestion(question, index, state, isReview = false, result 
   let gradeText = `Puntúa como ${(question.points || 1.0).toFixed(2).replace(".", ",")}`;
 
   if (showFeedback && effectiveResult) {
-    if (effectiveResult.status === "correct") {
-      queClasses += " correct";
-      statusText = "Correcta";
-    } else if (effectiveResult.status === "partiallycorrect") {
-      queClasses += " partiallycorrect";
-      statusText = "Parcialmente correcta";
-    } else {
-      queClasses += " incorrect";
-      statusText = "Incorrecta";
-    }
+    const isCorr = effectiveResult.status === "correct";
+    const isPart = effectiveResult.status === "partiallycorrect";
+    queClasses += isCorr ? " correct" : (isPart ? " partiallycorrect" : " incorrect");
+    statusText = isCorr ? "Correcta" : (isPart ? "Parcialmente correcta" : "Incorrecta");
     gradeText = `Puntúa ${effectiveResult.earnedPoints.toFixed(2).replace(".", ",")} sobre ${(question.points || 1.0).toFixed(2).replace(".", ",")}`;
   }
 
@@ -202,13 +196,18 @@ export function renderQuestion(question, index, state, isReview = false, result 
             ${optionsHtml}
           </div>
 
-          ${isMultiple && isQuickMode && !isQuickEvaluated && isAnswered ? `
-            <div class="check-answer-wrapper" style="margin-top: 1rem;">
-              <button type="button" class="btn btn-primary btn-check-answer" data-check-qid="${qId}">
-                Comprobar respuesta
-              </button>
-            </div>
-          ` : ""}
+          ${isMultiple && isQuickMode && !isQuickEvaluated && isAnswered ? (() => {
+            let btnText = "Comprobar respuesta";
+            let btnDis = "";
+            if (state?.isMultiplayer) {
+              const localId = (typeof window !== "undefined" && window._bacuLocalUserId) || "";
+              if (confirmedSubmissionsMap.get(qId)?.has(localId)) {
+                btnText = "Listo &bull; Esperando al compañero...";
+                btnDis = "disabled";
+              }
+            }
+            return `<div class="check-answer-wrapper" style="margin-top: 1rem;"><button type="button" class="btn btn-primary btn-check-answer" data-check-qid="${qId}" ${btnDis}>${btnText}</button></div>`;
+          })() : ""}
 
           ${!showFeedback && isAnswered && !isQuickMode ? `
             <div class="clear-choice-wrapper">
