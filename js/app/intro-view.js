@@ -41,6 +41,7 @@ export function renderIntroView(quiz, unit, currentState) {
   const isRandom = executionMode === "random";
   const isFull = executionMode === "full";
   const isQuick = executionMode === "quick";
+  const isMulti = Boolean(currentState.isMultiplayer);
 
   const shuffleQuestions = currentState.shuffleQuestions ?? true;
   const shuffleOptions = currentState.shuffleOptions ?? true;
