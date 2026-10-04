@@ -245,3 +245,15 @@
 [data-theme="dark"] .mp-duel-title { color: #94a3b8; }
 [data-theme="dark"] .mp-duel-chip.is-correct { background: #064e3b; color: #6ee7b7; border-color: #047857; }
 [data-theme="dark"] .mp-duel-chip.is-incorrect { background: #7f1d1d; color: #fca5a5; border-color: #b91c1c; }
+
+.btn-partner-ready {
+  background: #10b981 !important;
+  border-color: #059669 !important;
+  color: #ffffff !important;
+  animation: mpPulseReady 1.5s infinite;
+}
+@keyframes mpPulseReady {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}

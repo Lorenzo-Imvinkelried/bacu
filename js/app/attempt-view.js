@@ -8,6 +8,7 @@ import { renderQuestion } from "../components/question-component.js";
 import { renderNavBlock } from "../components/navblock-component.js";
 import { renderReviewHeader, renderContinuousBanner, renderRetryNotice } from "../components/review-summary.js";
 import { getMissedQuestions, evaluateSingleQuestion } from "../core/quiz-engine.js";
+import { readyNextMap } from "../core/multiplayer-duel.js";
 
 /**
  * Renderizar grilla de preguntas y bloque de navegación
@@ -104,11 +105,33 @@ export function renderAttemptView(questions, currentState, isReview, results) {
           <button type="button" id="btn-quick-prev" class="btn btn-secondary" ${activeIdx === 0 ? "disabled" : ""}>
             &larr; Anterior
           </button>
-          ${activeIdx < questions.length - 1 ? `
-            <button type="button" id="btn-quick-next" class="btn ${isCurrentEvaluated ? "btn-primary" : "btn-outline"} btn-lg">
-              ${isCurrentEvaluated ? "Siguiente pregunta &rarr;" : "Saltear pregunta &rarr;"}
-            </button>
-          ` : `
+          ${activeIdx < questions.length - 1 ? (() => {
+            if (currentState.isMultiplayer) {
+              const localId = (typeof window !== "undefined" && window._bacuLocalUserId) || "";
+              const set = readyNextMap.get(activeIdx);
+              const isLocalReady = set?.has(localId);
+              const readyCount = set?.size || 0;
+              if (isLocalReady) {
+                return `
+                  <button type="button" id="btn-quick-next" class="btn btn-secondary btn-lg" disabled>
+                    Listo (${readyCount}/2) &bull; Esperando al compañero...
+                  </button>
+                `;
+              }
+              if (readyCount > 0) {
+                return `
+                  <button type="button" id="btn-quick-next" class="btn btn-primary btn-lg btn-partner-ready">
+                    Tu compañero está listo &rarr; Avanzar
+                  </button>
+                `;
+              }
+            }
+            return `
+              <button type="button" id="btn-quick-next" class="btn ${isCurrentEvaluated ? "btn-primary" : "btn-outline"} btn-lg">
+                ${isCurrentEvaluated ? "Siguiente pregunta &rarr;" : "Saltear pregunta &rarr;"}
+              </button>
+            `;
+          })() : `
             <button type="button" id="btn-quick-finish" class="btn btn-primary btn-lg">
               Finalizar repaso y ver calificación
             </button>

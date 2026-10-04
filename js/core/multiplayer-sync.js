@@ -9,7 +9,7 @@ import { multiplayerService } from "./multiplayer-service.js";
 import { updatePeerCursor, removePeerCursor, clearAllCursors } from "../components/multiplayer-cursors.js";
 import { setupLocalCursorTracking, renderPeerSelectionBadges } from "../components/multiplayer-dom.js";
 import { reconstructPreparedQuestions, serializeQuestionsForRoom, getSharedMultiplayerQuestions } from "./multiplayer-questions.js";
-import { checkIfBothAnsweredQuick, handleMultiplayerNextQuick, handlePlayerReadyNext, readyNextMap } from "./multiplayer-duel.js";
+import { checkIfBothAnsweredQuick, handleMultiplayerNextQuick, handlePlayerReadyNext, syncReadyNextFromFirestore, readyNextMap } from "./multiplayer-duel.js";
 import { getQuizById, getQuestionsForQuiz } from "../data/vault-structure.js";
 import { QUESTION_BANK } from "../data/question-bank.js";
 
@@ -34,10 +34,15 @@ export function initMultiplayerSync() {
     refreshPeerSelectionBadgesInDom();
     state.notify();
   });
-  multiplayerService.on("room_connected", (evt) => { if (evt?.roomData) applyRoomDataToState(evt.roomData); state.notify(); });
+  multiplayerService.on("room_connected", (evt) => {
+    if (evt?.roomData) applyRoomDataToState(evt.roomData);
+    if (evt?.roomData?.quizState?.readyNext) syncReadyNextFromFirestore(evt.roomData.quizState.readyNext);
+    state.notify();
+  });
   multiplayerService.on("room_updated", (roomData) => {
     if (roomData) applyRoomDataToState(roomData);
     if (roomData?.quizState?.selections) syncSelectionsFromFirestore(roomData.quizState.selections);
+    if (roomData?.quizState?.readyNext) syncReadyNextFromFirestore(roomData.quizState.readyNext);
     state.notify();
   });
   multiplayerService.on("remote_answer", (msg) => {

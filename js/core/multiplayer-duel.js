@@ -45,19 +45,22 @@ export function handleMultiplayerNextQuick() {
   const set = readyNextMap.get(currentIndex);
   set.add(localId);
 
-  multiplayerService.broadcastMessage({ type: "READY_NEXT", questionIndex: currentIndex, userId: localId });
+  if (room) {
+    if (!room.quizState) room.quizState = {};
+    if (!room.quizState.readyNext) room.quizState.readyNext = {};
+    if (!room.quizState.readyNext[currentIndex]) room.quizState.readyNext[currentIndex] = {};
+    room.quizState.readyNext[currentIndex][localId] = true;
+  }
 
-  const nextBtns = document.querySelectorAll("#btn-quick-next, .btn-quick-next-inline");
-  nextBtns.forEach(b => {
-    b.disabled = true;
-    b.innerHTML = `Listo (1/${requiredCount}) &bull; Esperando...`;
-  });
+  multiplayerService.broadcastMessage({ type: "READY_NEXT", questionIndex: currentIndex, userId: localId });
 
   if (set.size >= requiredCount) {
     readyNextMap.delete(currentIndex);
     state.goToNextQuestion();
     multiplayerService.broadcastMessage({ type: "NAVIGATE", index: currentIndex + 1 });
     window.scrollTo({ top: 0, behavior: "smooth" });
+  } else {
+    state.notify();
   }
 }
 
@@ -76,14 +79,45 @@ export function handlePlayerReadyNext(qIndex, userId) {
   const set = readyNextMap.get(qIndex);
   set.add(userId);
 
+  if (room) {
+    if (!room.quizState) room.quizState = {};
+    if (!room.quizState.readyNext) room.quizState.readyNext = {};
+    if (!room.quizState.readyNext[qIndex]) room.quizState.readyNext[qIndex] = {};
+    room.quizState.readyNext[qIndex][userId] = true;
+  }
+
   if (set.size >= requiredCount) {
     readyNextMap.delete(qIndex);
     state.goToNextQuestion();
     window.scrollTo({ top: 0, behavior: "smooth" });
   } else if (qIndex === currentIndex) {
-    const nextBtns = document.querySelectorAll("#btn-quick-next, .btn-quick-next-inline");
-    nextBtns.forEach(b => {
-      if (!b.disabled) b.innerHTML = `Tu compañero está listo &rarr;`;
-    });
+    state.notify();
+  }
+}
+
+/**
+ * Sincronizar estado de avance conjunto desde Firestore
+ * @param {object} readyNextData
+ */
+export function syncReadyNextFromFirestore(readyNextData) {
+  if (!readyNextData) return;
+  const currentIndex = state.state.activeQuestionIndex;
+  const qReady = readyNextData[currentIndex];
+  if (!qReady) return;
+
+  if (!readyNextMap.has(currentIndex)) readyNextMap.set(currentIndex, new Set());
+  const set = readyNextMap.get(currentIndex);
+  for (const userId of Object.keys(qReady)) {
+    if (qReady[userId]) set.add(userId);
+  }
+
+  const room = multiplayerService.getCurrentRoom();
+  const participants = Object.values(room?.participants || {});
+  const requiredCount = Math.max(2, participants.length);
+
+  if (set.size >= requiredCount) {
+    readyNextMap.delete(currentIndex);
+    state.goToNextQuestion();
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 }

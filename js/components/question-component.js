@@ -8,6 +8,7 @@ import { evaluateSingleQuestion } from "../core/quiz-engine.js";
 import { formatExplanation, escapeHtml } from "./explanation-formatter.js";
 import { renderAnnotationsSection } from "./annotations-component.js";
 import { renderDuelSummary, renderWaitingPartnerNotice, getPeerSelectionInfo } from "./multiplayer-dom.js";
+import { readyNextMap } from "../core/multiplayer-duel.js";
 
 export function renderQuestion(question, index, state, isReview = false, result = null) {
   const qId = question.id;
@@ -70,12 +71,18 @@ export function renderQuestion(question, index, state, isReview = false, result 
         const totalQ = state?.currentQuestions?.length || 0;
         const isLast = totalQ > 0 && index >= totalQ - 1;
         const btnClass = isLast ? "btn-quick-finish-inline" : "btn-quick-next-inline";
-        const btnText = isLast ? "Siguiente &rarr;" : "Siguiente &rarr;";
-        const finalBtnText = isLast ? "Finalizar &rarr;" : btnText;
-        const btnTitle = isLast ? "Finalizar repaso y ver calificación" : "Pasar a la siguiente pregunta";
+        let inlineText = isLast ? "Finalizar &rarr;" : "Siguiente &rarr;";
+        let inlineDis = "";
+        let inlineExtra = "";
+        if (state?.isMultiplayer && !isLast) {
+          const localId = (typeof window !== "undefined" && window._bacuLocalUserId) || "";
+          const set = readyNextMap.get(index);
+          if (set?.has(localId)) { inlineText = `Listo (${set.size}/2) &bull; Esperando...`; inlineDis = "disabled"; }
+          else if ((set?.size || 0) > 0) { inlineText = `Compañero listo &rarr;`; inlineExtra = "btn-partner-ready"; }
+        }
         quickInlineBtn = `
-          <button type="button" class="btn btn-primary btn-sm ${btnClass} btn-quick-inline-action" title="${btnTitle}">
-            ${finalBtnText}
+          <button type="button" class="btn btn-primary btn-sm ${btnClass} ${inlineExtra} btn-quick-inline-action" ${inlineDis}>
+            ${inlineText}
           </button>
         `;
       }
