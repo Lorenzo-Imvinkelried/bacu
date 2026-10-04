@@ -11,12 +11,12 @@ import { renderDuelSummary, renderWaitingPartnerNotice, getPeerSelectionInfo } f
 
 export function renderQuestion(question, index, state, isReview = false, result = null) {
   const qId = question.id;
-  const userSelected = state.userAnswers[qId] || [];
+  const userSelected = (state.userAnswers && state.userAnswers[qId]) || [];
   const isFlagged = state.flaggedQuestions ? state.flaggedQuestions.has(qId) : false;
   const isAnswered = userSelected.length > 0;
   const isMultiple = question.type === "multiple";
   const isQuickMode = state.executionMode === "quick";
-  const isQuickEvaluated = isQuickMode && state.quickEvaluatedQuestions && state.quickEvaluatedQuestions.has(qId);
+  const isQuickEvaluated = isQuickMode && state.quickEvaluatedQuestions && typeof state.quickEvaluatedQuestions.has === "function" && state.quickEvaluatedQuestions.has(qId);
   const effectiveResult = result || (isQuickEvaluated ? evaluateSingleQuestion(question, userSelected) : null);
   const showFeedback = isReview || isQuickEvaluated;
 

@@ -12,28 +12,50 @@ export const COLOR_PALETTE = [
 ];
 
 /**
- * Obtener o generar perfil del usuario local
+ * Obtener o generar perfil del usuario local único por pestaña/dispositivo
  * @returns {{ id: string, name: string, color: string }}
  */
 export function initLocalUser() {
+  let storedSession = null;
   try {
-    const stored = localStorage.getItem(MP_USER_KEY);
-    if (stored) return JSON.parse(stored);
+    const raw = typeof sessionStorage !== "undefined" ? sessionStorage.getItem("bacu_mp_tab_user") : null;
+    if (raw) storedSession = JSON.parse(raw);
   } catch (_) {}
 
-  const storedAlias = localStorage.getItem("bacu_author_alias") || "";
-  const randomColor = COLOR_PALETTE[Math.floor(Math.random() * COLOR_PALETTE.length)];
+  if (storedSession?.id) return storedSession;
+
+  let storedName = "";
+  let storedColor = "";
+  try {
+    if (typeof localStorage !== "undefined") {
+      const local = localStorage.getItem(MP_USER_KEY);
+      if (local) {
+        const parsed = JSON.parse(local);
+        storedName = parsed.name || "";
+        storedColor = parsed.color || "";
+      }
+      if (!storedName) storedName = localStorage.getItem("bacu_author_alias") || "";
+    }
+  } catch (_) {}
+
+  const randomColor = storedColor || COLOR_PALETTE[Math.floor(Math.random() * COLOR_PALETTE.length)];
   const user = {
-    id: "usr_" + Math.random().toString(36).substring(2, 9),
-    name: storedAlias || "Estudiante " + Math.floor(100 + Math.random() * 900),
+    id: "usr_" + Math.random().toString(36).substring(2, 9) + "_" + Math.floor(Math.random() * 1000),
+    name: storedName || "Estudiante " + Math.floor(100 + Math.random() * 900),
     color: randomColor
   };
-  saveLocalUser(user);
+
+  try {
+    if (typeof sessionStorage !== "undefined") {
+      sessionStorage.setItem("bacu_mp_tab_user", JSON.stringify(user));
+    }
+  } catch (_) {}
+
   return user;
 }
 
 /**
- * Persistir perfil en localStorage
+ * Persistir perfil en almacenamiento local y de sesión
  * @param {object} updates
  * @param {object} currentUser
  * @returns {object}
@@ -41,8 +63,13 @@ export function initLocalUser() {
 export function saveLocalUser(updates, currentUser = null) {
   const merged = { ...(currentUser || {}), ...updates };
   try {
-    localStorage.setItem(MP_USER_KEY, JSON.stringify(merged));
-    if (updates.name) localStorage.setItem("bacu_author_alias", updates.name);
+    if (typeof sessionStorage !== "undefined") {
+      sessionStorage.setItem("bacu_mp_tab_user", JSON.stringify(merged));
+    }
+    if (typeof localStorage !== "undefined") {
+      localStorage.setItem(MP_USER_KEY, JSON.stringify(merged));
+      if (updates?.name) localStorage.setItem("bacu_author_alias", updates.name);
+    }
   } catch (_) {}
   return merged;
 }

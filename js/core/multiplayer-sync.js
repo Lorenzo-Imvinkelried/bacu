@@ -10,6 +10,8 @@ import { updatePeerCursor, removePeerCursor, clearAllCursors } from "../componen
 import { setupLocalCursorTracking, renderPeerSelectionBadges } from "../components/multiplayer-dom.js";
 import { reconstructPreparedQuestions, serializeQuestionsForRoom, getSharedMultiplayerQuestions } from "./multiplayer-questions.js";
 import { checkIfBothAnsweredQuick, handleMultiplayerNextQuick, handlePlayerReadyNext, readyNextMap } from "./multiplayer-duel.js";
+import { getQuizById, getQuestionsForQuiz } from "../data/vault-structure.js";
+import { QUESTION_BANK } from "../data/question-bank.js";
 
 export { getSharedMultiplayerQuestions, handleMultiplayerNextQuick, readyNextMap };
 
@@ -17,20 +19,14 @@ let isRemoteUpdateInProgress = false;
 export const peerSelectionsMap = new Map();
 
 export function initMultiplayerSync() {
-  multiplayerService.on("peer_cursor", (msg) => {
-    updatePeerCursor(msg.senderId, msg.user?.name, msg.user?.color, msg.coords);
-  });
-
+  multiplayerService.on("peer_cursor", (msg) => updatePeerCursor(msg.senderId, msg.user?.name, msg.user?.color, msg.coords));
   multiplayerService.on("peer_left", (userId) => {
     removePeerCursor(userId);
     for (const [, optMap] of peerSelectionsMap.entries()) {
-      for (const [optId, u] of Object.entries(optMap)) {
-        if (u.id === userId) delete optMap[optId];
-      }
+      for (const [optId, u] of Object.entries(optMap)) { if (u.id === userId) delete optMap[optId]; }
     }
     refreshPeerSelectionBadgesInDom();
   });
-
   multiplayerService.on("room_left", () => {
     clearAllCursors();
     peerSelectionsMap.clear();
@@ -38,18 +34,12 @@ export function initMultiplayerSync() {
     refreshPeerSelectionBadgesInDom();
     state.notify();
   });
-
-  multiplayerService.on("room_connected", (evt) => {
-    if (evt?.roomData && !evt.isHost) applyRoomDataToState(evt.roomData);
-    state.notify();
-  });
-
+  multiplayerService.on("room_connected", (evt) => { if (evt?.roomData) applyRoomDataToState(evt.roomData); state.notify(); });
   multiplayerService.on("room_updated", (roomData) => {
-    if (roomData && !multiplayerService.currentRoom?.isHost) applyRoomDataToState(roomData);
+    if (roomData) applyRoomDataToState(roomData);
     if (roomData?.quizState?.selections) syncSelectionsFromFirestore(roomData.quizState.selections);
     state.notify();
   });
-
   multiplayerService.on("remote_answer", (msg) => {
     const { questionId, optionId, isMultiple, user } = msg;
     if (!peerSelectionsMap.has(questionId)) peerSelectionsMap.set(questionId, {});
@@ -63,59 +53,32 @@ export function initMultiplayerSync() {
       if (!room.quizState.selections) room.quizState.selections = {};
       if (!room.quizState.selections[questionId]) room.quizState.selections[questionId] = {};
       room.quizState.selections[questionId][msg.senderId] = {
-        userId: msg.senderId,
-        userName: user?.name || "Compañero",
-        userColor: user?.color || "#0070f3",
-        optionId
+        userId: msg.senderId, userName: user?.name || "Compañero", userColor: user?.color || "#0070f3", optionId
       };
     }
-
     checkIfBothAnsweredQuick(questionId);
     state.notify();
     refreshPeerSelectionBadgesInDom();
   });
-
-  multiplayerService.on("remote_quick_evaluate", (msg) => {
-    if (msg?.questionId) state.evaluateQuickQuestion(msg.questionId);
-  });
-
+  multiplayerService.on("remote_quick_evaluate", (msg) => { if (msg?.questionId) state.evaluateQuickQuestion(msg.questionId); });
   multiplayerService.on("remote_navigate", (msg) => {
     isRemoteUpdateInProgress = true;
-    try {
-      if (typeof msg.index === "number") state.goToQuestion(msg.index);
-    } finally { isRemoteUpdateInProgress = false; }
+    try { if (typeof msg.index === "number") state.goToQuestion(msg.index); } finally { isRemoteUpdateInProgress = false; }
   });
-
-  multiplayerService.on("remote_ready_next", (msg) => {
-    handlePlayerReadyNext(msg.questionIndex, msg.userId);
-  });
-
-  multiplayerService.on("remote_start_quiz", (msg) => {
-    handleRemoteStartQuiz(msg);
-  });
-
+  multiplayerService.on("remote_ready_next", (msg) => handlePlayerReadyNext(msg.questionIndex, msg.userId));
+  multiplayerService.on("remote_start_quiz", (msg) => handleRemoteStartQuiz(msg));
   multiplayerService.on("remote_next_batch", (msg) => {
     isRemoteUpdateInProgress = true;
     try {
       if (msg.continuousSession) {
-        state.setState({
-          continuousSession: msg.continuousSession,
-          currentQuestions: msg.currentQuestions || state.state.currentQuestions,
-          userAnswers: {},
-          quizStatus: "attempt",
-          activeQuestionIndex: 0
-        });
+        state.setState({ continuousSession: msg.continuousSession, currentQuestions: msg.currentQuestions || state.state.currentQuestions, userAnswers: {}, quizStatus: "attempt", activeQuestionIndex: 0 });
         window.scrollTo({ top: 0, behavior: "smooth" });
-      } else {
-        state.nextContinuousBatch();
-      }
+      } else { state.nextContinuousBatch(); }
     } finally { isRemoteUpdateInProgress = false; }
   });
 
   setupLocalCursorTracking((coords) => {
-    if (multiplayerService.isInRoom()) {
-      multiplayerService.broadcastMessage({ type: "CURSOR", user: multiplayerService.localUser, coords });
-    }
+    if (multiplayerService.isInRoom()) multiplayerService.broadcastMessage({ type: "CURSOR", user: multiplayerService.localUser, coords });
   });
 
   decorateStateMethods();
@@ -128,14 +91,12 @@ export function syncSelectionsFromFirestore(selections) {
     if (!room.quizState) room.quizState = {};
     room.quizState.selections = { ...(room.quizState.selections || {}), ...selections };
   }
-
   for (const [qId, userMap] of Object.entries(selections)) {
+    if (!userMap) continue;
     if (!peerSelectionsMap.has(qId)) peerSelectionsMap.set(qId, {});
     const qMap = peerSelectionsMap.get(qId);
     for (const [uId, sel] of Object.entries(userMap)) {
-      if (uId !== localId) {
-        qMap[sel.optionId] = { id: uId, name: sel.userName, color: sel.userColor };
-      }
+      if (sel && uId !== localId) qMap[sel.optionId] = { id: uId, name: sel.userName || "Compañero", color: sel.userColor || "#0070f3" };
     }
   }
   refreshPeerSelectionBadgesInDom();
@@ -157,23 +118,17 @@ function handleRemoteStartQuiz(msg) {
         randomCount: config.randomCount || state.state.randomCount
       });
     }
-
-    if (preparedQuestions?.length > 0) {
-      const reconstructed = reconstructPreparedQuestions(preparedQuestions);
-      if (config.executionMode === "batches" && continuousSession) {
-        state.setState({
-          currentQuestions: reconstructed,
-          quizStatus: "attempt",
-          continuousSession,
-          userAnswers: {},
-          activeQuestionIndex: 0,
-          startTime: new Date()
-        });
-      } else if (config.executionMode === "quick") {
-        state.startQuickAttempt(reconstructed);
-      } else {
-        state.startAttempt(reconstructed);
-      }
+    let questionsToUse = (preparedQuestions?.length > 0) ? reconstructPreparedQuestions(preparedQuestions) : [];
+    if (!questionsToUse || questionsToUse.length === 0) {
+      const activeQ = getQuizById(state.state.activeSubjectId, state.state.activeUnitId, state.state.activeQuizId);
+      questionsToUse = getQuestionsForQuiz(activeQ, QUESTION_BANK);
+    }
+    if (config?.executionMode === "batches" && continuousSession) {
+      state.setState({ currentQuestions: questionsToUse, quizStatus: "attempt", continuousSession, userAnswers: {}, activeQuestionIndex: 0, startTime: new Date() });
+    } else if (config?.executionMode === "quick") {
+      state.startQuickAttempt(questionsToUse);
+    } else {
+      state.startAttempt(questionsToUse);
     }
   } finally { isRemoteUpdateInProgress = false; }
 }
@@ -185,7 +140,6 @@ function applyRoomDataToState(roomData) {
     const config = roomData.config || {};
     const quizState = roomData.quizState || {};
     const updates = {};
-
     if (config.subjectId) updates.activeSubjectId = config.subjectId;
     if (config.unitId) updates.activeUnitId = config.unitId;
     if (config.quizId) updates.activeQuizId = config.quizId;
@@ -193,20 +147,31 @@ function applyRoomDataToState(roomData) {
     if (config.batchSize) updates.batchSize = config.batchSize;
     if (config.randomCount) updates.randomCount = config.randomCount;
 
-    if (roomData.preparedQuestions?.length > 0) {
-      updates.currentQuestions = reconstructPreparedQuestions(roomData.preparedQuestions);
+    let questionsToUse = (roomData.preparedQuestions?.length > 0) ? reconstructPreparedQuestions(roomData.preparedQuestions) : [];
+    if (!questionsToUse || questionsToUse.length === 0) {
+      const targetQuiz = getQuizById(config.subjectId || state.state.activeSubjectId, config.unitId || state.state.activeUnitId, config.quizId || state.state.activeQuizId);
+      questionsToUse = getQuestionsForQuiz(targetQuiz, QUESTION_BANK);
     }
-    if (quizState.quizStatus) updates.quizStatus = quizState.quizStatus;
-    if (typeof quizState.activeQuestionIndex === "number") {
-      updates.activeQuestionIndex = quizState.activeQuestionIndex;
+
+    if (quizState.quizStatus === "attempt") {
+      const mode = config.executionMode || state.state.executionMode || "quick";
+      if (state.state.quizStatus !== "attempt" || !state.state.currentQuestions?.length) {
+        state.setState(updates);
+        if (mode === "quick") { state.startQuickAttempt(questionsToUse); } else { state.startAttempt(questionsToUse); }
+      }
+      if (typeof quizState.activeQuestionIndex === "number" && quizState.activeQuestionIndex !== state.state.activeQuestionIndex) {
+        state.goToQuestion(quizState.activeQuestionIndex);
+      }
+    } else {
+      if (questionsToUse.length > 0) updates.currentQuestions = questionsToUse;
+      if (quizState.quizStatus) updates.quizStatus = quizState.quizStatus;
+      if (typeof quizState.activeQuestionIndex === "number") updates.activeQuestionIndex = quizState.activeQuestionIndex;
+      state.setState(updates);
     }
-    state.setState(updates);
   } finally { isRemoteUpdateInProgress = false; }
 }
 
-export function refreshPeerSelectionBadgesInDom() {
-  renderPeerSelectionBadges(peerSelectionsMap);
-}
+export function refreshPeerSelectionBadgesInDom() { renderPeerSelectionBadges(peerSelectionsMap); }
 
 function decorateStateMethods() {
   const origSetAnswer = state.setAnswer.bind(state);
@@ -219,19 +184,11 @@ function decorateStateMethods() {
         if (!room.quizState.selections) room.quizState.selections = {};
         if (!room.quizState.selections[qId]) room.quizState.selections[qId] = {};
         room.quizState.selections[qId][multiplayerService.localUser.id] = {
-          userId: multiplayerService.localUser.id,
-          userName: multiplayerService.localUser.name,
-          userColor: multiplayerService.localUser.color,
-          optionId: optId
+          userId: multiplayerService.localUser.id, userName: multiplayerService.localUser.name, userColor: multiplayerService.localUser.color, optionId: optId
         };
       }
       multiplayerService.broadcastMessage({
-        type: "SET_ANSWER",
-        questionId: qId,
-        optionId: optId,
-        isMultiple,
-        options: state.state.userAnswers[qId],
-        user: multiplayerService.localUser
+        type: "SET_ANSWER", questionId: qId, optionId: optId, isMultiple, options: state.state.userAnswers[qId], user: multiplayerService.localUser
       });
       checkIfBothAnsweredQuick(qId);
     }
@@ -240,9 +197,7 @@ function decorateStateMethods() {
   const origGoToQuestion = state.goToQuestion.bind(state);
   state.goToQuestion = (index) => {
     origGoToQuestion(index);
-    if (!isRemoteUpdateInProgress && multiplayerService.isInRoom()) {
-      multiplayerService.broadcastMessage({ type: "NAVIGATE", index });
-    }
+    if (!isRemoteUpdateInProgress && multiplayerService.isInRoom()) multiplayerService.broadcastMessage({ type: "NAVIGATE", index });
   };
 
   const origStartAttempt = state.startAttempt.bind(state);
@@ -270,11 +225,7 @@ function decorateStateMethods() {
     origNextContinuousBatch();
     if (!isRemoteUpdateInProgress && multiplayerService.isInRoom()) {
       const s = state.getState();
-      multiplayerService.broadcastMessage({
-        type: "NEXT_BATCH",
-        continuousSession: s.continuousSession,
-        currentQuestions: s.currentQuestions
-      });
+      multiplayerService.broadcastMessage({ type: "NEXT_BATCH", continuousSession: s.continuousSession, currentQuestions: s.currentQuestions });
     }
   };
 }

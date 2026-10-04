@@ -22,7 +22,7 @@ export function checkIfBothAnsweredQuick(qId) {
   if (participants.length < 2) return;
 
   const selections = room.quizState?.selections?.[qId] || {};
-  const hasLocal = (state.state.userAnswers[qId] || []).length > 0;
+  const hasLocal = (state.state.userAnswers?.[qId] || []).length > 0;
   const answeredCount = Object.keys(selections).length + (hasLocal && !selections[multiplayerService.localUser.id] ? 1 : 0);
 
   if (answeredCount >= participants.length) {

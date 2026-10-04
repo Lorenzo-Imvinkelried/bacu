@@ -109,6 +109,9 @@ export async function syncPayloadToFirestore(code, payload, localUser) {
       updates["quizState.activeQuestionIndex"] = payload.index;
     } else if (payload.type === "START_QUIZ") {
       updates["quizState.quizStatus"] = "attempt";
+      updates["quizState.activeQuestionIndex"] = 0;
+      updates["quizState.selections"] = {};
+      updates["quizState.readyNext"] = {};
       updates.config = payload.config;
       if (payload.preparedQuestions) updates.preparedQuestions = payload.preparedQuestions;
     } else if (payload.type === "QUICK_EVALUATE") {
@@ -116,5 +119,7 @@ export async function syncPayloadToFirestore(code, payload, localUser) {
     }
 
     await updateDoc(roomRef, updates);
-  } catch (_) {}
+  } catch (err) {
+    console.warn("Fallo al sincronizar payload en Firestore:", err);
+  }
 }

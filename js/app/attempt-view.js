@@ -37,19 +37,29 @@ export function renderAttemptView(questions, currentState, isReview, results) {
     ? renderRetryNotice(missedQuestions) 
     : "";
 
+  if (!questions || questions.length === 0) {
+    return `
+      <div class="empty-questions-notice" style="text-align: center; padding: 3rem 1rem;">
+        <p style="font-size: 1.1rem; color: var(--color-text-muted);">Sincronizando preguntas de la sala compartida...</p>
+      </div>
+    `;
+  }
+
   // Barra de progreso y estadísticas en Modo Repaso Rápido
   let quickHeaderHtml = "";
   let questionsListHtml = "";
   let bottomActionsHtml = "";
 
   if (isQuickMode && !isReview) {
-    const evaluatedSet = currentState.quickEvaluatedQuestions || new Set();
+    const evaluatedSet = (currentState.quickEvaluatedQuestions && typeof currentState.quickEvaluatedQuestions.has === "function")
+      ? currentState.quickEvaluatedQuestions
+      : new Set();
     let correctCount = 0;
     let incorrectCount = 0;
 
     questions.forEach(q => {
       if (evaluatedSet.has(q.id)) {
-        const userSel = currentState.userAnswers[q.id] || [];
+        const userSel = (currentState.userAnswers && currentState.userAnswers[q.id]) || [];
         const res = evaluateSingleQuestion(q, userSel);
         if (res.status === "correct") correctCount++;
         else incorrectCount++;
