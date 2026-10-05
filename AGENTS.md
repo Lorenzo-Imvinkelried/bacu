@@ -29,15 +29,17 @@ baul-de-cuestionarios/
 │   │   ├── fundamentos-backend/ # Asignatura Fundamentos Backend
 │   │   │   └── parcial-1/     # Parcial 1 modular
 │   │   │       ├── index.js
-│   │   │       ├── unidad-1/  # Cuestionario modular UNIDAD 1 (42 preguntas, 4 partes)
+│   │   │       ├── cuestionario-parcial-1/ # Cuestionario modular PARCIAL 1 Oficial (20 preguntas, 2 partes)
 │   │   │       │   ├── index.js
-│   │   │       │   └── part-01.js ... part-04.js
-│   │   │       ├── unidad-2/  # Cuestionario modular UNIDAD 2 (53 preguntas, 5 partes)
+│   │   │       │   └── part-01.js ... part-02.js
+│   │   │       ├── unidad-1/  # Cuestionario modular UNIDAD 1 (43 preguntas)
+│   │   │       │   └── part-01.js ... part-06.js
+│   │   │       ├── unidad-2/  # Cuestionario modular UNIDAD 2 (53 preguntas)
 │   │   │       │   ├── index.js
-│   │   │       │   └── part-01.js ... part-05.js
-│   │   │       ├── unidad-3/  # Cuestionario modular UNIDAD 3 (53 preguntas, 5 partes)
+│   │   │       │   └── part-01.js ... part-06.js
+│   │   │       ├── unidad-3/  # Cuestionario modular UNIDAD 3 (53 preguntas)
 │   │   │       │   ├── index.js
-│   │   │       │   └── part-01.js ... part-05.js
+│   │   │       │   └── part-01.js ... part-06.js
 │   │   │       └── unidad-4/  # Cuestionario modular UNIDAD 4 (25 preguntas, 3 partes)
 │   │   │           ├── index.js
 │   │   │           └── part-01.js ... part-03.js
