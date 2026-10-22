@@ -44,16 +44,18 @@ baul-de-cuestionarios/
 │   │   │           ├── index.js
 │   │   │           └── part-01.js ... part-03.js
 │   │   ├── ingenieria-y-calidad/ # Asignatura organizada por parciales
-│   │   │   └── parcial-1/     # Parcial 1 con sus cuestionarios modulares (< 300 líneas c/u)
-│   │   │       ├── index.js   # Índice unificador del Parcial 1
-│   │   │       ├── unidad-1/  # Cuestionarios modulares UNIDAD 1 (index.js, unidad-1.js, etc.)
-│   │   │       ├── unidad-2/  # Cuestionarios modulares UNIDAD 2 (index.js, unidad-2-parte-1a.js ... 2b.js)
-│   │   │       ├── unidad-3/  # Cuestionario modular UNIDAD 3 (51 preguntas, 5 partes)
-│   │   │       │   ├── index.js
-│   │   │       │   └── part-01.js ... part-05.js
-│   │   │       └── word-parcial-1/ # Banco de examen WORD PARCIAL 1
-│   │   │           ├── index.js
-│   │   │           └── part-01.js ... part-14.js # Partes modulares de preguntas
+│   │   │   ├── parcial-1/     # Parcial 1 con sus cuestionarios modulares (< 300 líneas c/u)
+│   │   │   │   ├── index.js   # Índice unificador del Parcial 1
+│   │   │   │   ├── unidad-1/  # Cuestionarios modulares UNIDAD 1 (index.js, unidad-1.js, etc.)
+│   │   │   │   ├── unidad-2/  # Cuestionarios modulares UNIDAD 2 (index.js, unidad-2-parte-1a.js ... 2b.js)
+│   │   │   │   ├── unidad-3/  # Cuestionario modular UNIDAD 3 (51 preguntas, 5 partes)
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── part-01.js ... part-05.js
+│   │   │   │   └── word-parcial-1/ # Banco de examen WORD PARCIAL 1
+│   │   │   │       ├── index.js
+│   │   │   │       └── part-01.js ... part-14.js # Partes modulares de preguntas
+│   │   │   └── parcial-2/     # Parcial 2 modular
+│   │   │       └── index.js   # Índice unificador del Parcial 2
 │   │   └── github/            # Asignatura GitHub
 │   │       ├── comandos/      # Sección / Parcial Comandos
 │   │       │   ├── index.js   # Índice unificador de Comandos
