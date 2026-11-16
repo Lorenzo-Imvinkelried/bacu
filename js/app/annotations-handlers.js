@@ -9,9 +9,13 @@ import {
   addAnnotationForQuestion,
   updateAnnotation,
   deleteAnnotation,
+  deleteAllAnnotationsForQuiz,
   fetchAnnotationCounts
 } from "../core/annotations-service.js";
 import { isFirebaseConfigured } from "../core/firebase-config.js";
+import { state } from "../core/state.js";
+import { QUESTION_BANK } from "../data/question-bank.js";
+import { getQuizById, getQuestionsForQuiz } from "../data/vault-structure.js";
 import { renderAnnotationsContentHtml, updateAnnotationBadge } from "../components/annotations-component.js";
 import { escapeHtml } from "../components/explanation-formatter.js";
 
@@ -142,6 +146,53 @@ export async function handleAnnotationsClickEvent(e) {
       saveBtn.textContent = "Guardar cambios";
     }
     return;
+  }
+
+  // 6. Eliminar todos los comentarios del cuestionario activo
+  const deleteAllBtn = e.target.closest("[data-action='delete-all-quiz-comments']");
+  if (deleteAllBtn) {
+    e.preventDefault();
+    await handleDeleteAllQuizComments(deleteAllBtn);
+    return;
+  }
+}
+
+async function handleDeleteAllQuizComments(triggerBtn) {
+  const current = state.getState();
+  const activeQuiz = getQuizById(current.activeSubjectId, current.activeUnitId, current.activeQuizId);
+  const quizQuestions = getQuestionsForQuiz(activeQuiz, QUESTION_BANK);
+  const allIds = [...new Set([...quizQuestions.map(q => q.id), ...(current.currentQuestions || []).map(q => q.id)].filter(Boolean))];
+  if (!allIds.length) return;
+
+  const quizTitle = activeQuiz?.title || "este cuestionario";
+  const confirmed = window.confirm(
+    `¿Estás seguro de que deseas eliminar TODOS los comentarios de "${quizTitle}"?\n` +
+    `Se borrarán las anotaciones locales y de la comunidad para sus ${allIds.length} preguntas.`
+  );
+  if (!confirmed) return;
+
+  const originalHtml = triggerBtn.innerHTML;
+  triggerBtn.disabled = true;
+  triggerBtn.textContent = "Eliminando comentarios...";
+
+  try {
+    const { totalDeleted } = await deleteAllAnnotationsForQuiz(allIds);
+    const isCloud = isFirebaseConfigured();
+    allIds.forEach(qId => {
+      updateAnnotationBadge(qId, 0);
+      const panel = document.getElementById(`annotations-panel-${qId}`);
+      const bodyEl = document.getElementById(`annotations-body-${qId}`);
+      if (panel && !panel.classList.contains("hidden") && bodyEl) {
+        bodyEl.innerHTML = renderAnnotationsContentHtml(qId, [], isCloud);
+      }
+    });
+    triggerBtn.textContent = totalDeleted > 0 ? `✓ Eliminados (${totalDeleted})` : "Sin comentarios";
+    setTimeout(() => { triggerBtn.innerHTML = originalHtml; triggerBtn.disabled = false; }, 2200);
+  } catch (err) {
+    console.error("Error al eliminar todos los comentarios del cuestionario:", err);
+    alert("Hubo un error al eliminar los comentarios del cuestionario. Revisa tu conexión.");
+    triggerBtn.innerHTML = originalHtml;
+    triggerBtn.disabled = false;
   }
 }
 

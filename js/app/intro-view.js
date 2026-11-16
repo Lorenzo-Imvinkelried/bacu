@@ -285,6 +285,9 @@ export function renderIntroView(quiz, unit, currentState) {
           <button type="button" id="btn-export-questions-intro" class="btn btn-secondary btn-lg" title="Descargar las preguntas de este cuestionario con respuestas oficiales en un archivo TXT">
             Exportar cuestionario (TXT)
           </button>
+          <button type="button" id="btn-delete-quiz-comments-intro" class="btn btn-delete-quiz-comments-intro btn-lg" data-action="delete-all-quiz-comments" title="Eliminar todos los comentarios de este cuestionario de una sola vez">
+            🗑️ Borrar comentarios del cuestionario
+          </button>
         </div>
       </div>
     </div>

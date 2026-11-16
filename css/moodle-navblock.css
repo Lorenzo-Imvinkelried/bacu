@@ -74,7 +74,9 @@
 
 /* Semáforo Inferior (.trafficlight) */
 .qnbutton .trafficlight {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -83,6 +85,28 @@
   border-top: 1px solid #cccccc;
   background-color: #ffffff;
   transition: background-color 0.2s ease;
+}
+
+/* Indicador de Comentarios en Navegación (.nav-comment-icon) */
+.qnbutton .nav-comment-icon {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  color: #004b87;
+}
+
+.qnbutton.has-comments .nav-comment-icon {
+  display: inline-flex;
+}
+
+.qnbutton.answersaved .nav-comment-icon,
+.qnbutton.complete .nav-comment-icon,
+.qnbutton.correct .nav-comment-icon,
+.qnbutton.incorrect .nav-comment-icon,
+.qnbutton.partiallycorrect .nav-comment-icon {
+  color: #ffffff;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
 }
 
 /* Estado: Respuesta Guardada (Gris mitad inferior clásico Moodle) */
@@ -121,6 +145,9 @@
 .nav-action-wrapper {
   border-top: 1px solid var(--cv-border-light);
   padding-top: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
 }
 
 .btn-finish-attempt,
@@ -151,4 +178,58 @@
 
 .btn-finish-review:hover {
   background-color: var(--cv-accent-hover);
+}
+
+/* Botón Eliminar Todos los Comentarios del Cuestionario */
+.btn-delete-quiz-comments {
+  width: 100%;
+  background-color: #fff5f5;
+  border: 1px solid #f5c2c7;
+  color: #b02a37;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.45rem 0.65rem;
+  border-radius: var(--cv-radius);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  transition: all 0.15s ease;
+}
+
+.btn-delete-quiz-comments:hover:not(:disabled) {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: #ffffff;
+}
+
+.btn-delete-quiz-comments:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+/* Modo Oscuro: Indicador y Botón de Comentarios en Navblock */
+[data-theme="dark"] .qnbutton.has-comments .nav-comment-icon {
+  color: #38bdf8;
+}
+
+[data-theme="dark"] .qnbutton.answersaved .nav-comment-icon,
+[data-theme="dark"] .qnbutton.complete .nav-comment-icon,
+[data-theme="dark"] .qnbutton.correct .nav-comment-icon,
+[data-theme="dark"] .qnbutton.incorrect .nav-comment-icon,
+[data-theme="dark"] .qnbutton.partiallycorrect .nav-comment-icon {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .btn-delete-quiz-comments {
+  background-color: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+}
+
+[data-theme="dark"] .btn-delete-quiz-comments:hover:not(:disabled) {
+  background-color: #dc2626;
+  border-color: #ef4444;
+  color: #ffffff;
 }

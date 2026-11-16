@@ -5,8 +5,15 @@
  */
 
 import { FIREBASE_CONFIG, isFirebaseConfigured } from "./firebase-config.js";
+import {
+  getLocalAnnotationsForQuestion,
+  getLocalAnnotationCounts,
+  saveLocalAnnotation,
+  updateLocalAnnotation,
+  deleteLocalAnnotation,
+  deleteLocalAnnotationsByQuestionIds
+} from "./annotations-local.js";
 
-const LOCAL_STORAGE_KEY = "bacu_local_annotations";
 const AUTHOR_STORAGE_KEY = "bacu_author_alias";
 
 let firebaseDb = null;
@@ -223,59 +230,56 @@ export async function deleteAnnotation(annotationId, questionId = null) {
   return { success: true, isCloud: !isLocal };
 }
 
-/* ==================== MÉTODOS LOCALES ==================== */
+/**
+ * Eliminar todas las anotaciones de un cuestionario (Firestore y local)
+ * @param {Array<string>} questionIds
+ * @returns {Promise<{totalDeleted: number, cloudDeleted: number, localDeleted: number}>}
+ */
+export async function deleteAllAnnotationsForQuiz(questionIds = []) {
+  const uniqueIds = [...new Set((questionIds || []).filter(Boolean))];
+  if (uniqueIds.length === 0) {
+    return { totalDeleted: 0, cloudDeleted: 0, localDeleted: 0 };
+  }
 
-function getLocalAnnotationsForQuestion(questionId) {
-  try {
-    const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
-    const all = raw ? JSON.parse(raw) : [];
-    return all.filter(item => item.questionId === questionId).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-  } catch (_) { return []; }
+  let cloudDeleted = 0;
+  const db = await initFirestore();
+  if (db) {
+    cloudDeleted = await deleteCloudAnnotationsByQuestionIds(db, uniqueIds);
+  }
+
+  const localDeleted = deleteLocalAnnotationsByQuestionIds(uniqueIds);
+  uniqueIds.forEach(id => setCachedAnnotationCount(id, 0));
+
+  return {
+    totalDeleted: cloudDeleted + localDeleted,
+    cloudDeleted,
+    localDeleted
+  };
 }
 
-function getLocalAnnotationCounts(questionIds) {
-  try {
-    const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
-    const all = raw ? JSON.parse(raw) : [];
-    const idSet = new Set(questionIds);
-    const counts = {};
-    all.forEach(item => {
-      if (item.questionId && idSet.has(item.questionId) && item.id?.startsWith("local_")) {
-        counts[item.questionId] = (counts[item.questionId] || 0) + 1;
-      }
-    });
-    return counts;
-  } catch (_) { return {}; }
-}
+async function deleteCloudAnnotationsByQuestionIds(db, questionIds) {
+  const { collection, query, where, getDocs, writeBatch } = await import(
+    "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js"
+  );
 
-function saveLocalAnnotation(annotation) {
-  try {
-    const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
-    const all = raw ? JSON.parse(raw) : [];
-    const itemWithId = { id: `local_${Date.now()}_${Math.random().toString(36).substr(2, 4)}`, ...annotation };
-    all.push(itemWithId);
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(all));
-    return itemWithId;
-  } catch (_) { return { id: `local_${Date.now()}`, ...annotation }; }
-}
+  const queryPromises = [];
+  for (let i = 0; i < questionIds.length; i += 30) {
+    const chunk = questionIds.slice(i, i + 30);
+    const q = query(collection(db, "annotations"), where("questionId", "in", chunk));
+    queryPromises.push(getDocs(q));
+  }
 
-function updateLocalAnnotation(annotationId, newText) {
-  try {
-    const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
-    const all = raw ? JSON.parse(raw) : [];
-    const idx = all.findIndex(item => item.id === annotationId);
-    if (idx !== -1) {
-      all[idx].text = newText;
-      all[idx].updatedAt = new Date().toISOString();
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(all));
-    }
-  } catch (_) {}
-}
+  const snapshots = await Promise.all(queryPromises);
+  const docRefs = [];
+  snapshots.forEach(snap => {
+    snap.forEach(docSnap => docRefs.push(docSnap.ref));
+  });
 
-function deleteLocalAnnotation(annotationId) {
-  try {
-    const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
-    const all = raw ? JSON.parse(raw) : [];
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(all.filter(item => item.id !== annotationId)));
-  } catch (_) {}
+  for (let i = 0; i < docRefs.length; i += 400) {
+    const batch = writeBatch(db);
+    docRefs.slice(i, i + 400).forEach(ref => batch.delete(ref));
+    await batch.commit();
+  }
+
+  return docRefs.length;
 }

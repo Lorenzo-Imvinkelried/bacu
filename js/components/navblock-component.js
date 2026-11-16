@@ -5,6 +5,10 @@
  */
 
 import { evaluateSingleQuestion } from "../core/quiz-engine.js";
+import { getCachedAnnotationCount } from "../core/annotations-service.js";
+import { escapeHtml } from "./explanation-formatter.js";
+
+const COMMENT_BUBBLE_SVG = `<svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" focusable="false"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>`;
 
 export function renderNavBlock(questions, state, isReview = false, results = null) {
   const isQuickMode = state.executionMode === "quick";
@@ -16,6 +20,8 @@ export function renderNavBlock(questions, state, isReview = false, results = nul
     const isAnswered = userSelected.length > 0;
     const isQuickEvaluated = isQuickMode && state.quickEvaluatedQuestions && state.quickEvaluatedQuestions.has(qId);
     const isCurrent = isQuickMode && idx === state.activeQuestionIndex;
+    const commentCount = getCachedAnnotationCount(qId);
+    const hasComments = commentCount > 0;
 
     let qnClasses = "qnbutton";
     let trafficLightClass = "trafficlight";
@@ -62,18 +68,29 @@ export function renderNavBlock(questions, state, isReview = false, results = nul
       qnClasses += " current-question";
     }
 
+    if (hasComments) {
+      qnClasses += " has-comments";
+    }
+
+    const baseTitle = `Pregunta ${idx + 1}: ${isAnswered ? "Respuesta guardada" : "Sin responder aún"}${isFlagged ? " (Señalada)" : ""}`;
+    const commentSuffix = hasComments ? ` • ${commentCount} comentario${commentCount === 1 ? "" : "s"}` : "";
+
     return `
       <a 
         href="#question-${qId}" 
         class="${qnClasses}" 
         id="quiznavbutton-${idx + 1}"
         data-nav-target="question-${qId}"
+        data-nav-qid="${qId}"
         data-quick-goto="${idx}"
-        title="Pregunta ${idx + 1}: ${isAnswered ? "Respuesta guardada" : "Sin responder aún"}${isFlagged ? " (Señalada)" : ""}"
+        data-base-title="${escapeHtml(baseTitle)}"
+        title="${escapeHtml(baseTitle + commentSuffix)}"
       >
         <span class="thispageholder"></span>
         <span class="qnum">${idx + 1}</span>
-        <span class="${trafficLightClass}"></span>
+        <span class="${trafficLightClass}">
+          <span class="nav-comment-icon" aria-hidden="true">${COMMENT_BUBBLE_SVG}</span>
+        </span>
       </a>
     `;
   }).join("");
@@ -99,6 +116,15 @@ export function renderNavBlock(questions, state, isReview = false, results = nul
                 Finalizar revisión
               </button>
             `}
+            <button
+              type="button"
+              id="btn-delete-quiz-comments-nav"
+              class="btn btn-delete-quiz-comments"
+              data-action="delete-all-quiz-comments"
+              title="Eliminar todos los comentarios de este cuestionario de una sola vez"
+            >
+              🗑️ Borrar comentarios del cuestionario
+            </button>
           </div>
         </div>
       </div>

@@ -268,3 +268,27 @@
 [data-theme="dark"] .btn-save-edit:hover { background: #388bfd; }
 [data-theme="dark"] .badge-cloud-status.cloud-on { background: rgba(35, 134, 54, 0.2); color: #7ee787; border-color: rgba(35, 134, 54, 0.4); }
 [data-theme="dark"] .badge-cloud-status.cloud-off { background: rgba(187, 128, 9, 0.2); color: #f2cc60; border-color: rgba(187, 128, 9, 0.4); }
+
+/* Botón eliminar todos los comentarios en la vista intro */
+.btn-delete-quiz-comments-intro {
+  background-color: #fff5f5;
+  border: 1px solid #f5c2c7;
+  color: #b02a37;
+  font-weight: 600;
+}
+.btn-delete-quiz-comments-intro:hover:not(:disabled) {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: #ffffff;
+}
+.btn-delete-quiz-comments-intro:disabled { opacity: 0.65; cursor: wait; }
+[data-theme="dark"] .btn-delete-quiz-comments-intro {
+  background-color: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+}
+[data-theme="dark"] .btn-delete-quiz-comments-intro:hover:not(:disabled) {
+  background-color: #dc2626;
+  border-color: #ef4444;
+  color: #ffffff;
+}

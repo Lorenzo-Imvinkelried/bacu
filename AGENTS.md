@@ -93,6 +93,7 @@ baul-de-cuestionarios/
 │   │   ├── history-storage.js # Persistencia de intentos en localStorage
 │   │   ├── quiz-engine.js     # Motor evaluador (cálculo de puntaje, validaciones, tiempo)
 │   │   ├── firebase-config.js # Credenciales y estado de conexión con Firebase
+│   │   ├── annotations-local.js   # Persistencia local (fallback) de notas comunitarias
 │   │   └── annotations-service.js # Servicio de lectura/escritura de notas comunitarias
 │   ├── components/            # Capa de componentes de interfaz (renderizado puro)
 │   │   ├── header-component.js       # Renderiza encabezado y breadcrumbs estilo Campus Virtual UTN

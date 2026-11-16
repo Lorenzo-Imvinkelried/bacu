@@ -60,17 +60,22 @@ export function renderAnnotationsSection(questionId) {
 export function updateAnnotationBadge(questionId, count) {
   const countEl = document.querySelector(`[data-annotations-count-qid="${questionId}"]`);
   const toggleBtn = document.querySelector(`[data-toggle-annotations-qid="${questionId}"]`);
+  const navBtns = document.querySelectorAll(`[data-nav-qid="${questionId}"]`);
 
   if (countEl) {
     countEl.textContent = count > 0 ? ` (${count})` : "";
   }
   if (toggleBtn) {
-    if (count > 0) {
-      toggleBtn.classList.add("has-annotations");
-    } else {
-      toggleBtn.classList.remove("has-annotations");
-    }
+    toggleBtn.classList.toggle("has-annotations", count > 0);
   }
+  navBtns.forEach(navBtn => {
+    navBtn.classList.toggle("has-comments", count > 0);
+    const baseTitle = navBtn.dataset.baseTitle || "";
+    if (baseTitle) {
+      const suffix = count > 0 ? ` • ${count} comentario${count === 1 ? "" : "s"}` : "";
+      navBtn.title = `${baseTitle}${suffix}`;
+    }
+  });
 }
 
 /**
