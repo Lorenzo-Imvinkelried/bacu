@@ -93,6 +93,7 @@ baul-de-cuestionarios/
 │   │   ├── history-storage.js # Persistencia de intentos en localStorage
 │   │   ├── quiz-engine.js     # Motor evaluador (cálculo de puntaje, validaciones, tiempo)
 │   │   ├── firebase-config.js # Credenciales y estado de conexión con Firebase
+│   │   ├── delete-auth.js     # Verificación por hash SHA-256 para borrado de notas
 │   │   ├── annotations-local.js   # Persistencia local (fallback) de notas comunitarias
 │   │   └── annotations-service.js # Servicio de lectura/escritura de notas comunitarias
 │   ├── components/            # Capa de componentes de interfaz (renderizado puro)
@@ -111,6 +112,7 @@ baul-de-cuestionarios/
 │   │   ├── form-handlers.js   # Manejador de eventos de cambio e input
 │   │   ├── event-handlers.js  # Orquestador de eventos delegados en el DOM
 │   │   ├── annotations-handlers.js # Manejador de eventos de interacción de anotaciones
+│   │   ├── delete-password-modal.js # Controlador del modal con clave para borrado de notas
 │   │   └── export-service.js  # Servicio de exportación de preguntas a archivo TXT
 │   └── app.js                 # Punto de entrada / bootstrap orquestador (< 110 líneas)
 └── Preguntas parcial 1 ING Y CALIDAD.txt # Archivo fuente original de preguntas

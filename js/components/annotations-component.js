@@ -214,3 +214,41 @@ export function formatDate(dateInput) {
     return "Recientemente";
   }
 }
+
+/**
+ * Modal con contraseña para autorizar el borrado de comentarios
+ * @returns {string} HTML
+ */
+export function renderDeletePasswordModal() {
+  return `
+    <div id="delete-password-modal" class="moodle-dialogue-base modal-backdrop-custom hidden">
+      <div class="moodle-dialogue" role="dialog" aria-modal="true" aria-labelledby="delete-pwd-title">
+        <div class="moodle-dialogue-wrap">
+          <div class="moodle-dialogue-hd">
+            <h4 id="delete-pwd-title" class="modal-title">Autorizar borrado</h4>
+            <button type="button" class="btn-close-modal" id="btn-delete-pwd-cancel-x" aria-label="Cerrar">×</button>
+          </div>
+          <form id="delete-password-form">
+            <div class="moodle-dialogue-bd">
+              <p id="delete-password-message" class="delete-password-message"></p>
+              <label for="delete-password-input" class="annotation-form-label">Contraseña de autorización:</label>
+              <input
+                type="password"
+                id="delete-password-input"
+                class="input-annotation-author delete-password-input"
+                placeholder="Ingresá la contraseña..."
+                autocomplete="current-password"
+                required
+              />
+              <p id="delete-password-error" class="delete-password-error hidden" role="alert"></p>
+            </div>
+            <div class="moodle-dialogue-ft">
+              <button type="button" id="btn-delete-pwd-cancel" class="btn btn-secondary">Cancelar</button>
+              <button type="submit" id="btn-delete-pwd-confirm" class="btn btn-danger">Confirmar borrado</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  `;
+}

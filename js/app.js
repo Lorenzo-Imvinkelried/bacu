@@ -13,6 +13,7 @@ import { renderAttemptSummary, renderConfirmationModal } from "./components/revi
 import { renderHowToCreateModal } from "./components/how-to-create-modal.js";
 import { renderMultiplayerModal } from "./components/multiplayer-modal.js";
 import { renderMultiplayerBar } from "./components/multiplayer-bar.js";
+import { renderDeletePasswordModal } from "./components/annotations-component.js";
 
 import { getFormattedQuizTitle } from "./app/quiz-title.js";
 import { renderIntroView } from "./app/intro-view.js";
@@ -71,6 +72,7 @@ function render(root, currentState) {
   const confirmModalHtml = renderConfirmationModal();
   const howToCreateModalHtml = renderHowToCreateModal();
   const multiplayerModalHtml = renderMultiplayerModal(currentState);
+  const deletePasswordModalHtml = renderDeletePasswordModal();
 
   let mainContentHtml = "";
 
@@ -108,6 +110,7 @@ function render(root, currentState) {
     ${confirmModalHtml}
     ${howToCreateModalHtml}
     ${multiplayerModalHtml}
+    ${deletePasswordModalHtml}
 
     <footer class="cv-footer">
       <p>BACU - Baúl de Cuestionarios &copy; 2026</p>

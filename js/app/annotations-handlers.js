@@ -18,6 +18,7 @@ import { QUESTION_BANK } from "../data/question-bank.js";
 import { getQuizById, getQuestionsForQuiz } from "../data/vault-structure.js";
 import { renderAnnotationsContentHtml, updateAnnotationBadge } from "../components/annotations-component.js";
 import { escapeHtml } from "../components/explanation-formatter.js";
+import { requestDeletePassword } from "./delete-password-modal.js";
 
 /**
  * Escuchador delegado para eventos de clic en el bloque de anotaciones
@@ -50,7 +51,7 @@ export async function handleAnnotationsClickEvent(e) {
     const qId = deleteBtn.getAttribute("data-qid");
     if (!noteId || !qId) return;
 
-    const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar este comentario?");
+    const confirmDelete = await requestDeletePassword("¿Estás seguro de que deseas eliminar este comentario?");
     if (!confirmDelete) return;
 
     deleteBtn.disabled = true;
@@ -165,8 +166,8 @@ async function handleDeleteAllQuizComments(triggerBtn) {
   if (!allIds.length) return;
 
   const quizTitle = activeQuiz?.title || "este cuestionario";
-  const confirmed = window.confirm(
-    `¿Estás seguro de que deseas eliminar TODOS los comentarios de "${quizTitle}"?\n` +
+  const confirmed = await requestDeletePassword(
+    `¿Estás seguro de que deseas eliminar TODOS los comentarios de "${quizTitle}"? ` +
     `Se borrarán las anotaciones locales y de la comunidad para sus ${allIds.length} preguntas.`
   );
   if (!confirmed) return;

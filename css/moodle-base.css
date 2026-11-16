@@ -179,6 +179,31 @@ body {
   box-shadow: 0 0 0 3px rgba(0, 75, 135, 0.2);
 }
 
+.btn-danger {
+  color: #ffffff;
+  background-color: var(--cv-danger);
+  border-color: var(--cv-danger);
+}
+.btn-danger:hover:not(:disabled) {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.delete-password-message {
+  margin-bottom: 0.9rem;
+  line-height: 1.45;
+}
+.delete-password-input { margin-top: 0.35rem; }
+.delete-password-error {
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--cv-danger);
+}
+[data-theme="dark"] .delete-password-error { color: #fca5a5; }
+[data-theme="dark"] .moodle-dialogue-bd .delete-password-message,
+[data-theme="dark"] .moodle-dialogue-bd .annotation-form-label { color: #e2e8f0; }
+
 .hidden {
   display: none !important;
 }

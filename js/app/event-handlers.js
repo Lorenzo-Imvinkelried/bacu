@@ -7,6 +7,7 @@
 import { handleClickEvent } from "./click-handlers.js";
 import { handleFormChangeEvent, handleRealtimeInputEvent } from "./form-handlers.js";
 import { handleAnnotationsClickEvent, handleAnnotationsSubmitEvent } from "./annotations-handlers.js";
+import { handleDeleteModalClick, handleDeleteModalSubmit, closeDeletePasswordModal } from "./delete-password-modal.js";
 
 /**
  * Registrar y delegar todos los eventos de la interfaz
@@ -14,7 +15,9 @@ import { handleAnnotationsClickEvent, handleAnnotationsSubmitEvent } from "./ann
  */
 export function setupEventListeners(root) {
   root.addEventListener("click", handleClickEvent);
+  root.addEventListener("click", handleDeleteModalClick);
   root.addEventListener("click", handleAnnotationsClickEvent);
+  root.addEventListener("submit", handleDeleteModalSubmit);
   root.addEventListener("submit", handleAnnotationsSubmitEvent);
   root.addEventListener("change", handleFormChangeEvent);
   root.addEventListener("input", handleRealtimeInputEvent);
@@ -23,6 +26,7 @@ export function setupEventListeners(root) {
     if (e.key === "Escape") {
       document.getElementById("how-to-create-modal")?.classList.add("hidden");
       document.getElementById("moodle-confirm-modal")?.classList.add("hidden");
+      closeDeletePasswordModal();
     }
   });
 }
