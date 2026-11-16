@@ -1,7 +1,7 @@
 /**
  * Banco de Preguntas - PDF 100 PÁGINAS (Administración de Sistemas - Parcial 3)
- * Parte 01 (Preguntas 1 a 9)
- * Temas: Seguridad Informática (Lógica, Física, Tríada CID, Firma Digital), Auditoría y Ergonomía
+ * Parte 01 (Preguntas 1 a 12)
+ * Temas: Firma Digital, Ergonomía, Teletrabajo, Auditoría Informática (Objetivos) e Higiene y Seguridad
  * Cumple estrictamente con directivas en AGENTS.md (Capa de Datos, < 300 líneas)
  */
 
@@ -12,17 +12,17 @@ export const questionsPart01 = [
     subject: "Administración de Sistemas",
     unit: "Parcial 3",
     quizId: "quiz-as-p3-pdf-100-paginas",
-    topic: "Seguridad Informática - Concepto y Alcance",
+    topic: "Firma Digital",
     type: "single",
-    prompt: "La seguridad informática consiste en asegurar que:",
+    prompt: "Al implementar firma digital en la organización:",
     options: [
-      { id: "a", text: "el acceso a la información allí contenida así como su modificación sólo sea posible a las personas que se encuentren acreditadas." },
-      { id: "b", text: "los recursos del sistema de información de una organización sean utilizados de cualquier manera." },
-      { id: "c", text: "el acceso a la información allí contenida, así como su modificación, sea posible por fuera de los límites de su autorización." },
-      { id: "d", text: "Todas las opciones son adecuadas para referirnos a la seguridad informática." }
+      { id: "a", text: "se permite al receptor de un mensaje firmado digitalmente determinar la entidad originadora de dicho mensaje, garantizando la integridad." },
+      { id: "b", text: "Ninguna de las opciones son correctas." },
+      { id: "c", text: "estamos utilizando un mecanismo de seguridad física." },
+      { id: "d", text: "se garantiza la autenticación de origen y el no repudio al poder confirmar que el mensaje no ha sido alterado desde que fue firmado por el originador." }
     ],
-    correctAnswers: ["d"],
-    explanation: "Según la clave oficial del Campus Virtual UTN, la respuesta correcta es la opción D ('Todas las opciones son adecuadas para referirnos a la seguridad informática').",
+    correctAnswers: ["b"],
+    explanation: "La firma digital es un mecanismo de seguridad lógica (no física). Además, las opciones A y D cruzan incorrectamente sus propiedades: determinar la entidad originadora refiere a la autenticación de origen, mientras que confirmar que el mensaje no fue alterado refiere a la integridad. Por eso la respuesta correcta es 'Ninguna de las opciones son correctas.'",
     diagram: null,
     points: 1
   },
@@ -32,17 +32,17 @@ export const questionsPart01 = [
     subject: "Administración de Sistemas",
     unit: "Parcial 3",
     quizId: "quiz-as-p3-pdf-100-paginas",
-    topic: "Seguridad Lógica y Física",
+    topic: "Firma Digital (Variante 2)",
     type: "single",
-    prompt: "Según la clasificación de la seguridad informática dentro de la organización:",
+    prompt: "Al implementar firma digital en la organización:",
     options: [
-      { id: "a", text: "la Seguridad Lógica consiste en la aplicación de barreras y procedimientos que resguarden el acceso a los datos." },
-      { id: "b", text: "la Seguridad Física consiste en la aplicación de barreras y procedimientos de control implementados para proteger el hardware." },
-      { id: "c", text: "la Seguridad Física se refiere a los controles y mecanismos de seguridad dentro y alrededor del Centro de Cómputo." },
-      { id: "d", text: "Todas las opciones son correctas." }
+      { id: "a", text: "no es posible confirmar que el mensaje no ha sido alterado desde que fue firmado por el originador." },
+      { id: "b", text: "Ninguna de las opciones son correctas." },
+      { id: "c", text: "se permite al receptor de un mensaje firmado digitalmente determinar la entidad originadora de dicho mensaje." },
+      { id: "d", text: "estamos utilizando un mecanismo de seguridad física." }
     ],
-    correctAnswers: ["d"],
-    explanation: "Según la clave oficial del Campus Virtual UTN, todas las opciones son correctas: la seguridad lógica resguarda el acceso a datos y la física protege hardware e instalaciones del Centro de Cómputos.",
+    correctAnswers: ["c"],
+    explanation: "La firma digital permite al receptor de un mensaje firmado digitalmente determinar la entidad originadora del mensaje (además de ser un mecanismo de seguridad lógica y permitir verificar que no fue alterado).",
     diagram: null,
     points: 1
   },
@@ -52,17 +52,17 @@ export const questionsPart01 = [
     subject: "Administración de Sistemas",
     unit: "Parcial 3",
     quizId: "quiz-as-p3-pdf-100-paginas",
-    topic: "Recursos Protegidos por la Seguridad Informática",
+    topic: "Firma Digital (Variante 3)",
     type: "single",
-    prompt: "Al incorporar la Seguridad Informática en una organización, estamos asegurando:",
+    prompt: "Al implementar firma digital en la organización:",
     options: [
-      { id: "a", text: "Los recursos de software, humanos y no los de hardware." },
-      { id: "b", text: "Los recursos humanos, de hardware, pero no los de software." },
-      { id: "c", text: "Los recursos de hardware y software pero no los recursos humanos." },
-      { id: "d", text: "Todas las opciones son adecuadas para referirnos a la seguridad informática." }
+      { id: "a", text: "Todas las opciones son correctas." },
+      { id: "b", text: "se garantiza la autenticación de origen y el no repudio al poder confirmar que el mensaje no ha sido alterado desde que fue firmado por el originador." },
+      { id: "c", text: "estamos utilizando un mecanismo de seguridad lógica." },
+      { id: "d", text: "se permite al receptor de un mensaje firmado digitalmente determinar la entidad originadora de dicho mensaje, garantizando la integridad." }
     ],
-    correctAnswers: ["d"],
-    explanation: "Según la clave oficial del Campus Virtual UTN, la opción correcta es la D ('Todas las opciones son adecuadas para referirnos a la seguridad informática').",
+    correctAnswers: ["c"],
+    explanation: "La firma digital constituye un mecanismo de seguridad lógica. Las opciones B y D mezclan las definiciones de autenticación de origen, no repudio e integridad, por lo que únicamente la opción C es correcta.",
     diagram: null,
     points: 1
   },
@@ -72,17 +72,17 @@ export const questionsPart01 = [
     subject: "Administración de Sistemas",
     unit: "Parcial 3",
     quizId: "quiz-as-p3-pdf-100-paginas",
-    topic: "Tríada CID: Confidencialidad, Integridad y Disponibilidad",
+    topic: "Diseño Ergonómico / Ergonomía",
     type: "single",
-    prompt: "Con la seguridad informática, preservamos:",
+    prompt: "El diseño ergonómico:",
     options: [
-      { id: "a", text: "la integridad al salvaguardar la exactitud y totalidad de la información y los métodos de procesamiento." },
-      { id: "b", text: "la disponibilidad al garantizar que los usuarios autorizados tengan acceso a la información y a los recursos relacionados con la misma, toda vez que lo requieran." },
-      { id: "c", text: "la confidencialidad al garantizar que la información sea accesible sólo a aquellas personas autorizadas a tener acceso a la misma." },
-      { id: "d", text: "todas las opciones son correctas." }
+      { id: "a", text: "persigue el logro de un diseño óptimo de puestos de trabajo." },
+      { id: "b", text: "pretende lograr herramientas, máquinas, sistemas, tareas, trabajos y ambientes seguros, confortables y de uso humano efectivo." },
+      { id: "c", text: "Todas las opciones son válidas." },
+      { id: "d", text: "considera las habilidades humanas, sus limitaciones y características." }
     ],
-    correctAnswers: ["d"],
-    explanation: "La tríada de seguridad CID abarca Integridad (exactitud), Disponibilidad (acceso continuo cuando se requiere) y Confidencialidad (acceso solo a autorizados). Todas las opciones son correctas.",
+    correctAnswers: ["c"],
+    explanation: "El diseño ergonómico busca el diseño óptimo de los puestos de trabajo considerando las habilidades, limitaciones y características humanas para lograr herramientas, sistemas, tareas y ambientes seguros, confortables y efectivos. Todas las opciones son válidas.",
     diagram: null,
     points: 1
   },
@@ -92,18 +92,17 @@ export const questionsPart01 = [
     subject: "Administración de Sistemas",
     unit: "Parcial 3",
     quizId: "quiz-as-p3-pdf-100-paginas",
-    topic: "Firma Digital y Mecanismos de Seguridad Lógica",
+    topic: "Ergonomía (Definición Variante)",
     type: "single",
-    prompt: "Al implementar firma digital en la organización:",
+    prompt: "La ergonomía se define como:",
     options: [
-      { id: "a", text: "se permite al receptor de un mensaje firmado digitalmente determinar la entidad originadora de dicho mensaje." },
-      { id: "b", text: "estamos utilizando un mecanismo de seguridad lógica." },
-      { id: "c", text: "se garantiza la autenticación de origen y el no repudio al poder confirmar que el mensaje no ha sido alterado desde que fue firmado por el originador." },
-      { id: "d", text: "estamos utilizando un mecanismo de seguridad física." },
-      { id: "e", text: "Ninguna de las opciones son correctas." }
+      { id: "a", text: "tiene como objetivo lograr un diseño de puestos de trabajo sin importar los medios." },
+      { id: "b", text: "un cuerpo de conocimientos acerca de las habilidades humanas, sus limitaciones y características que son relevantes para la evaluación de los riesgos en el trabajo." },
+      { id: "c", text: "Ninguna de las opciones es válida para definir la ergonomía." },
+      { id: "d", text: "un cuerpo de conocimientos acerca de las habilidades de las máquinas, sus limitaciones y características que son relevantes para el diseño de los puestos de trabajo." }
     ],
-    correctAnswers: ["a", "b", "e"],
-    explanation: "La firma digital permite determinar la entidad originadora del mensaje (Opción A) y constituye un mecanismo de seguridad lógica (Opción B). En variantes donde las opciones están incompletas o alteradas, la clave del sistema es 'Ninguna de las opciones son correctas'. El simulador valida cualquiera de las respuestas oficiales.",
+    correctAnswers: ["c"],
+    explanation: "La ergonomía es un cuerpo de conocimientos sobre las habilidades, limitaciones y características humanas relevantes para el diseño de los puestos de trabajo. Como ninguna opción reproduce correctamente esa definición, la respuesta es 'Ninguna de las opciones es válida para definir la ergonomía.'",
     diagram: null,
     points: 1
   },
@@ -113,18 +112,17 @@ export const questionsPart01 = [
     subject: "Administración de Sistemas",
     unit: "Parcial 3",
     quizId: "quiz-as-p3-pdf-100-paginas",
-    topic: "Objetivos de la Auditoría Informática",
+    topic: "Ergonomía (Definición Variante 2)",
     type: "single",
-    prompt: "La auditoría informática pretende determinar, entre otras cosas, si un sistema de información:",
+    prompt: "La ergonomía se define como:",
     options: [
-      { id: "a", text: "mantiene la integridad de los datos." },
-      { id: "b", text: "cumple con las leyes y regulaciones establecidas." },
-      { id: "c", text: "utiliza eficientemente los recursos." },
-      { id: "d", text: "lleva a cabo eficazmente los fines de la organización." },
-      { id: "e", text: "Todas las opciones son correctas." }
+      { id: "a", text: "un cuerpo de conocimientos acerca de las habilidades humanas, sus limitaciones y características que son relevantes para definir el organigrama de la empresa." },
+      { id: "b", text: "un cuerpo de conocimientos acerca de las habilidades humanas, sus limitaciones y características que son relevantes para el diseño de los puestos de trabajo." },
+      { id: "c", text: "Ninguna de las opciones es válida para definir la ergonomía." },
+      { id: "d", text: "un cuerpo de conocimientos acerca de las habilidades humanas, sus limitaciones y características que son relevantes para la evaluación de los riesgos en el trabajo." }
     ],
-    correctAnswers: ["e"],
-    explanation: "La auditoría informática evalúa integridad de datos, cumplimiento legal, uso eficiente de recursos y eficacia en los fines organizacionales. Todas las opciones son correctas.",
+    correctAnswers: ["b"],
+    explanation: "La definición formal de ergonomía corresponde al cuerpo de conocimientos acerca de las habilidades humanas, sus limitaciones y características relevantes para el diseño de los puestos de trabajo.",
     diagram: null,
     points: 1
   },
@@ -134,17 +132,17 @@ export const questionsPart01 = [
     subject: "Administración de Sistemas",
     unit: "Parcial 3",
     quizId: "quiz-as-p3-pdf-100-paginas",
-    topic: "Tipos de Auditoría Informática: Interna, Externa y Mixta",
+    topic: "Teletrabajo",
     type: "single",
-    prompt: "En el marco de la clasificación de la Auditoría Informática:",
+    prompt: "Si estamos evaluando aplicar el Teletrabajo en la organización, podemos considerar:",
     options: [
-      { id: "a", text: "es Interna si es realizada por una entidad funcional perteneciente a la propia estructura organizativa." },
-      { id: "b", text: "es Externa si se realiza por personas ajenas a la empresa." },
-      { id: "c", text: "es Mixta si es realizada tanto por auditores externos e internos." },
-      { id: "d", text: "Todas las opciones son correctas." }
+      { id: "a", text: "como ventaja, el ahorro de ciertos costos de funcionamiento en la organización." },
+      { id: "b", text: "como desventaja, el manejo de los horarios por parte del empleado." },
+      { id: "c", text: "como ventaja, la posible pérdida del sentido de pertenencia del empleado a la organización." },
+      { id: "d", text: "Todas las opciones son correctas" }
     ],
-    correctAnswers: ["d"],
-    explanation: "La auditoría informática se clasifica según la posición del auditor en Interna (estructura propia), Externa (terceros independientes) o Mixta (equipo conjunto). Todas las opciones son correctas.",
+    correctAnswers: ["a"],
+    explanation: "En el teletrabajo, el ahorro de costos de funcionamiento es una ventaja. En cambio, el manejo de los horarios es una ventaja (no desventaja) y la posible pérdida del sentido de pertenencia es una desventaja (no ventaja).",
     diagram: null,
     points: 1
   },
@@ -154,17 +152,17 @@ export const questionsPart01 = [
     subject: "Administración de Sistemas",
     unit: "Parcial 3",
     quizId: "quiz-as-p3-pdf-100-paginas",
-    topic: "Definición Formal de Ergonomía",
+    topic: "Teletrabajo (Desventaja)",
     type: "single",
-    prompt: "La ergonomía se define como:",
+    prompt: "Si estamos evaluando aplicar el Teletrabajo en la organización, podemos considerar como desventaja:",
     options: [
-      { id: "a", text: "un cuerpo de conocimientos acerca de las habilidades humanas, sus limitaciones y características que son relevantes para el diseño de los puestos de trabajo." },
-      { id: "b", text: "un cuerpo de conocimientos acerca de las habilidades humanas, sus limitaciones y características que son relevantes para la evaluación de los riesgos en el trabajo." },
-      { id: "c", text: "un cuerpo de conocimientos acerca de las habilidades de las máquinas, sus limitaciones y características." },
-      { id: "d", text: "Ninguna de las opciones es válida para definir la ergonomía." }
+      { id: "a", text: "Todas las opciones son desventajas." },
+      { id: "b", text: "el manejo de los horarios por parte del empleado." },
+      { id: "c", text: "el ahorro de ciertos costos de funcionamiento en la organización." },
+      { id: "d", text: "la posible pérdida del sentido de pertenencia del empleado a la organización." }
     ],
-    correctAnswers: ["a", "d"],
-    explanation: "La definición exacta de ergonomía es el cuerpo de conocimientos sobre habilidades, limitaciones y características humanas relevantes para el diseño de los puestos de trabajo (Opción A). En variantes de examen donde la opción A exacta no figura, la respuesta oficial es la D.",
+    correctAnswers: ["d"],
+    explanation: "La posible pérdida del sentido de pertenencia del empleado a la organización constituye una desventaja del teletrabajo, mientras que el manejo de horarios y el ahorro de costos de funcionamiento son ventajas.",
     diagram: null,
     points: 1
   },
@@ -174,17 +172,77 @@ export const questionsPart01 = [
     subject: "Administración de Sistemas",
     unit: "Parcial 3",
     quizId: "quiz-as-p3-pdf-100-paginas",
-    topic: "Propósito del Diseño Ergonómico",
+    topic: "Teletrabajo (Variante general)",
     type: "single",
-    prompt: "El diseño ergonómico:",
+    prompt: "Si estamos evaluando aplicar el Teletrabajo en la organización, podemos considerar:",
     options: [
-      { id: "a", text: "persigue el logro de un diseño óptimo de puestos de trabajo." },
-      { id: "b", text: "considera las habilidades humanas, sus limitaciones y características." },
-      { id: "c", text: "pretende lograr herramientas, máquinas, sistemas, tareas, trabajos y ambientes seguros, confortables y de uso humano efectivo." },
-      { id: "d", text: "Todas las opciones son válidas." }
+      { id: "a", text: "Todas las opciones son correctas." },
+      { id: "b", text: "como ventaja, el ahorro de ciertos costos de funcionamiento en la organización." },
+      { id: "c", text: "como ventaja, el manejo de los horarios por parte del empleado." },
+      { id: "d", text: "como desventaja, la posible pérdida del sentido de pertenencia del empleado a la organización." }
+    ],
+    correctAnswers: ["a"],
+    explanation: "En esta variante todas las relaciones ventaja/desventaja están correctamente planteadas: el ahorro de costos y el manejo de horarios por parte del empleado son ventajas, y la posible pérdida del sentido de pertenencia es una desventaja.",
+    diagram: null,
+    points: 1
+  },
+  {
+    id: "as-p3-pdf100-q10",
+    num: 10,
+    subject: "Administración de Sistemas",
+    unit: "Parcial 3",
+    quizId: "quiz-as-p3-pdf-100-paginas",
+    topic: "Auditoría Informática (Objetivos)",
+    type: "single",
+    prompt: "La auditoría informática pretende determinar, entre otras cosas, si un sistema de información:",
+    options: [
+      { id: "a", text: "mantiene la integridad de las personas." },
+      { id: "b", text: "Las dos opciones son correctas." },
+      { id: "c", text: "Ninguna de las opciones son correctas." },
+      { id: "d", text: "cumple con las leyes y regulaciones establecidas." }
     ],
     correctAnswers: ["d"],
-    explanation: "El diseño ergonómico persigue optimizar puestos, considerar limitaciones humanas y lograr ambientes seguros y confortables. Todas las opciones son válidas.",
+    explanation: "La auditoría informática busca determinar si el sistema cumple con las leyes y regulaciones establecidas y si mantiene la integridad de los datos (no 'de las personas').",
+    diagram: null,
+    points: 1
+  },
+  {
+    id: "as-p3-pdf100-q11",
+    num: 11,
+    subject: "Administración de Sistemas",
+    unit: "Parcial 3",
+    quizId: "quiz-as-p3-pdf-100-paginas",
+    topic: "Auditoría Informática (Objetivos Variante 2)",
+    type: "single",
+    prompt: "La auditoría informática pretende determinar, entre otras cosas, si un sistema de información:",
+    options: [
+      { id: "a", text: "Todas las opciones son correctas." },
+      { id: "b", text: "utiliza eficientemente los recursos." },
+      { id: "c", text: "lleva a cabo eficazmente los fines de la organización." },
+      { id: "d", text: "mantiene la integridad de los datos." }
+    ],
+    correctAnswers: ["a"],
+    explanation: "La auditoría informática evalúa el uso eficiente de los recursos, la eficacia para alcanzar los fines de la organización y el mantenimiento de la integridad de los datos. Todas las opciones son correctas.",
+    diagram: null,
+    points: 1
+  },
+  {
+    id: "as-p3-pdf100-q12",
+    num: 12,
+    subject: "Administración de Sistemas",
+    unit: "Parcial 3",
+    quizId: "quiz-as-p3-pdf-100-paginas",
+    topic: "Higiene y Seguridad (Plan General)",
+    type: "single",
+    prompt: "En el marco de la implementación de un plan de higiene y seguridad del trabajo en nuestra organización:",
+    options: [
+      { id: "a", text: "Si lo clasificamos con respecto a las personas, el riesgo puede ser individual o social." },
+      { id: "b", text: "Todas las afirmaciones son correctas." },
+      { id: "c", text: "Si lo clasificamos con respecto a las consecuencias, el riesgo puede ser de muerte o lesiones, entre otras." },
+      { id: "d", text: "Si lo clasificamos con respecto al origen, el riesgo puede ser natural o inducido." }
+    ],
+    correctAnswers: ["b"],
+    explanation: "Dentro de un plan de higiene y seguridad del trabajo, los riesgos se clasifican con respecto a las personas (individual o social), con respecto a las consecuencias (muerte, lesiones, etc.) y con respecto al origen (natural o inducido). Todas las afirmaciones son correctas.",
     diagram: null,
     points: 1
   }

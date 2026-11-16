@@ -1,88 +1,28 @@
 /**
  * Banco de Preguntas - PDF 100 PÁGINAS (Administración de Sistemas - Parcial 3)
- * Parte 02 (Preguntas 10 a 17)
- * Temas: Teletrabajo (Ventajas y Desventajas) e Higiene y Seguridad en el Trabajo (Clasificación de Riesgos y Objetivos)
+ * Parte 02 (Preguntas 13 a 23)
+ * Temas: Auditoría Informática (Clasificación) y Seguridad Informática (Tríada CID, Física y Lógica)
  * Cumple estrictamente con directivas en AGENTS.md (Capa de Datos, < 300 líneas)
  */
 
 export const questionsPart02 = [
-  {
-    id: "as-p3-pdf100-q10",
-    num: 10,
-    subject: "Administración de Sistemas",
-    unit: "Parcial 3",
-    quizId: "quiz-as-p3-pdf-100-paginas",
-    topic: "Teletrabajo - Ventajas y Desventajas",
-    type: "single",
-    prompt: "Si estamos evaluando aplicar el Teletrabajo en la organización, podemos considerar:",
-    options: [
-      { id: "a", text: "como ventaja, el ahorro de ciertos costos de funcionamiento en la organización." },
-      { id: "b", text: "como ventaja, el manejo de los horarios por parte del empleado." },
-      { id: "c", text: "como desventaja, la posible pérdida del sentido de pertenencia del empleado a la organización." },
-      { id: "d", text: "Todas las opciones son correctas." }
-    ],
-    correctAnswers: ["d"],
-    explanation: "El teletrabajo ofrece ventajas operativas (ahorro de costos, flexibilidad de horarios) y desventajas humanas (aislamiento, posible pérdida de sentido de pertenencia). Todas las opciones son correctas.",
-    diagram: null,
-    points: 1
-  },
-  {
-    id: "as-p3-pdf100-q11",
-    num: 11,
-    subject: "Administración de Sistemas",
-    unit: "Parcial 3",
-    quizId: "quiz-as-p3-pdf-100-paginas",
-    topic: "Teletrabajo - Desventajas para el Empleado",
-    type: "single",
-    prompt: "Si estamos evaluando aplicar el Teletrabajo en la organización, podemos considerar como desventaja:",
-    options: [
-      { id: "a", text: "el manejo de los horarios por parte del empleado." },
-      { id: "b", text: "el ahorro de ciertos costos de funcionamiento en la organización." },
-      { id: "c", text: "la posible pérdida del sentido de pertenencia del empleado a la organización." },
-      { id: "d", text: "Todas las opciones son desventajas." }
-    ],
-    correctAnswers: ["c"],
-    explanation: "La única desventaja entre las opciones es la posible pérdida del sentido de pertenencia del empleado; el manejo de horarios y el ahorro de costos constituyen ventajas.",
-    diagram: null,
-    points: 1
-  },
-  {
-    id: "as-p3-pdf100-q12",
-    num: 12,
-    subject: "Administración de Sistemas",
-    unit: "Parcial 3",
-    quizId: "quiz-as-p3-pdf-100-paginas",
-    topic: "Higiene y Seguridad - Clasificación Integral de Riesgos",
-    type: "single",
-    prompt: "En el marco de la implementación de un plan de higiene y seguridad del trabajo en nuestra organización:",
-    options: [
-      { id: "a", text: "Si lo clasificamos con respecto a las personas, el riesgo puede ser individual o social." },
-      { id: "b", text: "Si lo clasificamos con respecto a las consecuencias, el riesgo puede ser de muerte o lesiones, entre otras." },
-      { id: "c", text: "Si lo clasificamos con respecto al origen, el riesgo puede ser natural o inducido." },
-      { id: "d", text: "Todas las afirmaciones son correctas." }
-    ],
-    correctAnswers: ["d"],
-    explanation: "Los riesgos laborales se clasifican por personas (individual o social), por consecuencias (muerte, lesiones, días perdidos) y por origen (natural o inducido). Todas las afirmaciones son correctas.",
-    diagram: null,
-    points: 1
-  },
   {
     id: "as-p3-pdf100-q13",
     num: 13,
     subject: "Administración de Sistemas",
     unit: "Parcial 3",
     quizId: "quiz-as-p3-pdf-100-paginas",
-    topic: "Clasificación de Riesgos - Con Respecto a las Personas",
+    topic: "Auditoría Informática (Clasificación)",
     type: "single",
-    prompt: "En el marco de la implementación de un plan de higiene y seguridad del trabajo en nuestra organización, si estamos evaluando el riesgo de un empleado en particular:",
+    prompt: "En el marco de la clasificación de la Auditoría Informática:",
     options: [
-      { id: "a", text: "lo clasificamos con respecto al origen." },
-      { id: "b", text: "lo clasificamos con respecto a las consecuencias." },
-      { id: "c", text: "lo clasificamos con respecto a las personas." },
-      { id: "d", text: "Todas las afirmaciones son correctas." }
+      { id: "a", text: "es Externa si se realiza por personas ajenas a la empresa." },
+      { id: "b", text: "es Mixta si es realizada por una entidad funcional perteneciente a la propia estructura organizativa" },
+      { id: "c", text: "Todas las opciones son correctas." },
+      { id: "d", text: "es Interna si es realizada tanto por personal de la misma organización como personas ajenas a la empresa." }
     ],
-    correctAnswers: ["c"],
-    explanation: "Evaluar el riesgo sobre un individuo aislado corresponde a la clasificación 'con respecto a las personas' (riesgo individual).",
+    correctAnswers: ["a"],
+    explanation: "La auditoría es Externa cuando la realizan personas ajenas a la empresa. La realizada por una entidad de la propia estructura es Interna (no Mixta), y la realizada conjuntamente por personal interno y externo es Mixta (no Interna).",
     diagram: null,
     points: 1
   },
@@ -92,17 +32,17 @@ export const questionsPart02 = [
     subject: "Administración de Sistemas",
     unit: "Parcial 3",
     quizId: "quiz-as-p3-pdf-100-paginas",
-    topic: "Clasificación de Riesgos - Con Respecto a las Consecuencias",
+    topic: "Auditoría Informática (Clasificación Variante 2)",
     type: "single",
-    prompt: "En el marco de la implementación de un plan de higiene y seguridad del trabajo en nuestra organización, si estamos evaluando el riesgo de muerte:",
+    prompt: "En el marco de la clasificación de la Auditoría Informática:",
     options: [
-      { id: "a", text: "lo clasificamos con respecto al origen." },
-      { id: "b", text: "lo clasificamos con respecto a las personas." },
-      { id: "c", text: "lo clasificamos con respecto a las consecuencias." },
-      { id: "d", text: "Todas las afirmaciones son correctas." }
+      { id: "a", text: "es Interna si es realizada por una entidad funcional perteneciente a la propia estructura organizativa." },
+      { id: "b", text: "es Externa si es realizada tanto por personal de la misma organización como personas ajenas a la empresa." },
+      { id: "c", text: "es Mixta si se realiza por personas ajenas a la empresa." },
+      { id: "d", text: "Todas las opciones son incorrectas." }
     ],
-    correctAnswers: ["c"],
-    explanation: "El riesgo de muerte, lesiones o pérdida de días de trabajo se clasifica según 'las consecuencias' del evento.",
+    correctAnswers: ["a"],
+    explanation: "La auditoría es Interna cuando la realiza una entidad funcional perteneciente a la propia estructura organizativa. Las otras opciones intercambian las definiciones de Externa y Mixta.",
     diagram: null,
     points: 1
   },
@@ -112,17 +52,17 @@ export const questionsPart02 = [
     subject: "Administración de Sistemas",
     unit: "Parcial 3",
     quizId: "quiz-as-p3-pdf-100-paginas",
-    topic: "Clasificación de Riesgos - Con Respecto al Origen",
+    topic: "Auditoría Informática (Clasificación Variante 3)",
     type: "single",
-    prompt: "En el marco de la implementación de un plan de higiene y seguridad del trabajo en nuestra organización, si estamos evaluando el riesgo de inundación por lluvias:",
+    prompt: "En el marco de la clasificación de la Auditoría Informática:",
     options: [
-      { id: "a", text: "lo clasificamos con respecto a las consecuencias." },
-      { id: "b", text: "lo clasificamos con respecto a las personas." },
-      { id: "c", text: "lo clasificamos con respecto al origen." },
-      { id: "d", text: "Todas las afirmaciones son correctas." }
+      { id: "a", text: "es Interna si es realizada por una entidad funcional perteneciente a la propia estructura organizativa." },
+      { id: "b", text: "Todas las opciones son correctas." },
+      { id: "c", text: "es Mixta si es realizada tanto por auditores externos e internos." },
+      { id: "d", text: "es externa si se realiza por personas ajenas a la empresa." }
     ],
-    correctAnswers: ["c"],
-    explanation: "Las inundaciones por lluvias son fenómenos climáticos, por lo que el riesgo se clasifica con respecto al origen (riesgo natural).",
+    correctAnswers: ["b"],
+    explanation: "En esta variante las tres definiciones coinciden con la clasificación oficial: Interna (entidad funcional propia), Mixta (auditores internos y externos) y Externa (personas ajenas a la empresa). Todas las opciones son correctas.",
     diagram: null,
     points: 1
   },
@@ -132,17 +72,17 @@ export const questionsPart02 = [
     subject: "Administración de Sistemas",
     unit: "Parcial 3",
     quizId: "quiz-as-p3-pdf-100-paginas",
-    topic: "Higiene y Seguridad - Objetivo Universal de Prevención",
+    topic: "Auditoría Informática (Clasificación Variante 4)",
     type: "single",
-    prompt: "En una organización dedicada a la venta de tickets para eventos musicales / fabricación de juguetes, la higiene y seguridad en el trabajo:",
+    prompt: "En el marco de la clasificación de la Auditoría Informática:",
     options: [
-      { id: "a", text: "Persigue el objetivo de aplicar medidas y desarrollar actividades tendientes a prevenir accidentes en el ambiente de trabajo." },
-      { id: "b", text: "Debería enfocarse en la prevención de fraudes digitales y garantizar la legalidad de los tickets." },
-      { id: "c", text: "No persigue objetivos dado que el trabajo administrativo está garantizado." },
-      { id: "d", text: "Ninguna de las opciones es correcta." }
+      { id: "a", text: "es Interna si es realizada tanto por personal de la misma organización como personas ajenas a la empresa." },
+      { id: "b", text: "es Externa si es realizada por una entidad funcional perteneciente a la propia estructura organizativa." },
+      { id: "c", text: "Todas las opciones son incorrectas." },
+      { id: "d", text: "es Mixta si se realiza por personas ajenas a la empresa." }
     ],
-    correctAnswers: ["a"],
-    explanation: "Sin importar el rubro comercial de la empresa, el objeto básico de la higiene y seguridad es siempre aplicar medidas y actividades orientadas a prevenir accidentes en el entorno laboral.",
+    correctAnswers: ["c"],
+    explanation: "Todas las definiciones están cruzadas: personal propio y ajeno corresponde a Mixta (no Interna), entidad propia a Interna (no Externa) y personas ajenas a Externa (no Mixta). Por eso todas las opciones son incorrectas.",
     diagram: null,
     points: 1
   },
@@ -152,17 +92,137 @@ export const questionsPart02 = [
     subject: "Administración de Sistemas",
     unit: "Parcial 3",
     quizId: "quiz-as-p3-pdf-100-paginas",
-    topic: "Higiene y Seguridad - Alcance Empresarial",
+    topic: "Seguridad Informática (Preservación)",
     type: "single",
-    prompt: "En una compañía de investigaciones y servicios estadísticos / imprenta, la higiene y seguridad en el trabajo:",
+    prompt: "Con la seguridad informática, preservamos:",
     options: [
-      { id: "a", text: "Es necesario tenerla en cuenta sólo en el área de impresiones de alto volumen." },
-      { id: "b", text: "Si la organización está certificada, no persigue objetivos concretos en materia de prevención de accidentes." },
-      { id: "c", text: "Debería enfocarse en garantizar la calidad de los servicios/productos." },
-      { id: "d", text: "Ninguna de las opciones es correcta." }
+      { id: "a", text: "todas las opciones son correctas." },
+      { id: "b", text: "la disponibilidad al garantizar que los usuarios autorizados tengan acceso a la información y a los recursos relacionados con la misma, toda vez que lo requieran." },
+      { id: "c", text: "la integridad al salvaguardar la exactitud y totalidad de la información y los métodos de procesamiento." },
+      { id: "d", text: "la confidencialidad al garantizar que la información sea accesible sólo a aquellas personas autorizadas a tener acceso a la misma." }
+    ],
+    correctAnswers: ["a"],
+    explanation: "La seguridad informática preserva los tres pilares de la tríada CID con sus definiciones exactas: disponibilidad (acceso cuando se requiera), integridad (exactitud y totalidad) y confidencialidad (acceso solo a autorizados).",
+    diagram: null,
+    points: 1
+  },
+  {
+    id: "as-p3-pdf100-q18",
+    num: 18,
+    subject: "Administración de Sistemas",
+    unit: "Parcial 3",
+    quizId: "quiz-as-p3-pdf-100-paginas",
+    topic: "Seguridad Informática (Preservación Variante Integridad)",
+    type: "single",
+    prompt: "Con la seguridad informática, preservamos:",
+    options: [
+      { id: "a", text: "todas las opciones son correctas." },
+      { id: "b", text: "la confidencialidad al garantizar que los usuarios autorizados tengan acceso a la información y a los recursos relacionados con la misma, toda vez que lo requieran." },
+      { id: "c", text: "la integridad al salvaguardar la exactitud y totalidad de la información y los métodos de procesamiento." },
+      { id: "d", text: "la disponibilidad al garantizar que la información sea accesible sólo a aquellas personas autorizadas a tener acceso a la misma." }
+    ],
+    correctAnswers: ["c"],
+    explanation: "Solo la integridad está definida correctamente (salvaguardar exactitud y totalidad). Las otras dos opciones intercambian las definiciones de confidencialidad y disponibilidad.",
+    diagram: null,
+    points: 1
+  },
+  {
+    id: "as-p3-pdf100-q19",
+    num: 19,
+    subject: "Administración de Sistemas",
+    unit: "Parcial 3",
+    quizId: "quiz-as-p3-pdf-100-paginas",
+    topic: "Seguridad Informática (Preservación Variante Disponibilidad)",
+    type: "single",
+    prompt: "Con la seguridad informática, preservamos:",
+    options: [
+      { id: "a", text: "todas las opciones son correctas." },
+      { id: "b", text: "la confidencialidad al salvaguardar la exactitud y totalidad de la información y los métodos de procesamiento." },
+      { id: "c", text: "la integridad al garantizar que la información sea accesible sólo a aquellas personas autorizadas a tener acceso a la misma." },
+      { id: "d", text: "la disponibilidad al garantizar que los usuarios autorizados tengan acceso a la información y a los recursos relacionados con la misma, toda vez que lo requieran." }
     ],
     correctAnswers: ["d"],
-    explanation: "La higiene y seguridad aplica a la totalidad de la empresa, no se invalida por certificaciones y se enfoca en prevención de accidentes (no en calidad de productos). Al no figurar la definición real preventiva, la opción correcta es 'Ninguna de las opciones es correcta'.",
+    explanation: "Solo la disponibilidad está bien definida (acceso de los usuarios autorizados toda vez que lo requieran). Las opciones B y C asignan definiciones de integridad y confidencialidad de manera invertida.",
+    diagram: null,
+    points: 1
+  },
+  {
+    id: "as-p3-pdf100-q20",
+    num: 20,
+    subject: "Administración de Sistemas",
+    unit: "Parcial 3",
+    quizId: "quiz-as-p3-pdf-100-paginas",
+    topic: "Seguridad Informática (Preservación Variante Confidencialidad)",
+    type: "single",
+    prompt: "Con la seguridad informática, preservamos:",
+    options: [
+      { id: "a", text: "la integridad al garantizar que los usuarios autorizados tengan acceso a la información y a los recursos relacionados con la misma, toda vez que lo requieran." },
+      { id: "b", text: "la confidencialidad al garantizar que la información sea accesible sólo a aquellas personas autorizadas a tener acceso a la misma." },
+      { id: "c", text: "la disponibilidad al salvaguardar la exactitud y totalidad de la información y los métodos de procesamiento." },
+      { id: "d", text: "todas las opciones son correctas." }
+    ],
+    correctAnswers: ["b"],
+    explanation: "La única opción con definición correcta es la confidencialidad (garantizar acceso solo a personas autorizadas). Integridad y disponibilidad tienen sus conceptos intercambiados.",
+    diagram: null,
+    points: 1
+  },
+  {
+    id: "as-p3-pdf100-q21",
+    num: 21,
+    subject: "Administración de Sistemas",
+    unit: "Parcial 3",
+    quizId: "quiz-as-p3-pdf-100-paginas",
+    topic: "Seguridad Informática dentro de la organización (Física y Lógica)",
+    type: "single",
+    prompt: "Según la clasificación de las seguridad informática dentro de la organización:",
+    options: [
+      { id: "a", text: "Ninguna de las opciones es correcta." },
+      { id: "b", text: "la Seguridad Lógica consiste en la aplicación de barreras y procedimientos que resguarden el acceso a los datos." },
+      { id: "c", text: "la Seguridad Física consiste en la aplicación de barreras y procedimientos de control implementados para proteger el hardware." },
+      { id: "d", text: "Las dos opciones son correctas." }
+    ],
+    correctAnswers: ["d"],
+    explanation: "Tanto la definición de Seguridad Lógica (barreras y procedimientos que resguardan el acceso a los datos) como la de Seguridad Física (barreras y controles para proteger el hardware) son correctas.",
+    diagram: null,
+    points: 1
+  },
+  {
+    id: "as-p3-pdf100-q22",
+    num: 22,
+    subject: "Administración de Sistemas",
+    unit: "Parcial 3",
+    quizId: "quiz-as-p3-pdf-100-paginas",
+    topic: "Seguridad Informática dentro de la organización (Variante Centro de Cómputo)",
+    type: "single",
+    prompt: "Según la clasificación de las seguridad informática dentro de la organización:",
+    options: [
+      { id: "a", text: "la Seguridad Física se refiere a los controles y mecanismos de seguridad dentro y alrededor del Centro de Cómputo." },
+      { id: "b", text: "la Seguridad Lógica consiste en la aplicación de barreras y procedimientos de control implementados para proteger el hardware." },
+      { id: "c", text: "la Seguridad Física consiste en la aplicación de barreras y procedimientos que resguarden el acceso a los datos." },
+      { id: "d", text: "Ninguna de las opciones es correcta." }
+    ],
+    correctAnswers: ["a"],
+    explanation: "La Seguridad Física comprende los controles dentro y alrededor del Centro de Cómputo (y la protección del hardware). Las opciones B y C invierten Física y Lógica.",
+    diagram: null,
+    points: 1
+  },
+  {
+    id: "as-p3-pdf100-q23",
+    num: 23,
+    subject: "Administración de Sistemas",
+    unit: "Parcial 3",
+    quizId: "quiz-as-p3-pdf-100-paginas",
+    topic: "Seguridad Informática dentro de la organización (Variante Todas correctas)",
+    type: "single",
+    prompt: "Según la clasificación de las seguridad informática dentro de la organización:",
+    options: [
+      { id: "a", text: "la Seguridad Lógica consiste en la aplicación de barreras y procedimientos que resguarden el acceso a los datos." },
+      { id: "b", text: "la Seguridad Física consiste en la aplicación de barreras y procedimientos de control implementados para proteger el hardware." },
+      { id: "c", text: "la Seguridad Física se refiere a los controles y mecanismos de seguridad dentro y alrededor del Centro de Cómputo." },
+      { id: "d", text: "Todas las opciones son correctas." }
+    ],
+    correctAnswers: ["d"],
+    explanation: "Las tres afirmaciones describen correctamente la Seguridad Lógica (resguardo del acceso a los datos) y la Seguridad Física (protección del hardware y controles dentro y alrededor del Centro de Cómputo).",
     diagram: null,
     points: 1
   }
