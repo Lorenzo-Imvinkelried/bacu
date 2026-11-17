@@ -91,14 +91,21 @@ export function handleClickEvent(e) {
   }
 
   const btnNavTarget = e.target.closest(".qnbutton");
-  if (btnNavTarget?.dataset.qindex !== undefined) {
-    e.preventDefault();
-    const targetIdx = parseInt(btnNavTarget.dataset.qindex, 10);
+  if (btnNavTarget) {
+    const rawIdx = btnNavTarget.dataset.quickGoto ?? btnNavTarget.dataset.qindex;
+    const targetIdx = parseInt(rawIdx, 10);
     if (!isNaN(targetIdx)) {
-      if (state.state.isMultiplayer && state.state.executionMode === "quick") return;
-      state.goToQuestion(targetIdx);
-      if (state.state.executionMode === "quick" && (state.state.quickViewMode || "single") === "single") {
-        setTimeout(scrollToQuickQuestionStage, 30);
+      e.preventDefault();
+      if (state.state.quizStatus !== "review" && state.state.executionMode === "quick") {
+        if (state.state.isMultiplayer) return;
+        state.goToQuestion(targetIdx);
+        if ((state.state.quickViewMode || "single") === "single") {
+          setTimeout(scrollToQuickQuestionStage, 30);
+        } else {
+          setTimeout(() => {
+            document.getElementById(`question-${state.state.currentQuestions[targetIdx]?.id}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+          }, 20);
+        }
       } else {
         const targetQ = document.getElementById(`question-${state.state.currentQuestions[targetIdx]?.id}`);
         targetQ?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -107,7 +114,7 @@ export function handleClickEvent(e) {
     return;
   }
 
-  const summaryLink = e.target.closest(".return-to-question-link");
+  const summaryLink = e.target.closest(".summary-q-link, .return-to-question-link");
   if (summaryLink?.dataset.returnQid) {
     e.preventDefault();
     state.resumeAttempt();
