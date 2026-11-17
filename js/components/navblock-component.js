@@ -123,7 +123,7 @@ export function renderNavBlock(questions, state, isReview = false, results = nul
               data-action="delete-all-quiz-comments"
               title="Eliminar todos los comentarios de este cuestionario de una sola vez"
             >
-              🗑️ Borrar comentarios del cuestionario
+              Borrar comentarios del cuestionario
             </button>
           </div>
         </div>

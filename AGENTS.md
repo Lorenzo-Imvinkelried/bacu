@@ -179,4 +179,5 @@ baul-de-cuestionarios/
 - Toda interacción de usuario debe ser accesible por teclado y tener retroalimentación visual clara.
 - En la interfaz, títulos y selectores, **nunca** incluir códigos de materia tipo `(ISI-XXX)` o `(FB-XXX)`; las materias se identifican únicamente con su nombre limpio (ej. `Ingeniería y Calidad de Software`, `Fundamentos Backend`).
 - No registrar parciales o unidades vacías con leyendas de "Próximamente"; registrar únicamente unidades con banco de preguntas cargado.
+- **Prohibición de Emojis**: Está terminantemente prohibido añadir emojis en la interfaz de usuario, botones, títulos, mensajes o cualquier parte del programa. Cuando se requiera iconografía, usar únicamente SVG limpios o texto plano acorde al estilo institucional de Campus Virtual.
 - **Control de Versiones y Git**: Está terminantemente prohibido ejecutar `git push` de forma automática. Solo se ejecutará `git push` cuando el usuario lo pida explícitamente.
