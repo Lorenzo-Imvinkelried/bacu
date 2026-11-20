@@ -23,9 +23,10 @@ async function initFirestore() {
   if (firebaseInitialized) return firebaseDb;
   if (!isFirebaseConfigured()) return null;
   try {
-    const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js");
+    const { initializeApp, getApps } = await import("https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js");
     const { getFirestore } = await import("https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js");
-    firebaseDb = getFirestore(initializeApp(FIREBASE_CONFIG));
+    const app = getApps().length > 0 ? getApps()[0] : initializeApp(FIREBASE_CONFIG);
+    firebaseDb = getFirestore(app);
     firebaseInitialized = true;
     return firebaseDb;
   } catch (err) {

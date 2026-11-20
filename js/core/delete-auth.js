@@ -19,7 +19,7 @@ export async function verifyDeletePassword(password) {
   return digestHex === EXPECTED_DELETE_HASH;
 }
 
-async function computeSha256Hex(text) {
+export async function computeSha256Hex(text) {
   if (typeof globalThis.crypto?.subtle?.digest === "function") {
     try {
       const bytes = new TextEncoder().encode(text);

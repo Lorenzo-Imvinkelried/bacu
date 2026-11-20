@@ -1,0 +1,239 @@
+/**
+ * Estilos del Acceso Oculto y Panel de Conexiones en Tiempo Real
+ * Responsabilidad: Presentación visual del modal de acceso y tabla en vivo (Modo Claro y Oscuro)
+ * Cumple con directivas en AGENTS.md (Capa de Estilos, < 300 líneas)
+ */
+
+/* Disparador oculto en el año del footer (idéntico al texto plano) */
+.footer-secret-year {
+  color: inherit;
+  text-decoration: none;
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Modal de contraseña */
+.presence-hd-title { display: inline-flex; align-items: center; gap: 0.5rem; }
+.presence-auth-message { margin-bottom: 0.9rem; line-height: 1.45; }
+.presence-auth-input { margin-top: 0.35rem; }
+.presence-auth-error { margin-top: 0.5rem; font-size: 0.82rem; font-weight: 600; color: var(--cv-danger); }
+
+/* Modal del panel de conexiones */
+.presence-admin-dialogue { width: 96%; max-width: 960px; }
+.presence-admin-wrap { width: 100%; max-width: 960px; max-height: 90vh; display: flex; flex-direction: column; }
+.presence-hd-title-group { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+
+.presence-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background-color: var(--cv-success-bg);
+  color: var(--cv-success-text);
+  border: 1px solid var(--cv-success-border);
+}
+
+.presence-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--cv-success);
+  animation: presencePulse 1.8s infinite;
+}
+
+.presence-live-badge.is-offline {
+  background-color: var(--cv-danger-bg);
+  color: var(--cv-danger-text);
+  border-color: var(--cv-danger-border);
+}
+
+.presence-live-badge.is-offline .presence-live-dot { background-color: var(--cv-danger); animation: none; }
+
+@keyframes presencePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.85); }
+}
+
+.presence-admin-body {
+  overflow-y: auto;
+  flex: 1 1 auto;
+  padding: 1.25rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+/* Tarjetas KPI */
+.presence-kpi-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.9rem; }
+
+.presence-kpi-card {
+  background-color: var(--cv-info-bg);
+  border: 1px solid var(--cv-border-color);
+  border-radius: var(--cv-radius-lg);
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.presence-kpi-primary { background-color: var(--cv-primary-light); border-color: var(--cv-formulation-border); }
+
+.presence-kpi-label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.35px;
+  color: var(--cv-font-muted);
+}
+
+.presence-kpi-value { font-size: 1.65rem; font-weight: 700; color: var(--cv-primary); line-height: 1.2; }
+.presence-kpi-clock { font-size: 1.35rem; font-variant-numeric: tabular-nums; }
+.presence-kpi-sub { font-size: 0.78rem; color: var(--cv-font-muted); }
+
+/* Tabla de sesiones */
+.presence-table-wrap {
+  border: 1px solid var(--cv-border-color);
+  border-radius: var(--cv-radius-lg);
+  overflow-x: auto;
+  background-color: var(--cv-surface);
+}
+
+.presence-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+
+.presence-table th {
+  text-align: left;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.35px;
+  color: var(--cv-font-muted);
+  background-color: var(--cv-info-bg);
+  border-bottom: 1px solid var(--cv-border-color);
+  white-space: nowrap;
+}
+
+.presence-table td {
+  padding: 0.75rem 0.9rem;
+  border-bottom: 1px solid var(--cv-border-light);
+  vertical-align: top;
+}
+
+.presence-table tbody tr:last-child td { border-bottom: none; }
+.presence-table tbody tr:hover td { background-color: var(--cv-info-bg); }
+.presence-row-self td { background-color: rgba(0, 121, 107, 0.06); }
+
+.presence-ip-cell { display: flex; flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+
+.presence-ip-chip {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.84rem;
+  font-weight: 600;
+  padding: 0.2rem 0.45rem;
+  border-radius: var(--cv-radius);
+  background-color: var(--cv-info-bg);
+  border: 1px solid var(--cv-border-color);
+  color: var(--cv-font-color);
+  white-space: nowrap;
+}
+
+.presence-self-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  background-color: var(--cv-primary-light);
+  color: var(--cv-primary);
+}
+
+.presence-activity-cell,
+.presence-device-cell,
+.presence-time-cell { display: flex; flex-direction: column; gap: 0.2rem; }
+
+.presence-activity-title,
+.presence-device-main,
+.presence-time-main { font-weight: 600; color: var(--cv-font-color); }
+
+.presence-activity-quiz,
+.presence-device-sub,
+.presence-time-sub { font-size: 0.78rem; color: var(--cv-font-muted); }
+
+.presence-badges-row { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.15rem; }
+
+.presence-status-pill {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.12rem 0.5rem;
+  border-radius: 999px;
+}
+
+.presence-status-pill.status-intro { background-color: #e2e8f0; color: #334155; }
+.presence-status-pill.status-attempt { background-color: #dbeafe; color: #1d4ed8; }
+.presence-status-pill.status-summary { background-color: var(--cv-warning-bg); color: var(--cv-warning-text); }
+.presence-status-pill.status-review { background-color: var(--cv-success-bg); color: var(--cv-success-text); }
+.presence-status-pill.status-multi { background-color: #ede9fe; color: #6d28d9; }
+
+/* Estados vacíos, carga y error */
+.presence-state-box {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--cv-font-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.presence-spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--cv-border-color);
+  border-top-color: var(--cv-primary);
+  border-radius: 50%;
+  animation: presenceSpin 0.8s linear infinite;
+}
+
+@keyframes presenceSpin {
+  to { transform: rotate(360deg); }
+}
+
+.presence-error-box {
+  padding: 1rem 1.2rem;
+  border-radius: var(--cv-radius);
+  background-color: var(--cv-danger-bg);
+  border: 1px solid var(--cv-danger-border);
+  color: var(--cv-danger-text);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.presence-admin-ft { justify-content: space-between; align-items: center; flex-wrap: wrap; }
+.presence-ft-hint { font-size: 0.78rem; color: var(--cv-font-muted); }
+.presence-ft-actions { display: flex; gap: 0.6rem; }
+
+@media (max-width: 720px) {
+  .presence-kpi-grid { grid-template-columns: 1fr; }
+  .presence-admin-body { padding: 1rem; }
+}
+
+/* Modo Oscuro */
+[data-theme="dark"] .presence-hd-title { color: #f8fafc; }
+[data-theme="dark"] .presence-auth-message,
+[data-theme="dark"] .presence-admin-body { color: #e2e8f0; }
+[data-theme="dark"] .presence-auth-error { color: #fca5a5; }
+[data-theme="dark"] .presence-kpi-primary { background-color: #13253f; border-color: #28466e; }
+[data-theme="dark"] .presence-kpi-value { color: #38bdf8; }
+[data-theme="dark"] .presence-row-self td { background-color: rgba(14, 165, 233, 0.1); }
+[data-theme="dark"] .presence-ip-chip { background-color: #0b1120; border-color: #334155; color: #f1f5f9; }
+[data-theme="dark"] .presence-self-tag { background-color: #1e3a5f; color: #7dd3fc; }
+[data-theme="dark"] .presence-status-pill.status-intro { background-color: #1e293b; color: #cbd5e1; }
+[data-theme="dark"] .presence-status-pill.status-attempt { background-color: rgba(56, 189, 248, 0.2); color: #7dd3fc; }
+[data-theme="dark"] .presence-status-pill.status-multi { background-color: rgba(168, 85, 247, 0.2); color: #d8b4fe; }
+[data-theme="dark"] #presence-auth-modal .moodle-dialogue-ft,
+[data-theme="dark"] .presence-admin-wrap .moodle-dialogue-ft { background-color: #101726; border-top-color: #273549; }

@@ -23,6 +23,8 @@ import { setupMultiplayerEvents } from "./app/multiplayer-handlers.js";
 import { initMultiplayerSync, refreshPeerSelectionBadgesInDom } from "./core/multiplayer-sync.js";
 import { exportQuestionsToTxt } from "./app/export-service.js";
 import { refreshAnnotationCountsForQuestions } from "./app/annotations-handlers.js";
+import { initPresenceTracking } from "./core/presence-service.js";
+import { initPresenceAdminPanel } from "./app/presence-admin-controller.js";
 
 // Re-exportar para compatibilidad si fuera requerido externamente
 export { exportQuestionsToTxt };
@@ -48,6 +50,10 @@ export function initApp() {
 
   // Configurar eventos globales delegados
   setupEventListeners(root);
+
+  // Seguimiento de presencia en tiempo real y panel oculto de administración
+  initPresenceTracking(() => state.getState(), (cb) => state.subscribe(cb));
+  initPresenceAdminPanel(root);
 
   // Render inicial
   render(root, state.getState());
@@ -113,7 +119,7 @@ function render(root, currentState) {
     ${deletePasswordModalHtml}
 
     <footer class="cv-footer">
-      <p>BACU - Baúl de Cuestionarios &copy; 2026</p>
+      <p>BACU - Baúl de Cuestionarios &copy; <span id="secret-footer-year" class="footer-secret-year">2026</span></p>
     </footer>
   `;
 
